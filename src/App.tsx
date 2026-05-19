@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EmployeeLogin from "./pages/EmployeeLogin";
 import ServiceDetail from "./pages/ServiceDetail";
+import AboutUs from "./pages/AboutUs";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsAndConditions from "./pages/legal/TermsAndConditions";
 import Disclaimer from "./pages/legal/Disclaimer";
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/employee-login" element={<EmployeeLogin />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/legal/disclaimer" element={<Disclaimer />} />

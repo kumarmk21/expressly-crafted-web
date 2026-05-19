@@ -50,7 +50,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-muted-foreground">
               {[
                 { l: "Home", h: "/" },
-                { l: "About", h: "#about" },
+                { l: "About", h: "/about" },
                 { l: "Services", h: "#services" },
                 { l: "Network", h: "#network" },
                 { l: "Contact", h: "#contact" },
