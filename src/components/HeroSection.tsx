@@ -52,7 +52,7 @@ const HeroSection = () => {
             className="lg:col-span-7"
           >
             <p className="text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-2xl">
-              India's premier freight & logistics partner — express cargo, cold chain, air, FTL and warehousing engineered with 100+ years of combined leadership and absolute custodial discipline.
+              India's premier freight & logistics partner — express cargo, cold chain, air, FTL and warehousing engineered with absolute custodial discipline.
             </p>
 
             <div className="flex flex-wrap gap-3 mt-8">

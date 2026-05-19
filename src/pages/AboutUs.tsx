@@ -10,11 +10,11 @@ import companyShowcase from "@/assets/hero-bg.jpg";
 
 const milestones = [
   { year: "2000", text: "Scorpion Group founded by Mr. J P N Singh" },
-  { year: "2001", text: "Scorpion Express launched with 4 offices" },
+  { year: "2001", text: "Scorpion Express launched in India" },
   { year: "2005", text: "Scorpion Containers Pvt. Ltd. established" },
-  { year: "2015", text: "Expanded to pan-India network of 175+ offices" },
-  { year: "2020", text: "Crossed 12,000 pincodes and ₹2,000 Cr AUM" },
-  { year: "2024", text: "24,000+ pincodes · 7.5M+ packages/month" },
+  { year: "2015", text: "Expanded to a true pan-India operating network" },
+  { year: "2020", text: "Deepened reverse logistics & cold-chain capability" },
+  { year: "2024", text: "Modernised tech stack — live tracking & analytics" },
 ];
 
 const leadership = [
@@ -52,7 +52,7 @@ const AboutUs = () => {
             India's premier <br /> freight & logistics <br /> custodian<span className="text-primary">.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-foreground/70 leading-relaxed">
-            Pioneer of the Scorpion Group's endeavors — built on 100+ years of combined leadership and a single
+            Pioneer of the Scorpion Group's endeavors — built on a single
             promise: <strong className="text-foreground font-bold">Custodian First, Carrier Later.</strong>
           </p>
         </div>

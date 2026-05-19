@@ -26,7 +26,7 @@ const ClientsSection = () => {
         </div>
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
           <h2 className="font-display uppercase text-4xl lg:text-6xl text-foreground leading-[0.9]">
-            14,000+ clients<span className="text-primary">.</span> One promise.
+            Trusted by India<span className="text-primary">.</span> One promise.
           </h2>
           <p className="text-muted-foreground max-w-md">Every client is a long-term partner. From category leaders to emerging brands.</p>
         </div>
