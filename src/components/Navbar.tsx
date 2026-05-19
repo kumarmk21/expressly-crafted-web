@@ -130,14 +130,12 @@ const Navbar = () => {
           >
             <LogIn className="h-3.5 w-3.5" /> Employee
           </Link>
-          <a
-            href="http://103.211.171.59:8000/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/customer-portal"
             className="flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider bg-primary text-white hover:bg-primary/90 transition-colors"
           >
             <User className="h-3.5 w-3.5" /> Customer Portal
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -207,12 +205,13 @@ const Navbar = () => {
               >
                 <LogIn className="h-3.5 w-3.5" /> Employee
               </Link>
-              <a
-                href="http://103.211.171.59:8000/"
+              <Link
+                to="/customer-portal"
+                onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider bg-primary text-white"
               >
                 <User className="h-3.5 w-3.5" /> Customer
-              </a>
+              </Link>
             </div>
           </div>
         </div>
