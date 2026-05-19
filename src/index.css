@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    /* Noir canvas with Scorpion Red */
-    --background: 0 0% 5%;
-    --foreground: 0 0% 96%;
+    /* Light canvas with Scorpion Red */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
     --primary: 358 80% 52%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 96%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
 
     --accent: 358 80% 52%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 16%;
-    --input: 0 0% 14%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
     --ring: 358 80% 52%;
 
     --radius: 0.25rem;
@@ -39,40 +39,39 @@
     --brand-red: 358 80% 52%;
     --brand-red-dark: 358 80% 42%;
     --brand-red-glow: 358 100% 60%;
-    --brand-ink: 0 0% 5%;
-    --brand-jet: 0 0% 8%;
-    --brand-charcoal: 0 0% 14%;
-    --brand-bone: 36 25% 92%;
+    --brand-ink: 0 0% 10%;
+    --brand-bone: 0 0% 98%;
+    --brand-charcoal: 0 0% 25%;
     --brand-gold: 40 90% 55%;
 
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 0 0% 96%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 10%;
     --sidebar-primary: 358 80% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 0 0% 96%;
-    --sidebar-border: 0 0% 16%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 90%;
     --sidebar-ring: 358 80% 52%;
   }
 
   .dark {
-    /* same noir palette */
-    --background: 0 0% 5%;
-    --foreground: 0 0% 96%;
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 96%;
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 96%;
+    /* Same light palette — we don't use dark mode */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
     --primary: 358 80% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 96%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 65%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
     --accent: 358 80% 52%;
     --accent-foreground: 0 0% 100%;
-    --border: 0 0% 16%;
-    --input: 0 0% 14%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
     --ring: 358 80% 52%;
   }
 }
@@ -115,7 +114,7 @@
 
   .grain {
     background-image:
-      radial-gradient(hsl(0 0% 100% / 0.03) 1px, transparent 1px);
+      radial-gradient(hsl(0 0% 0% / 0.04) 1px, transparent 1px);
     background-size: 3px 3px;
   }
 
@@ -144,21 +143,21 @@
 }
 .animate-marquee-slow { animation: marquee-slow 60s linear infinite; }
 
-/* Gradients */
+/* Gradients — bright white with red wash */
 .hero-gradient {
   background: linear-gradient(
     115deg,
-    hsl(var(--brand-ink)) 0%,
-    hsl(var(--brand-ink) / 0.85) 55%,
-    hsl(var(--brand-red) / 0.55) 100%
+    hsl(0 0% 100%) 0%,
+    hsl(0 0% 98%) 55%,
+    hsl(var(--brand-red) / 0.12) 100%
   );
 }
 
-.dark-gradient {
+.light-gradient {
   background: linear-gradient(
     180deg,
-    hsl(var(--brand-ink)) 0%,
-    hsl(var(--brand-jet)) 100%
+    hsl(0 0% 100%) 0%,
+    hsl(0 0% 97%) 100%
   );
 }
 
@@ -171,8 +170,8 @@
 }
 
 .red-glow {
-  box-shadow: 0 0 0 1px hsl(var(--brand-red) / 0.4),
-              0 10px 40px -10px hsl(var(--brand-red) / 0.5);
+  box-shadow: 0 0 0 1px hsl(var(--brand-red) / 0.25),
+              0 20px 50px -20px hsl(var(--brand-red) / 0.35);
 }
 
 /* Radial spotlight for hero */
@@ -182,7 +181,7 @@
   inset: 0;
   background: radial-gradient(
     ellipse 80% 50% at 80% 50%,
-    hsl(var(--brand-red) / 0.18),
+    hsl(var(--brand-red) / 0.10),
     transparent 60%
   );
   pointer-events: none;
