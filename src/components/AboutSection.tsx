@@ -21,13 +21,13 @@ const AboutSection = () => {
           >
             <span className="text-sm font-bold text-primary uppercase tracking-widest">About Us</span>
             <h2 className="text-3xl lg:text-4xl font-black text-foreground mt-3 mb-6 leading-tight">
-              Pioneering Express Cargo Since Day One
+              Pioneering Express Cargo with 100+ Years of Combined Experience
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              As the flagship venture of the Scorpion Group, Scorpion Express embodies an enduring legacy in the Express Cargo domain. Guided by our tagline — <strong className="text-foreground">"Custodian First, Carrier Later"</strong> — we prioritize the safeguarding of your goods above all else.
+              As the flagship venture of the Scorpion Group, Scorpion Express embodies an enduring legacy in the Express Cargo domain — backed by <strong className="text-foreground">100+ years of combined leadership experience</strong>. Guided by our tagline — <strong className="text-foreground">"Custodian First, Carrier Later"</strong> — we prioritize the safeguarding of your goods above all else.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              Our hallmark lies in excellence and diverse service range, seamlessly catering to both B2B and B2C sectors nationwide. We offer both asset-based and non-asset-based third-party logistics solutions designed not just to meet but to exceed your supply chain goals.
+              Our hallmark lies in excellence and a diverse service range, seamlessly catering to <strong className="text-foreground">B2B, B2C and B2D</strong> sectors nationwide. We offer both asset-based and non-asset-based third-party logistics solutions designed not just to meet but to exceed your supply chain goals.
             </p>
             <a
               href="#contact"
