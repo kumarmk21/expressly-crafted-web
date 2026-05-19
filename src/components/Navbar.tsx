@@ -44,7 +44,7 @@ const Navbar = () => {
   const { openQuote } = useQuote();
 
   return (
-    <nav className="bg-background/90 backdrop-blur-md sticky top-0 z-50 border-b border-white/10">
+    <nav className="bg-background/90 backdrop-blur-md sticky top-0 z-50 border-b border-border">
       <div className="container mx-auto flex items-center justify-between gap-6 px-4 py-3">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 shrink-0 group" aria-label="Scorpion Express Home">
@@ -97,7 +97,7 @@ const Navbar = () => {
                           );
                         })}
                       </div>
-                      <div className="p-3 flex items-center justify-between bg-black/40">
+                      <div className="p-3 flex items-center justify-between bg-muted">
                         <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Custom requirement?</span>
                         <button onClick={() => openQuote()} className="flex items-center gap-1.5 text-xs font-bold text-primary uppercase tracking-wider hover:underline">
                           <FileText className="h-3.5 w-3.5" /> Request a Quote
@@ -141,7 +141,7 @@ const Navbar = () => {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden p-2 -mr-2 text-foreground hover:bg-white/5"
+          className="lg:hidden p-2 -mr-2 text-foreground hover:bg-muted"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -151,14 +151,14 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-background border-t border-white/10 max-h-[calc(100vh-90px)] overflow-y-auto">
+        <div className="lg:hidden bg-background border-t border-border max-h-[calc(100vh-90px)] overflow-y-auto">
           <div className="container mx-auto px-4 py-4 space-y-1">
             {navLinks.map((link) => {
               if (link.children) {
                 return (
                   <div key={link.label} className="border border-border">
                     <button
-                      className="flex items-center justify-between w-full px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground bg-white/5"
+                      className="flex items-center justify-between w-full px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground bg-muted"
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                     >
                       {link.label}
@@ -192,7 +192,7 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground/80 hover:bg-white/5 border border-transparent hover:border-border"
+                  className="block px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground/80 hover:bg-muted border border-transparent hover:border-border"
                 >
                   {link.label}
                 </a>

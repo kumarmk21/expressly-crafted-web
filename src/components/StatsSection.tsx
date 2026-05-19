@@ -10,7 +10,7 @@ const stats = [
 
 const StatsSection = () => {
   return (
-    <section className="py-24 lg:py-32 bg-background relative overflow-hidden border-y border-white/10">
+    <section className="py-24 lg:py-32 bg-background relative overflow-hidden border-y border-border">
       <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
       <div className="container mx-auto px-4 relative">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
@@ -28,7 +28,7 @@ const StatsSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-white/10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-border">
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
@@ -36,7 +36,7 @@ const StatsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="border-r border-b border-white/10 p-6 lg:p-8 hover:bg-primary/5 transition-colors group"
+              className="border-r border-b border-border p-6 lg:p-8 hover:bg-primary/5 transition-colors group"
             >
               <div className="font-display text-5xl lg:text-6xl text-foreground group-hover:text-primary transition-colors">
                 {s.value}

@@ -18,7 +18,7 @@ const clientLogos = [
 
 const ClientsSection = () => {
   return (
-    <section className="py-20 lg:py-24 bg-background overflow-hidden border-y border-white/10">
+    <section className="py-20 lg:py-24 bg-background overflow-hidden border-y border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-3 mb-3">
           <span className="h-px w-10 bg-primary" />
@@ -39,7 +39,7 @@ const ClientsSection = () => {
           {[...clientLogos, ...clientLogos].map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 mx-4 flex items-center justify-center h-20 w-40 bg-white/5 border border-white/10 grayscale brightness-200 contrast-0 hover:grayscale-0 hover:brightness-100 hover:contrast-100 transition-all duration-300"
+              className="flex-shrink-0 mx-4 flex items-center justify-center h-20 w-40 bg-muted border border-border grayscale brightness-200 contrast-0 hover:grayscale-0 hover:brightness-100 hover:contrast-100 transition-all duration-300"
             >
               <img src={logo} alt="" className="max-h-12 max-w-[80%] object-contain" loading="lazy" />
             </div>

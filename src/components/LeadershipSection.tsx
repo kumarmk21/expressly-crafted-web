@@ -53,7 +53,7 @@ const LeadershipSection = () => {
                 The Scorpion Group's philosophy of <strong className="text-foreground">"Custodian First, Carrier Later"</strong> is more than a tagline — it's the guiding principle that shapes every operational decision and last-mile delivery.
               </p>
             </div>
-            <div className="mt-10 grid grid-cols-2 gap-px bg-white/10 border border-white/10 max-w-md">
+            <div className="mt-10 grid grid-cols-2 gap-px bg-muted border border-border max-w-md">
               <div className="bg-background p-5">
                 <div className="font-display text-2xl text-foreground">Scorpion Group</div>
                 <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-1">Parent Organisation</div>

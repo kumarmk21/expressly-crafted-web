@@ -51,7 +51,7 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="lg:col-span-5 grid grid-cols-2 gap-px bg-white/10 border border-white/10"
+            className="lg:col-span-5 grid grid-cols-2 gap-px bg-muted border border-border"
           >
             {highlights.map((item, i) => (
               <div

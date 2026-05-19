@@ -15,7 +15,7 @@ const HeroSection = () => {
   const [lr, setLr] = useState("");
 
   return (
-    <section className="relative bg-background overflow-hidden border-b border-white/10">
+    <section className="relative bg-background overflow-hidden border-b border-border">
       {/* BG layers */}
       <div className="absolute inset-0">
         <img src={heroBg} alt="" className="h-full w-full object-cover opacity-30" />
@@ -73,7 +73,7 @@ const HeroSection = () => {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-3 px-6 py-4 border border-white/20 text-foreground font-black uppercase tracking-wider text-sm hover:border-primary hover:text-primary transition-colors"
+                className="inline-flex items-center gap-3 px-6 py-4 border border-border text-foreground font-black uppercase tracking-wider text-sm hover:border-primary hover:text-primary transition-colors"
               >
                 Talk to an Expert
               </a>
@@ -96,7 +96,7 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="lg:col-span-5"
           >
-            <div className="bg-card border border-white/10 p-6 lg:p-7 red-glow">
+            <div className="bg-card border border-border p-6 lg:p-7 red-glow">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary">Live Tracking</span>
                 <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -144,7 +144,7 @@ const HeroSection = () => {
       </div>
 
       {/* Ticker strip */}
-      <div className="relative z-10 border-t border-white/10 bg-black/60 backdrop-blur">
+      <div className="relative z-10 border-t border-border bg-muted backdrop-blur">
         <div className="overflow-hidden">
           <div className="flex animate-marquee-slow whitespace-nowrap py-4">
             {[...tickerStats, ...tickerStats, ...tickerStats].map((s, i) => (
