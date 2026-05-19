@@ -7,6 +7,9 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EmployeeLogin from "./pages/EmployeeLogin";
 import ServiceDetail from "./pages/ServiceDetail";
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import TermsAndConditions from "./pages/legal/TermsAndConditions";
+import Disclaimer from "./pages/legal/Disclaimer";
 import { QuoteProvider } from "./context/QuoteContext";
 import QuoteDialog from "./components/QuoteDialog";
 
@@ -23,6 +26,9 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/employee-login" element={<EmployeeLogin />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
+            <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/legal/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/legal/disclaimer" element={<Disclaimer />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
