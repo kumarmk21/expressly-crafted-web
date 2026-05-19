@@ -251,12 +251,13 @@ const Navbar = () => {
               );
             })}
             <div className="pt-3 mt-3 grid grid-cols-2 gap-2 border-t border-border">
-              <a
-                href="#"
+              <Link
+                to="/employee-login"
+                onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold border border-border rounded-lg hover:bg-muted"
               >
                 <LogIn className="h-4 w-4" /> Employee
-              </a>
+              </Link>
               <a
                 href="#"
                 className="flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold red-gradient text-primary-foreground rounded-lg"
