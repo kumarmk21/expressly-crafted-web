@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Menu,
   X,
@@ -21,8 +22,10 @@ import {
   Recycle,
   Boxes,
   Wind,
+  FileText,
 } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
+import { useQuote } from "@/context/QuoteContext";
 
 type ChildLink = {
   label: string;
@@ -66,6 +69,7 @@ const navLinks: NavItem[] = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const { openQuote } = useQuote();
 
   return (
     <nav className="bg-background sticky top-0 z-50 shadow-md border-b border-border">
@@ -106,23 +110,28 @@ const Navbar = () => {
                         {link.children.map((child) => {
                           const ChildIcon = child.icon;
                           return (
-                            <a
+                            <div
                               key={child.label}
-                              href={child.href}
                               className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group/item"
                             >
                               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors">
                                 <ChildIcon className="h-4 w-4" />
                               </span>
-                              <span className="flex flex-col">
+                              <div className="flex flex-col flex-1 min-w-0">
                                 <span className="text-sm font-semibold text-foreground">
                                   {child.label}
                                 </span>
-                                <span className="text-xs text-muted-foreground">
+                                <span className="text-xs text-muted-foreground mb-1.5">
                                   {child.desc}
                                 </span>
-                              </span>
-                            </a>
+                                <button
+                                  onClick={() => openQuote(child.label)}
+                                  className="self-start inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:underline uppercase tracking-wider"
+                                >
+                                  <FileText className="h-3 w-3" /> Get a Quote
+                                </button>
+                              </div>
+                            </div>
                           );
                         })}
                       </div>
@@ -130,12 +139,12 @@ const Navbar = () => {
                         <span className="text-muted-foreground">
                           Looking for tailored logistics?
                         </span>
-                        <a
-                          href="#contact"
+                        <button
+                          onClick={() => openQuote()}
                           className="font-semibold text-primary hover:underline"
                         >
-                          Talk to an expert →
-                        </a>
+                          Request a custom quote →
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -157,13 +166,13 @@ const Navbar = () => {
 
         {/* Portal buttons */}
         <div className="hidden lg:flex items-center gap-2 shrink-0">
-          <a
-            href="#"
+          <Link
+            to="/employee-login"
             className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold border border-border rounded-lg hover:bg-muted hover:border-primary/40 transition-colors"
           >
             <LogIn className="h-4 w-4" />
             Employee
-          </a>
+          </Link>
           <a
             href="#"
             className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold red-gradient text-primary-foreground rounded-lg shadow-sm hover:shadow-md hover:opacity-95 transition-all"
@@ -242,12 +251,13 @@ const Navbar = () => {
               );
             })}
             <div className="pt-3 mt-3 grid grid-cols-2 gap-2 border-t border-border">
-              <a
-                href="#"
+              <Link
+                to="/employee-login"
+                onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold border border-border rounded-lg hover:bg-muted"
               >
                 <LogIn className="h-4 w-4" /> Employee
-              </a>
+              </Link>
               <a
                 href="#"
                 className="flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold red-gradient text-primary-foreground rounded-lg"
