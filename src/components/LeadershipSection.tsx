@@ -13,11 +13,11 @@ const LeadershipSection = () => {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
+            <div className="rounded-2xl overflow-hidden shadow-2xl bg-muted">
               <img
                 src={leaderPhoto}
-                alt="Scorpion Express Leadership"
-                className="w-full h-[400px] lg:h-[500px] object-cover"
+                alt="JPN Singh - Founder, Scorpion Express"
+                className="w-full h-[400px] lg:h-[560px] object-cover object-top"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-6 shadow-lg hidden md:block">
