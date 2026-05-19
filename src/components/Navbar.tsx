@@ -69,6 +69,7 @@ const navLinks: NavItem[] = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const { openQuote } = useQuote();
 
   return (
     <nav className="bg-background sticky top-0 z-50 shadow-md border-b border-border">
