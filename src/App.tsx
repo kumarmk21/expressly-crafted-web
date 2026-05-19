@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EmployeeLogin from "./pages/EmployeeLogin";
+import ServiceDetail from "./pages/ServiceDetail";
 import { QuoteProvider } from "./context/QuoteContext";
 import QuoteDialog from "./components/QuoteDialog";
 
@@ -21,6 +22,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/employee-login" element={<EmployeeLogin />} />
+            <Route path="/services/:slug" element={<ServiceDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
