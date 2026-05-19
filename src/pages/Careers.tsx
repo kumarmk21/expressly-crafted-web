@@ -17,6 +17,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
+import ResumeUploadForm from "@/components/ResumeUploadForm";
 
 const openings = [
   {
@@ -229,6 +230,20 @@ const Careers = () => {
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* Resume upload */}
+      <section id="apply" className="container mx-auto px-4 py-16 lg:py-20">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">Apply Now</div>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground">Submit your resume</h2>
+            <p className="mt-3 text-foreground/70">
+              Fill the form and attach your CV. We review every application.
+            </p>
+          </div>
+          <ResumeUploadForm />
         </div>
       </section>
 
