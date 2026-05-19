@@ -34,13 +34,16 @@ const Navbar = () => {
     <nav className="bg-background sticky top-0 z-50 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3">
-          <div className="flex items-center">
-            <div className="bg-primary rounded-lg p-2">
-              <span className="text-primary-foreground font-black text-xl tracking-tight">SCORPION</span>
-            </div>
-            <span className="ml-2 text-sm font-semibold text-muted-foreground hidden sm:block">EXPRESS</span>
-          </div>
+        <a href="#" className="flex items-center gap-3 shrink-0" aria-label="Scorpion Express Home">
+          <img
+            src={scorpionLogo}
+            alt="Scorpion Express logo"
+            className="h-12 lg:h-14 w-auto object-contain"
+          />
+          <span className="hidden md:flex flex-col leading-tight border-l border-border pl-3">
+            <span className="text-base font-black text-foreground tracking-tight">Scorpion Express</span>
+            <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Custodian First, Carrier Later</span>
+          </span>
         </a>
 
         {/* Desktop nav */}
