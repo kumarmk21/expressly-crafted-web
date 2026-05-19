@@ -1,57 +1,66 @@
 import { motion } from "framer-motion";
 import leaderPhoto from "@/assets/leader-photo.jpg";
+import { Quote } from "lucide-react";
 
 const LeadershipSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-muted">
+    <section className="py-24 lg:py-32 bg-card relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="lg:col-span-5 relative"
           >
-            <div className="rounded-2xl overflow-hidden shadow-2xl bg-muted">
-              <img
-                src={leaderPhoto}
-                alt="JPN Singh - Founder, Scorpion Express"
-                className="w-full h-[400px] lg:h-[560px] object-cover object-top"
-              />
-            </div>
-            <div className="absolute -bottom-6 -right-6 bg-primary rounded-xl p-6 shadow-lg hidden md:block">
-              <div className="text-primary-foreground text-center">
-                <div className="text-3xl font-black">20+</div>
-                <div className="text-sm font-semibold">Years of Excellence</div>
+            <div className="relative">
+              <div className="absolute -top-3 -left-3 right-3 bottom-3 border border-primary/40" />
+              <div className="relative overflow-hidden bg-background">
+                <img
+                  src={leaderPhoto}
+                  alt="JPN Singh — Founder, Scorpion Express"
+                  className="w-full h-[480px] lg:h-[600px] object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+                />
+              </div>
+              <div className="absolute -bottom-4 -right-4 bg-primary text-white px-6 py-4">
+                <div className="font-display text-4xl leading-none">20+</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] mt-1 font-bold">Years Excellence</div>
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-7"
           >
-            <span className="text-sm font-bold text-primary uppercase tracking-widest">Leadership</span>
-            <h2 className="text-3xl lg:text-4xl font-black text-foreground mt-3 mb-6 leading-tight">
-              Driven by Vision, Powered by Excellence
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-10 bg-primary" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Leadership</span>
+            </div>
+            <Quote className="h-12 w-12 text-primary/30 mb-4" />
+            <h2 className="font-display uppercase text-4xl lg:text-6xl text-foreground leading-[0.95] mb-8">
+              Driven by <span className="text-primary">vision.</span><br />Powered by excellence.
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Under visionary leadership, Scorpion Express has grown from a pioneering venture into one of India's most trusted logistics service providers. Our leadership team brings over two decades of deep industry expertise, fostering a culture of innovation, accountability, and customer-first thinking.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              The Scorpion Group's philosophy of "Custodian First, Carrier Later" is not just a tagline — it's a guiding principle that shapes every decision, from operational strategy to last-mile delivery. This commitment has earned us the trust of 14,000+ clients and the Great Place to Work® certification.
-            </p>
-            <div className="flex flex-wrap gap-6">
-              <div>
-                <div className="text-2xl font-black text-foreground">Scorpion Group</div>
-                <div className="text-sm text-muted-foreground">Parent Organization</div>
+            <div className="space-y-5 text-foreground/70 leading-relaxed max-w-2xl">
+              <p>
+                Under visionary leadership, Scorpion Express has grown from a pioneering venture into one of India's most trusted logistics service providers. Our leadership team brings over two decades of deep industry expertise, fostering a culture of innovation, accountability, and customer-first thinking.
+              </p>
+              <p>
+                The Scorpion Group's philosophy of <strong className="text-foreground">"Custodian First, Carrier Later"</strong> is more than a tagline — it's the guiding principle that shapes every operational decision and last-mile delivery.
+              </p>
+            </div>
+            <div className="mt-10 grid grid-cols-2 gap-px bg-white/10 border border-white/10 max-w-md">
+              <div className="bg-background p-5">
+                <div className="font-display text-2xl text-foreground">Scorpion Group</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-1">Parent Organisation</div>
               </div>
-              <div className="border-l border-border pl-6">
-                <div className="text-2xl font-black text-foreground">Pan-India</div>
-                <div className="text-sm text-muted-foreground">Operational Presence</div>
+              <div className="bg-background p-5">
+                <div className="font-display text-2xl text-foreground">Pan-India</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-1">Operational Presence</div>
               </div>
             </div>
           </motion.div>

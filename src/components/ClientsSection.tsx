@@ -13,48 +13,35 @@ const clientLogos = [
   "https://static.wixstatic.com/media/41fb73_d482be1637c84b8481baf0506e96d2ba~mv2.png/v1/fill/w_80,h_80,al_c,q_85,enc_avif,quality_auto/Picture12.png",
   "https://static.wixstatic.com/media/41fb73_5d420ade471f4a61b220d0376127a2c9~mv2.png/v1/fill/w_146,h_60,al_c,lg_1,q_85,enc_avif,quality_auto/Picture13.png",
   "https://static.wixstatic.com/media/41fb73_af5f7eee067c4632bf7002e35f7a7032~mv2.png/v1/fill/w_151,h_60,al_c,q_85,enc_avif,quality_auto/Picture14.png",
-  "https://static.wixstatic.com/media/41fb73_76eaa07d4cdc487191df61c3783842be~mv2.png/v1/fill/w_151,h_50,al_c,lg_1,q_85,enc_avif,quality_auto/Picture15.png",
-  "https://static.wixstatic.com/media/41fb73_cdd3ad10ef98443186219146c3261078~mv2.png/v1/fill/w_127,h_80,al_c,q_85,enc_avif,quality_auto/Picture16.png",
-  "https://static.wixstatic.com/media/41fb73_7841cf7c2b104ed9a0d052095281eb67~mv2.jpg/v1/fill/w_120,h_80,al_c,q_80,enc_avif,quality_auto/Picture17.jpg",
-  "https://static.wixstatic.com/media/41fb73_c4ae90555ddc49288c24f3b6b156f268~mv2.png/v1/fill/w_149,h_80,al_c,lg_1,q_85,enc_avif,quality_auto/Picture20.png",
-  "https://static.wixstatic.com/media/41fb73_ebc11f7ace1e49259a2c4bcd895a2fc4~mv2.jpg/v1/fill/w_100,h_80,al_c,q_80,enc_avif,quality_auto/Picture18.jpg",
-  "https://static.wixstatic.com/media/41fb73_da889ddad8f4430b80443ed968d4b141~mv2.png/v1/fill/w_151,h_60,al_c,q_85,enc_avif,quality_auto/Picture19.png",
-  "https://static.wixstatic.com/media/41fb73_d71cf3d4def54b72a72b402e4d80de12~mv2.png/v1/fill/w_148,h_80,al_c,lg_1,q_85,enc_avif,quality_auto/Picture21.png",
-  "https://static.wixstatic.com/media/41fb73_72d9489cb7de4a86900ca5cbfd75cf26~mv2.jpg/v1/fill/w_117,h_80,al_c,lg_1,q_80,enc_avif,quality_auto/Picture22.jpg",
-  "https://static.wixstatic.com/media/41fb73_6b971d4d0c304bc79b4c53d251b88621~mv2.png/v1/fill/w_144,h_80,al_c,lg_1,q_85,enc_avif,quality_auto/Picture23.png",
   "https://static.wixstatic.com/media/41fb73_9254b38829704fa8bb3f1a703be7d96a~mv2.png/v1/fill/w_120,h_80,al_c,q_85,enc_avif,quality_auto/Havells_Logo_svg.png",
-  "https://static.wixstatic.com/media/41fb73_f5bc2bc6fdb94549a21a28aff505d5a2~mv2.png/v1/fill/w_151,h_40,al_c,lg_1,q_85,enc_avif,quality_auto/LOGO1.png",
-  "https://static.wixstatic.com/media/41fb73_6c089e2d70f546c497340741b73d10a1~mv2.png/v1/crop/x_6,y_0,w_98,h_43/fill/w_137,h_60,al_c,lg_1,q_85,enc_avif,quality_auto/Picture33.png",
-  "https://static.wixstatic.com/media/41fb73_ac35631132a644b6881af8e9596693cf~mv2.png/v1/fill/w_143,h_60,al_c,lg_1,q_85,enc_avif,quality_auto/Picture35.png",
 ];
 
 const ClientsSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-background overflow-hidden">
-      <div className="container mx-auto px-4 text-center mb-12">
-        <span className="text-sm font-bold text-primary uppercase tracking-widest">Trusted Partners</span>
-        <h2 className="text-3xl lg:text-4xl font-black text-foreground mt-3 mb-4">
-          14,000+ Clients Across India
-        </h2>
-        <p className="text-muted-foreground">
-          We believe every client is a valuable long-term partner.
-        </p>
+    <section className="py-20 lg:py-24 bg-background overflow-hidden border-y border-white/10">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="h-px w-10 bg-primary" />
+          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Trusted Partners</span>
+        </div>
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
+          <h2 className="font-display uppercase text-4xl lg:text-6xl text-foreground leading-[0.9]">
+            14,000+ clients<span className="text-primary">.</span> One promise.
+          </h2>
+          <p className="text-muted-foreground max-w-md">Every client is a long-term partner. From category leaders to emerging brands.</p>
+        </div>
       </div>
 
-      {/* Marquee row 1 */}
       <div className="relative">
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
         <div className="flex animate-marquee">
           {[...clientLogos, ...clientLogos].map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 mx-6 flex items-center justify-center h-20 w-36 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+              className="flex-shrink-0 mx-4 flex items-center justify-center h-20 w-40 bg-white/5 border border-white/10 grayscale brightness-200 contrast-0 hover:grayscale-0 hover:brightness-100 hover:contrast-100 transition-all duration-300"
             >
-              <img
-                src={logo}
-                alt={`Client ${(i % clientLogos.length) + 1}`}
-                className="max-h-14 max-w-full object-contain"
-                loading="lazy"
-              />
+              <img src={logo} alt="" className="max-h-12 max-w-[80%] object-contain" loading="lazy" />
             </div>
           ))}
         </div>
