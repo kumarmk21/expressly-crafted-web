@@ -9,16 +9,12 @@ import { toast } from "sonner";
 import { Send } from "lucide-react";
 
 const SERVICES = [
-  "Express Cargo",
-  "Air Service",
+  "Express",
+  "Air",
   "Cold Chain",
-  "WMS / Warehousing",
+  "WMS",
   "Cleantech Solutions",
-  "FTL Service",
-  "Sample Distribution",
-  "Smart Baggage",
-  "E-Waste Management",
-  "Stockiest Distribution",
+  "FTL",
 ];
 
 const QuoteDialog = () => {
@@ -99,7 +95,10 @@ const QuoteDialog = () => {
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
               >
                 <option value="">Select a service…</option>
-                {SERVICES.map((s) => (
+                {(SERVICES.includes(form.service) || !form.service
+                  ? SERVICES
+                  : [form.service, ...SERVICES]
+                ).map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
               </select>
