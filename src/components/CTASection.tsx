@@ -32,7 +32,7 @@ const CTASection = () => {
           <div className="flex flex-wrap gap-4">
             <button
               onClick={() => openQuote()}
-              className="group inline-flex items-center gap-3 bg-white text-primary font-black uppercase tracking-wider px-8 py-5 hover:bg-black hover:text-white transition-colors"
+              className="group inline-flex items-center gap-3 bg-white text-primary font-black uppercase tracking-wider px-8 py-5 hover:bg-white/90 transition-colors"
             >
               Get a Quote
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
