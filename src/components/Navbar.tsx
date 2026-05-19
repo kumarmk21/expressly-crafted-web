@@ -110,23 +110,28 @@ const Navbar = () => {
                         {link.children.map((child) => {
                           const ChildIcon = child.icon;
                           return (
-                            <a
+                            <div
                               key={child.label}
-                              href={child.href}
                               className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group/item"
                             >
                               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors">
                                 <ChildIcon className="h-4 w-4" />
                               </span>
-                              <span className="flex flex-col">
+                              <div className="flex flex-col flex-1 min-w-0">
                                 <span className="text-sm font-semibold text-foreground">
                                   {child.label}
                                 </span>
-                                <span className="text-xs text-muted-foreground">
+                                <span className="text-xs text-muted-foreground mb-1.5">
                                   {child.desc}
                                 </span>
-                              </span>
-                            </a>
+                                <button
+                                  onClick={() => openQuote(child.label)}
+                                  className="self-start inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:underline uppercase tracking-wider"
+                                >
+                                  <FileText className="h-3 w-3" /> Get a Quote
+                                </button>
+                              </div>
+                            </div>
                           );
                         })}
                       </div>
@@ -134,12 +139,12 @@ const Navbar = () => {
                         <span className="text-muted-foreground">
                           Looking for tailored logistics?
                         </span>
-                        <a
-                          href="#contact"
+                        <button
+                          onClick={() => openQuote()}
                           className="font-semibold text-primary hover:underline"
                         >
-                          Talk to an expert →
-                        </a>
+                          Request a custom quote →
+                        </button>
                       </div>
                     </div>
                   </div>
