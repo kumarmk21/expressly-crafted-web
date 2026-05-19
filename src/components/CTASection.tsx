@@ -3,6 +3,7 @@ import { ArrowRight, Phone } from "lucide-react";
 import { useQuote } from "@/context/QuoteContext";
 
 const CTASection = () => {
+  const { openQuote } = useQuote();
   return (
     <section className="py-20 lg:py-28 red-gradient relative overflow-hidden">
       {/* Decorative circles */}
