@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
+import { useQuote } from "@/context/QuoteContext";
 
 const CTASection = () => {
   return (
