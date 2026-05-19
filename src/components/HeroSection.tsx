@@ -122,7 +122,7 @@ const HeroSection = () => {
                   <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Support</div>
                 </div>
                 <div className="border-x border-border">
-                  <div className="font-display text-2xl text-foreground">100%</div>
+                  <div className="font-display text-2xl text-foreground">Live</div>
                   <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Visibility</div>
                 </div>
                 <div>
@@ -135,20 +135,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Ticker strip */}
-      <div className="relative z-10 border-t border-border bg-muted/50 backdrop-blur">
-        <div className="overflow-hidden">
-          <div className="flex animate-marquee-slow whitespace-nowrap py-4">
-            {[...tickerStats, ...tickerStats, ...tickerStats].map((s, i) => (
-              <div key={i} className="flex items-center gap-3 px-8">
-                <span className="font-display text-3xl text-foreground">{s.k}</span>
-                <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{s.l}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-primary ml-4" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
+
     </section>
   );
 };
