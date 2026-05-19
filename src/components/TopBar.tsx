@@ -1,32 +1,44 @@
-import { Phone, Mail, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Phone, Mail, Facebook, Instagram, Linkedin, Youtube, MapPin } from "lucide-react";
 
 const TopBar = () => {
   return (
-    <div className="bg-secondary text-secondary-foreground">
-      <div className="container mx-auto flex items-center justify-between px-4 py-2 text-sm">
-        <div className="flex items-center gap-6">
+    <div className="bg-black text-white/70 border-b border-white/5 text-xs">
+      <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-2.5">
+        <div className="flex items-center gap-5">
           <a href="tel:18002219455" className="flex items-center gap-2 hover:text-primary transition-colors">
-            <Phone className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">1800 22 1945</span>
+            <Phone className="h-3 w-3 text-primary" />
+            <span className="hidden sm:inline tracking-wide font-medium">1800 22 1945</span>
           </a>
-          <a href="mailto:Info@Scorpiongroup.in" className="flex items-center gap-2 hover:text-primary transition-colors">
-            <Mail className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Info@Scorpiongroup.in</span>
+          <span className="hidden md:inline h-3 w-px bg-white/10" />
+          <a href="mailto:Info@Scorpiongroup.in" className="hidden md:flex items-center gap-2 hover:text-primary transition-colors">
+            <Mail className="h-3 w-3 text-primary" />
+            <span className="tracking-wide font-medium">Info@Scorpiongroup.in</span>
           </a>
+          <span className="hidden lg:inline h-3 w-px bg-white/10" />
+          <span className="hidden lg:flex items-center gap-2">
+            <MapPin className="h-3 w-3 text-primary" />
+            <span className="tracking-wide font-medium">24,000+ Pincodes Across India</span>
+          </span>
         </div>
-        <div className="flex items-center gap-4">
-          <a href="https://www.facebook.com/scorpionexpress" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="Facebook">
-            <Facebook className="h-4 w-4" />
-          </a>
-          <a href="https://www.instagram.com/scorpionexpress" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="Instagram">
-            <Instagram className="h-4 w-4" />
-          </a>
-          <a href="https://www.linkedin.com/company/scorpionexpress" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="LinkedIn">
-            <Linkedin className="h-4 w-4" />
-          </a>
-          <a href="https://www.youtube.com/@scorpionexpress" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="YouTube">
-            <Youtube className="h-4 w-4" />
-          </a>
+        <div className="flex items-center gap-1">
+          <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] mr-3 text-white/40">Follow</span>
+          {[
+            { Icon: Facebook, href: "https://www.facebook.com/scorpionexpress", label: "Facebook" },
+            { Icon: Instagram, href: "https://www.instagram.com/scorpionexpress", label: "Instagram" },
+            { Icon: Linkedin, href: "https://www.linkedin.com/company/scorpionexpress", label: "LinkedIn" },
+            { Icon: Youtube, href: "https://www.youtube.com/@scorpionexpress", label: "YouTube" },
+          ].map(({ Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="h-7 w-7 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+            >
+              <Icon className="h-3.5 w-3.5" />
+            </a>
+          ))}
         </div>
       </div>
     </div>

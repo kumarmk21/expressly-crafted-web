@@ -6,12 +6,6 @@ import {
   ChevronDown,
   User,
   LogIn,
-  Home,
-  Info,
-  Package,
-  Network,
-  Cpu,
-  PhoneCall,
   Truck,
   Plane,
   Snowflake,
@@ -19,43 +13,29 @@ import {
   Recycle,
   PackageCheck,
   FileText,
+  ArrowUpRight,
 } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
 import { useQuote } from "@/context/QuoteContext";
 
-type ChildLink = {
-  label: string;
-  href: string;
-  icon: React.ComponentType<{ className?: string }>;
-  desc: string;
-};
-
-type NavItem = {
-  label: string;
-  href: string;
-  icon: React.ComponentType<{ className?: string }>;
-  children?: ChildLink[];
-};
-
-const navLinks: NavItem[] = [
-  { label: "Home", href: "#", icon: Home },
-  { label: "About Us", href: "#about", icon: Info },
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "#about" },
   {
     label: "Services",
     href: "#services",
-    icon: Package,
     children: [
-      { label: "Express", href: "/services/express", icon: PackageCheck, desc: "Time-definite surface delivery" },
-      { label: "Air", href: "/services/air", icon: Plane, desc: "Priority air freight" },
-      { label: "Cold Chain", href: "/services/cold-chain", icon: Snowflake, desc: "Temperature-controlled logistics" },
-      { label: "WMS", href: "/services/wms", icon: Warehouse, desc: "Warehousing & fulfillment" },
-      { label: "Cleantech Solutions", href: "/services/cleantech", icon: Recycle, desc: "Sustainable reverse logistics" },
-      { label: "FTL", href: "/services/ftl", icon: Truck, desc: "Dedicated full truckload" },
+      { label: "Express", to: "/services/express", icon: PackageCheck, desc: "Time-definite surface delivery" },
+      { label: "Air", to: "/services/air", icon: Plane, desc: "Priority air freight" },
+      { label: "Cold Chain", to: "/services/cold-chain", icon: Snowflake, desc: "Temperature-controlled logistics" },
+      { label: "WMS", to: "/services/wms", icon: Warehouse, desc: "Warehousing & fulfilment" },
+      { label: "Cleantech", to: "/services/cleantech", icon: Recycle, desc: "Sustainable reverse logistics" },
+      { label: "FTL", to: "/services/ftl", icon: Truck, desc: "Dedicated full truckload" },
     ],
   },
-  { label: "Network & Infra", href: "#", icon: Network },
-  { label: "Technology", href: "#", icon: Cpu },
-  { label: "Contact Us", href: "#contact", icon: PhoneCall },
+  { label: "Network", href: "#network" },
+  { label: "Technology", href: "#tech" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -64,78 +44,63 @@ const Navbar = () => {
   const { openQuote } = useQuote();
 
   return (
-    <nav className="bg-background sticky top-0 z-50 shadow-md border-b border-border">
-      <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
+    <nav className="bg-background/90 backdrop-blur-md sticky top-0 z-50 border-b border-white/10">
+      <div className="container mx-auto flex items-center justify-between gap-6 px-4 py-3">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 shrink-0" aria-label="Scorpion Express Home">
-          <img
-            src={scorpionLogo}
-            alt="Scorpion Express logo"
-            className="h-12 lg:h-14 w-auto object-contain"
-          />
-          <span className="hidden md:flex flex-col leading-tight border-l border-border pl-3">
-            <span className="text-base font-black text-foreground tracking-tight">
-              Scorpion Express
+        <Link to="/" className="flex items-center gap-3 shrink-0 group" aria-label="Scorpion Express Home">
+          <div className="h-12 w-12 lg:h-14 lg:w-14 bg-white rounded-sm flex items-center justify-center p-1.5 shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
+            <img src={scorpionLogo} alt="Scorpion Express logo" className="h-full w-full object-contain" />
+          </div>
+          <div className="hidden md:flex flex-col leading-none">
+            <span className="font-display text-2xl text-foreground tracking-wide">
+              SCORPION<span className="text-primary">.</span>
             </span>
-            <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-              Custodian First, Carrier Later
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.25em] mt-1">
+              Express · Since Forever
             </span>
-          </span>
-        </a>
+          </div>
+        </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1.5 bg-muted/40 border border-border rounded-xl p-1">
+        <div className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => {
-            const Icon = link.icon;
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-foreground bg-background border border-border shadow-sm hover:border-primary/50 hover:text-primary transition-all">
-                    <Icon className="h-4 w-4" />
+                  <button className="flex items-center gap-1 px-4 py-2 text-sm font-bold tracking-wide uppercase text-foreground/80 hover:text-primary transition-colors">
                     {link.label}
-                    <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+                    <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                   </button>
-                  {/* Mega menu */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="w-[640px] bg-popover border border-border rounded-xl shadow-2xl p-4">
-                      <div className="grid grid-cols-2 gap-2">
+                  <span className="absolute left-4 right-4 -bottom-px h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="w-[640px] bg-card border border-border shadow-2xl">
+                      <div className="grid grid-cols-2">
                         {link.children.map((child) => {
-                          const ChildIcon = child.icon;
+                          const Icon = child.icon;
                           return (
-                            <div
+                            <Link
                               key={child.label}
-                              className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group/item"
+                              to={child.to}
+                              className="flex items-start gap-3 p-4 border-b border-r border-border last:border-r-0 hover:bg-primary/5 transition-colors group/item"
                             >
-                              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors">
-                                <ChildIcon className="h-4 w-4" />
+                              <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors">
+                                <Icon className="h-4 w-4" />
                               </span>
-                              <div className="flex flex-col flex-1 min-w-0">
-                                <span className="text-sm font-semibold text-foreground">
-                                  {child.label}
-                                </span>
-                                <span className="text-xs text-muted-foreground mb-1.5">
-                                  {child.desc}
-                                </span>
-                                <button
-                                  onClick={() => openQuote(child.label)}
-                                  className="self-start inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:underline uppercase tracking-wider"
-                                >
-                                  <FileText className="h-3 w-3" /> Get a Quote
-                                </button>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-sm font-bold text-foreground uppercase tracking-wide">{child.label}</span>
+                                  <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover/item:text-primary" />
+                                </div>
+                                <p className="text-xs text-muted-foreground">{child.desc}</p>
                               </div>
-                            </div>
+                            </Link>
                           );
                         })}
                       </div>
-                      <div className="mt-3 pt-3 border-t border-border flex items-center justify-between text-xs">
-                        <span className="text-muted-foreground">
-                          Looking for tailored logistics?
-                        </span>
-                        <button
-                          onClick={() => openQuote()}
-                          className="font-semibold text-primary hover:underline"
-                        >
-                          Request a custom quote →
+                      <div className="p-3 flex items-center justify-between bg-black/40">
+                        <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Custom requirement?</span>
+                        <button onClick={() => openQuote()} className="flex items-center gap-1.5 text-xs font-bold text-primary uppercase tracking-wider hover:underline">
+                          <FileText className="h-3.5 w-3.5" /> Request a Quote
                         </button>
                       </div>
                     </div>
@@ -147,36 +112,36 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-foreground bg-background border border-border shadow-sm hover:border-primary/50 hover:text-primary transition-all whitespace-nowrap"
+                className="relative px-4 py-2 text-sm font-bold tracking-wide uppercase text-foreground/80 hover:text-primary transition-colors group"
               >
-                <Icon className="h-4 w-4" />
                 {link.label}
+                <span className="absolute left-4 right-4 -bottom-px h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
               </a>
             );
           })}
         </div>
 
-        {/* Portal buttons */}
+        {/* Portals */}
         <div className="hidden lg:flex items-center gap-2 shrink-0">
           <Link
             to="/employee-login"
-            className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold border border-border rounded-lg hover:bg-muted hover:border-primary/40 transition-colors"
+            className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors"
           >
-            <LogIn className="h-4 w-4" />
-            Employee
+            <LogIn className="h-3.5 w-3.5" /> Employee
           </Link>
           <a
-            href="#"
-            className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold red-gradient text-primary-foreground rounded-lg shadow-sm hover:shadow-md hover:opacity-95 transition-all"
+            href="http://103.211.171.59:8000/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider bg-primary text-white hover:bg-primary/90 transition-colors"
           >
-            <User className="h-4 w-4" />
-            Customer Portal
+            <User className="h-3.5 w-3.5" /> Customer Portal
           </a>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden p-2 -mr-2 text-foreground rounded-md hover:bg-muted"
+          className="lg:hidden p-2 -mr-2 text-foreground hover:bg-white/5"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -186,43 +151,35 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-background border-t border-border max-h-[calc(100vh-80px)] overflow-y-auto">
-          <div className="container mx-auto px-4 py-4 space-y-1.5">
+        <div className="lg:hidden bg-background border-t border-white/10 max-h-[calc(100vh-90px)] overflow-y-auto">
+          <div className="container mx-auto px-4 py-4 space-y-1">
             {navLinks.map((link) => {
-              const Icon = link.icon;
               if (link.children) {
                 return (
-                  <div key={link.label} className="rounded-lg border border-border overflow-hidden">
+                  <div key={link.label} className="border border-border">
                     <button
-                      className="flex items-center justify-between w-full px-4 py-3 text-sm font-semibold text-foreground bg-muted/40"
+                      className="flex items-center justify-between w-full px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground bg-white/5"
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                     >
-                      <span className="flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-primary" />
-                        {link.label}
-                      </span>
-                      <ChevronDown
-                        className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}
-                      />
+                      {link.label}
+                      <ChevronDown className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
                     </button>
                     {mobileServicesOpen && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 p-2 bg-background">
+                      <div>
                         {link.children.map((child) => {
-                          const ChildIcon = child.icon;
+                          const Icon = child.icon;
                           return (
-                            <a
+                            <Link
                               key={child.label}
-                              href={child.href}
-                              className="flex items-center gap-3 p-2.5 rounded-md hover:bg-muted"
+                              to={child.to}
                               onClick={() => setMobileOpen(false)}
+                              className="flex items-center gap-3 px-4 py-3 border-t border-border hover:bg-primary/5"
                             >
-                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
-                                <ChildIcon className="h-4 w-4" />
+                              <span className="flex h-8 w-8 items-center justify-center bg-primary/10 text-primary">
+                                <Icon className="h-4 w-4" />
                               </span>
-                              <span className="text-sm font-medium text-foreground">
-                                {child.label}
-                              </span>
-                            </a>
+                              <span className="text-sm font-bold uppercase tracking-wide">{child.label}</span>
+                            </Link>
                           );
                         })}
                       </div>
@@ -234,10 +191,9 @@ const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold text-foreground hover:bg-muted border border-transparent hover:border-border"
                   onClick={() => setMobileOpen(false)}
+                  className="block px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground/80 hover:bg-white/5 border border-transparent hover:border-border"
                 >
-                  <Icon className="h-4 w-4 text-primary" />
                   {link.label}
                 </a>
               );
@@ -246,15 +202,15 @@ const Navbar = () => {
               <Link
                 to="/employee-login"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold border border-border rounded-lg hover:bg-muted"
+                className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider border border-border"
               >
-                <LogIn className="h-4 w-4" /> Employee
+                <LogIn className="h-3.5 w-3.5" /> Employee
               </Link>
               <a
-                href="#"
-                className="flex items-center justify-center gap-2 px-3 py-2.5 text-sm font-semibold red-gradient text-primary-foreground rounded-lg"
+                href="http://103.211.171.59:8000/"
+                className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider bg-primary text-white"
               >
-                <User className="h-4 w-4" /> Customer
+                <User className="h-3.5 w-3.5" /> Customer
               </a>
             </div>
           </div>

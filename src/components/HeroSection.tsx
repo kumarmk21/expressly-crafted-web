@@ -1,104 +1,160 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, TicketPlus, ArrowRight } from "lucide-react";
+import { Search, ArrowRight, Zap, ShieldCheck, Globe2 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
-import gptwBadge from "@/assets/gptw-badge.png";
+
+const tickerStats = [
+  { k: "7.5M+", l: "Pkgs / month" },
+  { k: "24,000+", l: "Pincodes" },
+  { k: "14,000+", l: "Clients" },
+  { k: "3.5M km", l: "Run / month" },
+  { k: "₹2,500 Cr", l: "AUM / month" },
+];
 
 const HeroSection = () => {
-  const [lrNumber, setLrNumber] = useState("");
+  const [lr, setLr] = useState("");
 
   return (
-    <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 hero-gradient" />
+    <section className="relative bg-background overflow-hidden border-b border-white/10">
+      {/* BG layers */}
+      <div className="absolute inset-0">
+        <img src={heroBg} alt="" className="h-full w-full object-cover opacity-30" />
+        <div className="absolute inset-0 hero-gradient" />
+        <div className="absolute inset-0 grain opacity-50" />
+      </div>
+      {/* red spotlight */}
+      <div className="absolute right-0 top-0 h-full w-1/2 spotlight" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Content */}
+      <div className="container mx-auto px-4 relative z-10 pt-16 lg:pt-24 pb-12">
+        {/* eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3 mb-8"
+        >
+          <span className="h-px w-12 bg-primary" />
+          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
+            Custodian First · Carrier Later
+          </span>
+        </motion.div>
+
+        {/* Massive display headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="font-display uppercase text-[14vw] sm:text-[10vw] lg:text-[8.5rem] xl:text-[10rem] leading-[0.85] text-foreground max-w-6xl"
+        >
+          We move
+          <br />
+          India<span className="text-primary">.</span> <span className="text-muted-foreground/50">Reliably.</span>
+        </motion.h1>
+
+        {/* Sub + CTAs */}
+        <div className="grid lg:grid-cols-12 gap-8 mt-10 lg:mt-14">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-primary-foreground"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-7"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <img src={gptwBadge} alt="Great Place to Work Certified" className="h-16" />
-              <span className="text-xs font-semibold bg-primary-foreground/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                Great Place to Work® Certified
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-4">
-              Scorpion Express
-            </h1>
-            <p className="text-xl md:text-2xl font-light mb-2 text-primary-foreground/90">
-              Custodian First, Carrier Later
+            <p className="text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-2xl">
+              India's premier freight & logistics partner — express cargo, cold chain, air, FTL and warehousing engineered with 100+ years of combined leadership and absolute custodial discipline.
             </p>
-            <p className="text-base text-primary-foreground/70 mb-8 max-w-lg">
-              India's premier freight & logistics service provider. From express cargo to cold chain — delivering with precision across 24,000+ pincodes.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="http://103.211.171.59:8000/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="red-gradient inline-flex items-center gap-2 px-6 py-3 font-bold rounded-lg hover:opacity-90 transition-opacity text-primary-foreground"
-              >
-                <TicketPlus className="h-5 w-5" />
-                Raise a Ticket
-              </a>
+
+            <div className="flex flex-wrap gap-3 mt-8">
               <a
                 href="#services"
-                className="inline-flex items-center gap-2 px-6 py-3 font-bold rounded-lg border-2 border-primary-foreground/30 hover:bg-primary-foreground/10 transition-colors text-primary-foreground"
+                className="group inline-flex items-center gap-3 px-6 py-4 bg-primary text-white font-black uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors"
               >
-                Our Services
-                <ArrowRight className="h-5 w-5" />
+                Explore Services
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 px-6 py-4 border border-white/20 text-foreground font-black uppercase tracking-wider text-sm hover:border-primary hover:text-primary transition-colors"
+              >
+                Talk to an Expert
+              </a>
+            </div>
+
+            {/* Trust badges row */}
+            <div className="mt-10 flex flex-wrap items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
+              <div className="flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> Time-Definite</div>
+              <div className="h-3 w-px bg-white/15 hidden sm:block" />
+              <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" /> GPTW Certified</div>
+              <div className="h-3 w-px bg-white/15 hidden sm:block" />
+              <div className="flex items-center gap-2"><Globe2 className="h-4 w-4 text-primary" /> Pan-India + Intl</div>
             </div>
           </motion.div>
 
-          {/* Right: Tracker */}
+          {/* Tracker card */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="lg:col-span-5"
           >
-            <div className="bg-background/95 backdrop-blur-md rounded-2xl p-8 shadow-2xl">
-              <h2 className="text-xl font-bold text-foreground mb-2">Track Your Shipment</h2>
-              <p className="text-sm text-muted-foreground mb-6">
-                Enter your LR number to get real-time updates on your shipment.
-              </p>
-              <div className="flex gap-3">
+            <div className="bg-card border border-white/10 p-6 lg:p-7 red-glow">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary">Live Tracking</span>
+                <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                  </span>
+                  Active
+                </span>
+              </div>
+              <h2 className="font-display uppercase text-3xl text-foreground mb-2">Track Shipment</h2>
+              <p className="text-sm text-muted-foreground mb-5">Enter your LR / Docket number for real-time status.</p>
+              <div className="flex gap-2">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="Enter LR Number"
-                    value={lrNumber}
-                    onChange={(e) => setLrNumber(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3.5 bg-muted rounded-lg border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    value={lr}
+                    onChange={(e) => setLr(e.target.value)}
+                    placeholder="e.g. SX1234567890"
+                    className="w-full pl-10 pr-3 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground font-mono-tab text-sm focus:outline-none focus:border-primary"
                   />
                 </div>
-                <button className="red-gradient px-6 py-3.5 rounded-lg font-bold text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap">
+                <button className="px-5 py-3 bg-primary text-white font-black uppercase text-xs tracking-wider hover:bg-primary/90 transition-colors">
                   Track
                 </button>
               </div>
-              <div className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-brand-gold" />
-                  Live tracking available
+              <div className="mt-5 pt-5 border-t border-border grid grid-cols-3 gap-3 text-center">
+                <div>
+                  <div className="font-display text-2xl text-foreground">24/7</div>
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Support</div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-brand-gold" />
-                  24/7 Support
+                <div className="border-x border-border">
+                  <div className="font-display text-2xl text-foreground">100%</div>
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Visibility</div>
+                </div>
+                <div>
+                  <div className="font-display text-2xl text-foreground">PoD</div>
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Digital</div>
                 </div>
               </div>
             </div>
           </motion.div>
+        </div>
+      </div>
+
+      {/* Ticker strip */}
+      <div className="relative z-10 border-t border-white/10 bg-black/60 backdrop-blur">
+        <div className="overflow-hidden">
+          <div className="flex animate-marquee-slow whitespace-nowrap py-4">
+            {[...tickerStats, ...tickerStats, ...tickerStats].map((s, i) => (
+              <div key={i} className="flex items-center gap-3 px-8">
+                <span className="font-display text-3xl text-foreground">{s.k}</span>
+                <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{s.l}</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-primary ml-4" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
