@@ -15,13 +15,9 @@ import {
   Truck,
   Plane,
   Snowflake,
-  FlaskConical,
   Warehouse,
-  Sparkles,
-  Luggage,
   Recycle,
-  Boxes,
-  Wind,
+  PackageCheck,
   FileText,
 } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
