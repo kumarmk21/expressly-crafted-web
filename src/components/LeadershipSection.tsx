@@ -24,8 +24,8 @@ const LeadershipSection = () => {
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-primary text-white px-6 py-4">
-                <div className="font-display text-4xl leading-none">20+</div>
-                <div className="text-[10px] uppercase tracking-[0.2em] mt-1 font-bold">Years Excellence</div>
+                <div className="font-display text-4xl leading-none">100+</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] mt-1 font-bold">Years Experience</div>
               </div>
             </div>
           </motion.div>
