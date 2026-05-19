@@ -69,23 +69,11 @@ const AboutUs = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
-                <div>
-                  <div className="font-display text-3xl md:text-4xl">7.5M+</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] mt-1 text-white/80">Pkgs / month</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl md:text-4xl">24,000+</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] mt-1 text-white/80">Pincodes</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl md:text-4xl">14,000+</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] mt-1 text-white/80">Clients</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl md:text-4xl">₹2,500 Cr</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] mt-1 text-white/80">AUM / month</div>
-                </div>
+              <div className="max-w-2xl">
+                <div className="text-[11px] uppercase tracking-[0.3em] text-white/80 mb-2">A Glimpse Inside</div>
+                <h3 className="font-display uppercase text-2xl md:text-4xl leading-tight">
+                  Engineered networks. Disciplined operations. One promise of custody.
+                </h3>
               </div>
             </div>
           </div>
@@ -116,10 +104,8 @@ const AboutUs = () => {
               international trading offices in China and Korea.
             </p>
             <p>
-              Today, Scorpion Express moves <strong>7.5M+ packages every month</strong>, serves{" "}
-              <strong>24,000+ pincodes</strong>, and manages <strong>₹2,500 Cr AUM</strong> for{" "}
-              <strong>14,000+ clients</strong> — with both asset-based and non-asset 3PL solutions tailored for B2B,
-              B2C and B2D sectors.
+              Today, Scorpion Express operates across India with both asset-based and non-asset 3PL solutions —
+              tailored for B2B, B2C and B2D sectors, and engineered to exceed every supply chain goal.
             </p>
           </div>
         </div>
