@@ -88,7 +88,7 @@ const Navbar = () => {
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1.5 bg-muted/40 border border-border rounded-xl p-1">
           {navLinks.map((link) => {
             const Icon = link.icon;
             if (link.children) {
