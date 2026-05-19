@@ -63,16 +63,15 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1.5">
           {navLinks.map((link) => {
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <button className="flex items-center gap-1 px-4 py-2 text-sm font-bold tracking-wide uppercase text-foreground/80 hover:text-primary transition-colors">
+                  <button className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors">
                     {link.label}
                     <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                   </button>
-                  <span className="absolute left-4 right-4 -bottom-px h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="w-[640px] bg-card border border-border shadow-2xl">
                       <div className="grid grid-cols-2">
@@ -113,20 +112,19 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="relative px-4 py-2 text-sm font-bold tracking-wide uppercase text-foreground/80 hover:text-primary transition-colors group"
+                className="px-3.5 py-2 text-xs font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors"
               >
                 {link.label}
-                <span className="absolute left-4 right-4 -bottom-px h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 origin-left transition-transform" />
               </a>
             );
           })}
         </div>
 
         {/* Portals */}
-        <div className="hidden lg:flex items-center gap-2 shrink-0">
+        <div className="hidden lg:flex items-center gap-1.5 shrink-0">
           <Link
             to="/employee-login"
-            className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-foreground/80 hover:text-primary transition-colors"
+            className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors"
           >
             <LogIn className="h-3.5 w-3.5" /> Employee
           </Link>
