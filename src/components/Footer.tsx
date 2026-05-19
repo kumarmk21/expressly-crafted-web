@@ -124,9 +124,9 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
           <p>© {year} Scorpion Express Pvt. Ltd. · All rights reserved.</p>
           <div className="flex gap-6 uppercase tracking-wider">
-            <a href="#" className="hover:text-white">Privacy</a>
-            <a href="#" className="hover:text-white">Terms</a>
-            <a href="#" className="hover:text-white">Cookies</a>
+            <Link to="/legal/privacy-policy" className="hover:text-white">Privacy Policy</Link>
+            <Link to="/legal/terms-and-conditions" className="hover:text-white">Terms &amp; Conditions</Link>
+            <Link to="/legal/disclaimer" className="hover:text-white">Disclaimer</Link>
           </div>
         </div>
       </div>
