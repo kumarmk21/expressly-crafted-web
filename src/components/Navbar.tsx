@@ -166,13 +166,13 @@ const Navbar = () => {
 
         {/* Portal buttons */}
         <div className="hidden lg:flex items-center gap-2 shrink-0">
-          <a
-            href="#"
+          <Link
+            to="/employee-login"
             className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold border border-border rounded-lg hover:bg-muted hover:border-primary/40 transition-colors"
           >
             <LogIn className="h-4 w-4" />
             Employee
-          </a>
+          </Link>
           <a
             href="#"
             className="flex items-center gap-2 px-3.5 py-2 text-sm font-semibold red-gradient text-primary-foreground rounded-lg shadow-sm hover:shadow-md hover:opacity-95 transition-all"
