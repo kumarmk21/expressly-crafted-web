@@ -88,13 +88,13 @@ const Navbar = () => {
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1.5 bg-muted/40 border border-border rounded-xl p-1">
           {navLinks.map((link) => {
             const Icon = link.icon;
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <button className="flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-semibold text-foreground hover:bg-muted hover:text-primary transition-colors">
+                  <button className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-foreground bg-background border border-border shadow-sm hover:border-primary/50 hover:text-primary transition-all">
                     <Icon className="h-4 w-4" />
                     {link.label}
                     <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
@@ -146,7 +146,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-semibold text-foreground hover:bg-muted hover:text-primary transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-foreground bg-background border border-border shadow-sm hover:border-primary/50 hover:text-primary transition-all whitespace-nowrap"
               >
                 <Icon className="h-4 w-4" />
                 {link.label}
