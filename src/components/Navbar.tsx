@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown, User, LogIn } from "lucide-react";
+import scorpionLogo from "@/assets/scorpion-logo.png";
 
 const navLinks = [
   { label: "Home", href: "#" },
