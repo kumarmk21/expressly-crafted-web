@@ -3,14 +3,6 @@ import { motion } from "framer-motion";
 import { Search, ArrowRight, Zap, ShieldCheck, Globe2 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const tickerStats = [
-  { k: "7.5M+", l: "Pkgs / month" },
-  { k: "24,000+", l: "Pincodes" },
-  { k: "14,000+", l: "Clients" },
-  { k: "3.5M km", l: "Run / month" },
-  { k: "₹2,500 Cr", l: "AUM / month" },
-];
-
 const HeroSection = () => {
   const [lr, setLr] = useState("");
 
