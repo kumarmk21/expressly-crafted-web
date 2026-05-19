@@ -8,7 +8,6 @@ import NotFound from "./pages/NotFound";
 import EmployeeLogin from "./pages/EmployeeLogin";
 import ServiceDetail from "./pages/ServiceDetail";
 import AboutUs from "./pages/AboutUs";
-import AboutUs from "./pages/AboutUs";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsAndConditions from "./pages/legal/TermsAndConditions";
 import Disclaimer from "./pages/legal/Disclaimer";
