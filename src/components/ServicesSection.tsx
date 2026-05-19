@@ -6,9 +6,6 @@ import {
   Warehouse,
   Recycle,
   PackageCheck,
-  Pill,
-  Briefcase,
-  Trash2,
   ArrowRight,
   FileText,
 } from "lucide-react";
@@ -50,24 +47,6 @@ const services = [
     icon: Truck,
     title: "FTL",
     desc: "Dedicated point-to-point heavy haulage offering maximum capacity, uncompromised security, and direct routing.",
-  },
-  {
-    no: "07",
-    icon: Pill,
-    title: "Sample Distribution",
-    desc: "Specialised pharma sample distribution to medical representatives across the country.",
-  },
-  {
-    no: "08",
-    icon: Briefcase,
-    title: "Smart Baggage",
-    desc: "Revolutionary door-to-door luggage carrier service for hassle-free air travel.",
-  },
-  {
-    no: "09",
-    icon: Trash2,
-    title: "E-Waste Management",
-    desc: "Responsible e-waste disposal with strategically placed eBins across India.",
   },
 ];
 
