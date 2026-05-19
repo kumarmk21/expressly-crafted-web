@@ -146,7 +146,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-semibold text-foreground hover:bg-muted hover:text-primary transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold text-foreground bg-background border border-border shadow-sm hover:border-primary/50 hover:text-primary transition-all whitespace-nowrap"
               >
                 <Icon className="h-4 w-4" />
                 {link.label}
