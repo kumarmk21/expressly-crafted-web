@@ -39,7 +39,7 @@ const ClientsSection = () => {
           {[...clientLogos, ...clientLogos].map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 mx-4 flex items-center justify-center h-20 w-40 bg-muted border border-border grayscale brightness-200 contrast-0 hover:grayscale-0 hover:brightness-100 hover:contrast-100 transition-all duration-300"
+              className="flex-shrink-0 mx-4 flex items-center justify-center h-20 w-40 bg-white border border-border grayscale hover:grayscale-0 transition-all duration-300"
             >
               <img src={logo} alt="" className="max-h-12 max-w-[80%] object-contain" loading="lazy" />
             </div>

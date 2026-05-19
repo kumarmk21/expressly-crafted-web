@@ -144,7 +144,7 @@ const HeroSection = () => {
       </div>
 
       {/* Ticker strip */}
-      <div className="relative z-10 border-t border-border bg-muted backdrop-blur">
+      <div className="relative z-10 border-t border-border bg-muted/50 backdrop-blur">
         <div className="overflow-hidden">
           <div className="flex animate-marquee-slow whitespace-nowrap py-4">
             {[...tickerStats, ...tickerStats, ...tickerStats].map((s, i) => (
