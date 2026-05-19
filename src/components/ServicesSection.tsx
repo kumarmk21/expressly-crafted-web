@@ -1,54 +1,8 @@
 import { motion } from "framer-motion";
-import {
-  Truck,
-  Plane,
-  Snowflake,
-  Warehouse,
-  Recycle,
-  PackageCheck,
-  ArrowRight,
-  FileText,
-} from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useQuote } from "@/context/QuoteContext";
-
-const services = [
-  {
-    no: "01",
-    icon: PackageCheck,
-    title: "Express",
-    desc: "High-speed, time-definite surface transport designed for critical shipments that simply cannot afford delays.",
-  },
-  {
-    no: "02",
-    icon: Plane,
-    title: "Air",
-    desc: "When speed is the ultimate priority. Direct air cargo connecting all major domestic and international hubs.",
-  },
-  {
-    no: "03",
-    icon: Snowflake,
-    title: "Cold Chain",
-    desc: "State-of-the-art temperature-controlled fleet ensuring the absolute integrity of perishables and pharma goods.",
-  },
-  {
-    no: "04",
-    icon: Warehouse,
-    title: "WMS",
-    desc: "Strategic, secure storage facilities with advanced WMS for flawless inventory control and distribution.",
-  },
-  {
-    no: "05",
-    icon: Recycle,
-    title: "Cleantech Solutions",
-    desc: "Compliant, secure, and environmentally responsible reverse logistics for electronic waste and IT asset disposition.",
-  },
-  {
-    no: "06",
-    icon: Truck,
-    title: "FTL",
-    desc: "Dedicated point-to-point heavy haulage offering maximum capacity, uncompromised security, and direct routing.",
-  },
-];
+import { services } from "@/data/services";
 
 const ServicesSection = () => {
   const { openQuote } = useQuote();
@@ -81,32 +35,43 @@ const ServicesSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05, duration: 0.4 }}
-                className="group bg-card rounded-xl p-6 border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 flex flex-col"
               >
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-xs font-bold text-muted-foreground tracking-widest">— {service.no}</span>
-                  <div className="h-11 w-11 rounded-lg red-gradient flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={`${service.title} service`}
+                    loading="lazy"
+                    width={1280}
+                    height={800}
+                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className={`absolute top-3 right-3 h-10 w-10 rounded-lg ${service.iconColor} flex items-center justify-center shadow-lg`}>
                     <Icon className="h-5 w-5 text-primary-foreground" />
                   </div>
+                  <span className="absolute bottom-3 left-3 text-xs font-bold text-white/90 tracking-widest">— {service.no}</span>
                 </div>
-                <h3 className="font-bold text-foreground text-xl mb-2 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-6 flex-1">{service.desc}</p>
-                <div className="flex items-center justify-between gap-3 pt-4 border-t border-border">
-                  <button
-                    onClick={() => openQuote(service.title)}
-                    className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
-                  >
-                    <FileText className="h-4 w-4" />
-                    Get a Quote
-                  </button>
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground hover:text-foreground tracking-wider uppercase"
-                  >
-                    View Capabilities <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="font-bold text-foreground text-xl mb-2 group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-6 flex-1">{service.desc}</p>
+                  <div className="flex items-center justify-between gap-3 pt-4 border-t border-border">
+                    <button
+                      onClick={() => openQuote(service.title)}
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Get a Quote
+                    </button>
+                    <Link
+                      to={`/services/${service.slug}`}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground hover:text-foreground tracking-wider uppercase"
+                    >
+                      View Capabilities <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             );
