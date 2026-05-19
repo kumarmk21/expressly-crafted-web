@@ -13,6 +13,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Hind", "Segoe UI", "system-ui", "sans-serif"],
+        display: ["'Barlow Condensed'", "'Archivo Black'", "sans-serif"],
+        heading: ["'Archivo Black'", "'Hind'", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

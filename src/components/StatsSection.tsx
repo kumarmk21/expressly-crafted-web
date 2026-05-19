@@ -1,48 +1,49 @@
 import { motion } from "framer-motion";
-import { Package, Users, MapPin, Truck, IndianRupee } from "lucide-react";
 
 const stats = [
-  { icon: Package, value: "7.5M+", label: "Packages Handled Monthly" },
-  { icon: Users, value: "14,000+", label: "Clients in 36 States" },
-  { icon: IndianRupee, value: "₹2,500+ CR", label: "AUM Monthly" },
-  { icon: MapPin, value: "24,000+", label: "Pincodes Served" },
-  { icon: Truck, value: "3.5M KM", label: "Vehicle Run Monthly" },
+  { value: "7.5M+", label: "Packages handled monthly" },
+  { value: "14,000+", label: "Clients across 36 states" },
+  { value: "₹2,500 Cr", label: "Monthly assets under mgmt" },
+  { value: "24,000+", label: "Pincodes served" },
+  { value: "3.5M km", label: "Vehicle run / month" },
 ];
 
 const StatsSection = () => {
   return (
-    <section className="py-20 lg:py-28 dark-gradient text-secondary-foreground">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-sm font-bold text-primary uppercase tracking-widest">Our Strength</span>
-          <h2 className="text-3xl lg:text-4xl font-black mt-3 mb-4">
-            Numbers That Define Our Commitment
-          </h2>
-          <p className="text-secondary-foreground/70 max-w-xl mx-auto">
-            At Scorpion Express, we don't just move goods — we build reliable connections and strengthen supply chains with precision.
+    <section className="py-24 lg:py-32 bg-background relative overflow-hidden border-y border-white/10">
+      <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
+      <div className="container mx-auto px-4 relative">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-px w-10 bg-primary" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">By the Numbers</span>
+            </div>
+            <h2 className="font-display uppercase text-5xl lg:text-7xl text-foreground leading-[0.9] max-w-3xl">
+              Scale that <span className="text-primary">delivers</span> — every single day.
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-sm lg:text-right">
+            We don't just move goods. We build reliable connections and strengthen supply chains with precision.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {stats.map((stat, i) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-white/10">
+          {stats.map((s, i) => (
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
+              key={s.label}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="text-center"
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="border-r border-b border-white/10 p-6 lg:p-8 hover:bg-primary/5 transition-colors group"
             >
-              <div className="h-14 w-14 rounded-xl red-gradient flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="h-7 w-7 text-primary-foreground" />
+              <div className="font-display text-5xl lg:text-6xl text-foreground group-hover:text-primary transition-colors">
+                {s.value}
               </div>
-              <div className="text-3xl lg:text-4xl font-black mb-1">{stat.value}</div>
-              <div className="text-sm text-secondary-foreground/60">{stat.label}</div>
+              <div className="mt-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {s.label}
+              </div>
             </motion.div>
           ))}
         </div>

@@ -8,21 +8,26 @@ const ServicesSection = () => {
   const { openQuote } = useQuote();
 
   return (
-    <section id="services" className="py-20 lg:py-28 bg-muted">
+    <section id="services" className="py-24 lg:py-32 bg-card relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <span className="text-sm font-bold text-primary uppercase tracking-widest">What We Do</span>
-          <h2 className="text-3xl lg:text-4xl font-black text-foreground mt-3 mb-4">
-            Comprehensive Logistics Services
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            From express cargo to cold chain, warehousing to e-waste management — we offer end-to-end logistics solutions tailored to your industry.
-          </p>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px w-10 bg-primary" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">What We Do</span>
+          </div>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <h2 className="font-display uppercase text-5xl lg:text-7xl text-foreground leading-[0.9] max-w-3xl">
+              Six services<span className="text-primary">.</span> One promise of custody.
+            </h2>
+            <p className="text-muted-foreground max-w-md">
+              End-to-end logistics — engineered for industries that can't afford delays, damage or downtime.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
