@@ -3,14 +3,6 @@ import { motion } from "framer-motion";
 import { Search, ArrowRight, Zap, ShieldCheck, Globe2 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const tickerStats = [
-  { k: "7.5M+", l: "Pkgs / month" },
-  { k: "24,000+", l: "Pincodes" },
-  { k: "14,000+", l: "Clients" },
-  { k: "3.5M km", l: "Run / month" },
-  { k: "₹2,500 Cr", l: "AUM / month" },
-];
-
 const HeroSection = () => {
   const [lr, setLr] = useState("");
 
@@ -60,7 +52,7 @@ const HeroSection = () => {
             className="lg:col-span-7"
           >
             <p className="text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-2xl">
-              India's premier freight & logistics partner — express cargo, cold chain, air, FTL and warehousing engineered with 100+ years of combined leadership and absolute custodial discipline.
+              India's premier freight & logistics partner — express cargo, cold chain, air, FTL and warehousing engineered with absolute custodial discipline.
             </p>
 
             <div className="flex flex-wrap gap-3 mt-8">
@@ -130,7 +122,7 @@ const HeroSection = () => {
                   <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Support</div>
                 </div>
                 <div className="border-x border-border">
-                  <div className="font-display text-2xl text-foreground">100%</div>
+                  <div className="font-display text-2xl text-foreground">Live</div>
                   <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Visibility</div>
                 </div>
                 <div>
@@ -143,20 +135,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Ticker strip */}
-      <div className="relative z-10 border-t border-border bg-muted/50 backdrop-blur">
-        <div className="overflow-hidden">
-          <div className="flex animate-marquee-slow whitespace-nowrap py-4">
-            {[...tickerStats, ...tickerStats, ...tickerStats].map((s, i) => (
-              <div key={i} className="flex items-center gap-3 px-8">
-                <span className="font-display text-3xl text-foreground">{s.k}</span>
-                <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">{s.l}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-primary ml-4" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
+
     </section>
   );
 };

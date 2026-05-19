@@ -17,7 +17,7 @@ const TopBar = () => {
           <span className="hidden lg:inline h-3 w-px bg-white/30" />
           <span className="hidden lg:flex items-center gap-2">
             <MapPin className="h-3 w-3" />
-            <span className="tracking-wide font-medium">24,000+ Pincodes Across India</span>
+            <span className="tracking-wide font-medium">Pan-India Logistics Network</span>
           </span>
         </div>
         <div className="flex items-center gap-1">

@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
-              India's premier freight & logistics service provider — delivering custodial excellence across 24,000+ pincodes with 100+ years of combined leadership.
+              India's premier freight & logistics service provider — delivering custodial excellence with a single promise: <strong className="text-foreground">Custodian First, Carrier Later.</strong>
             </p>
             <div className="flex gap-2 mt-8">
               {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (

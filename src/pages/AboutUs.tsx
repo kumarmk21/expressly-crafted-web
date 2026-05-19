@@ -10,11 +10,11 @@ import companyShowcase from "@/assets/hero-bg.jpg";
 
 const milestones = [
   { year: "2000", text: "Scorpion Group founded by Mr. J P N Singh" },
-  { year: "2001", text: "Scorpion Express launched with 4 offices" },
+  { year: "2001", text: "Scorpion Express launched in India" },
   { year: "2005", text: "Scorpion Containers Pvt. Ltd. established" },
-  { year: "2015", text: "Expanded to pan-India network of 175+ offices" },
-  { year: "2020", text: "Crossed 12,000 pincodes and ₹2,000 Cr AUM" },
-  { year: "2024", text: "24,000+ pincodes · 7.5M+ packages/month" },
+  { year: "2015", text: "Expanded to a true pan-India operating network" },
+  { year: "2020", text: "Deepened reverse logistics & cold-chain capability" },
+  { year: "2024", text: "Modernised tech stack — live tracking & analytics" },
 ];
 
 const leadership = [
@@ -52,7 +52,7 @@ const AboutUs = () => {
             India's premier <br /> freight & logistics <br /> custodian<span className="text-primary">.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-foreground/70 leading-relaxed">
-            Pioneer of the Scorpion Group's endeavors — built on 100+ years of combined leadership and a single
+            Pioneer of the Scorpion Group's endeavors — built on a single
             promise: <strong className="text-foreground font-bold">Custodian First, Carrier Later.</strong>
           </p>
         </div>
@@ -69,23 +69,11 @@ const AboutUs = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
-                <div>
-                  <div className="font-display text-3xl md:text-4xl">7.5M+</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] mt-1 text-white/80">Pkgs / month</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl md:text-4xl">24,000+</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] mt-1 text-white/80">Pincodes</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl md:text-4xl">14,000+</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] mt-1 text-white/80">Clients</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl md:text-4xl">₹2,500 Cr</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] mt-1 text-white/80">AUM / month</div>
-                </div>
+              <div className="max-w-2xl">
+                <div className="text-[11px] uppercase tracking-[0.3em] text-white/80 mb-2">A Glimpse Inside</div>
+                <h3 className="font-display uppercase text-2xl md:text-4xl leading-tight">
+                  Engineered networks. Disciplined operations. One promise of custody.
+                </h3>
               </div>
             </div>
           </div>
@@ -116,10 +104,8 @@ const AboutUs = () => {
               international trading offices in China and Korea.
             </p>
             <p>
-              Today, Scorpion Express moves <strong>7.5M+ packages every month</strong>, serves{" "}
-              <strong>24,000+ pincodes</strong>, and manages <strong>₹2,500 Cr AUM</strong> for{" "}
-              <strong>14,000+ clients</strong> — with both asset-based and non-asset 3PL solutions tailored for B2B,
-              B2C and B2D sectors.
+              Today, Scorpion Express operates across India with both asset-based and non-asset 3PL solutions —
+              tailored for B2B, B2C and B2D sectors, and engineered to exceed every supply chain goal.
             </p>
           </div>
         </div>
