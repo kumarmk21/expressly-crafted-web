@@ -1,3 +1,16 @@
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+const clientRoster: { name: string; industry: string; services: string; since: string }[] = [
+  { name: "Sush Global", industry: "Trading & Distribution", services: "Express, FTL", since: "2024" },
+  { name: "Havells", industry: "Electrical Goods", services: "FTL, Warehousing", since: "2018" },
+  { name: "Asian Paints", industry: "Paints & Coatings", services: "Express, FTL", since: "2016" },
+  { name: "Marico", industry: "FMCG", services: "Cold Chain, Express", since: "2017" },
+  { name: "Britannia", industry: "Food & Beverage", services: "Cold Chain, FTL", since: "2019" },
+  { name: "Dabur", industry: "FMCG / Healthcare", services: "Express, WMS", since: "2015" },
+  { name: "Pidilite", industry: "Adhesives & Chemicals", services: "FTL, Warehousing", since: "2018" },
+  { name: "Bajaj Electricals", industry: "Consumer Durables", services: "Express, FTL", since: "2020" },
+];
+
 const clientLogos = [
   "https://static.wixstatic.com/media/41fb73_37e1b5f7817f4733b586d2a7deeabb8d~mv2.png/v1/fill/w_120,h_80,al_c,lg_1,q_85,enc_avif,quality_auto/Picture1.png",
   "https://static.wixstatic.com/media/41fb73_53df2bf1f48f4e21abaa921ea0ffd527~mv2.jpg/v1/fill/w_120,h_80,al_c,q_80,enc_avif,quality_auto/Picture4.jpg",
@@ -44,6 +57,38 @@ const ClientsSection = () => {
               <img src={logo} alt="" className="max-h-12 max-w-[80%] object-contain" loading="lazy" />
             </div>
           ))}
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 mt-16">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="h-px w-10 bg-primary" />
+          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Client Roster</span>
+        </div>
+        <h3 className="font-display uppercase text-2xl lg:text-3xl text-foreground mb-6">
+          Brands moving with Scorpion<span className="text-primary">.</span>
+        </h3>
+        <div className="border border-border bg-card">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-muted/40">
+                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Client</TableHead>
+                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Industry</TableHead>
+                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Services</TableHead>
+                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground text-right">Partner Since</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {clientRoster.map((c) => (
+                <TableRow key={c.name}>
+                  <TableCell className="font-bold text-foreground">{c.name}</TableCell>
+                  <TableCell className="text-muted-foreground">{c.industry}</TableCell>
+                  <TableCell className="text-muted-foreground">{c.services}</TableCell>
+                  <TableCell className="text-right text-muted-foreground">{c.since}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
       </div>
     </section>
