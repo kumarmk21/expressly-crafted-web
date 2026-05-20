@@ -1,3 +1,16 @@
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+const clientRoster: { name: string; industry: string; services: string; since: string }[] = [
+  { name: "Sush Global", industry: "Trading & Distribution", services: "Express, FTL", since: "2024" },
+  { name: "Havells", industry: "Electrical Goods", services: "FTL, Warehousing", since: "2018" },
+  { name: "Asian Paints", industry: "Paints & Coatings", services: "Express, FTL", since: "2016" },
+  { name: "Marico", industry: "FMCG", services: "Cold Chain, Express", since: "2017" },
+  { name: "Britannia", industry: "Food & Beverage", services: "Cold Chain, FTL", since: "2019" },
+  { name: "Dabur", industry: "FMCG / Healthcare", services: "Express, WMS", since: "2015" },
+  { name: "Pidilite", industry: "Adhesives & Chemicals", services: "FTL, Warehousing", since: "2018" },
+  { name: "Bajaj Electricals", industry: "Consumer Durables", services: "Express, FTL", since: "2020" },
+];
+
 const clientLogos = [
   "https://static.wixstatic.com/media/41fb73_37e1b5f7817f4733b586d2a7deeabb8d~mv2.png/v1/fill/w_120,h_80,al_c,lg_1,q_85,enc_avif,quality_auto/Picture1.png",
   "https://static.wixstatic.com/media/41fb73_53df2bf1f48f4e21abaa921ea0ffd527~mv2.jpg/v1/fill/w_120,h_80,al_c,q_80,enc_avif,quality_auto/Picture4.jpg",
