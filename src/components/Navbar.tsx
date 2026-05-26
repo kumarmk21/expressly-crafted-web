@@ -57,7 +57,7 @@ const Navbar = () => {
               SCORPION<span className="text-primary">.</span>
             </span>
             <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.25em] mt-1">
-              Express · Since Forever
+              Custodian First · Carrier Later
             </span>
           </div>
         </Link>
