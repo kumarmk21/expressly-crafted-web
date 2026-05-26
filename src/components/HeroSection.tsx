@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Search, ArrowRight, Zap, ShieldCheck, Globe2 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import { supabase } from "@/integrations/supabase/client";
+
+const DEFAULT_HERO = {
+  eyebrow: "Custodian First · Carrier Later",
+  headline_line1: "We move",
+  headline_line2: "India",
+  headline_tail: "Reliably.",
+  subtext: "India's premier freight & logistics partner — express cargo, cold chain, air, FTL and warehousing engineered with absolute custodial discipline.",
+};
 
 const HeroSection = () => {
   const [lr, setLr] = useState("");
+  const [hero, setHero] = useState(DEFAULT_HERO);
+
+  useEffect(() => {
+    supabase.from("site_content").select("value").eq("key", "hero").maybeSingle().then(({ data }) => {
+      if (data?.value) setHero({ ...DEFAULT_HERO, ...(data.value as any) });
+    });
+  }, []);
 
   return (
     <section className="relative bg-background overflow-hidden border-b border-border">
@@ -27,7 +43,7 @@ const HeroSection = () => {
         >
           <span className="h-px w-12 bg-primary" />
           <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
-            Custodian First · Carrier Later
+            {hero.eyebrow}
           </span>
         </motion.div>
 
@@ -38,9 +54,9 @@ const HeroSection = () => {
           transition={{ duration: 0.7 }}
           className="font-display uppercase text-[14vw] sm:text-[10vw] lg:text-[8.5rem] xl:text-[10rem] leading-[0.85] text-foreground max-w-6xl"
         >
-          We move
+          {hero.headline_line1}
           <br />
-          India<span className="text-primary">.</span> <span className="text-muted-foreground/50">Reliably.</span>
+          {hero.headline_line2}<span className="text-primary">.</span> <span className="text-muted-foreground/50">{hero.headline_tail}</span>
         </motion.h1>
 
         {/* Sub + CTAs */}
@@ -52,7 +68,7 @@ const HeroSection = () => {
             className="lg:col-span-7"
           >
             <p className="text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-2xl">
-              India's premier freight & logistics partner — express cargo, cold chain, air, FTL and warehousing engineered with absolute custodial discipline.
+              {hero.subtext}
             </p>
 
             <div className="flex flex-wrap gap-3 mt-8">
