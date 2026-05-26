@@ -5,6 +5,7 @@ import {
   X,
   ChevronDown,
   User,
+  Shield,
   LogIn,
   Truck,
   Plane,
