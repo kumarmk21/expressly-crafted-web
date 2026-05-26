@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      clients: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          industry: string | null
+          name: string
+          partner_since: string | null
+          services: string | null
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          industry?: string | null
+          name: string
+          partner_since?: string | null
+          services?: string | null
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          industry?: string | null
+          name?: string
+          partner_since?: string | null
+          services?: string | null
+        }
+        Relationships: []
+      }
       "contact enquiry": {
         Row: {
           created_at: string
@@ -59,6 +89,117 @@ export type Database = {
           name?: string
           phone?: string | null
           subject?: string | null
+        }
+        Relationships: []
+      }
+      quote_requests: {
+        Row: {
+          company: string | null
+          created_at: string
+          destination: string | null
+          email: string | null
+          id: string
+          message: string | null
+          name: string
+          origin: string | null
+          phone: string
+          service: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          destination?: string | null
+          email?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          origin?: string | null
+          phone: string
+          service: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          destination?: string | null
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          origin?: string | null
+          phone?: string
+          service?: string
+        }
+        Relationships: []
+      }
+      shipments: {
+        Row: {
+          created_at: string
+          customer_email: string | null
+          customer_name: string | null
+          destination: string
+          estimated_delivery: string | null
+          id: string
+          origin: string
+          status: string
+          tracking_number: string
+        }
+        Insert: {
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          destination: string
+          estimated_delivery?: string | null
+          id?: string
+          origin: string
+          status?: string
+          tracking_number: string
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          destination?: string
+          estimated_delivery?: string | null
+          id?: string
+          origin?: string
+          status?: string
+          tracking_number?: string
+        }
+        Relationships: []
+      }
+      tickets: {
+        Row: {
+          created_at: string
+          description: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          status: string
+          subject: string
+          ticket_number: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+          status?: string
+          subject: string
+          ticket_number?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          status?: string
+          subject?: string
+          ticket_number?: string
         }
         Relationships: []
       }
