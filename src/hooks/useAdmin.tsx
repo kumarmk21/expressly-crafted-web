@@ -14,7 +14,8 @@ export const useAdmin = () => {
         setIsAdmin(false);
         setLoading(false);
       } else {
-        checkRole(s.user.id);
+        // defer to avoid deadlock inside the auth callback
+        setTimeout(() => checkRole(s.user.id), 0);
       }
     });
     supabase.auth.getSession().then(({ data }) => {
