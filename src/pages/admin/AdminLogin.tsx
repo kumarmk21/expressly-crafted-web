@@ -45,8 +45,34 @@ const AdminLogin = () => {
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md border border-border bg-card p-8">
         <Link to="/" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-primary">← Back to site</Link>
-        <h1 className="font-display uppercase text-3xl mt-4 mb-1">Admin {mode === "signup" ? "Sign Up" : "Login"}</h1>
-        <p className="text-sm text-muted-foreground mb-6">Restricted area for Scorpion administrators.</p>
+
+        <div className="grid grid-cols-2 mt-4 mb-6 border border-border">
+          <button
+            type="button"
+            onClick={() => setMode("signin")}
+            className={`py-2 text-xs uppercase tracking-widest font-bold transition-colors ${
+              mode === "signin" ? "bg-primary text-white" : "bg-transparent text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Sign In
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode("signup")}
+            className={`py-2 text-xs uppercase tracking-widest font-bold transition-colors ${
+              mode === "signup" ? "bg-primary text-white" : "bg-transparent text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Sign Up
+          </button>
+        </div>
+
+        <h1 className="font-display uppercase text-3xl mb-1">Admin {mode === "signup" ? "Sign Up" : "Login"}</h1>
+        <p className="text-sm text-muted-foreground mb-6">
+          {mode === "signup"
+            ? "Create your admin account. An existing admin must grant you the admin role afterward."
+            : "Restricted area for Scorpion administrators."}
+        </p>
         <form onSubmit={submit} className="space-y-4">
           <input
             type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
@@ -63,12 +89,6 @@ const AdminLogin = () => {
             {mode === "signup" ? "Create account" : "Sign in"}
           </button>
         </form>
-        <button
-          onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-          className="mt-4 text-xs uppercase tracking-widest text-muted-foreground hover:text-primary"
-        >
-          {mode === "signin" ? "Need an account? Sign up" : "Already have an account? Sign in"}
-        </button>
       </div>
     </div>
   );
