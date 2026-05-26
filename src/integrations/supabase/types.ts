@@ -44,21 +44,6 @@ export type Database = {
         }
         Relationships: []
       }
-      "contact enquiry": {
-        Row: {
-          created_at: string
-          id: number
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-        }
-        Update: {
-          created_at?: string
-          id?: number
-        }
-        Relationships: []
-      }
       contact_inquiries: {
         Row: {
           company: string | null
@@ -253,6 +238,17 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      track_shipment: {
+        Args: { p_tracking_number: string }
+        Returns: {
+          created_at: string
+          destination: string
+          estimated_delivery: string
+          origin: string
+          status: string
+          tracking_number: string
+        }[]
       }
     }
     Enums: {
