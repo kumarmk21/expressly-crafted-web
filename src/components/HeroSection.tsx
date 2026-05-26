@@ -101,7 +101,15 @@ const HeroSection = () => {
               </div>
               <h2 className="font-display uppercase text-3xl text-foreground mb-2">Track Shipment</h2>
               <p className="text-sm text-muted-foreground mb-5">Enter your LR / Docket number for real-time status.</p>
-              <div className="flex gap-2">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const id = lr.trim();
+                  if (!id) return;
+                  window.open(`http://103.211.171.59:8073/?lr=${encodeURIComponent(id)}`, "_blank", "noopener");
+                }}
+                className="flex gap-2"
+              >
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <input
@@ -112,10 +120,10 @@ const HeroSection = () => {
                     className="w-full pl-10 pr-3 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground font-mono-tab text-sm focus:outline-none focus:border-primary"
                   />
                 </div>
-                <button className="px-5 py-3 bg-primary text-white font-black uppercase text-xs tracking-wider hover:bg-primary/90 transition-colors">
+                <button type="submit" className="px-5 py-3 bg-primary text-white font-black uppercase text-xs tracking-wider hover:bg-primary/90 transition-colors">
                   Track
                 </button>
-              </div>
+              </form>
               <div className="mt-5 pt-5 border-t border-border grid grid-cols-3 gap-3 text-center">
                 <div>
                   <div className="font-display text-2xl text-foreground">24/7</div>
