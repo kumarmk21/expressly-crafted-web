@@ -204,6 +204,13 @@ const Navbar = () => {
             })}
             <div className="pt-3 mt-3 grid grid-cols-2 gap-2 border-t border-border">
               <Link
+                to="/admin/login"
+                onClick={() => setMobileOpen(false)}
+                className="col-span-2 flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider border border-primary text-primary"
+              >
+                <Shield className="h-3.5 w-3.5" /> Admin Login
+              </Link>
+              <Link
                 to="/employee-login"
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider border border-border"
