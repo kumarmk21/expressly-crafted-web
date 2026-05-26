@@ -1,14 +1,18 @@
+import { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { supabase } from "@/integrations/supabase/client";
 
-const clientRoster: { name: string; industry: string; services: string; since: string }[] = [
-  { name: "Sush Global", industry: "Trading & Distribution", services: "Express, FTL", since: "2024" },
-  { name: "Havells", industry: "Electrical Goods", services: "FTL, Warehousing", since: "2018" },
-  { name: "Asian Paints", industry: "Paints & Coatings", services: "Express, FTL", since: "2016" },
-  { name: "Marico", industry: "FMCG", services: "Cold Chain, Express", since: "2017" },
-  { name: "Britannia", industry: "Food & Beverage", services: "Cold Chain, FTL", since: "2019" },
-  { name: "Dabur", industry: "FMCG / Healthcare", services: "Express, WMS", since: "2015" },
-  { name: "Pidilite", industry: "Adhesives & Chemicals", services: "FTL, Warehousing", since: "2018" },
-  { name: "Bajaj Electricals", industry: "Consumer Durables", services: "Express, FTL", since: "2020" },
+type ClientRow = { name: string; industry: string | null; services: string | null; partner_since: string | null };
+
+const FALLBACK_ROSTER: ClientRow[] = [
+  { name: "Sush Global", industry: "Trading & Distribution", services: "Express, FTL", partner_since: "2024" },
+  { name: "Havells", industry: "Electrical Goods", services: "FTL, Warehousing", partner_since: "2018" },
+  { name: "Asian Paints", industry: "Paints & Coatings", services: "Express, FTL", partner_since: "2016" },
+  { name: "Marico", industry: "FMCG", services: "Cold Chain, Express", partner_since: "2017" },
+  { name: "Britannia", industry: "Food & Beverage", services: "Cold Chain, FTL", partner_since: "2019" },
+  { name: "Dabur", industry: "FMCG / Healthcare", services: "Express, WMS", partner_since: "2015" },
+  { name: "Pidilite", industry: "Adhesives & Chemicals", services: "FTL, Warehousing", partner_since: "2018" },
+  { name: "Bajaj Electricals", industry: "Consumer Durables", services: "Express, FTL", partner_since: "2020" },
 ];
 
 const clientLogos = [
@@ -30,6 +34,14 @@ const clientLogos = [
 ];
 
 const ClientsSection = () => {
+  const [roster, setRoster] = useState<ClientRow[]>(FALLBACK_ROSTER);
+
+  useEffect(() => {
+    supabase.from("clients").select("name, industry, services, partner_since").order("display_order").then(({ data }) => {
+      if (data && data.length) setRoster(data as ClientRow[]);
+    });
+  }, []);
+
   return (
     <section className="py-20 lg:py-24 bg-background overflow-hidden border-y border-border">
       <div className="container mx-auto px-4">
@@ -79,12 +91,12 @@ const ClientsSection = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {clientRoster.map((c) => (
+              {roster.map((c) => (
                 <TableRow key={c.name}>
                   <TableCell className="font-bold text-foreground">{c.name}</TableCell>
                   <TableCell className="text-muted-foreground">{c.industry}</TableCell>
                   <TableCell className="text-muted-foreground">{c.services}</TableCell>
-                  <TableCell className="text-right text-muted-foreground">{c.since}</TableCell>
+                  <TableCell className="text-right text-muted-foreground">{c.partner_since}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
