@@ -124,6 +124,12 @@ const Navbar = () => {
         {/* Portals */}
         <div className="hidden lg:flex items-center gap-1.5 shrink-0">
           <Link
+            to="/admin/login"
+            className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-primary border border-primary bg-card hover:bg-primary hover:text-white transition-colors"
+          >
+            <Shield className="h-3.5 w-3.5" /> Admin
+          </Link>
+          <Link
             to="/employee-login"
             className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors"
           >
