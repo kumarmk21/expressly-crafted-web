@@ -1,16 +1,3 @@
-type ClientRow = { name: string; industry: string | null; services: string | null; partner_since: string | null };
-
-const FALLBACK_ROSTER: ClientRow[] = [
-  { name: "Sush Global", industry: "Trading & Distribution", services: "Express, FTL", partner_since: "2024" },
-  { name: "Havells", industry: "Electrical Goods", services: "FTL, Warehousing", partner_since: "2018" },
-  { name: "Asian Paints", industry: "Paints & Coatings", services: "Express, FTL", partner_since: "2016" },
-  { name: "Marico", industry: "FMCG", services: "Cold Chain, Express", partner_since: "2017" },
-  { name: "Britannia", industry: "Food & Beverage", services: "Cold Chain, FTL", partner_since: "2019" },
-  { name: "Dabur", industry: "FMCG / Healthcare", services: "Express, WMS", partner_since: "2015" },
-  { name: "Pidilite", industry: "Adhesives & Chemicals", services: "FTL, Warehousing", partner_since: "2018" },
-  { name: "Bajaj Electricals", industry: "Consumer Durables", services: "Express, FTL", partner_since: "2020" },
-];
-
 const clientLogos = [
   "https://static.wixstatic.com/media/41fb73_37e1b5f7817f4733b586d2a7deeabb8d~mv2.png/v1/fill/w_120,h_80,al_c,lg_1,q_85,enc_avif,quality_auto/Picture1.png",
   "https://static.wixstatic.com/media/41fb73_53df2bf1f48f4e21abaa921ea0ffd527~mv2.jpg/v1/fill/w_120,h_80,al_c,q_80,enc_avif,quality_auto/Picture4.jpg",
@@ -30,13 +17,6 @@ const clientLogos = [
 ];
 
 const ClientsSection = () => {
-  const [roster, setRoster] = useState<ClientRow[]>(FALLBACK_ROSTER);
-
-  useEffect(() => {
-    supabase.from("clients").select("name, industry, services, partner_since").order("display_order").then(({ data }) => {
-      if (data && data.length) setRoster(data as ClientRow[]);
-    });
-  }, []);
 
   return (
     <section className="py-20 lg:py-24 bg-background overflow-hidden border-y border-border">
