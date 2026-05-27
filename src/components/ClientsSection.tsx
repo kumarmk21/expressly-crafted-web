@@ -1,20 +1,3 @@
-import { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { supabase } from "@/integrations/supabase/client";
-
-type ClientRow = { name: string; industry: string | null; services: string | null; partner_since: string | null };
-
-const FALLBACK_ROSTER: ClientRow[] = [
-  { name: "Sush Global", industry: "Trading & Distribution", services: "Express, FTL", partner_since: "2024" },
-  { name: "Havells", industry: "Electrical Goods", services: "FTL, Warehousing", partner_since: "2018" },
-  { name: "Asian Paints", industry: "Paints & Coatings", services: "Express, FTL", partner_since: "2016" },
-  { name: "Marico", industry: "FMCG", services: "Cold Chain, Express", partner_since: "2017" },
-  { name: "Britannia", industry: "Food & Beverage", services: "Cold Chain, FTL", partner_since: "2019" },
-  { name: "Dabur", industry: "FMCG / Healthcare", services: "Express, WMS", partner_since: "2015" },
-  { name: "Pidilite", industry: "Adhesives & Chemicals", services: "FTL, Warehousing", partner_since: "2018" },
-  { name: "Bajaj Electricals", industry: "Consumer Durables", services: "Express, FTL", partner_since: "2020" },
-];
-
 const clientLogos = [
   "https://static.wixstatic.com/media/41fb73_37e1b5f7817f4733b586d2a7deeabb8d~mv2.png/v1/fill/w_120,h_80,al_c,lg_1,q_85,enc_avif,quality_auto/Picture1.png",
   "https://static.wixstatic.com/media/41fb73_53df2bf1f48f4e21abaa921ea0ffd527~mv2.jpg/v1/fill/w_120,h_80,al_c,q_80,enc_avif,quality_auto/Picture4.jpg",
@@ -34,13 +17,6 @@ const clientLogos = [
 ];
 
 const ClientsSection = () => {
-  const [roster, setRoster] = useState<ClientRow[]>(FALLBACK_ROSTER);
-
-  useEffect(() => {
-    supabase.from("clients").select("name, industry, services, partner_since").order("display_order").then(({ data }) => {
-      if (data && data.length) setRoster(data as ClientRow[]);
-    });
-  }, []);
 
   return (
     <section className="py-20 lg:py-24 bg-background overflow-hidden border-y border-border">
@@ -72,37 +48,6 @@ const ClientsSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 mt-16">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="h-px w-10 bg-primary" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Client Roster</span>
-        </div>
-        <h3 className="font-display uppercase text-2xl lg:text-3xl text-foreground mb-6">
-          Brands moving with Scorpion<span className="text-primary">.</span>
-        </h3>
-        <div className="border border-border bg-card">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-muted/40">
-                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Client</TableHead>
-                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Industry</TableHead>
-                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Services</TableHead>
-                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground text-right">Partner Since</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {roster.map((c) => (
-                <TableRow key={c.name}>
-                  <TableCell className="font-bold text-foreground">{c.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{c.industry}</TableCell>
-                  <TableCell className="text-muted-foreground">{c.services}</TableCell>
-                  <TableCell className="text-right text-muted-foreground">{c.partner_since}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </div>
     </section>
   );
 };
