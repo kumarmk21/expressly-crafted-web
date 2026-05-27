@@ -72,37 +72,6 @@ const ClientsSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 mt-16">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="h-px w-10 bg-primary" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Client Roster</span>
-        </div>
-        <h3 className="font-display uppercase text-2xl lg:text-3xl text-foreground mb-6">
-          Brands moving with Scorpion<span className="text-primary">.</span>
-        </h3>
-        <div className="border border-border bg-card">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-muted/40">
-                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Client</TableHead>
-                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Industry</TableHead>
-                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground">Services</TableHead>
-                <TableHead className="font-bold uppercase text-xs tracking-wider text-foreground text-right">Partner Since</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {roster.map((c) => (
-                <TableRow key={c.name}>
-                  <TableCell className="font-bold text-foreground">{c.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{c.industry}</TableCell>
-                  <TableCell className="text-muted-foreground">{c.services}</TableCell>
-                  <TableCell className="text-right text-muted-foreground">{c.partner_since}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </div>
     </section>
   );
 };
