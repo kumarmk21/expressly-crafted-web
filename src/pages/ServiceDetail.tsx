@@ -104,6 +104,13 @@ const ServiceDetail = () => {
               <span className="text-xs font-bold text-primary uppercase tracking-widest">Overview</span>
               <h2 className="text-2xl lg:text-3xl font-black mt-2 mb-4">What we deliver</h2>
               <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
+              {service.content?.length > 0 && (
+                <div className="mt-5 space-y-4">
+                  {service.content.map((p, i) => (
+                    <p key={i} className="text-muted-foreground leading-relaxed">{p}</p>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div>
