@@ -12,7 +12,7 @@ const SERVICES = [
   "Express",
   "Air",
   "Cold Chain",
-  "WMS",
+  "Warehousing",
   "Cleantech Solutions",
   "FTL",
 ];
