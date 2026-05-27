@@ -1,7 +1,3 @@
-import { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { supabase } from "@/integrations/supabase/client";
-
 type ClientRow = { name: string; industry: string | null; services: string | null; partner_since: string | null };
 
 const FALLBACK_ROSTER: ClientRow[] = [
