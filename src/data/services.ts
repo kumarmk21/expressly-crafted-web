@@ -15,6 +15,7 @@ export type ServiceItem = {
   image: string;
   iconColor: string; // tailwind text class for the icon tile
   tagline: string;
+  content: string[]; // long-form paragraphs shown on the service detail page
   features: string[];
   industries: string[];
   capabilities: { title: string; desc: string }[];
@@ -30,6 +31,11 @@ export const services: ServiceItem[] = [
     image: serviceExpress,
     iconColor: "red-gradient",
     tagline: "Time-definite surface delivery you can set your watch by.",
+    content: [
+      "Scorpion Express runs one of India's most dense and disciplined surface express networks — engineered for shipments where the delivery window is the product. From banking instruments and medical samples to high-value electronics and spare parts, every consignment is moved on a committed, time-definite schedule with end-to-end visibility.",
+      "Our scheduled line-hauls connect every metro, tier-2 and tier-3 hub through automated sortation centres, with dedicated express bays that bypass standard mixed-cargo queues. Multi-carrier route redundancy, fail-safe re-routing and proactive exception management ensure that even when something goes wrong upstream, your delivery window is protected.",
+      "Each shipment is tracked at waybill level with real-time GPS, milestone alerts and instant digital POD — giving operations, customer-care and end-clients a single source of truth from pickup to delivery.",
+    ],
     features: [
       "Pan-India next-flight-out & next-day delivery",
       "Real-time GPS + waybill-level tracking",
@@ -52,6 +58,11 @@ export const services: ServiceItem[] = [
     image: serviceAir,
     iconColor: "red-gradient",
     tagline: "Wings for time-critical cargo across India & beyond.",
+    content: [
+      "When ground transit simply isn't fast enough, Scorpion Express moves your cargo by air — across every major Indian metro and on trade lanes connecting Asia-Pacific, the Middle East, Europe and the Americas. Daily uplift agreements with all leading domestic and international carriers give us guaranteed capacity, even during peak season.",
+      "Beyond standard belly-hold freight, we operate full and part-charter solutions for outsize, project and emergency cargo, plus on-board courier (OBC) services for the most sensitive of consignments. Coordinated airside handling and a dedicated cargo team at every airport cut tarmac-to-tarmac transit from hours to minutes.",
+      "Our in-house customs and regulatory desk manages documentation, classification, duty optimisation and clearance — turning cross-border air freight into a single, accountable, door-to-door movement.",
+    ],
     features: [
       "Direct uplift on all major carriers",
       "Charter & on-board courier (OBC) options",
@@ -74,6 +85,11 @@ export const services: ServiceItem[] = [
     image: serviceColdchain,
     iconColor: "bg-gradient-to-br from-sky-500 to-blue-700",
     tagline: "Unbroken cold, end-to-end. From dock to doorstep.",
+    content: [
+      "Our cold chain division is purpose-built for the products where temperature is non-negotiable — vaccines, biologics, specialty chemicals, dairy, frozen foods and high-value perishables. From +25°C ambient to deep-frozen -25°C, every link of the chain is validated, monitored and audit-ready.",
+      "A modern fleet of reefer trucks with dual-zone capability, qualified passive containers, validated cold rooms and freezer farms across the country form the physical backbone. On top sits a digital layer of IoT temperature and humidity loggers, geo-fenced alerts and live dashboards that flag any deviation in real time.",
+      "Our operations are aligned to GDP, WHO and applicable regulatory frameworks — with full documentation, deviation reports and a regulator-ready audit trail for every shipment we move.",
+    ],
     features: [
       "+25°C to -25°C controlled environments",
       "GDP & WHO-compliant pharma handling",
@@ -91,11 +107,16 @@ export const services: ServiceItem[] = [
     no: "04",
     slug: "wms",
     icon: Warehouse,
-    title: "WMS",
+    title: "Warehousing",
     desc: "Strategic, secure storage facilities with advanced WMS for flawless inventory control and distribution.",
     image: serviceWms,
     iconColor: "red-gradient",
     tagline: "Smart warehousing engineered for accuracy, speed and scale.",
+    content: [
+      "Scorpion's warehousing footprint spans multi-client and dedicated facilities at every key consumption and manufacturing cluster in India — built to handle everything from fast-moving e-commerce SKUs to bulk industrial inventory. Each site is designed around our customer's flow: receiving, put-away, picking, packing, value-add and dispatch are mapped to your SLAs, not ours.",
+      "Our cloud-based Warehouse Management System (WMS) integrates with Shopify, SAP, Oracle and custom ERPs out of the box — giving you live inventory, order status and exception alerts on a single dashboard. Cycle counts, ABC analysis and demand-based slotting keep stock lean, accurate and ready to ship.",
+      "Beyond storage, we run a full menu of value-added services — kitting, labelling, bundling, quality checks, returns processing and bonded / FTWZ warehousing — so that your warehouse stops being a cost centre and starts being a competitive advantage.",
+    ],
     features: [
       "Multi-client & dedicated facilities",
       "Real-time WMS with API integrations",
@@ -118,6 +139,11 @@ export const services: ServiceItem[] = [
     image: serviceCleantech,
     iconColor: "bg-gradient-to-br from-emerald-500 to-green-700",
     tagline: "Responsible reverse logistics for a circular economy.",
+    content: [
+      "Our cleantech division gives enterprises a single, compliant partner for end-of-life electronics, IT assets and e-waste. From a single laptop pickup to nationwide data-centre decommissioning, every movement is sealed, tracked and reconciled against your asset register.",
+      "Certified data destruction — degaussing, shredding and NIST-grade software wiping — is performed on-site or at our secure facilities, with auditable certificates issued for every serialised asset. Recovered material is then routed through authorised recyclers and refurbishers under India's EPR framework, with full chain-of-custody documentation.",
+      "ESG and sustainability dashboards quantify the carbon and material recovery from your programme, giving your sustainability and compliance teams the evidence they need for board, regulator and customer reporting.",
+    ],
     features: [
       "Authorised e-waste collection & transport",
       "ITAD with certified data destruction",
@@ -140,6 +166,11 @@ export const services: ServiceItem[] = [
     image: serviceFtl,
     iconColor: "red-gradient",
     tagline: "Dedicated trucks. Direct routes. Total control.",
+    content: [
+      "Our Full-Truck-Load (FTL) service is built for shippers who need an entire vehicle moving point-to-point, on their schedule, without transshipment. Whether it's a single high-value consignment, a sensitive project cargo or a high-frequency plant-to-DC lane, we deploy the right vehicle from a fleet ranging 9MT to 32MT — multi-axle, container, flatbed, ODC and low-bed included.",
+      "Every truck is sealed at origin, locked to a single consignee and tracked live via GPS with geo-fenced alerts, route deviation warnings and ETA recalculation. A dedicated control tower monitors every active movement 24×7, so any exception is acted on before it becomes a delay.",
+      "Long-term contract capacity protects you from spot-market volatility, while our spot mode gives you instant access to vetted vehicles for surge demand — without sacrificing safety, compliance or visibility.",
+    ],
     features: [
       "9MT to 32MT vehicles on-demand",
       "Sealed, single-consignee movements",
