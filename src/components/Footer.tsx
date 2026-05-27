@@ -73,7 +73,7 @@ const Footer = () => {
                 ["Express", "express"],
                 ["Air", "air"],
                 ["Cold Chain", "cold-chain"],
-                ["WMS / Warehousing", "wms"],
+                ["Warehousing", "wms"],
                 ["Cleantech Solutions", "cleantech"],
                 ["FTL", "ftl"],
               ].map(([label, slug]) => (
