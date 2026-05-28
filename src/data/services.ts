@@ -150,7 +150,7 @@ export const services: ServiceItem[] = [
       "EPR (Extended Producer Responsibility) support",
       "Recycle, refurbish & remarketing services",
     ],
-    industries: ["IT & ITES", "Telecom", "BFSI", "Manufacturing"],
+    industries: ["IT & ITES", "Telecom", "Manufacturing"],
     capabilities: [
       { title: "Pan-India Pickups", desc: "Door-step pickup from any pin code with sealed, tamper-evident cages." },
       { title: "Data Destruction", desc: "On-site & off-site degaussing, shredding, and NIST-grade wiping with certificates." },
