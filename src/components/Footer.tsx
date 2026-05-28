@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Youtube, ArrowUpRight } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, ArrowUpRight } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
 
 const Footer = () => {
@@ -36,8 +36,12 @@ const Footer = () => {
               India's premier freight & logistics service provider — delivering custodial excellence with a single promise: <strong className="text-foreground">Custodian First, Carrier Later.</strong>
             </p>
             <div className="flex gap-2 mt-8">
-              {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
-                <a key={i} href="#" className="h-10 w-10 flex items-center justify-center border border-border text-foreground hover:bg-primary hover:text-white hover:border-primary transition-colors" aria-label="Social link">
+              {[
+                { Icon: Facebook, href: "https://www.facebook.com/scorpiongroupmumbai/", label: "Facebook" },
+                { Icon: Instagram, href: "https://www.instagram.com/scorpiongroupmumbai/", label: "Instagram" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/scorpionexpress/", label: "LinkedIn" },
+              ].map(({ Icon, href, label }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="h-10 w-10 flex items-center justify-center border border-border text-foreground hover:bg-primary hover:text-white hover:border-primary transition-colors" aria-label={label}>
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
