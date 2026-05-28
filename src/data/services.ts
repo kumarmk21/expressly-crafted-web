@@ -149,10 +149,10 @@ export const services: ServiceItem[] = [
       "Through sustainable disposal practices and responsible waste management, we also support ESG and environmental objectives by reducing landfill impact and promoting safer material handling across the supply chain.",
     ],
     features: [
-      "Authorised e-waste collection & transport",
-      "ITAD with certified data destruction",
-      "EPR (Extended Producer Responsibility) support",
-      "Recycle, refurbish & remarketing services",
+      "Secure disposal solutions for expired pharma and food products",
+      "Controlled reverse logistics with sealed transportation",
+      "Compliant destruction processes with complete audit trails",
+      "Environmentally responsible waste handling aligned with ESG goals",
     ],
     industries: ["IT & ITES", "Telecom", "Manufacturing"],
     capabilities: [
