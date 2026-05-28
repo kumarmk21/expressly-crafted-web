@@ -25,7 +25,7 @@ const leadership = [
   { name: "Manoj Kumar", role: "CTO — Scorpion Group", photo: null },
   { name: "Mandar Babre", role: "CBO — Scorpion Express Pvt. Ltd.", photo: null },
   { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: null },
-  { name: "Smita Chawda", role: "DGM–CS Scorpion Express Pvt. Ltd.", photo: null },
+  { name: "Pooja Patel Kalia", role: "DGM–CS Scorpion Express Pvt. Ltd.", photo: null },
 ];
 
 const values = [
