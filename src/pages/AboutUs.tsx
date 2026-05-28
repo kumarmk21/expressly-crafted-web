@@ -10,6 +10,7 @@ import rajLalan from "@/assets/leadership/raj-lalan.jpg";
 import subratRath from "@/assets/leadership/subrat-rath.jpg";
 import mandarBabre from "@/assets/leadership/mandar-babre.jpg";
 import manojKumar from "@/assets/leadership/manoj-kumar.jpg";
+import anilTiwari from "@/assets/leadership/anil-tiwari.jpg";
 import companyShowcase from "@/assets/hero-bg.jpg";
 
 const milestones = [
@@ -29,7 +30,7 @@ const leadership = [
   { name: "Manoj Kumar", role: "CTO — Scorpion Group", photo: manojKumar },
   { name: "Mandar Babre", role: "CBO — Scorpion Express Pvt. Ltd.", photo: mandarBabre },
   { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: null },
-  { name: "Pooja Patel Kalia", role: "DGM–CS Scorpion Express Pvt. Ltd.", photo: null },
+  { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: anilTiwari },
 ];
 
 const values = [
