@@ -196,7 +196,7 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground/80 hover:bg-muted border border-transparent hover:border-border"
+                  className="block px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground/80 bg-card border border-border hover:bg-primary hover:text-white hover:border-primary transition-colors"
                 >
                   {link.label}
                 </a>
