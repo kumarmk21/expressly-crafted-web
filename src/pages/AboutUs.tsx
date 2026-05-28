@@ -9,7 +9,7 @@ import shaliniSingh from "@/assets/leadership/shalini-singh.jpg";
 import rajLalan from "@/assets/leadership/raj-lalan.jpg";
 import subratRath from "@/assets/leadership/subrat-rath.jpg";
 import mandarBabre from "@/assets/leadership/mandar-babre.jpg";
-import anilTiwari from "@/assets/leadership/anil-tiwari.jpg";
+import anilTiwari from "@/assets/leadership/manoj-kumar.jpg";
 import companyShowcase from "@/assets/hero-bg.jpg";
 
 const milestones = [
