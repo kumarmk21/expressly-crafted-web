@@ -6,6 +6,10 @@ import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
 import jpnSingh from "@/assets/leadership/jpn-singh.jpg";
 import shaliniSingh from "@/assets/leadership/shalini-singh.jpg";
+import rajLalan from "@/assets/leadership/raj-lalan.jpg";
+import subratRath from "@/assets/leadership/subrat-rath.jpg";
+import mandarBabre from "@/assets/leadership/mandar-babre.jpg";
+import anilTiwari from "@/assets/leadership/anil-tiwari.jpg";
 import companyShowcase from "@/assets/hero-bg.jpg";
 
 const milestones = [
@@ -20,11 +24,11 @@ const milestones = [
 const leadership = [
   { name: "J P N Singh", role: "Managing Director — Scorpion Group", photo: jpnSingh },
   { name: "Shalini Singh", role: "Director — Scorpion Express Pvt. Ltd.", photo: shaliniSingh },
-  { name: "Raj Lalan Dwivedi", role: "COO — Scorpion Express Pvt. Ltd.", photo: null },
-  { name: "Subrat Rath", role: "CFO — Scorpion Express Pvt. Ltd.", photo: null },
+  { name: "Raj Lalan Dwivedi", role: "COO — Scorpion Express Pvt. Ltd.", photo: rajLalan },
+  { name: "Subrat Rath", role: "CFO — Scorpion Express Pvt. Ltd.", photo: subratRath },
   { name: "Manoj Kumar", role: "CTO — Scorpion Group", photo: null },
-  { name: "Mandar Babre", role: "CBO — Scorpion Express Pvt. Ltd.", photo: null },
-  { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: null },
+  { name: "Mandar Babre", role: "CBO — Scorpion Express Pvt. Ltd.", photo: mandarBabre },
+  { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: anilTiwari },
   { name: "Pooja Patel Kalia", role: "DGM–CS Scorpion Express Pvt. Ltd.", photo: null },
 ];
 
