@@ -31,7 +31,7 @@ const leadership = [
 const values = [
   { icon: Shield, label: "Custodian First", desc: "Goods safeguarded above all else." },
   { icon: Truck, label: "Reliability", desc: "Time-bound, damage-free delivery." },
-  { icon: Users, label: "People-Powered", desc: "Internal branding drives external trust." },
+  { icon: Users, label: "People-Driven", desc: "Strong internal culture builds lasting external trust." },
   { icon: Award, label: "Excellence", desc: "Performance always outweighs ambition." },
 ];
 
