@@ -141,7 +141,7 @@ export const services: ServiceItem[] = [
     desc: "Compliant, secure, and environmentally responsible reverse logistics for electronic waste and IT asset disposition.",
     image: serviceCleantech,
     iconColor: "bg-gradient-to-br from-emerald-500 to-green-700",
-    tagline: "Responsible reverse logistics for a circular economy.",
+    tagline: "Safe, compliant disposal solutions for expired pharmaceutical and food products.",
     content: [
       "Our cleantech division gives enterprises a single, compliant partner for end-of-life electronics, IT assets and e-waste. From a single laptop pickup to nationwide data-centre decommissioning, every movement is sealed, tracked and reconciled against your asset register.",
       "Certified data destruction — degaussing, shredding and NIST-grade software wiping — is performed on-site or at our secure facilities, with auditable certificates issued for every serialised asset. Recovered material is then routed through authorised recyclers and refurbishers under India's EPR framework, with full chain-of-custody documentation.",
