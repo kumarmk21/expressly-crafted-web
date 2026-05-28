@@ -22,7 +22,7 @@ const ServicesSection = () => {
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <h2 className="font-display uppercase text-5xl lg:text-7xl text-foreground leading-[0.9] max-w-3xl">
-              Six services<span className="text-primary">.</span> One promise of custody.
+              One promise<span className="text-primary">.</span> Custodian first, carrier later.
             </h2>
             <p className="text-muted-foreground max-w-md">
               End-to-end logistics — engineered for industries that can't afford delays, damage or downtime.
