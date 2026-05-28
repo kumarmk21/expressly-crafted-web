@@ -60,9 +60,11 @@ export const services: ServiceItem[] = [
     iconColor: "red-gradient",
     tagline: "Wings for time-critical cargo across India & beyond.",
     content: [
-      "When ground transit simply isn't fast enough, Scorpion Express moves your cargo by air — across every major Indian metro and on trade lanes connecting Asia-Pacific, the Middle East, Europe and the Americas. Daily uplift agreements with all leading domestic and international carriers give us guaranteed capacity, even during peak season.",
-      "Beyond standard belly-hold freight, we operate full and part-charter solutions for outsize, project and emergency cargo, plus on-board courier (OBC) services for the most sensitive of consignments. Coordinated airside handling and a dedicated cargo team at every airport cut tarmac-to-tarmac transit from hours to minutes.",
-      "Our in-house customs and regulatory desk manages documentation, classification, duty optimisation and clearance — turning cross-border air freight into a single, accountable, door-to-door movement.",
+      "When speed becomes mission-critical, Scorpion Express delivers through a dedicated domestic air express network connecting India's major commercial and industrial hubs.",
+      "Designed for urgent, high-priority shipments, our domestic air services provide rapid movement between metros, tier-1 and key tier-2 cities with assured uplift capacity through strategic partnerships with leading domestic airlines. From critical spare parts and pharmaceuticals to electronics, retail replenishment and time-sensitive documents, every shipment moves with precision, visibility and accountability.",
+      "Beyond standard air cargo movement, we provide priority uplift handling, airport-to-airport coordination and rapid first-mile and last-mile integration to reduce overall transit time at every stage of the journey.",
+      "Our dedicated airport operations teams ensure faster cargo processing, streamlined handovers and proactive exception management — helping businesses maintain continuity even under tight delivery windows.",
+      "Every shipment is supported by real-time tracking, milestone-based status updates and instant digital PODs, providing complete transparency from pickup to final delivery.",
     ],
     features: [
       "Direct uplift on all major carriers",
