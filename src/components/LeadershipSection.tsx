@@ -47,7 +47,7 @@ const LeadershipSection = () => {
             </h2>
             <div className="space-y-5 text-foreground/70 leading-relaxed max-w-2xl">
               <p>
-                Under visionary leadership, Scorpion Express has grown from a pioneering venture into one of India's most trusted logistics service providers. Our leadership team brings over two decades of deep industry expertise, fostering a culture of innovation, accountability, and customer-first thinking.
+                Under the leadership of <strong className="text-foreground">Mr. J P N Singh</strong>, Scorpion Express has grown from a pioneering venture into one of India's most trusted logistics service providers. His vision and over two decades of deep industry expertise have shaped a culture of innovation, accountability, and customer-first thinking.
               </p>
               <p>
                 The Scorpion Group's philosophy of <strong className="text-foreground">"Custodian First, Carrier Later"</strong> is more than a tagline — it's the guiding principle that shapes every operational decision and last-mile delivery.
