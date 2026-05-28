@@ -49,7 +49,7 @@ const AboutUs = () => {
             <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Scorpion Express</span>
           </div>
           <h1 className="font-display uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] max-w-5xl text-foreground">
-            India's premier <br /> freight & logistics <br /> custodian<span className="text-primary">.</span>
+            India's premier <br /> freight & logistics<span className="text-primary">.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-foreground/70 leading-relaxed">
             Pioneer of the Scorpion Group's endeavors — built on a single
