@@ -14,6 +14,41 @@ export type Database = {
   }
   public: {
     Tables: {
+      app_users: {
+        Row: {
+          auth_user_id: string
+          created_at: string
+          full_name: string
+          id: string
+          official_id: string | null
+          role: Database["public"]["Enums"]["app_role_vms"]
+        }
+        Insert: {
+          auth_user_id: string
+          created_at?: string
+          full_name?: string
+          id?: string
+          official_id?: string | null
+          role?: Database["public"]["Enums"]["app_role_vms"]
+        }
+        Update: {
+          auth_user_id?: string
+          created_at?: string
+          full_name?: string
+          id?: string
+          official_id?: string | null
+          role?: Database["public"]["Enums"]["app_role_vms"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "app_users_official_id_fkey"
+            columns: ["official_id"]
+            isOneToOne: false
+            referencedRelation: "company_officials"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       clients: {
         Row: {
           created_at: string
@@ -41,6 +76,42 @@ export type Database = {
           name?: string
           partner_since?: string | null
           services?: string | null
+        }
+        Relationships: []
+      }
+      company_officials: {
+        Row: {
+          contact_number: string
+          created_at: string
+          department: string
+          designation: string
+          email: string
+          full_name: string
+          id: string
+          is_available: boolean
+          updated_at: string
+        }
+        Insert: {
+          contact_number?: string
+          created_at?: string
+          department?: string
+          designation?: string
+          email?: string
+          full_name: string
+          id?: string
+          is_available?: boolean
+          updated_at?: string
+        }
+        Update: {
+          contact_number?: string
+          created_at?: string
+          department?: string
+          designation?: string
+          email?: string
+          full_name?: string
+          id?: string
+          is_available?: boolean
+          updated_at?: string
         }
         Relationships: []
       }
@@ -76,6 +147,108 @@ export type Database = {
           subject?: string | null
         }
         Relationships: []
+      }
+      courier_receipts: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          num_packages: number
+          package_weight: string
+          recipient_official_id: string
+          sender_address: string
+          sender_name: string
+          tracking_number: string
+          visit_record_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          id?: string
+          num_packages?: number
+          package_weight?: string
+          recipient_official_id: string
+          sender_address?: string
+          sender_name?: string
+          tracking_number?: string
+          visit_record_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          num_packages?: number
+          package_weight?: string
+          recipient_official_id?: string
+          sender_address?: string
+          sender_name?: string
+          tracking_number?: string
+          visit_record_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "courier_receipts_recipient_official_id_fkey"
+            columns: ["recipient_official_id"]
+            isOneToOne: false
+            referencedRelation: "company_officials"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "courier_receipts_visit_record_id_fkey"
+            columns: ["visit_record_id"]
+            isOneToOne: false
+            referencedRelation: "visit_records"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notification_logs: {
+        Row: {
+          error_message: string | null
+          id: string
+          message_body: string
+          notification_type: Database["public"]["Enums"]["notification_type_vms"]
+          official_id: string
+          sent_at: string
+          status: Database["public"]["Enums"]["notification_status_vms"]
+          visit_record_id: string | null
+        }
+        Insert: {
+          error_message?: string | null
+          id?: string
+          message_body?: string
+          notification_type: Database["public"]["Enums"]["notification_type_vms"]
+          official_id: string
+          sent_at?: string
+          status?: Database["public"]["Enums"]["notification_status_vms"]
+          visit_record_id?: string | null
+        }
+        Update: {
+          error_message?: string | null
+          id?: string
+          message_body?: string
+          notification_type?: Database["public"]["Enums"]["notification_type_vms"]
+          official_id?: string
+          sent_at?: string
+          status?: Database["public"]["Enums"]["notification_status_vms"]
+          visit_record_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notification_logs_official_id_fkey"
+            columns: ["official_id"]
+            isOneToOne: false
+            referencedRelation: "company_officials"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notification_logs_visit_record_id_fkey"
+            columns: ["visit_record_id"]
+            isOneToOne: false
+            referencedRelation: "visit_records"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       quote_requests: {
         Row: {
@@ -227,11 +400,110 @@ export type Database = {
         }
         Relationships: []
       }
+      visit_records: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          check_in_at: string
+          check_out_at: string | null
+          created_at: string
+          id: string
+          official_id: string | null
+          purpose: string
+          receptionist_notes: string | null
+          status: Database["public"]["Enums"]["visit_status"]
+          visitor_id: string
+          visitor_type: Database["public"]["Enums"]["visitor_type"]
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          check_in_at?: string
+          check_out_at?: string | null
+          created_at?: string
+          id?: string
+          official_id?: string | null
+          purpose?: string
+          receptionist_notes?: string | null
+          status?: Database["public"]["Enums"]["visit_status"]
+          visitor_id: string
+          visitor_type: Database["public"]["Enums"]["visitor_type"]
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          check_in_at?: string
+          check_out_at?: string | null
+          created_at?: string
+          id?: string
+          official_id?: string | null
+          purpose?: string
+          receptionist_notes?: string | null
+          status?: Database["public"]["Enums"]["visit_status"]
+          visitor_id?: string
+          visitor_type?: Database["public"]["Enums"]["visitor_type"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "visit_records_approved_by_fkey"
+            columns: ["approved_by"]
+            isOneToOne: false
+            referencedRelation: "company_officials"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "visit_records_official_id_fkey"
+            columns: ["official_id"]
+            isOneToOne: false
+            referencedRelation: "company_officials"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "visit_records_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "visitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      visitors: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          mobile_number: string
+          photo_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name: string
+          id?: string
+          mobile_number: string
+          photo_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          mobile_number?: string
+          photo_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      get_vms_official_id: { Args: never; Returns: string }
+      get_vms_role: {
+        Args: never
+        Returns: Database["public"]["Enums"]["app_role_vms"]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -253,6 +525,15 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      app_role_vms: "receptionist" | "official" | "admin"
+      notification_status_vms: "sent" | "failed" | "pending"
+      notification_type_vms: "sms" | "push"
+      visit_status:
+        | "checked_in"
+        | "pending_approval"
+        | "checked_out"
+        | "cancelled"
+      visitor_type: "courier" | "delivery" | "visitor"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -381,6 +662,16 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      app_role_vms: ["receptionist", "official", "admin"],
+      notification_status_vms: ["sent", "failed", "pending"],
+      notification_type_vms: ["sms", "push"],
+      visit_status: [
+        "checked_in",
+        "pending_approval",
+        "checked_out",
+        "cancelled",
+      ],
+      visitor_type: ["courier", "delivery", "visitor"],
     },
   },
 } as const
