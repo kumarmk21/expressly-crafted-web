@@ -1,4 +1,4 @@
-import { Phone, Mail, Facebook, Instagram, Linkedin, Youtube, MapPin } from "lucide-react";
+import { Phone, Mail, Facebook, Instagram, Linkedin, MapPin } from "lucide-react";
 
 const TopBar = () => {
   return (
@@ -23,10 +23,9 @@ const TopBar = () => {
         <div className="flex items-center gap-1">
           <span className="hidden sm:inline text-[10px] uppercase tracking-[0.2em] mr-3 text-white/70">Follow</span>
           {[
-            { Icon: Facebook, href: "https://www.facebook.com/scorpionexpress", label: "Facebook" },
-            { Icon: Instagram, href: "https://www.instagram.com/scorpionexpress", label: "Instagram" },
-            { Icon: Linkedin, href: "https://www.linkedin.com/company/scorpionexpress", label: "LinkedIn" },
-            { Icon: Youtube, href: "https://www.youtube.com/@scorpionexpress", label: "YouTube" },
+            { Icon: Facebook, href: "https://www.facebook.com/scorpiongroupmumbai/", label: "Facebook" },
+            { Icon: Instagram, href: "https://www.instagram.com/scorpiongroupmumbai/", label: "Instagram" },
+            { Icon: Linkedin, href: "https://www.linkedin.com/company/scorpionexpress/", label: "LinkedIn" },
           ].map(({ Icon, href, label }) => (
             <a
               key={label}
