@@ -42,7 +42,7 @@ export const services: ServiceItem[] = [
       "Dedicated express bays at every hub",
       "POD digitization within minutes of delivery",
     ],
-    industries: ["BFSI", "Healthcare", "E-commerce", "Manufacturing"],
+    industries: ["Healthcare", "E-commerce", "Manufacturing"],
     capabilities: [
       { title: "Time-Definite SLAs", desc: "Committed delivery windows backed by service guarantees and route redundancy." },
       { title: "Priority Handling", desc: "Express consignments bypass standard queues at sorting and line-haul stages." },
@@ -150,7 +150,7 @@ export const services: ServiceItem[] = [
       "EPR (Extended Producer Responsibility) support",
       "Recycle, refurbish & remarketing services",
     ],
-    industries: ["IT & ITES", "Telecom", "BFSI", "Manufacturing"],
+    industries: ["IT & ITES", "Telecom", "Manufacturing"],
     capabilities: [
       { title: "Pan-India Pickups", desc: "Door-step pickup from any pin code with sealed, tamper-evident cages." },
       { title: "Data Destruction", desc: "On-site & off-site degaussing, shredding, and NIST-grade wiping with certificates." },
