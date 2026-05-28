@@ -156,9 +156,9 @@ export const services: ServiceItem[] = [
     ],
     industries: ["IT & ITES", "Telecom", "Manufacturing"],
     capabilities: [
-      { title: "Pan-India Pickups", desc: "Door-step pickup from any pin code with sealed, tamper-evident cages." },
-      { title: "Data Destruction", desc: "On-site & off-site degaussing, shredding, and NIST-grade wiping with certificates." },
-      { title: "Sustainability Reporting", desc: "Carbon-offset & material-recovery dashboards for your ESG reporting." },
+      { title: "Secure Reverse Logistics", desc: "Controlled pickup and transportation of expired and regulated products across the supply chain." },
+      { title: "Verified Disposal Processes", desc: "Authorised destruction and compliant disposal with complete audit trails and certification." },
+      { title: "Sustainability & Compliance Support", desc: "Environmentally responsible waste handling aligned with ESG, regulatory and corporate governance requirements." },
     ],
   },
   {
