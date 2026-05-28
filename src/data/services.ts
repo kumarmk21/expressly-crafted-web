@@ -42,7 +42,7 @@ export const services: ServiceItem[] = [
       "Dedicated express bays at every hub",
       "POD digitization within minutes of delivery",
     ],
-    industries: ["BFSI", "Healthcare", "E-commerce", "Manufacturing"],
+    industries: ["Healthcare", "E-commerce", "Manufacturing"],
     capabilities: [
       { title: "Time-Definite SLAs", desc: "Committed delivery windows backed by service guarantees and route redundancy." },
       { title: "Priority Handling", desc: "Express consignments bypass standard queues at sorting and line-haul stages." },
