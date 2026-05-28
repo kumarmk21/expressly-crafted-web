@@ -141,9 +141,10 @@ const AboutUs = () => {
                 <h3 className="font-display uppercase text-2xl text-foreground">Our Vision</h3>
               </div>
               <p className="text-foreground/75 leading-relaxed">
-                To redefine the landscape of Express Cargo and Logistics in India and beyond — setting the highest
-                standards in <strong className="text-foreground">service excellence, innovation, and sustainability</strong> —
-                and to become the most trusted logistics partner for every business we serve.
+                "To redefine the landscape of Express Cargo and Logistics Services in India and beyond, by setting the
+                highest standards in <strong className="text-foreground">service excellence, innovation, and sustainability</strong>.
+                We aim to become the most trusted partner for businesses across the nation, empowering their growth and
+                success with our reliable, efficient, and cutting-edge logistics solutions."
               </p>
             </motion.div>
 
