@@ -67,10 +67,10 @@ export const services: ServiceItem[] = [
       "Every shipment is supported by real-time tracking, milestone-based status updates and instant digital PODs, providing complete transparency from pickup to final delivery.",
     ],
     features: [
-      "Direct uplift on all major carriers",
-      "Charter & on-board courier (OBC) options",
-      "Cross-border customs facilitation",
-      "Door-to-airport-to-door coordination",
+      "Assured domestic air uplift across major Indian cities",
+      "Priority handling for urgent and time-sensitive shipments",
+      "Real-time shipment visibility with milestone-based tracking",
+      "Integrated airport-to-door coordination for faster turnaround",
     ],
     industries: ["Pharma", "Aerospace", "Auto-spares", "Luxury Goods"],
     capabilities: [
