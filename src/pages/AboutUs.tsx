@@ -14,7 +14,7 @@ const milestones = [
   { year: "2005", text: "Scorpion Containers Pvt. Ltd. established" },
   { year: "2015", text: "Expanded to a true pan-India operating network" },
   { year: "2020", text: "Deepened reverse logistics & cold-chain capability" },
-  { year: "2024", text: "Modernised tech stack — live tracking & analytics" },
+  { year: "2024", text: "Modernized technology infrastructure with real-time tracking and intelligent analytics." },
 ];
 
 const leadership = [
