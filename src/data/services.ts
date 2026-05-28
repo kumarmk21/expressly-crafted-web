@@ -74,9 +74,9 @@ export const services: ServiceItem[] = [
     ],
     industries: ["Pharma", "Aerospace", "Auto-spares", "Luxury Goods"],
     capabilities: [
-      { title: "Domestic & International", desc: "Daily uplift on every major Indian metro and trade lane connections to APAC, EMEA & Americas." },
-      { title: "Charter Solutions", desc: "Full or part-charter capacity for outsize, project, or emergency cargo." },
-      { title: "Tarmac-to-Tarmac", desc: "Coordinated airside handling reduces TAT from hours to minutes." },
+      { title: "Nationwide Air Connectivity", desc: "Daily air express movement across major Indian metros and commercial hubs." },
+      { title: "Priority Cargo Handling", desc: "Fast-track processing for urgent, high-value and time-sensitive shipments." },
+      { title: "Rapid Airport Coordination", desc: "Integrated airport handling and synchronized first-mile to last-mile movement for reduced turnaround times." },
     ],
   },
   {
