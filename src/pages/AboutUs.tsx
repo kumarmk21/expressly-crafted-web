@@ -72,7 +72,7 @@ const AboutUs = () => {
               <div className="max-w-2xl">
                 <div className="text-[11px] uppercase tracking-[0.3em] text-white/80 mb-2">A Glimpse Inside</div>
                 <h3 className="font-display uppercase text-2xl md:text-4xl leading-tight">
-                  Engineered networks. Disciplined operations. One promise of custody.
+                  Precision-engineered networks. Disciplined execution. One uncompromising commitment to trust.
                 </h3>
               </div>
             </div>
