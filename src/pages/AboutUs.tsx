@@ -52,8 +52,8 @@ const AboutUs = () => {
             India's premier <br /> freight & logistics<span className="text-primary">.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-foreground/70 leading-relaxed">
-            Pioneer of the Scorpion Group's endeavors — built on a single
-            promise: <strong className="text-foreground font-bold">Custodian First, Carrier Later.</strong>
+            The driving force behind the Scorpion Group's ventures — founded on
+            one unwavering principle: <strong className="text-foreground font-bold">Custodian First, Carrier Later.</strong>
           </p>
         </div>
       </section>
