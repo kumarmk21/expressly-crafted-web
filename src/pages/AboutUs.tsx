@@ -141,9 +141,10 @@ const AboutUs = () => {
                 <h3 className="font-display uppercase text-2xl text-foreground">Our Vision</h3>
               </div>
               <p className="text-foreground/75 leading-relaxed">
-                To redefine the landscape of Express Cargo and Logistics in India and beyond — setting the highest
-                standards in <strong className="text-foreground">service excellence, innovation, and sustainability</strong> —
-                and to become the most trusted logistics partner for every business we serve.
+                "To redefine the landscape of Express Cargo and Logistics Services in India and beyond, by setting the
+                highest standards in <strong className="text-foreground">service excellence, innovation, and sustainability</strong>.
+                We aim to become the most trusted partner for businesses across the nation, empowering their growth and
+                success with our reliable, efficient, and cutting-edge logistics solutions."
               </p>
             </motion.div>
 
@@ -163,9 +164,12 @@ const AboutUs = () => {
                 <h3 className="font-display uppercase text-2xl text-foreground">Our Mission</h3>
               </div>
               <p className="text-foreground/75 leading-relaxed">
-                Deliver <strong className="text-foreground">timely, safe and cost-effective</strong> logistics to every
-                B2B and B2C client across India — powered by technology, operational discipline, and a deep
-                understanding of each sector we serve. Every shipment, a promise kept.
+                "Our mission is to deliver <strong className="text-foreground">unparalleled logistics and express cargo services</strong> to
+                our B2B and B2C clients across India, ensuring timely, safe, and cost-effective solutions. We are dedicated to
+                continuously enhancing our operations through technological innovation, customer service excellence, and a deep
+                understanding of the unique needs of each sector we serve. By fostering strong, trust-based relationships with
+                our clients, we commit to being an integral part of their success story, driving positive change in the logistics
+                industry with every shipment we handle."
               </p>
             </motion.div>
           </div>
