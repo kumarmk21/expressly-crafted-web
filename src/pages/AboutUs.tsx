@@ -164,9 +164,12 @@ const AboutUs = () => {
                 <h3 className="font-display uppercase text-2xl text-foreground">Our Mission</h3>
               </div>
               <p className="text-foreground/75 leading-relaxed">
-                Deliver <strong className="text-foreground">timely, safe and cost-effective</strong> logistics to every
-                B2B and B2C client across India — powered by technology, operational discipline, and a deep
-                understanding of each sector we serve. Every shipment, a promise kept.
+                "Our mission is to deliver <strong className="text-foreground">unparalleled logistics and express cargo services</strong> to
+                our B2B and B2C clients across India, ensuring timely, safe, and cost-effective solutions. We are dedicated to
+                continuously enhancing our operations through technological innovation, customer service excellence, and a deep
+                understanding of the unique needs of each sector we serve. By fostering strong, trust-based relationships with
+                our clients, we commit to being an integral part of their success story, driving positive change in the logistics
+                industry with every shipment we handle."
               </p>
             </motion.div>
           </div>
