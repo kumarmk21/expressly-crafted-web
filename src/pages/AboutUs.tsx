@@ -9,7 +9,7 @@ import shaliniSingh from "@/assets/leadership/shalini-singh.jpg";
 import rajLalan from "@/assets/leadership/raj-lalan.jpg";
 import subratRath from "@/assets/leadership/subrat-rath.jpg";
 import mandarBabre from "@/assets/leadership/mandar-babre.jpg";
-import anilTiwari from "@/assets/leadership/anil-tiwari.jpg";
+import manojKumar from "@/assets/leadership/manoj-kumar.jpg";
 import companyShowcase from "@/assets/hero-bg.jpg";
 
 const milestones = [
@@ -26,9 +26,9 @@ const leadership = [
   { name: "Shalini Singh", role: "Director — Scorpion Express Pvt. Ltd.", photo: shaliniSingh },
   { name: "Raj Lalan Dwivedi", role: "COO — Scorpion Express Pvt. Ltd.", photo: rajLalan },
   { name: "Subrat Rath", role: "CFO — Scorpion Express Pvt. Ltd.", photo: subratRath },
-  { name: "Manoj Kumar", role: "CTO — Scorpion Group", photo: null },
+  { name: "Manoj Kumar", role: "CTO — Scorpion Group", photo: manojKumar },
   { name: "Mandar Babre", role: "CBO — Scorpion Express Pvt. Ltd.", photo: mandarBabre },
-  { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: anilTiwari },
+  { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: null },
   { name: "Pooja Patel Kalia", role: "DGM–CS Scorpion Express Pvt. Ltd.", photo: null },
 ];
 
