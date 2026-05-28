@@ -171,10 +171,13 @@ export const services: ServiceItem[] = [
     iconColor: "red-gradient",
     tagline: "Dedicated trucks. Direct routes. Total control.",
     content: [
-      "Our Full-Truck-Load (FTL) service is built for shippers who need an entire vehicle moving point-to-point, on their schedule, without transshipment. Whether it's a single high-value consignment, a sensitive project cargo or a high-frequency plant-to-DC lane, we deploy the right vehicle from a fleet ranging 9MT to 32MT — multi-axle, container, flatbed, ODC and low-bed included.",
-      "Every truck is sealed at origin, locked to a single consignee and tracked live via GPS with geo-fenced alerts, route deviation warnings and ETA recalculation. A dedicated control tower monitors every active movement 24×7, so any exception is acted on before it becomes a delay.",
-      "Long-term contract capacity protects you from spot-market volatility, while our spot mode gives you instant access to vetted vehicles for surge demand — without sacrificing safety, compliance or visibility.",
+      "Dedicated Full-Truck-Load (FTL) transportation solutions designed for businesses that require exclusive vehicle movement, higher carrying capacity and direct point-to-point delivery without intermediate handling.",
+      "Our FTL operations are built for customers moving high-value cargo, bulk commercial shipments, project materials and time-sensitive industrial goods across India. Whether it is a dedicated plant-to-warehouse movement, factory-to-distribution-centre supply or specialised project cargo, we deploy the right vehicle configuration from a fleet ranging from 9 MT to 32 MT capacities — including multi-axle trucks, containers, flatbeds, trailers and low-bed vehicles.",
+      "Every vehicle is assigned exclusively to a single customer shipment, ensuring faster transit, reduced handling risk and improved cargo security. Shipments are monitored through real-time GPS tracking with geo-fencing, route monitoring, live status visibility and proactive exception alerts.",
+      "Our centralized operations control team monitors active vehicle movement round the clock to ensure timely coordination, rapid issue resolution and consistent delivery performance across every route.",
+      "For customers with recurring transportation requirements, we provide dedicated contract vehicles and assured fleet availability to protect against market fluctuations and seasonal capacity shortages. Our on-demand vehicle network also enables quick deployment for urgent and surge-load requirements without compromising compliance, safety or operational visibility.",
     ],
+
     features: [
       "9MT to 32MT vehicles on-demand",
       "Sealed, single-consignee movements",
