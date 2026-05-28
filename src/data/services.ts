@@ -38,10 +38,10 @@ export const services: ServiceItem[] = [
       "Every shipment is monitored at waybill level through real-time GPS tracking, milestone-based status alerts and instant digital PODs — enabling operations teams, customer support and end clients to work from a single, transparent source of truth from pickup through final delivery.",
     ],
     features: [
-      "Pan-India next-flight-out & next-day delivery",
-      "Real-time GPS + waybill-level tracking",
-      "Dedicated express bays at every hub",
-      "POD digitization within minutes of delivery",
+      "Time-definite surface express network across India",
+      "Real-time GPS visibility with waybill-level tracking",
+      "Dedicated express handling lanes for faster movement",
+      "Instant digital POD with milestone-based shipment alerts",
     ],
     industries: ["Healthcare", "E-commerce", "Manufacturing"],
     capabilities: [
