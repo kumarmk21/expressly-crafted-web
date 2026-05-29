@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Upload, FileText, X, CheckCircle2, Send } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const MAX_SIZE_MB = 5;
 const MAX_SIZE = MAX_SIZE_MB * 1024 * 1024;
