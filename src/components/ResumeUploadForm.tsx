@@ -276,7 +276,7 @@ const ResumeUploadForm = () => {
 
       <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <p className="text-xs text-muted-foreground">
-          We'll open your email app with the details filled in — just attach the resume and send.
+          Your application and resume are sent securely to our HR team.
         </p>
         <button
           type="submit"
