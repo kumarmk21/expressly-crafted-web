@@ -28,7 +28,7 @@ const primaryActions = [
   {
     title: "Customer Login",
     desc: "Access your dashboard, invoices and reports.",
-    href: "http://103.211.171.59:8021/",
+    href: "https://sepltms.scorpiongroup.in/",
     icon: LogIn,
   },
   {
