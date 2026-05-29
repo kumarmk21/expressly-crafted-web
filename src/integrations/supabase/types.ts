@@ -202,6 +202,51 @@ export type Database = {
           },
         ]
       }
+      job_applications: {
+        Row: {
+          created_at: string
+          email: string
+          experience: string | null
+          id: string
+          message: string | null
+          name: string
+          phone: string
+          resume_file_name: string
+          resume_file_size: number
+          resume_url: string
+          role: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          experience?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+          resume_file_name: string
+          resume_file_size: number
+          resume_url: string
+          role: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          experience?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+          resume_file_name?: string
+          resume_file_size?: number
+          resume_url?: string
+          role?: string
+          status?: string
+        }
+        Relationships: []
+      }
       notification_logs: {
         Row: {
           error_message: string | null

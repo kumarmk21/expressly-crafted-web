@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Upload, FileText, X, CheckCircle2, Send } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const MAX_SIZE_MB = 5;
 const MAX_SIZE = MAX_SIZE_MB * 1024 * 1024;
@@ -94,21 +95,37 @@ const ResumeUploadForm = () => {
 
     setSubmitting(true);
     try {
-      const subject = `Application: ${data.role} — ${data.name}`;
-      const body =
-        `Name: ${data.name}\n` +
-        `Email: ${data.email}\n` +
-        `Phone: ${data.phone}\n` +
-        `Role applied for: ${data.role}\n` +
-        `Experience: ${data.experience || "N/A"}\n\n` +
-        `${data.message || ""}\n\n` +
-        `--\nNote: Please attach the resume file "${file?.name}" (${formatSize(file?.size || 0)}) ` +
-        `to this email before sending.`;
-      const mailto = `mailto:careers@scorpionexpress.in?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailto;
-      toast.success("Opening your email app — attach the resume and send.");
+      const safeName = (file!.name || "resume").replace(/[^a-zA-Z0-9._-]/g, "_");
+      const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}-${safeName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("resumes")
+        .upload(path, file!, { contentType: file!.type || "application/octet-stream", upsert: false });
+      if (uploadError) throw uploadError;
+
+      const { error: insertError } = await supabase.from("job_applications").insert([
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          role: data.role,
+          experience: data.experience || null,
+          message: data.message || null,
+          resume_url: path,
+          resume_file_name: file!.name,
+          resume_file_size: file!.size,
+        },
+      ]);
+      if (insertError) throw insertError;
+
+      toast.success("Application submitted. Our HR team will be in touch.");
+      (e.currentTarget as HTMLFormElement).reset();
+      setFile(null);
+      if (inputRef.current) inputRef.current.value = "";
+      setErrors({});
+    } catch (err: any) {
+      console.error("Resume submit error:", err);
+      toast.error(err?.message || "Failed to submit application. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -259,7 +276,7 @@ const ResumeUploadForm = () => {
 
       <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <p className="text-xs text-muted-foreground">
-          We'll open your email app with the details filled in — just attach the resume and send.
+          Your application and resume are sent securely to our HR team.
         </p>
         <button
           type="submit"
