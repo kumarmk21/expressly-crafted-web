@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useQuote } from "@/context/QuoteContext";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const SERVICES = [
   "Express",
