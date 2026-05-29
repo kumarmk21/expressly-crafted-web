@@ -98,7 +98,7 @@ const modules: Module[] = [
   {
     name: "Customer Shipment Analytics",
     desc: "Customer-facing analytics dashboard",
-    href: "http://103.211.171.59:8021/",
+    href: "https://sepltms.scorpiongroup.in/",
     icon: BarChart3,
     group: "MIS",
   },

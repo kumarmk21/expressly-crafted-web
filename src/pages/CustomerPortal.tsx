@@ -49,7 +49,7 @@ const tools = [
   {
     title: "Analytics Dashboard",
     desc: "Customer shipment insights.",
-    href: "http://103.211.171.59:8021/",
+    href: "https://sepltms.scorpiongroup.in/",
     icon: BarChart3,
   },
   {
