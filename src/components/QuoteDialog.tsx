@@ -45,15 +45,29 @@ const QuoteDialog = () => {
       return;
     }
     setSubmitting(true);
-    // Note: Persisting to a dedicated enquiry table requires Lovable Cloud.
-    // For now, we capture locally and notify the user.
+    
     try {
-      const existing = JSON.parse(localStorage.getItem("scorpion_quotes") || "[]");
-      existing.push({ ...form, createdAt: new Date().toISOString() });
-      localStorage.setItem("scorpion_quotes", JSON.stringify(existing));
+      const { error } = await supabase.from('quote_requests').insert([
+        {
+          name: form.name,
+          company: form.company || null,
+          email: form.email || null,
+          phone: form.phone,
+          service: form.service,
+          origin: form.origin || null,
+          destination: form.destination || null,
+          message: form.message || null,
+        }
+      ]);
+
+      if (error) throw error;
+
       toast.success("Quote request received. Our team will reach out shortly.");
       setForm({ name: "", company: "", email: "", phone: "", service: "", origin: "", destination: "", message: "" });
       closeQuote();
+    } catch (error: any) {
+      console.error("Error submitting quote request:", error);
+      toast.error(error.message || "Failed to submit quote request. Please try again.");
     } finally {
       setSubmitting(false);
     }
