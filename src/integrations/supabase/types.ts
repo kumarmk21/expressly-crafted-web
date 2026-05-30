@@ -247,6 +247,57 @@ export type Database = {
         }
         Relationships: []
       }
+      locations: {
+        Row: {
+          address: string | null
+          city: string | null
+          contact_number: string | null
+          created_at: string
+          display_order: number
+          email: string | null
+          hierarchy: string
+          id: string
+          is_active: boolean
+          location_code: string
+          location_name: string
+          pincode: string | null
+          state: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          contact_number?: string | null
+          created_at?: string
+          display_order?: number
+          email?: string | null
+          hierarchy?: string
+          id?: string
+          is_active?: boolean
+          location_code: string
+          location_name: string
+          pincode?: string | null
+          state?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          contact_number?: string | null
+          created_at?: string
+          display_order?: number
+          email?: string | null
+          hierarchy?: string
+          id?: string
+          is_active?: boolean
+          location_code?: string
+          location_name?: string
+          pincode?: string | null
+          state?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       notification_logs: {
         Row: {
           error_message: string | null
