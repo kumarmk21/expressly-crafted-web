@@ -1,53 +1,94 @@
-const clientLogos = [
-  "https://static.wixstatic.com/media/41fb73_37e1b5f7817f4733b586d2a7deeabb8d~mv2.png/v1/fill/w_120,h_80,al_c,lg_1,q_85,enc_avif,quality_auto/Picture1.png",
-  "https://static.wixstatic.com/media/41fb73_53df2bf1f48f4e21abaa921ea0ffd527~mv2.jpg/v1/fill/w_120,h_80,al_c,q_80,enc_avif,quality_auto/Picture4.jpg",
-  "https://static.wixstatic.com/media/41fb73_54a08d9da79544c8a65543fe8ea53a36~mv2.png/v1/fill/w_151,h_60,al_c,lg_1,q_85,enc_avif,quality_auto/Picture2.png",
-  "https://static.wixstatic.com/media/41fb73_92ecf1bef94e4cd6bdb660407c5026dd~mv2.png/v1/fill/w_121,h_80,al_c,q_85,enc_avif,quality_auto/Picture3.png",
-  "https://static.wixstatic.com/media/41fb73_03fea5d414c440ec9aaf13dec572652d~mv2.png/v1/fill/w_151,h_60,al_c,q_85,enc_avif,quality_auto/Picture5.png",
-  "https://static.wixstatic.com/media/41fb73_cde150ed639d4168998000583a5edad0~mv2.jpg/v1/fill/w_120,h_80,al_c,q_80,enc_avif,quality_auto/Picture6.jpg",
-  "https://static.wixstatic.com/media/41fb73_5a3538d8004546a6a53271a23c0a52a8~mv2.jpg/v1/fill/w_151,h_50,al_c,q_80,enc_avif,quality_auto/Picture7.jpg",
-  "https://static.wixstatic.com/media/41fb73_10649ff6e4774a86a8a3319e24540d35~mv2.png/v1/fill/w_151,h_60,al_c,lg_1,q_85,enc_avif,quality_auto/Picture8.png",
-  "https://static.wixstatic.com/media/41fb73_55172b512cc940559254fd4d11c4b928~mv2.jpg/v1/fill/w_151,h_60,al_c,q_80,enc_avif,quality_auto/Picture9.jpg",
-  "https://static.wixstatic.com/media/41fb73_c060c5fa35c44984bd9e3f12ca0b9d70~mv2.png/v1/fill/w_130,h_80,al_c,q_85,enc_avif,quality_auto/Picture10.png",
-  "https://static.wixstatic.com/media/41fb73_260e2d1614fb4743ab01bc54f19e46f5~mv2.png/v1/fill/w_151,h_50,al_c,q_85,enc_avif,quality_auto/Picture11.png",
-  "https://static.wixstatic.com/media/41fb73_d482be1637c84b8481baf0506e96d2ba~mv2.png/v1/fill/w_80,h_80,al_c,q_85,enc_avif,quality_auto/Picture12.png",
-  "https://static.wixstatic.com/media/41fb73_5d420ade471f4a61b220d0376127a2c9~mv2.png/v1/fill/w_146,h_60,al_c,lg_1,q_85,enc_avif,quality_auto/Picture13.png",
-  "https://static.wixstatic.com/media/41fb73_af5f7eee067c4632bf7002e35f7a7032~mv2.png/v1/fill/w_151,h_60,al_c,q_85,enc_avif,quality_auto/Picture14.png",
-  "https://static.wixstatic.com/media/41fb73_9254b38829704fa8bb3f1a703be7d96a~mv2.png/v1/fill/w_120,h_80,al_c,q_85,enc_avif,quality_auto/Havells_Logo_svg.png",
-];
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
+import { Building2 } from "lucide-react";
+
+type Client = {
+  id: string;
+  name: string;
+  industry: string | null;
+  logo_url: string | null;
+  display_order: number;
+};
 
 const ClientsSection = () => {
+  const [clients, setClients] = useState<Client[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase
+      .from("clients")
+      .select("id,name,industry,logo_url,display_order")
+      .order("display_order")
+      .order("name")
+      .then(({ data }) => {
+        setClients((data as Client[]) ?? []);
+        setLoading(false);
+      });
+  }, []);
 
   return (
-    <section className="py-20 lg:py-24 bg-background overflow-hidden border-y border-border">
+    <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="flex items-center gap-3 mb-3">
-          <span className="h-px w-10 bg-primary" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Trusted Partners</span>
-        </div>
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
-          <h2 className="font-display uppercase text-4xl lg:text-6xl text-foreground leading-[0.9]">
-            Trusted by India<span className="text-primary">.</span> One promise.
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-14"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px w-10 bg-primary" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Our Clients</span>
+          </div>
+          <h2 className="font-display uppercase text-4xl lg:text-5xl text-foreground leading-[0.95] mb-5">
+            Trusted by India's <span className="text-primary">leading brands.</span>
           </h2>
-          <p className="text-muted-foreground max-w-md">Every client is a long-term partner. From category leaders to emerging brands.</p>
-        </div>
-      </div>
+          <p className="text-lg text-foreground/70 leading-relaxed">
+            We believe every client is a valuable long-term partner.
+          </p>
+        </motion.div>
 
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
-        <div className="flex animate-marquee">
-          {[...clientLogos, ...clientLogos].map((logo, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 mx-4 flex items-center justify-center h-20 w-40 bg-white border border-border grayscale hover:grayscale-0 transition-all duration-300"
-            >
-              <img src={logo} alt="" className="max-h-12 max-w-[80%] object-contain" loading="lazy" />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-px bg-border border border-border">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="aspect-[3/2] bg-card animate-pulse" />
+            ))}
+          </div>
+        ) : clients.length === 0 ? (
+          <div className="text-center py-16 border border-dashed border-border">
+            <Building2 className="h-10 w-10 mx-auto text-muted-foreground mb-3" />
+            <p className="text-muted-foreground text-sm">Client logos will appear here once added from admin.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-px bg-border border border-border">
+            {clients.map((c, i) => (
+              <motion.div
+                key={c.id}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.4) }}
+                className="aspect-[3/2] bg-card flex items-center justify-center p-6 group hover:bg-background transition-colors"
+                title={c.industry ? `${c.name} — ${c.industry}` : c.name}
+              >
+                {c.logo_url ? (
+                  <img
+                    src={c.logo_url}
+                    alt={`${c.name} logo`}
+                    loading="lazy"
+                    className="max-h-16 max-w-full object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                  />
+                ) : (
+                  <span className="font-display uppercase text-base md:text-lg text-foreground/60 group-hover:text-primary transition-colors text-center leading-tight">
+                    {c.name}
+                  </span>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
-
     </section>
   );
 };

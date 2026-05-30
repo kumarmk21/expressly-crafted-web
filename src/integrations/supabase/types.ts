@@ -55,6 +55,7 @@ export type Database = {
           display_order: number
           id: string
           industry: string | null
+          logo_url: string | null
           name: string
           partner_since: string | null
           services: string | null
@@ -64,6 +65,7 @@ export type Database = {
           display_order?: number
           id?: string
           industry?: string | null
+          logo_url?: string | null
           name: string
           partner_since?: string | null
           services?: string | null
@@ -73,6 +75,7 @@ export type Database = {
           display_order?: number
           id?: string
           industry?: string | null
+          logo_url?: string | null
           name?: string
           partner_since?: string | null
           services?: string | null
