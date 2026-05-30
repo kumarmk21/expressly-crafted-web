@@ -34,7 +34,7 @@ const navLinks = [
       { label: "FTL", to: "/services/ftl", icon: Truck, desc: "Dedicated full truckload" },
     ],
   },
-  { label: "Network", href: "/network" },
+  { label: "Network & Infra", href: "/network" },
   { label: "Technology", href: "#tech" },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
