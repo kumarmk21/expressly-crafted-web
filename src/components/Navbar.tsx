@@ -37,7 +37,7 @@ const navLinks = [
   { label: "Network", href: "#network" },
   { label: "Technology", href: "#tech" },
   { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
