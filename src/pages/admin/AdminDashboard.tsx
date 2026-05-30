@@ -71,6 +71,7 @@ const AdminDashboard = () => {
       <main className="container mx-auto px-4 py-8">
         {tab === "content" && <SiteContentPanel />}
         {tab === "clients" && <ClientsPanel />}
+        {tab === "locations" && <LocationsPanel />}
         {tab === "quotes" && <QuotesPanel />}
         {tab === "tickets" && <TicketsPanel />}
         {tab === "inquiries" && <InquiriesPanel />}
