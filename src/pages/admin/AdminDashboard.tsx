@@ -5,8 +5,9 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { toast } from "sonner";
 import { Loader2, LogOut, Trash2, Plus, Save, Upload, Image as ImageIcon } from "lucide-react";
 import PagesPanel from "./PagesPanel";
+import NetworkStatsPanel from "./NetworkStatsPanel";
 
-type Tab = "content" | "images" | "clients" | "locations" | "pages";
+type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
