@@ -358,6 +358,39 @@ export type Database = {
         }
         Relationships: []
       }
+      network_stats: {
+        Row: {
+          category: string
+          created_at: string
+          display_order: number
+          icon: string | null
+          id: string
+          label: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          display_order?: number
+          icon?: string | null
+          id?: string
+          label: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          display_order?: number
+          icon?: string | null
+          id?: string
+          label?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
       notification_logs: {
         Row: {
           error_message: string | null
