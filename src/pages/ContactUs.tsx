@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Loader2, Building2, ArrowLeft, X } from "lucide-re
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ContactForms from "@/components/ContactForms";
 
 type Location = {
   id: string;
@@ -251,6 +252,9 @@ const ContactUs = () => {
           </div>
         ))}
       </section>
+
+      {/* Contact forms (Business / Franchisee) */}
+      <ContactForms />
 
       {/* Zone selector */}
       <section className="container mx-auto px-4 pb-20 flex-1">
