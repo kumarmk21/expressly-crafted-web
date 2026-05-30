@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAdmin } from "@/hooks/useAdmin";
 import { toast } from "sonner";
-import { Loader2, LogOut, Trash2, Plus, Save } from "lucide-react";
+import { Loader2, LogOut, Trash2, Plus, Save, Upload, Image as ImageIcon } from "lucide-react";
 
-type Tab = "content" | "clients" | "locations" | "quotes" | "tickets" | "inquiries" | "shipments";
+type Tab = "content" | "images" | "clients" | "locations" | "quotes" | "tickets" | "inquiries" | "shipments";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ const AdminDashboard = () => {
 
   const tabs: { id: Tab; label: string }[] = [
     { id: "content", label: "Site Content" },
+    { id: "images", label: "Images" },
     { id: "clients", label: "Clients" },
     { id: "locations", label: "Locations" },
     { id: "quotes", label: "Quote Requests" },
@@ -70,6 +71,7 @@ const AdminDashboard = () => {
       </header>
       <main className="container mx-auto px-4 py-8">
         {tab === "content" && <SiteContentPanel />}
+        {tab === "images" && <ImagesPanel />}
         {tab === "clients" && <ClientsPanel />}
         {tab === "locations" && <LocationsPanel />}
         {tab === "quotes" && <QuotesPanel />}
