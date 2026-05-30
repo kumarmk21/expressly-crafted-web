@@ -69,21 +69,20 @@ const ClientsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.4) }}
-                className="aspect-[3/2] bg-card flex items-center justify-center p-6 group hover:bg-background transition-colors"
+                className="aspect-[3/2] bg-card flex flex-col items-center justify-center gap-2 p-5 group hover:bg-background transition-colors"
                 title={c.industry ? `${c.name} — ${c.industry}` : c.name}
               >
-                {c.logo_url ? (
+                {c.logo_url && (
                   <img
                     src={c.logo_url}
                     alt={`${c.name} logo`}
                     loading="lazy"
-                    className="max-h-16 max-w-full object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    className="max-h-12 max-w-[80%] object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
                   />
-                ) : (
-                  <span className="font-display uppercase text-base md:text-lg text-foreground/60 group-hover:text-primary transition-colors text-center leading-tight">
-                    {c.name}
-                  </span>
                 )}
+                <span className="font-display uppercase text-sm md:text-base text-foreground/70 group-hover:text-primary transition-colors text-center leading-tight tracking-wide">
+                  {c.name}
+                </span>
               </motion.div>
             ))}
           </div>
