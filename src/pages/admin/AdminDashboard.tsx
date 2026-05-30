@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAdmin } from "@/hooks/useAdmin";
 import { toast } from "sonner";
-import { Loader2, LogOut, Trash2, Plus, Save } from "lucide-react";
+import { Loader2, LogOut, Trash2, Plus, Save, Upload, Image as ImageIcon } from "lucide-react";
 
-type Tab = "content" | "clients" | "locations" | "quotes" | "tickets" | "inquiries" | "shipments";
+type Tab = "content" | "images" | "clients" | "locations" | "quotes" | "tickets" | "inquiries" | "shipments";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ const AdminDashboard = () => {
 
   const tabs: { id: Tab; label: string }[] = [
     { id: "content", label: "Site Content" },
+    { id: "images", label: "Images" },
     { id: "clients", label: "Clients" },
     { id: "locations", label: "Locations" },
     { id: "quotes", label: "Quote Requests" },
@@ -70,6 +71,7 @@ const AdminDashboard = () => {
       </header>
       <main className="container mx-auto px-4 py-8">
         {tab === "content" && <SiteContentPanel />}
+        {tab === "images" && <ImagesPanel />}
         {tab === "clients" && <ClientsPanel />}
         {tab === "locations" && <LocationsPanel />}
         {tab === "quotes" && <QuotesPanel />}
@@ -474,6 +476,101 @@ const LocationsPanel = () => {
           </table>
         </div>
       )}
+    </div>
+  );
+};
+
+/* ---------------- Images ---------------- */
+const IMAGE_SLOTS: { key: string; label: string; description: string; aspect: string }[] = [
+  { key: "leadership_photo", label: "Leadership Photo", description: "Shown in the 'Driven by Vision' section on the home page.", aspect: "aspect-[4/5]" },
+  { key: "hero_image", label: "Hero Background", description: "Optional hero/banner image.", aspect: "aspect-video" },
+  { key: "about_image", label: "About Section Image", description: "Image used in the About section.", aspect: "aspect-video" },
+];
+
+const ImagesPanel = () => {
+  const [urls, setUrls] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState<string | null>(null);
+
+  const load = async () => {
+    setLoading(true);
+    const { data } = await supabase.from("site_content").select("key,value").in("key", IMAGE_SLOTS.map((s) => s.key));
+    const map: Record<string, string> = {};
+    (data ?? []).forEach((r: any) => { if (r.value?.url) map[r.key] = r.value.url; });
+    setUrls(map);
+    setLoading(false);
+  };
+  useEffect(() => { load(); }, []);
+
+  const upload = async (slotKey: string, file: File) => {
+    if (!file.type.startsWith("image/")) return toast.error("Please select an image file");
+    if (file.size > 5 * 1024 * 1024) return toast.error("Image must be under 5 MB");
+    setUploading(slotKey);
+    const ext = file.name.split(".").pop() || "jpg";
+    const path = `${slotKey}-${Date.now()}.${ext}`;
+    const { error: upErr } = await supabase.storage.from("site-images").upload(path, file, { upsert: true, contentType: file.type });
+    if (upErr) { setUploading(null); return toast.error(upErr.message); }
+    const { data: pub } = supabase.storage.from("site-images").getPublicUrl(path);
+    const url = pub.publicUrl;
+    const { error } = await supabase.from("site_content").upsert({ key: slotKey, value: { url, updated: new Date().toISOString() }, updated_at: new Date().toISOString() });
+    setUploading(null);
+    if (error) return toast.error(error.message);
+    toast.success("Image updated");
+    setUrls((u) => ({ ...u, [slotKey]: url }));
+  };
+
+  const clear = async (slotKey: string) => {
+    if (!confirm("Remove this image and revert to default?")) return;
+    const { error } = await supabase.from("site_content").delete().eq("key", slotKey);
+    if (error) return toast.error(error.message);
+    setUrls((u) => { const n = { ...u }; delete n[slotKey]; return n; });
+    toast.success("Reverted to default");
+  };
+
+  if (loading) return <Loader2 className="h-5 w-5 animate-spin" />;
+
+  return (
+    <div className="space-y-6 max-w-5xl">
+      <div>
+        <h2 className="font-display uppercase text-2xl mb-1">Site Images</h2>
+        <p className="text-sm text-muted-foreground">Upload images to replace what's shown on the live website. Recommended max 5 MB. Best results: JPG or PNG.</p>
+      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {IMAGE_SLOTS.map((slot) => (
+          <div key={slot.key} className="border border-border bg-card p-4 flex flex-col">
+            <div className="flex items-center gap-2 mb-1">
+              <ImageIcon className="h-4 w-4 text-primary" />
+              <h3 className="font-bold uppercase tracking-wider text-sm">{slot.label}</h3>
+            </div>
+            <p className="text-xs text-muted-foreground mb-3">{slot.description}</p>
+            <div className={`${slot.aspect} w-full bg-muted border border-border mb-3 overflow-hidden flex items-center justify-center`}>
+              {urls[slot.key] ? (
+                <img src={urls[slot.key]} alt={slot.label} className="w-full h-full object-cover" />
+              ) : (
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">Default image</span>
+              )}
+            </div>
+            <div className="flex items-center gap-2 mt-auto">
+              <label className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-primary text-white font-black uppercase text-xs tracking-wider cursor-pointer hover:bg-primary/90">
+                {uploading === slot.key ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+                {uploading === slot.key ? "Uploading…" : urls[slot.key] ? "Replace" : "Upload"}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => { const f = e.target.files?.[0]; if (f) upload(slot.key, f); e.target.value = ""; }}
+                  disabled={uploading === slot.key}
+                />
+              </label>
+              {urls[slot.key] && (
+                <button onClick={() => clear(slot.key)} className="px-3 py-2 border border-border text-destructive hover:bg-destructive hover:text-white text-xs uppercase tracking-wider">
+                  <Trash2 className="h-3.5 w-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
