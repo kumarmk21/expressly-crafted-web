@@ -468,7 +468,7 @@ const LocationsPanel = () => {
                 </tr>
               ))}
               {filtered.length === 0 && (
-                <tr><td colSpan={12} className="p-6 text-center text-muted-foreground text-sm">No locations found.</td></tr>
+                <tr><td colSpan={13} className="p-6 text-center text-muted-foreground text-sm">No locations found.</td></tr>
               )}
             </tbody>
           </table>
