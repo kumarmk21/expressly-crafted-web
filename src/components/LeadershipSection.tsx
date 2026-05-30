@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import leaderPhoto from "@/assets/leader-photo.jpg";
 import { Quote } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const LeadershipSection = () => {
+  const [photo, setPhoto] = useState<string>(leaderPhoto);
+
+  useEffect(() => {
+    supabase
+      .from("site_content")
+      .select("value")
+      .eq("key", "leadership_photo")
+      .maybeSingle()
+      .then(({ data }) => {
+        const url = (data?.value as any)?.url;
+        if (url) setPhoto(url);
+      });
+  }, []);
+
   return (
     <section className="py-24 lg:py-32 bg-card relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -18,7 +34,7 @@ const LeadershipSection = () => {
               <div className="absolute -top-3 -left-3 right-3 bottom-3 border border-primary/40" />
               <div className="relative overflow-hidden bg-background">
                 <img
-                  src={leaderPhoto}
+                  src={photo}
                   alt="JPN Singh — Founder, Scorpion Express"
                   className="w-full h-[480px] lg:h-[600px] object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
                 />
