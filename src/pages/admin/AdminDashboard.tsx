@@ -4,8 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAdmin } from "@/hooks/useAdmin";
 import { toast } from "sonner";
 import { Loader2, LogOut, Trash2, Plus, Save, Upload, Image as ImageIcon } from "lucide-react";
+import PagesPanel from "./PagesPanel";
 
-type Tab = "content" | "images" | "clients" | "locations";
+type Tab = "content" | "images" | "clients" | "locations" | "pages";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
