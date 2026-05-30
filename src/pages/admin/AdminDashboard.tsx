@@ -72,6 +72,7 @@ const AdminDashboard = () => {
         {tab === "images" && <ImagesPanel />}
         {tab === "clients" && <ClientsPanel />}
         {tab === "locations" && <LocationsPanel />}
+        {tab === "pages" && <PagesPanel />}
       </main>
     </div>
   );
