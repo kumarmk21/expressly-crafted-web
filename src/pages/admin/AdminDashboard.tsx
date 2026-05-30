@@ -371,9 +371,10 @@ const LocationsPanel = () => {
   };
 
   const filtered = rows.filter((r) => {
+    if (zoneFilter && r.zone !== zoneFilter) return false;
     if (!search.trim()) return true;
     const q = search.toLowerCase();
-    return [r.location_code, r.location_name, r.hierarchy, r.city, r.state].some((v) => String(v ?? "").toLowerCase().includes(q));
+    return [r.location_code, r.location_name, r.hierarchy, r.city, r.state, r.zone].some((v) => String(v ?? "").toLowerCase().includes(q));
   });
 
   return (
