@@ -134,9 +134,22 @@ const SiteContentPanel = () => {
 };
 
 /* ---------------- Clients ---------------- */
+const uploadClientLogo = async (file: File): Promise<string | null> => {
+  if (!file.type.startsWith("image/")) { toast.error("Please select an image"); return null; }
+  if (file.size > 2 * 1024 * 1024) { toast.error("Logo must be under 2 MB"); return null; }
+  const ext = file.name.split(".").pop() || "png";
+  const path = `clients/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const { error } = await supabase.storage.from("site-images").upload(path, file, { upsert: true, contentType: file.type });
+  if (error) { toast.error(error.message); return null; }
+  return supabase.storage.from("site-images").getPublicUrl(path).data.publicUrl;
+};
+
 const ClientsPanel = () => {
   const [rows, setRows] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
+  const [newLogoUrl, setNewLogoUrl] = useState<string>("");
+  const [newLogoUploading, setNewLogoUploading] = useState(false);
   const [form, setForm] = useState({ name: "", industry: "", services: "", partner_since: "", display_order: 0 });
 
   const load = async () => {
@@ -149,10 +162,11 @@ const ClientsPanel = () => {
 
   const add = async () => {
     if (!form.name.trim()) return toast.error("Name required");
-    const { error } = await supabase.from("clients").insert(form);
+    const { error } = await supabase.from("clients").insert({ ...form, logo_url: newLogoUrl || null });
     if (error) return toast.error(error.message);
     toast.success("Client added");
     setForm({ name: "", industry: "", services: "", partner_since: "", display_order: 0 });
+    setNewLogoUrl("");
     load();
   };
   const remove = async (id: string) => {
@@ -166,6 +180,23 @@ const ClientsPanel = () => {
     if (error) toast.error(error.message);
   };
 
+  const replaceLogo = async (id: string, file: File) => {
+    setUploadingId(id);
+    const url = await uploadClientLogo(file);
+    if (url) {
+      await update(id, { logo_url: url });
+      toast.success("Logo updated");
+      load();
+    }
+    setUploadingId(null);
+  };
+
+  const removeLogo = async (id: string) => {
+    if (!confirm("Remove this logo?")) return;
+    await update(id, { logo_url: null });
+    load();
+  };
+
   return (
     <div className="space-y-6">
       <div className="border border-border bg-card p-5">
@@ -177,16 +208,61 @@ const ClientsPanel = () => {
           <input placeholder="Partner since" value={form.partner_since} onChange={(e) => setForm({ ...form, partner_since: e.target.value })} className="px-3 py-2 bg-background border border-border" />
           <button onClick={add} className="inline-flex items-center justify-center gap-2 bg-primary text-white font-black uppercase text-xs tracking-wider"><Plus className="h-4 w-4" /> Add</button>
         </div>
+        <div className="mt-3 flex items-center gap-3 flex-wrap">
+          <label className="inline-flex items-center gap-2 px-3 py-2 border border-border bg-background text-xs uppercase tracking-wider cursor-pointer hover:border-primary">
+            {newLogoUploading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />}
+            {newLogoUrl ? "Replace logo" : "Upload logo (optional)"}
+            <input type="file" accept="image/*" className="hidden" disabled={newLogoUploading} onChange={async (e) => {
+              const f = e.target.files?.[0]; e.target.value = "";
+              if (!f) return;
+              setNewLogoUploading(true);
+              const url = await uploadClientLogo(f);
+              if (url) setNewLogoUrl(url);
+              setNewLogoUploading(false);
+            }} />
+          </label>
+          {newLogoUrl && (
+            <div className="flex items-center gap-2">
+              <img src={newLogoUrl} alt="preview" className="h-10 w-auto max-w-[120px] object-contain border border-border bg-white p-1" />
+              <button onClick={() => setNewLogoUrl("")} className="text-xs text-destructive hover:underline">Clear</button>
+            </div>
+          )}
+        </div>
       </div>
       {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : (
         <div className="border border-border bg-card overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-muted/40 text-xs uppercase">
-              <tr><th className="p-3 text-left">Name</th><th className="p-3 text-left">Industry</th><th className="p-3 text-left">Services</th><th className="p-3 text-left">Since</th><th className="p-3 text-left">Order</th><th></th></tr>
+              <tr>
+                <th className="p-3 text-left">Logo</th>
+                <th className="p-3 text-left">Name</th>
+                <th className="p-3 text-left">Industry</th>
+                <th className="p-3 text-left">Services</th>
+                <th className="p-3 text-left">Since</th>
+                <th className="p-3 text-left">Order</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
               {rows.map((r) => (
-                <tr key={r.id} className="border-t border-border">
+                <tr key={r.id} className="border-t border-border align-middle">
+                  <td className="p-2">
+                    <div className="flex items-center gap-2">
+                      <div className="h-12 w-20 border border-border bg-white flex items-center justify-center overflow-hidden">
+                        {r.logo_url ? <img src={r.logo_url} alt={r.name} className="max-h-full max-w-full object-contain" /> : <ImageIcon className="h-4 w-4 text-muted-foreground" />}
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider px-2 py-1 border border-border cursor-pointer hover:border-primary">
+                          {uploadingId === r.id ? <Loader2 className="h-3 w-3 animate-spin" /> : <Upload className="h-3 w-3" />}
+                          {r.logo_url ? "Replace" : "Upload"}
+                          <input type="file" accept="image/*" className="hidden" disabled={uploadingId === r.id} onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) replaceLogo(r.id, f); }} />
+                        </label>
+                        {r.logo_url && (
+                          <button onClick={() => removeLogo(r.id)} className="text-[10px] uppercase tracking-wider text-destructive hover:underline text-left">Remove</button>
+                        )}
+                      </div>
+                    </div>
+                  </td>
                   <td className="p-2"><input defaultValue={r.name} onBlur={(e) => e.target.value !== r.name && update(r.id, { name: e.target.value })} className="w-full px-2 py-1 bg-background border border-border" /></td>
                   <td className="p-2"><input defaultValue={r.industry ?? ""} onBlur={(e) => update(r.id, { industry: e.target.value })} className="w-full px-2 py-1 bg-background border border-border" /></td>
                   <td className="p-2"><input defaultValue={r.services ?? ""} onBlur={(e) => update(r.id, { services: e.target.value })} className="w-full px-2 py-1 bg-background border border-border" /></td>
@@ -195,6 +271,9 @@ const ClientsPanel = () => {
                   <td className="p-2"><button onClick={() => remove(r.id)} className="text-destructive hover:text-primary"><Trash2 className="h-4 w-4" /></button></td>
                 </tr>
               ))}
+              {rows.length === 0 && (
+                <tr><td colSpan={7} className="p-6 text-center text-muted-foreground text-sm">No clients yet. Add your first one above.</td></tr>
+              )}
             </tbody>
           </table>
         </div>
