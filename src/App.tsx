@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EmployeeLogin from "./pages/EmployeeLogin";
+import Network from "./pages/Network";
 import ServiceDetail from "./pages/ServiceDetail";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/careers" element={<Careers />} />
             <Route path="/customer-portal" element={<CustomerPortal />} />
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/network" element={<Network />} />
             <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/legal/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/legal/disclaimer" element={<Disclaimer />} />
