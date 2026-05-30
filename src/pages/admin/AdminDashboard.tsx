@@ -70,10 +70,6 @@ const AdminDashboard = () => {
         {tab === "images" && <ImagesPanel />}
         {tab === "clients" && <ClientsPanel />}
         {tab === "locations" && <LocationsPanel />}
-        {tab === "quotes" && <QuotesPanel />}
-        {tab === "tickets" && <TicketsPanel />}
-        {tab === "inquiries" && <InquiriesPanel />}
-        {tab === "shipments" && <ShipmentsPanel />}
       </main>
     </div>
   );
