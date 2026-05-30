@@ -331,12 +331,14 @@ const ShipmentsPanel = () => {
 
 /* ---------------- Locations ---------------- */
 const HIERARCHIES = ["Corporate Office", "Regional Office", "Branch Office", "Franchisee Office", "Warehouse"];
+const ZONES = ["East", "West", "North", "South", "Central"];
 
 const LocationsPanel = () => {
   const [rows, setRows] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const blankForm = { location_code: "", location_name: "", hierarchy: "Branch Office", address: "", city: "", state: "", pincode: "", contact_number: "", email: "", is_active: true, display_order: 0 };
+  const [zoneFilter, setZoneFilter] = useState("");
+  const blankForm = { location_code: "", location_name: "", hierarchy: "Branch Office", zone: "East", address: "", city: "", state: "", pincode: "", contact_number: "", email: "", is_active: true, display_order: 0 };
   const [form, setForm] = useState(blankForm);
 
   const load = async () => {
