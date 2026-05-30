@@ -10,6 +10,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
 import CustomerPortal from "./pages/CustomerPortal";
+import ContactUs from "./pages/ContactUs";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsAndConditions from "./pages/legal/TermsAndConditions";
 import Disclaimer from "./pages/legal/Disclaimer";
