@@ -37,10 +37,6 @@ const AdminDashboard = () => {
     { id: "images", label: "Images" },
     { id: "clients", label: "Clients" },
     { id: "locations", label: "Locations" },
-    { id: "quotes", label: "Quote Requests" },
-    { id: "tickets", label: "Tickets" },
-    { id: "inquiries", label: "Inquiries" },
-    { id: "shipments", label: "Shipments" },
   ];
 
   return (
