@@ -5,7 +5,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { toast } from "sonner";
 import { Loader2, LogOut, Trash2, Plus, Save } from "lucide-react";
 
-type Tab = "content" | "clients" | "quotes" | "tickets" | "inquiries" | "shipments";
+type Tab = "content" | "clients" | "locations" | "quotes" | "tickets" | "inquiries" | "shipments";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
