@@ -148,6 +148,60 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_submissions: {
+        Row: {
+          business_type: string | null
+          company_name: string | null
+          created_at: string
+          email: string
+          first_name: string | null
+          form_type: string
+          id: string
+          last_name: string | null
+          location: string | null
+          message: string | null
+          owns_vehicle: boolean | null
+          phone: string
+          service_interested: string | null
+          status: string
+          worked_as_franchisee: boolean | null
+        }
+        Insert: {
+          business_type?: string | null
+          company_name?: string | null
+          created_at?: string
+          email: string
+          first_name?: string | null
+          form_type: string
+          id?: string
+          last_name?: string | null
+          location?: string | null
+          message?: string | null
+          owns_vehicle?: boolean | null
+          phone: string
+          service_interested?: string | null
+          status?: string
+          worked_as_franchisee?: boolean | null
+        }
+        Update: {
+          business_type?: string | null
+          company_name?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          form_type?: string
+          id?: string
+          last_name?: string | null
+          location?: string | null
+          message?: string | null
+          owns_vehicle?: boolean | null
+          phone?: string
+          service_interested?: string | null
+          status?: string
+          worked_as_franchisee?: boolean | null
+        }
+        Relationships: []
+      }
       courier_receipts: {
         Row: {
           created_at: string
