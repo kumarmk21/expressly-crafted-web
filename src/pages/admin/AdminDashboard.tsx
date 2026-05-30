@@ -5,7 +5,7 @@ import { useAdmin } from "@/hooks/useAdmin";
 import { toast } from "sonner";
 import { Loader2, LogOut, Trash2, Plus, Save, Upload, Image as ImageIcon } from "lucide-react";
 
-type Tab = "content" | "images" | "clients" | "locations" | "quotes" | "tickets" | "inquiries" | "shipments";
+type Tab = "content" | "images" | "clients" | "locations";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -37,10 +37,6 @@ const AdminDashboard = () => {
     { id: "images", label: "Images" },
     { id: "clients", label: "Clients" },
     { id: "locations", label: "Locations" },
-    { id: "quotes", label: "Quote Requests" },
-    { id: "tickets", label: "Tickets" },
-    { id: "inquiries", label: "Inquiries" },
-    { id: "shipments", label: "Shipments" },
   ];
 
   return (
@@ -74,10 +70,6 @@ const AdminDashboard = () => {
         {tab === "images" && <ImagesPanel />}
         {tab === "clients" && <ClientsPanel />}
         {tab === "locations" && <LocationsPanel />}
-        {tab === "quotes" && <QuotesPanel />}
-        {tab === "tickets" && <TicketsPanel />}
-        {tab === "inquiries" && <InquiriesPanel />}
-        {tab === "shipments" && <ShipmentsPanel />}
       </main>
     </div>
   );
