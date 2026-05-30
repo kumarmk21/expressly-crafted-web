@@ -442,6 +442,11 @@ const LocationsPanel = () => {
                   <td className="p-2"><input defaultValue={r.location_code} onBlur={(e) => e.target.value !== r.location_code && update(r.id, { location_code: e.target.value.toUpperCase() })} className="w-24 px-2 py-1 bg-background border border-border uppercase font-mono" /></td>
                   <td className="p-2"><input defaultValue={r.location_name} onBlur={(e) => e.target.value !== r.location_name && update(r.id, { location_name: e.target.value })} className="w-40 px-2 py-1 bg-background border border-border" /></td>
                   <td className="p-2">
+                    <select defaultValue={r.zone ?? "East"} onChange={(e) => update(r.id, { zone: e.target.value })} className="px-2 py-1 bg-background border border-border">
+                      {ZONES.map((z) => <option key={z} value={z}>{z}</option>)}
+                    </select>
+                  </td>
+                  <td className="p-2">
                     <select defaultValue={r.hierarchy} onChange={(e) => update(r.id, { hierarchy: e.target.value })} className="px-2 py-1 bg-background border border-border">
                       {HIERARCHIES.map((h) => <option key={h} value={h}>{h}</option>)}
                     </select>
