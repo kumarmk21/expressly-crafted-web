@@ -26,32 +26,35 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <QuoteProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/employee-login" element={<EmployeeLogin />} />
-            <Route path="/services/:slug" element={<ServiceDetail />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/customer-portal" element={<CustomerPortal />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/network" element={<Network />} />
-            <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/legal/terms-and-conditions" element={<TermsAndConditions />} />
-            <Route path="/legal/disclaimer" element={<Disclaimer />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <QuoteDialog />
-        </BrowserRouter>
-      </QuoteProvider>
-    </TooltipProvider>
+    <HelmetProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <QuoteProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/employee-login" element={<EmployeeLogin />} />
+              <Route path="/services/:slug" element={<ServiceDetail />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/customer-portal" element={<CustomerPortal />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/network" element={<Network />} />
+              <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/legal/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route path="/legal/disclaimer" element={<Disclaimer />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/p/:slug" element={<DynamicPage />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <QuoteDialog />
+          </BrowserRouter>
+        </QuoteProvider>
+      </TooltipProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 
