@@ -405,8 +405,14 @@ const LocationsPanel = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-3">
-        <input placeholder="Search code, name, city…" value={search} onChange={(e) => setSearch(e.target.value)} className="px-3 py-2 bg-background border border-border w-72 max-w-full" />
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          <input placeholder="Search code, name, city…" value={search} onChange={(e) => setSearch(e.target.value)} className="px-3 py-2 bg-background border border-border w-72 max-w-full" />
+          <select value={zoneFilter} onChange={(e) => setZoneFilter(e.target.value)} className="px-3 py-2 bg-background border border-border">
+            <option value="">All zones</option>
+            {ZONES.map((z) => <option key={z} value={z}>{z} Zone</option>)}
+          </select>
+        </div>
         <span className="text-xs text-muted-foreground">{filtered.length} of {rows.length}</span>
       </div>
 
