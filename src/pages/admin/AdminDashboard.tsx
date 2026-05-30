@@ -38,6 +38,7 @@ const AdminDashboard = () => {
     { id: "images", label: "Images" },
     { id: "clients", label: "Clients" },
     { id: "locations", label: "Locations" },
+    { id: "pages", label: "Pages (CMS)" },
   ];
 
   return (
