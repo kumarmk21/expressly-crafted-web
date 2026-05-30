@@ -423,6 +423,7 @@ const LocationsPanel = () => {
               <tr>
                 <th className="p-3 text-left">Code</th>
                 <th className="p-3 text-left">Name</th>
+                <th className="p-3 text-left">Zone</th>
                 <th className="p-3 text-left">Hierarchy</th>
                 <th className="p-3 text-left">Address</th>
                 <th className="p-3 text-left">City</th>
