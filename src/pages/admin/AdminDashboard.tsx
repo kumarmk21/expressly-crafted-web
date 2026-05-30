@@ -384,7 +384,10 @@ const LocationsPanel = () => {
         <div className="grid md:grid-cols-3 gap-2">
           <input placeholder="Location Code (e.g. ZKP)" value={form.location_code} onChange={(e) => setForm({ ...form, location_code: e.target.value })} className="px-3 py-2 bg-background border border-border uppercase" />
           <input placeholder="Location Name" value={form.location_name} onChange={(e) => setForm({ ...form, location_name: e.target.value })} className="px-3 py-2 bg-background border border-border" />
-          <select value={form.hierarchy} onChange={(e) => setForm({ ...form, hierarchy: e.target.value })} className="px-3 py-2 bg-background border border-border">
+          <select value={form.zone} onChange={(e) => setForm({ ...form, zone: e.target.value })} className="px-3 py-2 bg-background border border-border">
+            {ZONES.map((z) => <option key={z} value={z}>{z} Zone</option>)}
+          </select>
+          <select value={form.hierarchy} onChange={(e) => setForm({ ...form, hierarchy: e.target.value })} className="px-3 py-2 bg-background border border-border md:col-span-1">
             {HIERARCHIES.map((h) => <option key={h} value={h}>{h}</option>)}
           </select>
           <input placeholder="Address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="md:col-span-3 px-3 py-2 bg-background border border-border" />
