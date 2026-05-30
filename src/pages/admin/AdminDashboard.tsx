@@ -329,4 +329,135 @@ const ShipmentsPanel = () => {
   );
 };
 
+/* ---------------- Locations ---------------- */
+const HIERARCHIES = ["Corporate Office", "Regional Office", "Branch Office", "Franchisee Office", "Warehouse"];
+
+const LocationsPanel = () => {
+  const [rows, setRows] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const blankForm = { location_code: "", location_name: "", hierarchy: "Branch Office", address: "", city: "", state: "", pincode: "", contact_number: "", email: "", is_active: true, display_order: 0 };
+  const [form, setForm] = useState(blankForm);
+
+  const load = async () => {
+    setLoading(true);
+    const { data, error } = await supabase.from("locations" as any).select("*").order("display_order").order("location_code");
+    if (error) toast.error(error.message);
+    setRows((data as any[]) ?? []);
+    setLoading(false);
+  };
+  useEffect(() => { load(); }, []);
+
+  const add = async () => {
+    if (!form.location_code.trim() || !form.location_name.trim()) return toast.error("Code and name required");
+    const { error } = await supabase.from("locations" as any).insert({ ...form, location_code: form.location_code.toUpperCase().trim() });
+    if (error) return toast.error(error.message);
+    toast.success("Location added");
+    setForm(blankForm);
+    load();
+  };
+  const remove = async (id: string) => {
+    if (!confirm("Delete this location?")) return;
+    const { error } = await supabase.from("locations" as any).delete().eq("id", id);
+    if (error) return toast.error(error.message);
+    toast.success("Deleted");
+    load();
+  };
+  const update = async (id: string, patch: any) => {
+    const { error } = await supabase.from("locations" as any).update(patch).eq("id", id);
+    if (error) toast.error(error.message);
+  };
+
+  const filtered = rows.filter((r) => {
+    if (!search.trim()) return true;
+    const q = search.toLowerCase();
+    return [r.location_code, r.location_name, r.hierarchy, r.city, r.state].some((v) => String(v ?? "").toLowerCase().includes(q));
+  });
+
+  return (
+    <div className="space-y-6">
+      <div className="border border-border bg-card p-5">
+        <h3 className="font-bold uppercase tracking-wider text-sm mb-4">Add new location</h3>
+        <div className="grid md:grid-cols-3 gap-2">
+          <input placeholder="Location Code (e.g. ZKP)" value={form.location_code} onChange={(e) => setForm({ ...form, location_code: e.target.value })} className="px-3 py-2 bg-background border border-border uppercase" />
+          <input placeholder="Location Name" value={form.location_name} onChange={(e) => setForm({ ...form, location_name: e.target.value })} className="px-3 py-2 bg-background border border-border" />
+          <select value={form.hierarchy} onChange={(e) => setForm({ ...form, hierarchy: e.target.value })} className="px-3 py-2 bg-background border border-border">
+            {HIERARCHIES.map((h) => <option key={h} value={h}>{h}</option>)}
+          </select>
+          <input placeholder="Address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="md:col-span-3 px-3 py-2 bg-background border border-border" />
+          <input placeholder="City" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className="px-3 py-2 bg-background border border-border" />
+          <input placeholder="State" value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value })} className="px-3 py-2 bg-background border border-border" />
+          <input placeholder="Pincode" value={form.pincode} onChange={(e) => setForm({ ...form, pincode: e.target.value })} className="px-3 py-2 bg-background border border-border" />
+          <input placeholder="Contact Number" value={form.contact_number} onChange={(e) => setForm({ ...form, contact_number: e.target.value })} className="px-3 py-2 bg-background border border-border" />
+          <input placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="px-3 py-2 bg-background border border-border" />
+          <input type="number" placeholder="Display order" value={form.display_order} onChange={(e) => setForm({ ...form, display_order: Number(e.target.value) })} className="px-3 py-2 bg-background border border-border" />
+          <label className="flex items-center gap-2 px-3 py-2 border border-border bg-background">
+            <input type="checkbox" checked={form.is_active} onChange={(e) => setForm({ ...form, is_active: e.target.checked })} />
+            <span className="text-xs uppercase tracking-wider">Active</span>
+          </label>
+          <button onClick={add} className="inline-flex items-center justify-center gap-2 bg-primary text-white font-black uppercase text-xs tracking-wider px-4 py-2"><Plus className="h-4 w-4" /> Add Location</button>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between gap-3">
+        <input placeholder="Search code, name, city…" value={search} onChange={(e) => setSearch(e.target.value)} className="px-3 py-2 bg-background border border-border w-72 max-w-full" />
+        <span className="text-xs text-muted-foreground">{filtered.length} of {rows.length}</span>
+      </div>
+
+      {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : (
+        <div className="border border-border bg-card overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/40 text-xs uppercase">
+              <tr>
+                <th className="p-3 text-left">Code</th>
+                <th className="p-3 text-left">Name</th>
+                <th className="p-3 text-left">Hierarchy</th>
+                <th className="p-3 text-left">Address</th>
+                <th className="p-3 text-left">City</th>
+                <th className="p-3 text-left">State</th>
+                <th className="p-3 text-left">Pincode</th>
+                <th className="p-3 text-left">Contact</th>
+                <th className="p-3 text-left">Email</th>
+                <th className="p-3 text-left">Order</th>
+                <th className="p-3 text-left">Active</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((r) => (
+                <tr key={r.id} className="border-t border-border align-top">
+                  <td className="p-2"><input defaultValue={r.location_code} onBlur={(e) => e.target.value !== r.location_code && update(r.id, { location_code: e.target.value.toUpperCase() })} className="w-24 px-2 py-1 bg-background border border-border uppercase font-mono" /></td>
+                  <td className="p-2"><input defaultValue={r.location_name} onBlur={(e) => e.target.value !== r.location_name && update(r.id, { location_name: e.target.value })} className="w-40 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2">
+                    <select defaultValue={r.hierarchy} onChange={(e) => update(r.id, { hierarchy: e.target.value })} className="px-2 py-1 bg-background border border-border">
+                      {HIERARCHIES.map((h) => <option key={h} value={h}>{h}</option>)}
+                    </select>
+                  </td>
+                  <td className="p-2"><input defaultValue={r.address ?? ""} onBlur={(e) => update(r.id, { address: e.target.value })} className="w-56 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2"><input defaultValue={r.city ?? ""} onBlur={(e) => update(r.id, { city: e.target.value })} className="w-28 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2"><input defaultValue={r.state ?? ""} onBlur={(e) => update(r.id, { state: e.target.value })} className="w-28 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2"><input defaultValue={r.pincode ?? ""} onBlur={(e) => update(r.id, { pincode: e.target.value })} className="w-20 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2"><input defaultValue={r.contact_number ?? ""} onBlur={(e) => update(r.id, { contact_number: e.target.value })} className="w-32 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2"><input defaultValue={r.email ?? ""} onBlur={(e) => update(r.id, { email: e.target.value })} className="w-40 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2"><input type="number" defaultValue={r.display_order} onBlur={(e) => update(r.id, { display_order: Number(e.target.value) })} className="w-16 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2">
+                    <select defaultValue={String(r.is_active)} onChange={(e) => update(r.id, { is_active: e.target.value === "true" })} className={`px-2 py-1 border border-border text-xs font-bold ${r.is_active ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                  </td>
+                  <td className="p-2"><button onClick={() => remove(r.id)} className="text-destructive hover:text-primary"><Trash2 className="h-4 w-4" /></button></td>
+                </tr>
+              ))}
+              {filtered.length === 0 && (
+                <tr><td colSpan={12} className="p-6 text-center text-muted-foreground text-sm">No locations found.</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default AdminDashboard;
