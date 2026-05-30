@@ -263,6 +263,7 @@ export type Database = {
           pincode: string | null
           state: string | null
           updated_at: string
+          zone: string
         }
         Insert: {
           address?: string | null
@@ -279,6 +280,7 @@ export type Database = {
           pincode?: string | null
           state?: string | null
           updated_at?: string
+          zone?: string
         }
         Update: {
           address?: string | null
@@ -295,6 +297,7 @@ export type Database = {
           pincode?: string | null
           state?: string | null
           updated_at?: string
+          zone?: string
         }
         Relationships: []
       }
