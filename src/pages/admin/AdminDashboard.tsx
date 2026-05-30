@@ -35,6 +35,7 @@ const AdminDashboard = () => {
   const tabs: { id: Tab; label: string }[] = [
     { id: "content", label: "Site Content" },
     { id: "clients", label: "Clients" },
+    { id: "locations", label: "Locations" },
     { id: "quotes", label: "Quote Requests" },
     { id: "tickets", label: "Tickets" },
     { id: "inquiries", label: "Inquiries" },
