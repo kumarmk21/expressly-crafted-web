@@ -331,12 +331,14 @@ const ShipmentsPanel = () => {
 
 /* ---------------- Locations ---------------- */
 const HIERARCHIES = ["Corporate Office", "Regional Office", "Branch Office", "Franchisee Office", "Warehouse"];
+const ZONES = ["East", "West", "North", "South", "Central"];
 
 const LocationsPanel = () => {
   const [rows, setRows] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const blankForm = { location_code: "", location_name: "", hierarchy: "Branch Office", address: "", city: "", state: "", pincode: "", contact_number: "", email: "", is_active: true, display_order: 0 };
+  const [zoneFilter, setZoneFilter] = useState("");
+  const blankForm = { location_code: "", location_name: "", hierarchy: "Branch Office", zone: "East", address: "", city: "", state: "", pincode: "", contact_number: "", email: "", is_active: true, display_order: 0 };
   const [form, setForm] = useState(blankForm);
 
   const load = async () => {
@@ -369,9 +371,10 @@ const LocationsPanel = () => {
   };
 
   const filtered = rows.filter((r) => {
+    if (zoneFilter && r.zone !== zoneFilter) return false;
     if (!search.trim()) return true;
     const q = search.toLowerCase();
-    return [r.location_code, r.location_name, r.hierarchy, r.city, r.state].some((v) => String(v ?? "").toLowerCase().includes(q));
+    return [r.location_code, r.location_name, r.hierarchy, r.city, r.state, r.zone].some((v) => String(v ?? "").toLowerCase().includes(q));
   });
 
   return (
@@ -381,7 +384,10 @@ const LocationsPanel = () => {
         <div className="grid md:grid-cols-3 gap-2">
           <input placeholder="Location Code (e.g. ZKP)" value={form.location_code} onChange={(e) => setForm({ ...form, location_code: e.target.value })} className="px-3 py-2 bg-background border border-border uppercase" />
           <input placeholder="Location Name" value={form.location_name} onChange={(e) => setForm({ ...form, location_name: e.target.value })} className="px-3 py-2 bg-background border border-border" />
-          <select value={form.hierarchy} onChange={(e) => setForm({ ...form, hierarchy: e.target.value })} className="px-3 py-2 bg-background border border-border">
+          <select value={form.zone} onChange={(e) => setForm({ ...form, zone: e.target.value })} className="px-3 py-2 bg-background border border-border">
+            {ZONES.map((z) => <option key={z} value={z}>{z} Zone</option>)}
+          </select>
+          <select value={form.hierarchy} onChange={(e) => setForm({ ...form, hierarchy: e.target.value })} className="px-3 py-2 bg-background border border-border md:col-span-1">
             {HIERARCHIES.map((h) => <option key={h} value={h}>{h}</option>)}
           </select>
           <input placeholder="Address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="md:col-span-3 px-3 py-2 bg-background border border-border" />
@@ -399,8 +405,14 @@ const LocationsPanel = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-3">
-        <input placeholder="Search code, name, city…" value={search} onChange={(e) => setSearch(e.target.value)} className="px-3 py-2 bg-background border border-border w-72 max-w-full" />
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          <input placeholder="Search code, name, city…" value={search} onChange={(e) => setSearch(e.target.value)} className="px-3 py-2 bg-background border border-border w-72 max-w-full" />
+          <select value={zoneFilter} onChange={(e) => setZoneFilter(e.target.value)} className="px-3 py-2 bg-background border border-border">
+            <option value="">All zones</option>
+            {ZONES.map((z) => <option key={z} value={z}>{z} Zone</option>)}
+          </select>
+        </div>
         <span className="text-xs text-muted-foreground">{filtered.length} of {rows.length}</span>
       </div>
 
@@ -411,6 +423,7 @@ const LocationsPanel = () => {
               <tr>
                 <th className="p-3 text-left">Code</th>
                 <th className="p-3 text-left">Name</th>
+                <th className="p-3 text-left">Zone</th>
                 <th className="p-3 text-left">Hierarchy</th>
                 <th className="p-3 text-left">Address</th>
                 <th className="p-3 text-left">City</th>
@@ -428,6 +441,11 @@ const LocationsPanel = () => {
                 <tr key={r.id} className="border-t border-border align-top">
                   <td className="p-2"><input defaultValue={r.location_code} onBlur={(e) => e.target.value !== r.location_code && update(r.id, { location_code: e.target.value.toUpperCase() })} className="w-24 px-2 py-1 bg-background border border-border uppercase font-mono" /></td>
                   <td className="p-2"><input defaultValue={r.location_name} onBlur={(e) => e.target.value !== r.location_name && update(r.id, { location_name: e.target.value })} className="w-40 px-2 py-1 bg-background border border-border" /></td>
+                  <td className="p-2">
+                    <select defaultValue={r.zone ?? "East"} onChange={(e) => update(r.id, { zone: e.target.value })} className="px-2 py-1 bg-background border border-border">
+                      {ZONES.map((z) => <option key={z} value={z}>{z}</option>)}
+                    </select>
+                  </td>
                   <td className="p-2">
                     <select defaultValue={r.hierarchy} onChange={(e) => update(r.id, { hierarchy: e.target.value })} className="px-2 py-1 bg-background border border-border">
                       {HIERARCHIES.map((h) => <option key={h} value={h}>{h}</option>)}
@@ -450,7 +468,7 @@ const LocationsPanel = () => {
                 </tr>
               ))}
               {filtered.length === 0 && (
-                <tr><td colSpan={12} className="p-6 text-center text-muted-foreground text-sm">No locations found.</td></tr>
+                <tr><td colSpan={13} className="p-6 text-center text-muted-foreground text-sm">No locations found.</td></tr>
               )}
             </tbody>
           </table>
