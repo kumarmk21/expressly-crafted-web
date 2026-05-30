@@ -1,31 +1,18 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Building2, Package, Route, Activity, Truck } from "lucide-react";
+import { MapPin, Building2, Package, Route, Activity, Truck, type LucideIcon } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-const pinCodes = [
-  { value: "5,000", label: "Direct Serviceable PIN Codes" },
-  { value: "11,500", label: "ODA PIN Codes" },
-  { value: "7,500", label: "Need-base Service PIN Codes" },
-  { value: "24,000", label: "Total PIN Codes" },
+const ICONS: Record<string, LucideIcon> = { MapPin, Building2, Package, Route, Truck, Activity };
+
+const CATEGORIES: { key: string; title: string; cols: 3 | 4 }[] = [
+  { key: "pin_codes", title: "PIN Code Coverage", cols: 4 },
+  { key: "network", title: "Branches, Franchisees, Hubs & PDAs", cols: 4 },
+  { key: "volume", title: "Monthly Volume", cols: 3 },
+  { key: "routes", title: "Routes & Fleet", cols: 3 },
 ];
 
-const network = [
-  { value: "73", label: "Branches", icon: Building2 },
-  { value: "105", label: "Franchisees", icon: Building2 },
-  { value: "140", label: "Pick-up & Delivery Associates", icon: Truck },
-  { value: "15", label: "Hub Centres", icon: MapPin },
-];
-
-const volume = [
-  { value: "40,000", label: "Monthly Tonnage (MT)", icon: Package },
-  { value: "24,00,000", label: "Packages / Month", icon: Package },
-  { value: "65,000", label: "Total LRs / Month", icon: Package },
-];
-
-const routes = [
-  { value: "80", label: "Linehaul Routes", icon: Route },
-  { value: "110", label: "Feeder Routes", icon: Route },
-  { value: "550", label: "Vehicles in Fleet", icon: Truck },
-];
+type Stat = { id: string; category: string; label: string; value: string; icon: string | null; display_order: number };
 
 const StatGrid = ({
   title,
@@ -33,20 +20,20 @@ const StatGrid = ({
   cols = 4,
 }: {
   title: string;
-  items: { value: string; label: string; icon?: any }[];
-  cols?: number;
+  items: Stat[];
+  cols?: 3 | 4;
 }) => (
   <div className="mb-14">
     <div className="flex items-center gap-3 mb-6">
       <span className="h-px w-8 bg-primary" />
       <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary">{title}</h3>
     </div>
-    <div className={`grid grid-cols-2 lg:grid-cols-${cols} gap-px bg-border border border-border`}>
+    <div className={`grid grid-cols-2 ${cols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-px bg-border border border-border`}>
       {items.map((s, i) => {
-        const Icon = s.icon;
+        const Icon = s.icon ? ICONS[s.icon] : undefined;
         return (
           <motion.div
-            key={s.label}
+            key={s.id}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -68,6 +55,19 @@ const StatGrid = ({
 );
 
 const NetworkSection = () => {
+  const [stats, setStats] = useState<Stat[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("network_stats" as any)
+      .select("*")
+      .order("category")
+      .order("display_order")
+      .then(({ data }) => setStats(((data as any[]) ?? []) as Stat[]));
+  }, []);
+
+  const byCat = (cat: string) => stats.filter((s) => s.category === cat);
+
   return (
     <section id="network" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
@@ -92,10 +92,11 @@ const NetworkSection = () => {
           </p>
         </motion.div>
 
-        <StatGrid title="PIN Code Coverage" items={pinCodes} cols={4} />
-        <StatGrid title="Branches, Franchisees, Hubs & PDAs" items={network} cols={4} />
-        <StatGrid title="Monthly Volume" items={volume} cols={3} />
-        <StatGrid title="Routes & Fleet" items={routes} cols={3} />
+        {CATEGORIES.map((c) => {
+          const items = byCat(c.key);
+          if (!items.length) return null;
+          return <StatGrid key={c.key} title={c.title} items={items} cols={c.cols} />;
+        })}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
