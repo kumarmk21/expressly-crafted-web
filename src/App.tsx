@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EmployeeLogin from "./pages/EmployeeLogin";
 import EmployeeBlog from "./pages/EmployeeBlog";
+import Blog from "./pages/Blog";
 import Network from "./pages/Network";
 import ServiceDetail from "./pages/ServiceDetail";
 import AboutUs from "./pages/AboutUs";
@@ -44,6 +45,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/employee-login" element={<EmployeeLogin />} />
               <Route path="/employee-portal/blog" element={<EmployeeBlog />} />
+              <Route path="/blog" element={<Blog />} />
               <Route path="/services/:slug" element={<ServiceDetail />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/careers" element={<Careers />} />

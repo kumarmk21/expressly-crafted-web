@@ -49,6 +49,35 @@ export type Database = {
           },
         ]
       }
+      blog_post_likes: {
+        Row: {
+          created_at: string
+          id: string
+          post_id: string
+          visitor_key: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          post_id: string
+          visitor_key: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          post_id?: string
+          visitor_key?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_post_likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_posts: {
         Row: {
           author_name: string

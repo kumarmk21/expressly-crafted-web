@@ -39,6 +39,7 @@ const navLinks = [
   { label: "Network & Infra", href: "/network" },
   { label: "Technology", href: "#tech" },
   { label: "Careers", href: "/careers" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

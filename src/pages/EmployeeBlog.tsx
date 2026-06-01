@@ -10,8 +10,10 @@ import {
   Plus,
   Send,
   Tag as TagIcon,
+  Trash2,
   User as UserIcon,
   X,
+  Heart,
   Calendar,
   Search,
 } from "lucide-react";
@@ -20,6 +22,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
 import scorpionLogo from "@/assets/scorpion-logo.png";
 
@@ -327,20 +339,27 @@ const NewPostDialog = ({
   );
 };
 
-const PostCard = ({ post, onOpen }: { post: BlogPost; onOpen: () => void }) => (
-  <article
-    onClick={onOpen}
-    className="group bg-white border border-border hover:border-primary hover:shadow-lg transition-all cursor-pointer flex flex-col"
-  >
+const PostCard = ({
+  post,
+  likeCount,
+  onOpen,
+  onDelete,
+}: {
+  post: BlogPost;
+  likeCount: number;
+  onOpen: () => void;
+  onDelete: () => void;
+}) => (
+  <article className="group bg-white border border-border hover:border-primary hover:shadow-lg transition-all flex flex-col">
     {post.cover_image_url && (
-      <div className="aspect-[16/9] overflow-hidden bg-muted">
+      <button onClick={onOpen} className="aspect-[16/9] overflow-hidden bg-muted text-left">
         <img
           src={post.cover_image_url}
           alt={post.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-      </div>
+      </button>
     )}
     <div className="p-5 flex-1 flex flex-col">
       {post.tags.length > 0 && (
@@ -352,9 +371,11 @@ const PostCard = ({ post, onOpen }: { post: BlogPost; onOpen: () => void }) => (
           ))}
         </div>
       )}
-      <h3 className="font-display uppercase text-xl text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
-        {post.title}
-      </h3>
+      <button onClick={onOpen} className="text-left">
+        <h3 className="font-display uppercase text-xl text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
+          {post.title}
+        </h3>
+      </button>
       <p className="text-sm text-muted-foreground mt-2 line-clamp-3 flex-1">
         {post.body.replace(/!\[.*?\]\(.*?\)/g, "").slice(0, 180)}
       </p>
@@ -365,6 +386,18 @@ const PostCard = ({ post, onOpen }: { post: BlogPost; onOpen: () => void }) => (
         <span className="inline-flex items-center gap-1">
           <Calendar className="h-3 w-3" /> {formatDate(post.created_at)}
         </span>
+      </div>
+      <div className="flex items-center justify-between mt-3">
+        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-1.5 border border-border text-foreground">
+          <Heart className="h-3.5 w-3.5 text-primary fill-primary" /> {likeCount} {likeCount === 1 ? "like" : "likes"}
+        </span>
+        <button
+          onClick={onDelete}
+          className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-1.5 border border-border text-muted-foreground hover:border-destructive hover:text-destructive transition-colors"
+          aria-label="Delete post"
+        >
+          <Trash2 className="h-3.5 w-3.5" /> Remove
+        </button>
       </div>
     </div>
   </article>
@@ -413,11 +446,14 @@ const EmployeeBlog = () => {
   const navigate = useNavigate();
   const [authorName, setAuthorName] = useState<string | null>(null);
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [openNew, setOpenNew] = useState(false);
   const [viewing, setViewing] = useState<BlogPost | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<BlogPost | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     try {
@@ -445,17 +481,38 @@ const EmployeeBlog = () => {
       .eq("is_published", true)
       .order("created_at", { ascending: false })
       .limit(200);
-    setLoading(false);
     if (error) {
       toast.error(error.message);
+      setLoading(false);
       return;
     }
     setPosts(data || []);
+    const { data: likes } = await supabase.from("blog_post_likes").select("post_id");
+    const counts: Record<string, number> = {};
+    (likes || []).forEach((l: any) => {
+      counts[l.post_id] = (counts[l.post_id] || 0) + 1;
+    });
+    setLikeCounts(counts);
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+    setDeleting(true);
+    const { error } = await supabase.from("blog_posts").delete().eq("id", deleteTarget.id);
+    setDeleting(false);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    toast.success("Post removed");
+    setDeleteTarget(null);
+    fetchPosts();
+  };
 
   const allTags = useMemo(() => {
     const set = new Set<string>();
@@ -602,7 +659,13 @@ const EmployeeBlog = () => {
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((p) => (
-              <PostCard key={p.id} post={p} onOpen={() => setViewing(p)} />
+              <PostCard
+                key={p.id}
+                post={p}
+                likeCount={likeCounts[p.id] || 0}
+                onOpen={() => setViewing(p)}
+                onDelete={() => setDeleteTarget(p)}
+              />
             ))}
           </div>
         )}
@@ -616,6 +679,28 @@ const EmployeeBlog = () => {
 
       <NewPostDialog open={openNew} onOpenChange={setOpenNew} authorName={authorName} onCreated={fetchPosts} />
       <PostViewDialog post={viewing} onClose={() => setViewing(null)} />
+
+      <AlertDialog open={!!deleteTarget} onOpenChange={(v) => !v && setDeleteTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove this post?</AlertDialogTitle>
+            <AlertDialogDescription>
+              "{deleteTarget?.title}" will be permanently deleted along with its likes. This can't be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleting}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={(e) => { e.preventDefault(); handleDelete(); }}
+              disabled={deleting}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              {deleting ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Trash2 className="h-4 w-4 mr-2" />}
+              Remove
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
