@@ -1,5 +1,6 @@
-// Sends a notification email (with resume link) to the HR inbox when an application is submitted.
+// Sends a notification email (with resume attached) to HR via SMTP when an application is submitted.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -8,7 +9,10 @@ const corsHeaders = {
 };
 
 const HR_EMAIL = "dhanushedge17@gmail.com";
-const FROM_EMAIL = "Scorpion Careers <onboarding@resend.dev>";
+const SMTP_HOST = "smtp.scorpiongroup.in";
+const SMTP_PORT = 587;
+const SMTP_USER = "info@scorpiongroup.in";
+const FROM_NAME = "Scorpion Careers";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
@@ -34,26 +38,29 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Signed URL for the resume (7 days)
+    // Signed URL for the resume (7 days) as a backup link
     const { data: signed } = await supabase.storage
       .from("resumes").createSignedUrl(app.resume_url, 60 * 60 * 24 * 7);
     const resumeLink = signed?.signedUrl ?? "(unavailable)";
 
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    if (!RESEND_API_KEY) {
-      console.warn("RESEND_API_KEY missing — skipping email send");
-      return new Response(JSON.stringify({ ok: true, emailed: false, reason: "RESEND_API_KEY not configured" }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+    const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD");
+    if (!SMTP_PASSWORD) {
+      console.error("SMTP_PASSWORD missing");
+      return new Response(JSON.stringify({ ok: false, error: "SMTP_PASSWORD not configured" }), {
+        status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
     // Download resume to attach
     const { data: fileBlob } = await supabase.storage.from("resumes").download(app.resume_url);
-    let attachment: { filename: string; content: string } | null = null;
+    let attachment: { filename: string; content: Uint8Array; contentType: string } | null = null;
     if (fileBlob) {
       const buf = new Uint8Array(await fileBlob.arrayBuffer());
-      let bin = ""; for (let i = 0; i < buf.length; i++) bin += String.fromCharCode(buf[i]);
-      attachment = { filename: app.resume_file_name || "resume", content: btoa(bin) };
+      attachment = {
+        filename: app.resume_file_name || "resume",
+        content: buf,
+        contentType: fileBlob.type || "application/octet-stream",
+      };
     }
 
     const html = `
@@ -67,33 +74,42 @@ Deno.serve(async (req) => {
       <p><strong>Resume:</strong> <a href="${resumeLink}">${escapeHtml(app.resume_file_name)}</a></p>
     `;
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${RESEND_API_KEY}` },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: [HR_EMAIL],
-        reply_to: app.email,
-        subject: `New Application: ${app.role} — ${app.name}`,
-        html,
-        attachments: attachment ? [attachment] : undefined,
-      }),
+    const client = new SMTPClient({
+      connection: {
+        hostname: SMTP_HOST,
+        port: SMTP_PORT,
+        tls: false,
+        auth: { username: SMTP_USER, password: SMTP_PASSWORD },
+      },
     });
 
-    if (!res.ok) {
-      const t = await res.text();
-      console.error("Resend error", res.status, t);
-      return new Response(JSON.stringify({ ok: false, error: t }), {
-        status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    try {
+      await client.send({
+        from: `${FROM_NAME} <${SMTP_USER}>`,
+        to: HR_EMAIL,
+        replyTo: app.email,
+        subject: `New Application: ${app.role} — ${app.name}`,
+        html,
+        content: "auto",
+        attachments: attachment
+          ? [{
+              filename: attachment.filename,
+              content: attachment.content,
+              contentType: attachment.contentType,
+              encoding: "binary",
+            }]
+          : undefined,
       });
+    } finally {
+      await client.close();
     }
 
     return new Response(JSON.stringify({ ok: true, emailed: true }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
-    console.error(e);
-    return new Response(JSON.stringify({ error: String(e) }), {
+    console.error("notify-job-application error:", e);
+    return new Response(JSON.stringify({ error: String(e?.message ?? e) }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
