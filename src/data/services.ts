@@ -191,7 +191,7 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    no: "06",
+    no: "07",
     slug: "ftl",
     icon: Truck,
     title: "FTL",
