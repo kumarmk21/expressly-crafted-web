@@ -339,20 +339,27 @@ const NewPostDialog = ({
   );
 };
 
-const PostCard = ({ post, onOpen }: { post: BlogPost; onOpen: () => void }) => (
-  <article
-    onClick={onOpen}
-    className="group bg-white border border-border hover:border-primary hover:shadow-lg transition-all cursor-pointer flex flex-col"
-  >
+const PostCard = ({
+  post,
+  likeCount,
+  onOpen,
+  onDelete,
+}: {
+  post: BlogPost;
+  likeCount: number;
+  onOpen: () => void;
+  onDelete: () => void;
+}) => (
+  <article className="group bg-white border border-border hover:border-primary hover:shadow-lg transition-all flex flex-col">
     {post.cover_image_url && (
-      <div className="aspect-[16/9] overflow-hidden bg-muted">
+      <button onClick={onOpen} className="aspect-[16/9] overflow-hidden bg-muted text-left">
         <img
           src={post.cover_image_url}
           alt={post.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-      </div>
+      </button>
     )}
     <div className="p-5 flex-1 flex flex-col">
       {post.tags.length > 0 && (
@@ -364,9 +371,11 @@ const PostCard = ({ post, onOpen }: { post: BlogPost; onOpen: () => void }) => (
           ))}
         </div>
       )}
-      <h3 className="font-display uppercase text-xl text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
-        {post.title}
-      </h3>
+      <button onClick={onOpen} className="text-left">
+        <h3 className="font-display uppercase text-xl text-foreground leading-tight group-hover:text-primary transition-colors line-clamp-2">
+          {post.title}
+        </h3>
+      </button>
       <p className="text-sm text-muted-foreground mt-2 line-clamp-3 flex-1">
         {post.body.replace(/!\[.*?\]\(.*?\)/g, "").slice(0, 180)}
       </p>
@@ -377,6 +386,18 @@ const PostCard = ({ post, onOpen }: { post: BlogPost; onOpen: () => void }) => (
         <span className="inline-flex items-center gap-1">
           <Calendar className="h-3 w-3" /> {formatDate(post.created_at)}
         </span>
+      </div>
+      <div className="flex items-center justify-between mt-3">
+        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-1.5 border border-border text-foreground">
+          <Heart className="h-3.5 w-3.5 text-primary fill-primary" /> {likeCount} {likeCount === 1 ? "like" : "likes"}
+        </span>
+        <button
+          onClick={onDelete}
+          className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-1.5 border border-border text-muted-foreground hover:border-destructive hover:text-destructive transition-colors"
+          aria-label="Delete post"
+        >
+          <Trash2 className="h-3.5 w-3.5" /> Remove
+        </button>
       </div>
     </div>
   </article>
