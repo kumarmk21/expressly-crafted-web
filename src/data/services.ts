@@ -93,7 +93,7 @@ export const services: ServiceItem[] = [
       "MRConnect is Scorpion Express's purpose-built service for the pharmaceutical field force — connecting Medical Representatives (MRs), Area Business Managers, stockists, distributors and CFAs through a single, technology-enabled logistics platform.",
       "From physician samples and promotional literature to urgent product top-ups and replacement stock, every consignment is moved through a controlled, monitored and audit-ready network designed specifically for the pharma industry.",
       "MRs can raise pickup and delivery requests directly through the platform, track every shipment in real time, and access digital PODs the moment delivery is completed — eliminating manual follow-ups and accelerating field productivity.",
-      "Backed by our nationwide express network, temperature-aware handling and dedicated pharma operations team, MRConnect ensures that the right product reaches the right doctor, chemist or distributor at the right time — every time.",
+      "Backed by our nationwide express network, temperature-aware handling, dedicated pharma operations team and a dedicated MRConnect operations team, MRConnect ensures that the right product reaches the right doctor, chemist or distributor at the right time — every time.",
     ],
     features: [
       "Dedicated platform for MRs, stockists and distributors",
