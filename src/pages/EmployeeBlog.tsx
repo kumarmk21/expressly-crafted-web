@@ -446,11 +446,14 @@ const EmployeeBlog = () => {
   const navigate = useNavigate();
   const [authorName, setAuthorName] = useState<string | null>(null);
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [openNew, setOpenNew] = useState(false);
   const [viewing, setViewing] = useState<BlogPost | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<BlogPost | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     try {
@@ -478,17 +481,38 @@ const EmployeeBlog = () => {
       .eq("is_published", true)
       .order("created_at", { ascending: false })
       .limit(200);
-    setLoading(false);
     if (error) {
       toast.error(error.message);
+      setLoading(false);
       return;
     }
     setPosts(data || []);
+    const { data: likes } = await supabase.from("blog_post_likes").select("post_id");
+    const counts: Record<string, number> = {};
+    (likes || []).forEach((l: any) => {
+      counts[l.post_id] = (counts[l.post_id] || 0) + 1;
+    });
+    setLikeCounts(counts);
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchPosts();
   }, []);
+
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+    setDeleting(true);
+    const { error } = await supabase.from("blog_posts").delete().eq("id", deleteTarget.id);
+    setDeleting(false);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    toast.success("Post removed");
+    setDeleteTarget(null);
+    fetchPosts();
+  };
 
   const allTags = useMemo(() => {
     const set = new Set<string>();
