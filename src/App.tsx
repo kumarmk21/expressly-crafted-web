@@ -21,8 +21,14 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import { QuoteProvider } from "./context/QuoteContext";
 import QuoteDialog from "./components/QuoteDialog";
+import { useVersionCheck } from "./hooks/useVersionCheck";
 
 const queryClient = new QueryClient();
+
+const VersionWatcher = () => {
+  useVersionCheck();
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -30,6 +36,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <VersionWatcher />
         <QuoteProvider>
           <BrowserRouter>
             <Routes>
