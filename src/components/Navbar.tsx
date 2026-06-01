@@ -187,7 +187,13 @@ const Navbar = () => {
                               onClick={() => setMobileOpen(false)}
                               className="flex items-center gap-3 px-4 py-3 border-t border-border hover:bg-primary/5"
                             >
-                              <span className="flex h-8 w-8 items-center justify-center bg-primary/10 text-primary">
+                              <span className={`flex h-8 w-8 items-center justify-center ${
+                                child.tone === "sky"
+                                  ? "bg-sky-500/10 text-sky-600"
+                                  : child.tone === "emerald"
+                                  ? "bg-emerald-500/10 text-emerald-600"
+                                  : "bg-primary/10 text-primary"
+                              }`}>
                                 <Icon className="h-4 w-4" />
                               </span>
                               <span className="text-sm font-bold uppercase tracking-wide">{child.label}</span>
