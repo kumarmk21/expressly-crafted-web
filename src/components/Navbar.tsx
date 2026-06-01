@@ -15,6 +15,7 @@ import {
   PackageCheck,
   FileText,
   ArrowUpRight,
+  Stethoscope,
 } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
 import { useQuote } from "@/context/QuoteContext";
@@ -28,6 +29,7 @@ const navLinks = [
     children: [
       { label: "Express", to: "/services/express", icon: PackageCheck, desc: "Time-definite surface delivery" },
       { label: "Air", to: "/services/air", icon: Plane, desc: "Priority air freight" },
+      { label: "MRConnect", to: "/services/mrconnect", icon: Stethoscope, desc: "Pharma field-force logistics" },
       { label: "Cold Chain", to: "/services/cold-chain", icon: Snowflake, desc: "Temperature-controlled logistics" },
       { label: "Warehousing", to: "/services/wms", icon: Warehouse, desc: "Warehousing & fulfilment" },
       { label: "Cleantech", to: "/services/cleantech", icon: Recycle, desc: "Sustainable reverse logistics" },
