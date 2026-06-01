@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
-import { Calendar, Heart, Loader2, Search, Share2, Tag as TagIcon, User as UserIcon } from "lucide-react";
+import { Calendar, Copy, Facebook, Heart, Linkedin, Loader2, Mail, MessageCircle, Search, Share2, Tag as TagIcon, Twitter, User as UserIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
