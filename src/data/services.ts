@@ -99,7 +99,7 @@ export const services: ServiceItem[] = [
       "Dedicated platform for MRs, stockists and distributors",
       "On-demand pickup & delivery for samples and product top-ups",
       "Real-time shipment tracking with instant digital POD",
-      "Pharma-grade handling with temperature-aware options",
+      "Pharma-grade handling",
     ],
     industries: ["Pharmaceuticals", "Healthcare", "Medical Devices", "Nutraceuticals"],
     capabilities: [
