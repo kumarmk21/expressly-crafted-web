@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EmployeeLogin from "./pages/EmployeeLogin";
 import EmployeeBlog from "./pages/EmployeeBlog";
+import Blog from "./pages/Blog";
 import Network from "./pages/Network";
 import ServiceDetail from "./pages/ServiceDetail";
 import AboutUs from "./pages/AboutUs";
