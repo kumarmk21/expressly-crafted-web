@@ -1,10 +1,11 @@
-import { Truck, Plane, Snowflake, Warehouse, Recycle, PackageCheck } from "lucide-react";
+import { Truck, Plane, Snowflake, Warehouse, Recycle, PackageCheck, Stethoscope } from "lucide-react";
 import serviceExpress from "@/assets/services/express.jpg";
 import serviceAir from "@/assets/services/air.jpg";
 import serviceColdchain from "@/assets/services/coldchain.jpg";
 import serviceWms from "@/assets/services/wms.jpg";
 import serviceCleantech from "@/assets/services/cleantech.jpg";
 import serviceFtl from "@/assets/services/ftl.jpg";
+import serviceMrConnect from "@/assets/services/mrconnect.jpg";
 
 export type ServiceItem = {
   no: string;
