@@ -65,6 +65,90 @@ const sharePost = async (post: BlogPost) => {
   }
 };
 
+const SharePostButtons = ({ post }: { post: BlogPost }) => {
+  const url = `${window.location.origin}/blog?post=${post.id}`;
+  const text = `${post.title} — Scorpion Team Blog`;
+  const enc = encodeURIComponent;
+
+  const links: { label: string; href?: string; onClick?: () => void; icon: typeof Facebook; className: string }[] = [
+    {
+      label: "Facebook",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`,
+      icon: Facebook,
+      className: "bg-[#1877F2] hover:bg-[#1877F2]/90 text-white",
+    },
+    {
+      label: "Twitter",
+      href: `https://twitter.com/intent/tweet?url=${enc(url)}&text=${enc(text)}`,
+      icon: Twitter,
+      className: "bg-[#1DA1F2] hover:bg-[#1DA1F2]/90 text-white",
+    },
+    {
+      label: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`,
+      icon: Linkedin,
+      className: "bg-[#0A66C2] hover:bg-[#0A66C2]/90 text-white",
+    },
+    {
+      label: "WhatsApp",
+      href: `https://api.whatsapp.com/send?text=${enc(text + " " + url)}`,
+      icon: MessageCircle,
+      className: "bg-[#25D366] hover:bg-[#25D366]/90 text-white",
+    },
+    {
+      label: "Email",
+      href: `mailto:?subject=${enc(post.title)}&body=${enc(text + "\n\n" + url)}`,
+      icon: Mail,
+      className: "bg-muted-foreground hover:bg-muted-foreground/90 text-white",
+    },
+    {
+      label: "Copy",
+      onClick: async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          toast.success("Link copied to clipboard");
+        } catch {
+          toast.error("Couldn't copy link");
+        }
+      },
+      icon: Copy,
+      className: "bg-primary hover:bg-primary/90 text-white",
+    },
+  ];
+
+  return (
+    <div className="pt-5 border-t border-border">
+      <div className="flex items-center gap-2 mb-3 text-primary">
+        <Share2 className="h-4 w-4" />
+        <span className="text-xs font-bold uppercase tracking-wider">Share This Post</span>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+        {links.map(({ label, href, onClick, icon: Icon, className }) =>
+          href ? (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${className}`}
+            >
+              <Icon className="h-3.5 w-3.5" /> {label}
+            </a>
+          ) : (
+            <button
+              key={label}
+              onClick={onClick}
+              className={`inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${className}`}
+            >
+              <Icon className="h-3.5 w-3.5" /> {label}
+            </button>
+          )
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Blog = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
