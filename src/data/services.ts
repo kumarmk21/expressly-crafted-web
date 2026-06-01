@@ -85,10 +85,10 @@ export const services: ServiceItem[] = [
     slug: "mrconnect",
     icon: Stethoscope,
     title: "MRConnect",
-    desc: "Powering the pharma field force with on-demand logistics for Medical Representatives, stockists and distributors.",
+    desc: "Seamless last-mile delivery of pharma samples from company warehouses to MRs nationwide.",
     image: serviceMrConnect,
     iconColor: "red-gradient",
-    tagline: "Powering the pharma field force with on-demand logistics.",
+    tagline: "Seamless last-mile delivery of pharma samples from company warehouses to MRs nationwide.",
     content: [
       "MRConnect is Scorpion Express's purpose-built service for the pharmaceutical field force — connecting Medical Representatives (MRs), Area Business Managers, stockists, distributors and CFAs through a single, technology-enabled logistics platform.",
       "From physician samples and promotional literature to urgent product top-ups and replacement stock, every consignment is moved through a controlled, monitored and audit-ready network designed specifically for the pharma industry.",
