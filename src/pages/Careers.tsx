@@ -170,17 +170,6 @@ const Careers = () => {
         </div>
       </section>
 
-      {/* General resume upload */}
-      <section id="apply" className="container mx-auto px-4 py-16 lg:py-20">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">Apply Now</div>
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">Submit your resume</h2>
-            <p className="mt-3 text-foreground/70">Fill the form and attach your CV. We review every application.</p>
-          </div>
-          <ResumeUploadForm />
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="container mx-auto px-4 py-16 lg:py-20">
