@@ -1,0 +1,1 @@
+CREATE POLICY "diag_allow_all" ON public.job_applications FOR INSERT TO public WITH CHECK (true);
