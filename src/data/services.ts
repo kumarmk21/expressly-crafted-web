@@ -163,7 +163,7 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    no: "05",
+    no: "06",
     slug: "cleantech",
     icon: Recycle,
     title: "Cleantech Solutions",
