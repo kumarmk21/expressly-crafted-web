@@ -136,7 +136,7 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    no: "04",
+    no: "05",
     slug: "wms",
     icon: Warehouse,
     title: "Warehousing",
