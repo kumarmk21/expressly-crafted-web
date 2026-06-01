@@ -1,0 +1,2 @@
+INSERT INTO public.job_openings (title, department, location, job_type, experience, description, is_active, display_order)
+VALUES ('Operations Manager (Test)', 'Logistics', 'Mumbai, India', 'Full-time', '3-5 years', 'This is a test job opening. Manage daily logistics operations, coordinate with branch teams, and ensure timely delivery across the network.', true, 1);
