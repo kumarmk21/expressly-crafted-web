@@ -10,8 +10,10 @@ import {
   Plus,
   Send,
   Tag as TagIcon,
+  Trash2,
   User as UserIcon,
   X,
+  Heart,
   Calendar,
   Search,
 } from "lucide-react";
