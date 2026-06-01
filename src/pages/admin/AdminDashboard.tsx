@@ -6,8 +6,9 @@ import { toast } from "sonner";
 import { Loader2, LogOut, Trash2, Plus, Save, Upload, Image as ImageIcon } from "lucide-react";
 import PagesPanel from "./PagesPanel";
 import NetworkStatsPanel from "./NetworkStatsPanel";
+import JobsPanel from "./JobsPanel";
 
-type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network";
+type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "jobs";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const AdminDashboard = () => {
     { id: "locations", label: "Locations" },
     { id: "pages", label: "Pages (CMS)" },
     { id: "network", label: "Network & Infra" },
+    { id: "jobs", label: "Careers / Jobs" },
   ];
 
   return (
@@ -76,6 +78,7 @@ const AdminDashboard = () => {
         {tab === "locations" && <LocationsPanel />}
         {tab === "pages" && <PagesPanel />}
         {tab === "network" && <NetworkStatsPanel />}
+        {tab === "jobs" && <JobsPanel />}
       </main>
     </div>
   );

@@ -330,6 +330,7 @@ export type Database = {
           email: string
           experience: string | null
           id: string
+          job_opening_id: string | null
           message: string | null
           name: string
           phone: string
@@ -344,6 +345,7 @@ export type Database = {
           email: string
           experience?: string | null
           id?: string
+          job_opening_id?: string | null
           message?: string | null
           name: string
           phone: string
@@ -358,6 +360,7 @@ export type Database = {
           email?: string
           experience?: string | null
           id?: string
+          job_opening_id?: string | null
           message?: string | null
           name?: string
           phone?: string
@@ -366,6 +369,56 @@ export type Database = {
           resume_url?: string
           role?: string
           status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_job_opening_id_fkey"
+            columns: ["job_opening_id"]
+            isOneToOne: false
+            referencedRelation: "job_openings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_openings: {
+        Row: {
+          created_at: string
+          department: string
+          description: string
+          display_order: number
+          experience: string
+          id: string
+          is_active: boolean
+          job_type: string
+          location: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          department?: string
+          description?: string
+          display_order?: number
+          experience?: string
+          id?: string
+          is_active?: boolean
+          job_type?: string
+          location?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          department?: string
+          description?: string
+          display_order?: number
+          experience?: string
+          id?: string
+          is_active?: boolean
+          job_type?: string
+          location?: string
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }

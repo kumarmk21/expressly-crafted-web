@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Upload, FileText, X, CheckCircle2, Send } from "lucide-react";
@@ -38,12 +38,22 @@ const formatSize = (bytes: number) => {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 };
 
-const ResumeUploadForm = () => {
+interface Props {
+  defaultRole?: string;
+  jobOpeningId?: string;
+  lockRole?: boolean;
+  onSubmitted?: () => void;
+}
+
+const ResumeUploadForm = ({ defaultRole = "", jobOpeningId, lockRole = false, onSubmitted }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [role, setRole] = useState(defaultRole);
+
+  useEffect(() => { setRole(defaultRole); }, [defaultRole]);
 
   const handleFile = (f: File | null) => {
     const err = validateFile(f);
@@ -72,7 +82,7 @@ const ResumeUploadForm = () => {
       name: String(form.get("name") || ""),
       email: String(form.get("email") || ""),
       phone: String(form.get("phone") || ""),
-      role: String(form.get("role") || ""),
+      role: String(form.get("role") || role || ""),
       experience: String(form.get("experience") || ""),
       message: String(form.get("message") || ""),
     };
@@ -103,7 +113,7 @@ const ResumeUploadForm = () => {
         .upload(path, file!, { contentType: file!.type || "application/octet-stream", upsert: false });
       if (uploadError) throw uploadError;
 
-      const { error: insertError } = await supabase.from("job_applications").insert([
+      const { data: inserted, error: insertError } = await supabase.from("job_applications").insert([
         {
           name: data.name,
           email: data.email,
@@ -114,15 +124,24 @@ const ResumeUploadForm = () => {
           resume_url: path,
           resume_file_name: file!.name,
           resume_file_size: file!.size,
-        },
-      ]);
+          ...(jobOpeningId ? { job_opening_id: jobOpeningId } : {}),
+        } as any,
+      ]).select("id").maybeSingle();
       if (insertError) throw insertError;
+
+      // Fire-and-forget email notification
+      if (inserted?.id) {
+        supabase.functions.invoke("notify-job-application", {
+          body: { application_id: inserted.id },
+        }).catch((err) => console.error("notify-job-application error", err));
+      }
 
       toast.success("Application submitted. Our HR team will be in touch.");
       (e.currentTarget as HTMLFormElement).reset();
       setFile(null);
       if (inputRef.current) inputRef.current.value = "";
       setErrors({});
+      onSubmitted?.();
     } catch (err: any) {
       console.error("Resume submit error:", err);
       toast.error(err?.message || "Failed to submit application. Please try again.");
@@ -142,74 +161,42 @@ const ResumeUploadForm = () => {
           <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">
             Full Name *
           </label>
-          <input
-            name="name"
-            maxLength={80}
-            className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary"
-          />
+          <input name="name" maxLength={80} className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary" />
           {errors.name && <p className="text-xs text-primary mt-1">{errors.name}</p>}
         </div>
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">
-            Email *
-          </label>
-          <input
-            name="email"
-            type="email"
-            maxLength={120}
-            className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary"
-          />
+          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">Email *</label>
+          <input name="email" type="email" maxLength={120} className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary" />
           {errors.email && <p className="text-xs text-primary mt-1">{errors.email}</p>}
         </div>
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">
-            Phone *
-          </label>
-          <input
-            name="phone"
-            maxLength={20}
-            className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary"
-          />
+          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">Phone *</label>
+          <input name="phone" maxLength={20} className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary" />
           {errors.phone && <p className="text-xs text-primary mt-1">{errors.phone}</p>}
         </div>
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">
-            Role Applied For *
-          </label>
+          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">Role Applied For *</label>
           <input
             name="role"
             maxLength={80}
             placeholder="e.g. Operations Manager"
-            className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            readOnly={lockRole}
+            className={`w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary ${lockRole ? "bg-muted/40 cursor-not-allowed" : ""}`}
           />
           {errors.role && <p className="text-xs text-primary mt-1">{errors.role}</p>}
         </div>
         <div className="md:col-span-2">
-          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">
-            Total Experience
-          </label>
-          <input
-            name="experience"
-            maxLength={20}
-            placeholder="e.g. 4 years"
-            className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary"
-          />
+          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">Total Experience</label>
+          <input name="experience" maxLength={20} placeholder="e.g. 4 years" className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary" />
         </div>
         <div className="md:col-span-2">
-          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">
-            Message
-          </label>
-          <textarea
-            name="message"
-            rows={4}
-            maxLength={800}
-            placeholder="A short note about yourself"
-            className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary resize-y"
-          />
+          <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">Message</label>
+          <textarea name="message" rows={4} maxLength={800} placeholder="A short note about yourself" className="w-full px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary resize-y" />
           {errors.message && <p className="text-xs text-primary mt-1">{errors.message}</p>}
         </div>
 
-        {/* File upload */}
         <div className="md:col-span-2">
           <label className="block text-xs font-bold uppercase tracking-wider text-foreground/70 mb-1.5">
             Resume * <span className="text-muted-foreground font-normal normal-case tracking-normal">(PDF, DOC, DOCX · max {MAX_SIZE_MB} MB)</span>
@@ -217,24 +204,15 @@ const ResumeUploadForm = () => {
 
           {!file ? (
             <div
-              onDragOver={(e) => {
-                e.preventDefault();
-                setDragOver(true);
-              }}
+              onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
               onDragLeave={() => setDragOver(false)}
               onDrop={onDrop}
               onClick={() => inputRef.current?.click()}
-              className={`cursor-pointer border-2 border-dashed p-6 text-center transition-colors ${
-                dragOver ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
-              }`}
+              className={`cursor-pointer border-2 border-dashed p-6 text-center transition-colors ${dragOver ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"}`}
             >
               <Upload className="h-7 w-7 text-primary mx-auto mb-2" />
-              <p className="text-sm font-bold text-foreground">
-                Drop your resume here or click to browse
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                PDF, DOC or DOCX up to {MAX_SIZE_MB} MB
-              </p>
+              <p className="text-sm font-bold text-foreground">Drop your resume here or click to browse</p>
+              <p className="text-xs text-muted-foreground mt-1">PDF, DOC or DOCX up to {MAX_SIZE_MB} MB</p>
             </div>
           ) : (
             <div className="flex items-center justify-between gap-3 border border-border bg-muted/40 p-3">
@@ -245,20 +223,11 @@ const ResumeUploadForm = () => {
                 <div className="min-w-0">
                   <div className="text-sm font-bold text-foreground truncate">{file.name}</div>
                   <div className="text-xs text-muted-foreground flex items-center gap-2">
-                    <CheckCircle2 className="h-3 w-3 text-primary" />
-                    {formatSize(file.size)} · ready to send
+                    <CheckCircle2 className="h-3 w-3 text-primary" /> {formatSize(file.size)} · ready to send
                   </div>
                 </div>
               </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setFile(null);
-                  if (inputRef.current) inputRef.current.value = "";
-                }}
-                className="p-2 text-muted-foreground hover:text-primary"
-                aria-label="Remove file"
-              >
+              <button type="button" onClick={() => { setFile(null); if (inputRef.current) inputRef.current.value = ""; }} className="p-2 text-muted-foreground hover:text-primary" aria-label="Remove file">
                 <X className="h-4 w-4" />
               </button>
             </div>
@@ -275,14 +244,8 @@ const ResumeUploadForm = () => {
       </div>
 
       <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <p className="text-xs text-muted-foreground">
-          Your application and resume are sent securely to our HR team.
-        </p>
-        <button
-          type="submit"
-          disabled={submitting}
-          className="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-black uppercase tracking-wider bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-60"
-        >
+        <p className="text-xs text-muted-foreground">Your application and resume are sent securely to our HR team.</p>
+        <button type="submit" disabled={submitting} className="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-black uppercase tracking-wider bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-60">
           <Send className="h-4 w-4" /> {submitting ? "Sending..." : "Submit Application"}
         </button>
       </div>
