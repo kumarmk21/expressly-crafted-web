@@ -1,0 +1,2 @@
+INSERT INTO public.job_openings (title, department, location, job_type, experience, description, is_active, display_order)
+VALUES ('Fleet Supervisor (Test)', 'Operations', 'Pune, India', 'Full-time', '2-4 years', 'Test opening — supervise fleet operations, driver scheduling, and on-time dispatch across regional hubs.', true, 2);
