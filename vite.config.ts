@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, type PluginOption } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 // Emits a /version.json on every build so the client can detect new deployments
 const buildVersion = Date.now().toString();
 
-const versionPlugin = () => ({
+const versionPlugin = (): PluginOption => ({
   name: "emit-version-json",
   generateBundle() {
     this.emitFile({
