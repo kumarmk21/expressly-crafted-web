@@ -24,6 +24,7 @@ import {
   QrCode,
   LayoutDashboard,
   Search,
+  Newspaper,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -200,7 +201,33 @@ const ModulesDashboard = ({ userId, onLogout }: { userId: string; onLogout: () =
           </div>
         </div>
 
+        {/* Featured: Team Blog */}
+        <Link
+          to="/employee-portal/blog"
+          className="group block bg-foreground text-white border border-foreground hover:border-primary mb-10 relative overflow-hidden"
+        >
+          <div className="absolute inset-0 opacity-10 grain pointer-events-none" />
+          <div className="relative p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-primary text-white">
+              <Newspaper className="h-6 w-6" />
+            </span>
+            <div className="flex-1">
+              <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-1">New</div>
+              <h2 className="font-display uppercase text-2xl md:text-3xl leading-tight">
+                Scorpion Team Blog
+              </h2>
+              <p className="text-sm text-white/70 mt-1">
+                Share updates, milestones and announcements. Add posts with images and tags.
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-wider text-xs px-5 py-3 self-start md:self-auto">
+              Open Blog <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </div>
+        </Link>
+
         {/* Modules grouped */}
+
         {groupOrder.map((group) => {
           const items = filtered.filter((m) => m.group === group);
           if (items.length === 0) return null;
