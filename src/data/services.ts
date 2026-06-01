@@ -85,7 +85,7 @@ export const services: ServiceItem[] = [
     slug: "mrconnect",
     icon: Stethoscope,
     title: "MRConnect",
-    desc: "A dedicated pharma field-force logistics platform connecting Medical Representatives, stockists and distributors for faster sample and product movement.",
+    desc: "Powering the pharma field force with on-demand logistics for Medical Representatives, stockists and distributors.",
     image: serviceMrConnect,
     iconColor: "red-gradient",
     tagline: "Powering the pharma field force with on-demand logistics.",
