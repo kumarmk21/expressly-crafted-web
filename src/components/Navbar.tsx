@@ -30,9 +30,9 @@ const navLinks = [
       { label: "Express", to: "/services/express", icon: PackageCheck, desc: "Time-definite surface delivery" },
       { label: "Air", to: "/services/air", icon: Plane, desc: "Priority air freight" },
       { label: "MRConnect", to: "/services/mrconnect", icon: Stethoscope, desc: "Pharma field-force logistics" },
-      { label: "Cold Chain", to: "/services/cold-chain", icon: Snowflake, desc: "Temperature-controlled logistics" },
+      { label: "Cold Chain", to: "/services/cold-chain", icon: Snowflake, desc: "Temperature-controlled logistics", tone: "sky" },
       { label: "Warehousing", to: "/services/wms", icon: Warehouse, desc: "Warehousing & fulfilment" },
-      { label: "Cleantech", to: "/services/cleantech", icon: Recycle, desc: "Sustainable reverse logistics" },
+      { label: "Cleantech", to: "/services/cleantech", icon: Recycle, desc: "Sustainable reverse logistics", tone: "emerald" },
       { label: "FTL", to: "/services/ftl", icon: Truck, desc: "Dedicated full truckload" },
     ],
   },
@@ -86,7 +86,13 @@ const Navbar = () => {
                               to={child.to}
                               className="flex items-start gap-3 p-4 border-b border-r border-border last:border-r-0 hover:bg-primary/5 transition-colors group/item"
                             >
-                              <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors">
+                              <span className={`flex h-9 w-9 shrink-0 items-center justify-center transition-colors ${
+                                child.tone === "sky"
+                                  ? "bg-sky-500/10 text-sky-600 group-hover/item:bg-sky-500 group-hover/item:text-white"
+                                  : child.tone === "emerald"
+                                  ? "bg-emerald-500/10 text-emerald-600 group-hover/item:bg-emerald-500 group-hover/item:text-white"
+                                  : "bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-white"
+                              }`}>
                                 <Icon className="h-4 w-4" />
                               </span>
                               <div className="flex-1 min-w-0">
@@ -181,7 +187,13 @@ const Navbar = () => {
                               onClick={() => setMobileOpen(false)}
                               className="flex items-center gap-3 px-4 py-3 border-t border-border hover:bg-primary/5"
                             >
-                              <span className="flex h-8 w-8 items-center justify-center bg-primary/10 text-primary">
+                              <span className={`flex h-8 w-8 items-center justify-center ${
+                                child.tone === "sky"
+                                  ? "bg-sky-500/10 text-sky-600"
+                                  : child.tone === "emerald"
+                                  ? "bg-emerald-500/10 text-emerald-600"
+                                  : "bg-primary/10 text-primary"
+                              }`}>
                                 <Icon className="h-4 w-4" />
                               </span>
                               <span className="text-sm font-bold uppercase tracking-wide">{child.label}</span>
