@@ -659,7 +659,13 @@ const EmployeeBlog = () => {
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((p) => (
-              <PostCard key={p.id} post={p} onOpen={() => setViewing(p)} />
+              <PostCard
+                key={p.id}
+                post={p}
+                likeCount={likeCounts[p.id] || 0}
+                onOpen={() => setViewing(p)}
+                onDelete={() => setDeleteTarget(p)}
+              />
             ))}
           </div>
         )}
@@ -673,6 +679,28 @@ const EmployeeBlog = () => {
 
       <NewPostDialog open={openNew} onOpenChange={setOpenNew} authorName={authorName} onCreated={fetchPosts} />
       <PostViewDialog post={viewing} onClose={() => setViewing(null)} />
+
+      <AlertDialog open={!!deleteTarget} onOpenChange={(v) => !v && setDeleteTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove this post?</AlertDialogTitle>
+            <AlertDialogDescription>
+              "{deleteTarget?.title}" will be permanently deleted along with its likes. This can't be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleting}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={(e) => { e.preventDefault(); handleDelete(); }}
+              disabled={deleting}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              {deleting ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Trash2 className="h-4 w-4 mr-2" />}
+              Remove
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
