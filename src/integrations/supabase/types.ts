@@ -897,6 +897,7 @@ export type Database = {
           tracking_number: string
         }[]
       }
+      whoami: { Args: never; Returns: string }
     }
     Enums: {
       app_role: "admin" | "user"
