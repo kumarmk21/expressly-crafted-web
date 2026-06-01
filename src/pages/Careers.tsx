@@ -180,10 +180,6 @@ const Careers = () => {
             <p className="mt-3 text-foreground/70">Send your CV and a short note about what you'd like to build with us.</p>
           </div>
           <div className="flex flex-col gap-3">
-            <a href="mailto:dhanushedge17@gmail.com" className="flex items-center justify-between gap-3 px-5 py-4 bg-primary text-white font-bold uppercase tracking-wider text-sm hover:bg-primary/90">
-              <span className="inline-flex items-center gap-2"><Mail className="h-4 w-4" /> dhanushedge17@gmail.com</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
             <a href="tel:+911234567890" className="flex items-center justify-between gap-3 px-5 py-4 border border-border font-bold uppercase tracking-wider text-sm text-foreground hover:border-primary">
               <span className="inline-flex items-center gap-2"><Phone className="h-4 w-4" /> HR Helpline</span>
               <ArrowUpRight className="h-4 w-4" />
