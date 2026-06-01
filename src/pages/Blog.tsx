@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
-import { Calendar, Heart, Loader2, Search, Share2, Tag as TagIcon, User as UserIcon } from "lucide-react";
+import { Calendar, Copy, Facebook, Heart, Linkedin, Loader2, Mail, MessageCircle, Search, Share2, Tag as TagIcon, Twitter, User as UserIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
@@ -63,6 +63,90 @@ const sharePost = async (post: BlogPost) => {
   } catch {
     toast.error("Couldn't copy link");
   }
+};
+
+const SharePostButtons = ({ post }: { post: BlogPost }) => {
+  const url = `${window.location.origin}/blog?post=${post.id}`;
+  const text = `${post.title} — Scorpion Team Blog`;
+  const enc = encodeURIComponent;
+
+  const links: { label: string; href?: string; onClick?: () => void; icon: typeof Facebook; className: string }[] = [
+    {
+      label: "Facebook",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`,
+      icon: Facebook,
+      className: "bg-[#1877F2] hover:bg-[#1877F2]/90 text-white",
+    },
+    {
+      label: "Twitter",
+      href: `https://twitter.com/intent/tweet?url=${enc(url)}&text=${enc(text)}`,
+      icon: Twitter,
+      className: "bg-[#1DA1F2] hover:bg-[#1DA1F2]/90 text-white",
+    },
+    {
+      label: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`,
+      icon: Linkedin,
+      className: "bg-[#0A66C2] hover:bg-[#0A66C2]/90 text-white",
+    },
+    {
+      label: "WhatsApp",
+      href: `https://api.whatsapp.com/send?text=${enc(text + " " + url)}`,
+      icon: MessageCircle,
+      className: "bg-[#25D366] hover:bg-[#25D366]/90 text-white",
+    },
+    {
+      label: "Email",
+      href: `mailto:?subject=${enc(post.title)}&body=${enc(text + "\n\n" + url)}`,
+      icon: Mail,
+      className: "bg-muted-foreground hover:bg-muted-foreground/90 text-white",
+    },
+    {
+      label: "Copy",
+      onClick: async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          toast.success("Link copied to clipboard");
+        } catch {
+          toast.error("Couldn't copy link");
+        }
+      },
+      icon: Copy,
+      className: "bg-primary hover:bg-primary/90 text-white",
+    },
+  ];
+
+  return (
+    <div className="pt-5 border-t border-border">
+      <div className="flex items-center gap-2 mb-3 text-primary">
+        <Share2 className="h-4 w-4" />
+        <span className="text-xs font-bold uppercase tracking-wider">Share This Post</span>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+        {links.map(({ label, href, onClick, icon: Icon, className }) =>
+          href ? (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${className}`}
+            >
+              <Icon className="h-3.5 w-3.5" /> {label}
+            </a>
+          ) : (
+            <button
+              key={label}
+              onClick={onClick}
+              className={`inline-flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${className}`}
+            >
+              <Icon className="h-3.5 w-3.5" /> {label}
+            </button>
+          )
+        )}
+      </div>
+    </div>
+  );
 };
 
 const Blog = () => {
@@ -302,23 +386,18 @@ const Blog = () => {
                 <img src={viewing.cover_image_url} alt={viewing.title} className="w-full max-h-[420px] object-cover border border-border" />
               )}
               <RenderedBody body={viewing.body} />
-              <div className="flex items-center gap-2 pt-4 border-t border-border">
+              <div className="flex items-center gap-3 pt-5 border-t border-border">
                 <button
                   onClick={() => toggleLike(viewing)}
                   className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3 py-2 border transition-colors ${likedByMe[viewing.id] ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-primary hover:text-primary"}`}
                 >
                   <Heart className={`h-3.5 w-3.5 ${likedByMe[viewing.id] ? "fill-primary" : ""}`} /> {likeCounts[viewing.id] || 0} Likes
                 </button>
-                <button
-                  onClick={() => sharePost(viewing)}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3 py-2 border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-                >
-                  <Share2 className="h-3.5 w-3.5" /> Share
-                </button>
                 <Link to="/employee-login" className="ml-auto text-[11px] uppercase tracking-wider text-muted-foreground hover:text-primary">
                   Employee? Sign in to post →
                 </Link>
               </div>
+              <SharePostButtons post={viewing} />
             </>
           )}
         </DialogContent>
