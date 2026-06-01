@@ -1,10 +1,11 @@
-import { Truck, Plane, Snowflake, Warehouse, Recycle, PackageCheck } from "lucide-react";
+import { Truck, Plane, Snowflake, Warehouse, Recycle, PackageCheck, Stethoscope } from "lucide-react";
 import serviceExpress from "@/assets/services/express.jpg";
 import serviceAir from "@/assets/services/air.jpg";
 import serviceColdchain from "@/assets/services/coldchain.jpg";
 import serviceWms from "@/assets/services/wms.jpg";
 import serviceCleantech from "@/assets/services/cleantech.jpg";
 import serviceFtl from "@/assets/services/ftl.jpg";
+import serviceMrConnect from "@/assets/services/mrconnect.jpg";
 
 export type ServiceItem = {
   no: string;
@@ -189,6 +190,34 @@ export const services: ServiceItem[] = [
       { title: "Dedicated Capacity", desc: "Guaranteed truck availability through long-term contracts and spot mode." },
       { title: "Direct Routing", desc: "No transshipment — faster transit and lower damage exposure." },
       { title: "Specialised Equipment", desc: "ODC, low-bed, and high-cube options for any cargo profile." },
+    ],
+  },
+  {
+    no: "07",
+    slug: "mrconnect",
+    icon: Stethoscope,
+    title: "MRConnect",
+    desc: "A dedicated pharma field-force logistics platform connecting Medical Representatives, stockists and distributors for faster sample and product movement.",
+    image: serviceMrConnect,
+    iconColor: "red-gradient",
+    tagline: "Powering the pharma field force with on-demand logistics.",
+    content: [
+      "MRConnect is Scorpion Express's purpose-built service for the pharmaceutical field force — connecting Medical Representatives (MRs), Area Business Managers, stockists, distributors and CFAs through a single, technology-enabled logistics platform.",
+      "From physician samples and promotional literature to urgent product top-ups and replacement stock, every consignment is moved through a controlled, monitored and audit-ready network designed specifically for the pharma industry.",
+      "MRs can raise pickup and delivery requests directly through the platform, track every shipment in real time, and access digital PODs the moment delivery is completed — eliminating manual follow-ups and accelerating field productivity.",
+      "Backed by our nationwide express network, temperature-aware handling and dedicated pharma operations team, MRConnect ensures that the right product reaches the right doctor, chemist or distributor at the right time — every time.",
+    ],
+    features: [
+      "Dedicated platform for MRs, stockists and distributors",
+      "On-demand pickup & delivery for samples and product top-ups",
+      "Real-time shipment tracking with instant digital POD",
+      "Pharma-grade handling with temperature-aware options",
+    ],
+    industries: ["Pharmaceuticals", "Healthcare", "Medical Devices", "Nutraceuticals"],
+    capabilities: [
+      { title: "Field-Force Enablement", desc: "Self-serve pickup booking and live visibility for MRs and field teams across India." },
+      { title: "Pharma-Specific Network", desc: "Integrated express and cold-chain capability tuned to pharma compliance needs." },
+      { title: "Digital Documentation", desc: "Instant ePOD, consignment history and reconciliation reports for HQ and stockists." },
     ],
   },
 ];
