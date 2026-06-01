@@ -386,23 +386,18 @@ const Blog = () => {
                 <img src={viewing.cover_image_url} alt={viewing.title} className="w-full max-h-[420px] object-cover border border-border" />
               )}
               <RenderedBody body={viewing.body} />
-              <div className="flex items-center gap-2 pt-4 border-t border-border">
+              <div className="flex items-center gap-3 pt-5 border-t border-border">
                 <button
                   onClick={() => toggleLike(viewing)}
                   className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3 py-2 border transition-colors ${likedByMe[viewing.id] ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground hover:border-primary hover:text-primary"}`}
                 >
                   <Heart className={`h-3.5 w-3.5 ${likedByMe[viewing.id] ? "fill-primary" : ""}`} /> {likeCounts[viewing.id] || 0} Likes
                 </button>
-                <button
-                  onClick={() => sharePost(viewing)}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3 py-2 border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-                >
-                  <Share2 className="h-3.5 w-3.5" /> Share
-                </button>
                 <Link to="/employee-login" className="ml-auto text-[11px] uppercase tracking-wider text-muted-foreground hover:text-primary">
                   Employee? Sign in to post →
                 </Link>
               </div>
+              <SharePostButtons post={viewing} />
             </>
           )}
         </DialogContent>
