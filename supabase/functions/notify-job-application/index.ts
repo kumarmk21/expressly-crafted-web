@@ -1,6 +1,5 @@
-// Sends a notification email (with resume attached) to HR via SMTP when an application is submitted.
+// Sends a notification email (with resume attached) to HR when an application is submitted.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -9,9 +8,7 @@ const corsHeaders = {
 };
 
 const HR_EMAIL = "dhanushedge17@gmail.com";
-const SMTP_HOST = "smtp.scorpiongroup.in";
-const SMTP_PORT = 587;
-const SMTP_USER = "info@scorpiongroup.in";
+const FROM_EMAIL = "info@scorpiongroup.in";
 const FROM_NAME = "Scorpion Careers";
 
 Deno.serve(async (req) => {
@@ -45,23 +42,23 @@ Deno.serve(async (req) => {
       .from("resumes").createSignedUrl(app.resume_url, 60 * 60 * 24 * 7);
     const resumeLink = signed?.signedUrl ?? "(unavailable)";
 
-    const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD");
-    if (!SMTP_PASSWORD) {
-      console.error("SMTP_PASSWORD missing");
-      return new Response(JSON.stringify({ ok: false, error: "SMTP_PASSWORD not configured" }), {
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    if (!RESEND_API_KEY) {
+      console.error("RESEND_API_KEY missing");
+      return new Response(JSON.stringify({ ok: false, error: "Email service not configured" }), {
         status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
     // Download resume to attach
     const { data: fileBlob } = await supabase.storage.from("resumes").download(app.resume_url);
-    let attachment: { filename: string; content: Uint8Array; contentType: string } | null = null;
+    let attachment: { filename: string; content: string; content_type: string } | null = null;
     if (fileBlob) {
       const buf = new Uint8Array(await fileBlob.arrayBuffer());
       attachment = {
         filename: app.resume_file_name || "resume",
-        content: buf,
-        contentType: fileBlob.type || "application/octet-stream",
+        content: base64Encode(buf),
+        content_type: fileBlob.type || "application/octet-stream",
       };
     }
 
@@ -76,37 +73,31 @@ Deno.serve(async (req) => {
       <p><strong>Resume:</strong> <a href="${resumeLink}">${escapeHtml(app.resume_file_name)}</a></p>
     `;
 
-    const client = new SMTPClient({
-      connection: {
-        hostname: SMTP_HOST,
-        port: SMTP_PORT,
-        tls: false,
-        auth: { username: SMTP_USER, password: SMTP_PASSWORD },
+    const emailResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json",
       },
-    });
-
-    try {
-      await client.send({
-        from: `${FROM_NAME} <${SMTP_USER}>`,
-        to: HR_EMAIL,
-        replyTo: app.email,
+      body: JSON.stringify({
+        from: `${FROM_NAME} <${FROM_EMAIL}>`,
+        to: [HR_EMAIL],
+        reply_to: app.email,
         subject: `New Application: ${app.role} — ${app.name}`,
         html,
-        content: "auto",
-        attachments: attachment
-          ? [{
-              filename: attachment.filename,
-              content: attachment.content,
-              contentType: attachment.contentType,
-              encoding: "binary",
-            }]
-          : undefined,
+        attachments: attachment ? [attachment] : undefined,
+      }),
+    });
+
+    const emailResult = await emailResponse.json().catch(() => ({}));
+    if (!emailResponse.ok) {
+      console.error("Resend email error:", emailResult);
+      return new Response(JSON.stringify({ ok: false, error: "Email notification failed" }), {
+        status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
-    } finally {
-      await client.close();
     }
 
-    return new Response(JSON.stringify({ ok: true, emailed: true }), {
+    return new Response(JSON.stringify({ ok: true, emailed: true, id: emailResult.id }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
@@ -119,4 +110,13 @@ Deno.serve(async (req) => {
 
 function escapeHtml(s: string) {
   return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" } as any)[c]);
+}
+
+function base64Encode(bytes: Uint8Array) {
+  let binary = "";
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+  }
+  return btoa(binary);
 }
