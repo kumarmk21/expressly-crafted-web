@@ -18,9 +18,9 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   try {
-    const { application_id } = await req.json();
-    if (!application_id) {
-      return new Response(JSON.stringify({ error: "application_id required" }), {
+    const { application_id, resume_url } = await req.json();
+    if (!application_id && !resume_url) {
+      return new Response(JSON.stringify({ error: "application_id or resume_url required" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
@@ -30,8 +30,10 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    const { data: app, error } = await supabase
-      .from("job_applications").select("*").eq("id", application_id).maybeSingle();
+    const query = supabase.from("job_applications").select("*");
+    const { data: app, error } = application_id
+      ? await query.eq("id", application_id).maybeSingle()
+      : await query.eq("resume_url", resume_url).order("created_at", { ascending: false }).limit(1).maybeSingle();
     if (error || !app) {
       return new Response(JSON.stringify({ error: "Application not found" }), {
         status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" },
