@@ -113,7 +113,7 @@ const ResumeUploadForm = ({ defaultRole = "", jobOpeningId, lockRole = false, on
         .upload(path, file!, { contentType: file!.type || "application/octet-stream", upsert: false });
       if (uploadError) throw uploadError;
 
-      const { data: inserted, error: insertError } = await supabase.from("job_applications").insert([
+      const { error: insertError } = await supabase.from("job_applications").insert([
         {
           name: data.name,
           email: data.email,
@@ -126,15 +126,13 @@ const ResumeUploadForm = ({ defaultRole = "", jobOpeningId, lockRole = false, on
           resume_file_size: file!.size,
           ...(jobOpeningId ? { job_opening_id: jobOpeningId } : {}),
         } as any,
-      ]).select("id").maybeSingle();
+      ]);
       if (insertError) throw insertError;
 
-      // Fire-and-forget email notification
-      if (inserted?.id) {
-        supabase.functions.invoke("notify-job-application", {
-          body: { application_id: inserted.id },
-        }).catch((err) => console.error("notify-job-application error", err));
-      }
+      // Fire-and-forget email notification (edge function looks up by resume_url)
+      supabase.functions.invoke("notify-job-application", {
+        body: { resume_url: path },
+      }).catch((err) => console.error("notify-job-application error", err));
 
       toast.success("Application submitted. Our HR team will be in touch.");
       (e.currentTarget as HTMLFormElement).reset();
