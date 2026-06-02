@@ -77,7 +77,8 @@ const ResumeUploadForm = ({ defaultRole = "", jobOpeningId, lockRole = false, on
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const form = new FormData(formElement);
     const data = {
       name: String(form.get("name") || ""),
       email: String(form.get("email") || ""),
@@ -135,7 +136,7 @@ const ResumeUploadForm = ({ defaultRole = "", jobOpeningId, lockRole = false, on
       }).catch((err) => console.error("notify-job-application error", err));
 
       toast.success("Application submitted. Our HR team will be in touch.");
-      (e.currentTarget as HTMLFormElement).reset();
+      formElement.reset();
       setFile(null);
       if (inputRef.current) inputRef.current.value = "";
       setErrors({});
