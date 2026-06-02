@@ -8,7 +8,7 @@ const corsHeaders = {
 };
 
 const HR_EMAIL = "dhanushedge17@gmail.com";
-const SMTP_HOST = "smtp.scorpiongroup.in";
+const SMTP_HOST = "in-mum-m314.icewarpcloud.in";
 const SMTP_PORT = 587;
 const SMTP_USER = "info@scorpiongroup.in";
 const FROM_NAME = "Scorpion Careers";
