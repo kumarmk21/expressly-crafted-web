@@ -61,31 +61,32 @@ const ClientsSection = () => {
             <p className="text-muted-foreground text-sm">Client logos will appear here once added from admin.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-px bg-border border border-border">
-            {clients.map((c, i) => (
-              <motion.div
-                key={c.id}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: Math.min(i * 0.03, 0.4) }}
-                className="aspect-[3/2] bg-card flex flex-col items-center justify-center gap-2 p-5 group hover:bg-background transition-colors"
-                title={c.industry ? `${c.name} — ${c.industry}` : c.name}
-              >
-                {c.logo_url && (
-                  <img
-                    src={c.logo_url}
-                    alt={`${c.name} logo`}
-                    loading="lazy"
-                    className="max-h-12 max-w-[80%] object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                )}
-                <span className="font-display uppercase text-sm md:text-base text-foreground/70 group-hover:text-primary transition-colors text-center leading-tight tracking-wide">
-                  {c.name}
-                </span>
-              </motion.div>
-            ))}
+          <div className="relative overflow-hidden border border-border bg-card">
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-background to-transparent" />
+            <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+              {[...clients, ...clients].map((c, i) => (
+                <div
+                  key={`${c.id}-${i}`}
+                  className="shrink-0 w-[200px] md:w-[240px] aspect-[3/2] flex flex-col items-center justify-center gap-2 p-5 border-r border-border group"
+                  title={c.industry ? `${c.name} — ${c.industry}` : c.name}
+                >
+                  {c.logo_url && (
+                    <img
+                      src={c.logo_url}
+                      alt={`${c.name} logo`}
+                      loading="lazy"
+                      className="max-h-12 max-w-[80%] object-contain transition-transform duration-300 group-hover:scale-110"
+                    />
+                  )}
+                  <span className="font-display uppercase text-sm text-foreground/70 group-hover:text-primary transition-colors text-center leading-tight tracking-wide">
+                    {c.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
+
         )}
       </div>
     </section>
