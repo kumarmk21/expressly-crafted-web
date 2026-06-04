@@ -55,7 +55,8 @@ const AboutUs = () => {
       .then(({ data }) => setLeadership(((data as any[]) ?? []) as Leader[]));
   }, []);
 
-    return (
+  return (
+    <div className="min-h-screen bg-white flex flex-col">
       <TopBar />
       <Navbar />
 
@@ -250,18 +251,20 @@ const AboutUs = () => {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            {leadership.map((leader) => (
+            {leadership.map((leader) => {
+              const photo = leader.photo_url || LOCAL_PHOTOS[leader.name] || null;
+              return (
               <motion.div
-                key={leader.name}
+                key={leader.id}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="bg-white border border-border group overflow-hidden"
               >
                 <div className="relative aspect-[3/4] bg-muted overflow-hidden">
-                  {leader.photo ? (
+                  {photo ? (
                     <img
-                      src={leader.photo}
+                      src={photo}
                       alt={leader.name}
                       className="h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
