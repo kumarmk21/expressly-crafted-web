@@ -35,31 +35,17 @@ const HeroSection = () => {
       <div className="absolute right-0 top-0 h-full w-1/2 spotlight" />
 
       <div className="container mx-auto px-4 relative z-10 pt-16 lg:pt-24 pb-12">
-        {/* eyebrow + blinking Events & News link */}
+        {/* eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex flex-wrap items-center gap-4 mb-8"
+          className="flex items-center gap-3 mb-8"
         >
-          <div className="flex items-center gap-3">
-            <span className="h-px w-12 bg-primary" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
-              {hero.eyebrow}
-            </span>
-          </div>
-          <Link
-            to="/events-news"
-            className="group inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white text-[11px] font-black uppercase tracking-[0.2em] animate-pulse hover:animate-none hover:bg-primary/90 transition-colors shadow-lg shadow-primary/30"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-75 animate-ping" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-            </span>
-            <Sparkles className="h-3 w-3" />
-            Events & News
-            <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
+          <span className="h-px w-12 bg-primary" />
+          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
+            {hero.eyebrow}
+          </span>
         </motion.div>
 
         {/* Massive display headline */}
