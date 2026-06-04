@@ -7,8 +7,9 @@ import { Loader2, LogOut, Trash2, Plus, Save, Upload, Image as ImageIcon } from 
 import PagesPanel from "./PagesPanel";
 import NetworkStatsPanel from "./NetworkStatsPanel";
 import JobsPanel from "./JobsPanel";
+import TechnologyPanel from "./TechnologyPanel";
 
-type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "jobs";
+type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "jobs";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const AdminDashboard = () => {
     { id: "locations", label: "Locations" },
     { id: "pages", label: "Pages (CMS)" },
     { id: "network", label: "Network & Infra" },
+    { id: "technology", label: "Technology" },
     { id: "jobs", label: "Careers / Jobs" },
   ];
 
@@ -78,6 +80,7 @@ const AdminDashboard = () => {
         {tab === "locations" && <LocationsPanel />}
         {tab === "pages" && <PagesPanel />}
         {tab === "network" && <NetworkStatsPanel />}
+        {tab === "technology" && <TechnologyPanel />}
         {tab === "jobs" && <JobsPanel />}
       </main>
     </div>
