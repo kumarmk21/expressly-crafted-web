@@ -11,6 +11,15 @@ const highlights = [
 const AboutSection = () => {
   return (
     <section id="about" className="py-24 lg:py-32 bg-background relative overflow-hidden">
+      {/* Giant watermark name */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center select-none"
+      >
+        <span className="font-display uppercase font-black leading-none tracking-tighter text-foreground/[0.04] text-[22vw] lg:text-[18vw] whitespace-nowrap translate-y-[15%]">
+          Scorpion
+        </span>
+      </div>
       <div className="container mx-auto px-4 relative">
         <div className="grid lg:grid-cols-12 gap-16 items-start">
           {/* Left: bold statement */}
