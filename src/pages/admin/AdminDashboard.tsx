@@ -10,8 +10,9 @@ import JobsPanel from "./JobsPanel";
 import TechnologyPanel from "./TechnologyPanel";
 import LeadershipPanel from "./LeadershipPanel";
 import EmpPortalPanel from "./EmpPortalPanel";
+import EventsNewsPanel from "./EventsNewsPanel";
 
-type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "leadership" | "jobs" | "empportal";
+type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "leadership" | "jobs" | "empportal" | "eventsnews";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const AdminDashboard = () => {
     { id: "leadership", label: "Leadership" },
     { id: "jobs", label: "Careers / Jobs" },
     { id: "empportal", label: "Employee Portal Modules" },
+    { id: "eventsnews", label: "Events & News" },
   ];
 
   return (
@@ -88,6 +90,7 @@ const AdminDashboard = () => {
         {tab === "leadership" && <LeadershipPanel />}
         {tab === "jobs" && <JobsPanel />}
         {tab === "empportal" && <EmpPortalPanel />}
+        {tab === "eventsnews" && <EventsNewsPanel />}
       </main>
     </div>
   );

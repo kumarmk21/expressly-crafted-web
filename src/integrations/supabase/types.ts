@@ -363,6 +363,57 @@ export type Database = {
         }
         Relationships: []
       }
+      events_news: {
+        Row: {
+          active: boolean
+          created_at: string
+          description: string | null
+          display_order: number
+          employee_designation: string | null
+          employee_name: string | null
+          event_date: string | null
+          id: string
+          image_url: string | null
+          link_url: string | null
+          month_year: string | null
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          employee_designation?: string | null
+          employee_name?: string | null
+          event_date?: string | null
+          id?: string
+          image_url?: string | null
+          link_url?: string | null
+          month_year?: string | null
+          title: string
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          employee_designation?: string | null
+          employee_name?: string | null
+          event_date?: string | null
+          id?: string
+          image_url?: string | null
+          link_url?: string | null
+          month_year?: string | null
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       job_applications: {
         Row: {
           created_at: string

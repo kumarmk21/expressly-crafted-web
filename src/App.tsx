@@ -8,6 +8,7 @@ import DynamicPage from "./pages/DynamicPage";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import EmployeeLogin from "./pages/EmployeeLogin";
+import EventsNews from "./pages/EventsNews";
 import EmployeeBlog from "./pages/EmployeeBlog";
 import Blog from "./pages/Blog";
 import Network from "./pages/Network";
@@ -45,6 +46,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/employee-login" element={<EmployeeLogin />} />
+              <Route path="/events-news" element={<EventsNews />} />
               <Route path="/employee-portal/blog" element={<EmployeeBlog />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/services/:slug" element={<ServiceDetail />} />
