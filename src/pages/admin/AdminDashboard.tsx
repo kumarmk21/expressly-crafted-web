@@ -8,8 +8,9 @@ import PagesPanel from "./PagesPanel";
 import NetworkStatsPanel from "./NetworkStatsPanel";
 import JobsPanel from "./JobsPanel";
 import TechnologyPanel from "./TechnologyPanel";
+import LeadershipPanel from "./LeadershipPanel";
 
-type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "jobs";
+type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "leadership" | "jobs";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const AdminDashboard = () => {
     { id: "pages", label: "Pages (CMS)" },
     { id: "network", label: "Network & Infra" },
     { id: "technology", label: "Technology" },
+    { id: "leadership", label: "Leadership" },
     { id: "jobs", label: "Careers / Jobs" },
   ];
 
@@ -81,6 +83,7 @@ const AdminDashboard = () => {
         {tab === "pages" && <PagesPanel />}
         {tab === "network" && <NetworkStatsPanel />}
         {tab === "technology" && <TechnologyPanel />}
+        {tab === "leadership" && <LeadershipPanel />}
         {tab === "jobs" && <JobsPanel />}
       </main>
     </div>
