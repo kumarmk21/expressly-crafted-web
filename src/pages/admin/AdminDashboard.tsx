@@ -66,13 +66,13 @@ const AdminDashboard = () => {
             <LogOut className="h-3.5 w-3.5" /> Sign out
           </button>
         </div>
-        <div className="container mx-auto px-4 py-3 overflow-x-auto">
-          <div className="flex min-w-max gap-2">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex flex-wrap gap-2">
           {tabs.map((t) => (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
-              className={`min-h-12 w-36 shrink-0 px-3 py-2 text-[11px] font-bold uppercase tracking-wider border transition-colors text-left ${
+              className={`min-h-12 min-w-[9rem] flex-1 basis-[9rem] px-3 py-2 text-[11px] font-bold uppercase tracking-wider border transition-colors text-left ${
                 tab === t.id ? "border-primary bg-primary/10 text-primary" : "border-border bg-background text-muted-foreground hover:text-foreground hover:border-primary/50"
               }`}
             >
