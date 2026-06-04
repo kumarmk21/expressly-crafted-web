@@ -1,0 +1,1 @@
+UPDATE public.network_stats SET value='25,000' WHERE id='68604f71-cb9d-4cd8-9dc7-d8063c9ec082';
