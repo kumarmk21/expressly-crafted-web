@@ -77,7 +77,7 @@ const ClientsSection = () => {
                     src={c.logo_url}
                     alt={`${c.name} logo`}
                     loading="lazy"
-                    className="max-h-12 max-w-[80%] object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    className="max-h-12 max-w-[80%] object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 )}
                 <span className="font-display uppercase text-sm md:text-base text-foreground/70 group-hover:text-primary transition-colors text-center leading-tight tracking-wide">
