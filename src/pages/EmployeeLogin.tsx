@@ -30,8 +30,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import scorpionLogo from "@/assets/scorpion-logo.png";
+import { supabase } from "@/integrations/supabase/client";
 
 const SESSION_KEY = "scorpion_emp_session";
+
+type EmpSession = {
+  userId: string;
+  name?: string;
+  empId?: string;
+  emailId?: string;
+};
 
 const loginSchema = z.object({
   userId: z
@@ -135,7 +143,8 @@ const modules: Module[] = [
 
 const groupOrder: Module["group"][] = ["Operations", "Finance", "Tools", "MIS"];
 
-const ModulesDashboard = ({ userId, onLogout }: { userId: string; onLogout: () => void }) => {
+const ModulesDashboard = ({ session, onLogout }: { session: EmpSession; onLogout: () => void }) => {
+  const userId = session.name || session.userId;
   const [query, setQuery] = useState("");
   const filtered = modules.filter((m) =>
     `${m.name} ${m.desc} ${m.group}`.toLowerCase().includes(query.toLowerCase().trim())
@@ -290,13 +299,13 @@ const ModulesDashboard = ({ userId, onLogout }: { userId: string; onLogout: () =
   );
 };
 
-const LoginScreen = ({ onLogin }: { onLogin: (userId: string) => void }) => {
+const LoginScreen = ({ onLogin }: { onLogin: (sess: EmpSession) => void }) => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [showPwd, setShowPwd] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = loginSchema.safeParse({ userId, password });
     if (!result.success) {
@@ -304,11 +313,27 @@ const LoginScreen = ({ onLogin }: { onLogin: (userId: string) => void }) => {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      onLogin(result.data.userId);
-      toast.success(`Welcome, ${result.data.userId}!`);
+    try {
+      const { data, error } = await supabase.functions.invoke("employee-login", {
+        body: { userId: result.data.userId, password: result.data.password },
+      });
+      if (error || !data?.success) {
+        toast.error((data as any)?.message || error?.message || "Invalid credentials");
+        return;
+      }
+      const u = (data as any).user;
+      onLogin({
+        userId: u.userId,
+        name: u.name,
+        empId: u.empId,
+        emailId: u.emailId,
+      });
+      toast.success(`Welcome, ${u.name || u.userId}!`);
+    } catch (err) {
+      toast.error("Login failed. Please try again.");
+    } finally {
       setLoading(false);
-    }, 500);
+    }
   };
 
   return (
@@ -443,8 +468,7 @@ const LoginScreen = ({ onLogin }: { onLogin: (userId: string) => void }) => {
           <div className="mt-8 p-3 bg-muted/60 border border-border flex items-start gap-2 text-xs text-muted-foreground">
             <ShieldCheck className="h-4 w-4 text-primary shrink-0 mt-0.5" />
             <span>
-              Demo mode: any valid Employee ID with a password (4+ chars) will sign you in. Production SSO will be
-              wired once authentication is enabled.
+              Sign in with your Scorpion Express Employee ID and password. Only active employees can access the portal.
             </span>
           </div>
 
@@ -458,7 +482,7 @@ const LoginScreen = ({ onLogin }: { onLogin: (userId: string) => void }) => {
 };
 
 const EmployeeLogin = () => {
-  const [session, setSession] = useState<{ userId: string } | null>(null);
+  const [session, setSession] = useState<EmpSession | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -466,17 +490,24 @@ const EmployeeLogin = () => {
       const raw = localStorage.getItem(SESSION_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (parsed?.userId) setSession({ userId: parsed.userId });
+        if (parsed?.userId) {
+          setSession({
+            userId: parsed.userId,
+            name: parsed.name,
+            empId: parsed.empId,
+            emailId: parsed.emailId,
+          });
+        }
       }
     } catch {
       // ignore
     }
   }, []);
 
-  const handleLogin = (userId: string) => {
-    const sess = { userId, at: Date.now() };
-    localStorage.setItem(SESSION_KEY, JSON.stringify(sess));
-    setSession({ userId });
+  const handleLogin = (sess: EmpSession) => {
+    const stored = { ...sess, at: Date.now() };
+    localStorage.setItem(SESSION_KEY, JSON.stringify(stored));
+    setSession(sess);
   };
 
   const handleLogout = () => {
@@ -487,7 +518,7 @@ const EmployeeLogin = () => {
   };
 
   if (session) {
-    return <ModulesDashboard userId={session.userId} onLogout={handleLogout} />;
+    return <ModulesDashboard session={session} onLogout={handleLogout} />;
   }
   return <LoginScreen onLogin={handleLogin} />;
 };
