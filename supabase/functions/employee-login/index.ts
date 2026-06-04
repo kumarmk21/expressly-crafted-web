@@ -5,75 +5,76 @@ Deno.serve(async (req) => {
     return new Response('ok', { headers: corsHeaders });
   }
 
+  const json = (body: unknown, status = 200) =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+
   try {
     const { userId, password } = await req.json();
 
     if (!userId || !password || typeof userId !== 'string' || typeof password !== 'string') {
-      return new Response(
-        JSON.stringify({ success: false, message: 'User ID and password are required' }),
-        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return json({ success: false, message: 'User ID and password are required' });
     }
 
     const trimmedId = userId.trim();
-    const apiUrl = `https://seplapi.cygnux.in/V1/Operation/GetUserMaster?SearchFilter=${encodeURIComponent(trimmedId)}`;
 
-    const apiRes = await fetch(apiUrl, { headers: { accept: 'text/plain' } });
+    // 1) Authenticate via the official login endpoint
+    const loginRes = await fetch('https://seplapi.cygnux.in/V1/Authenticate/Login', {
+      method: 'POST',
+      headers: { accept: 'text/plain', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: trimmedId, password }),
+    });
 
-    if (!apiRes.ok) {
-      return new Response(
-        JSON.stringify({ success: false, message: 'Authentication service unavailable' }),
-        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+    if (!loginRes.ok) {
+      return json({ success: false, message: 'Authentication service unavailable' });
     }
 
-    const payload = await apiRes.json();
-    const users: any[] = Array.isArray(payload?.data) ? payload.data : [];
-    const user = users.find((u) => String(u.userId).trim() === trimmedId);
+    const loginPayload: any = await loginRes.json();
+    const data = loginPayload?.data;
 
-    if (!user) {
-      return new Response(
-        JSON.stringify({ success: false, message: 'Invalid User ID or password' }),
-        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+    if (!data?.token || !data?.userId) {
+      return json({
+        success: false,
+        message: loginPayload?.message || loginPayload?.errors?.message || 'Invalid User ID or password',
+      });
     }
 
-    if (String(user.status).trim() !== '100') {
-      return new Response(
-        JSON.stringify({ success: false, message: 'User account is not active' }),
-        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    // 2) Verify the user is active (status = 100) via the User Master endpoint
+    try {
+      const masterRes = await fetch(
+        `https://seplapi.cygnux.in/V1/Operation/GetUserMaster?SearchFilter=${encodeURIComponent(trimmedId)}`,
+        { headers: { accept: 'text/plain' } },
       );
+      if (masterRes.ok) {
+        const masterPayload: any = await masterRes.json();
+        const u = Array.isArray(masterPayload?.data)
+          ? masterPayload.data.find((x: any) => String(x.userId).trim() === trimmedId)
+          : null;
+        if (u && String(u.status).trim() !== '100') {
+          return json({ success: false, message: 'User account is not active' });
+        }
+      }
+    } catch (_) {
+      // Non-fatal: master check is a best-effort guard
     }
 
-    // Compare against lastPwd (plaintext current password from API)
-    const expected = String(user.lastPwd ?? '').trim();
-    if (!expected || expected !== password) {
-      return new Response(
-        JSON.stringify({ success: false, message: 'Invalid User ID or password' }),
-        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
-    return new Response(
-      JSON.stringify({
-        success: true,
-        user: {
-          userId: user.userId,
-          name: user.name,
-          empId: user.empId,
-          emailId: user.emailId,
-          branchCode: user.branchCode,
-          department: user.department,
-          designation: user.designation,
-        },
-      }),
-      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
+    return json({
+      success: true,
+      user: {
+        userId: data.userId,
+        name: data.name,
+        emailId: data.emailId,
+        branchCode: data.branchCode,
+        branchName: data.branchName,
+        designation: data.designation,
+        userType: data.userType,
+        token: data.token,
+      },
+    });
   } catch (err) {
     console.error('employee-login error', err);
-    return new Response(
-      JSON.stringify({ success: false, message: 'Login failed. Please try again.' }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
+    return json({ success: false, message: 'Login failed. Please try again.' }, 500);
   }
 });
