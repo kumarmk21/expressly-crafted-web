@@ -2,7 +2,6 @@ import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NetworkSection from "@/components/NetworkSection";
-import TechnologySection from "@/components/TechnologySection";
 import CTASection from "@/components/CTASection";
 
 const Network = () => {
@@ -12,7 +11,6 @@ const Network = () => {
       <Navbar />
       <main>
         <NetworkSection />
-        <TechnologySection />
         <CTASection />
       </main>
       <Footer />
