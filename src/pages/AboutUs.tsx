@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Target, Eye, Award, Building2, Users, Truck, Shield, User as UserIcon, MapPin, Package } from "lucide-react";
+import { ArrowRight, Target, Eye, Award, Building2, Users, Truck, Shield, User as UserIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
@@ -12,6 +13,7 @@ import mandarBabre from "@/assets/leadership/mandar-babre.jpg";
 import manojKumar from "@/assets/leadership/manoj-kumar.jpg";
 import anilTiwari from "@/assets/leadership/anil-tiwari.jpg";
 import companyShowcase from "@/assets/hero-bg.jpg";
+import { supabase } from "@/integrations/supabase/client";
 
 const milestones = [
   { year: "2000", text: "Scorpion Group founded by Mr. J P N Singh" },
@@ -22,16 +24,18 @@ const milestones = [
   { year: "2024", text: "Modernized technology infrastructure with real-time tracking and intelligent analytics." },
 ];
 
-const leadership = [
-  { name: "J P N Singh", role: "Managing Director — Scorpion Group", photo: jpnSingh },
-  { name: "Shalini Singh", role: "Director — Scorpion Express Pvt. Ltd.", photo: shaliniSingh },
-  { name: "Raj Lalan Dwivedi", role: "COO — Scorpion Express Pvt. Ltd.", photo: rajLalan },
-  { name: "Subrat Rath", role: "CFO — Scorpion Express Pvt. Ltd.", photo: subratRath },
-  { name: "Manoj Kumar", role: "CTO — Scorpion Group", photo: manojKumar },
-  { name: "Mandar Babre", role: "CBO — Scorpion Express Pvt. Ltd.", photo: mandarBabre },
-  { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: null },
-  { name: "Anil Tiwari", role: "NHO — Scorpion Express Pvt. Ltd.", photo: anilTiwari },
-];
+// Local photo fallbacks for seeded leaders (matched by name)
+const LOCAL_PHOTOS: Record<string, string> = {
+  "J P N Singh": jpnSingh,
+  "Shalini Singh": shaliniSingh,
+  "Raj Lalan Dwivedi": rajLalan,
+  "Subrat Rath": subratRath,
+  "Manoj Kumar": manojKumar,
+  "Mandar Babre": mandarBabre,
+  "Anil Tiwari": anilTiwari,
+};
+
+type Leader = { id: string; name: string; role: string; photo_url: string | null; display_order: number };
 
 const values = [
   { icon: Shield, label: "Custodian First", desc: "Goods safeguarded above all else." },
@@ -41,8 +45,17 @@ const values = [
 ];
 
 const AboutUs = () => {
-  return (
-    <div className="min-h-screen bg-white flex flex-col">
+  const [leadership, setLeadership] = useState<Leader[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("leadership_members" as any)
+      .select("*")
+      .order("display_order")
+      .then(({ data }) => setLeadership(((data as any[]) ?? []) as Leader[]));
+  }, []);
+
+    return (
       <TopBar />
       <Navbar />
 
