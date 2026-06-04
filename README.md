@@ -1,73 +1,74 @@
-# Welcome to your Lovable project
+# Scorpion Express
 
-## Project info
+Freight and logistics website for Scorpion Express Pvt Ltd.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Built with Vite, React, TypeScript, Tailwind CSS, shadcn-ui, and Supabase (Lovable Cloud).
 
-## How can I edit this code?
+## Local Development
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requires Node.js & npm ([install via nvm](https://github.com/nvm-sh/nvm#installing-and-updating)).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The dev server runs at `http://localhost:8080`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Environment Variables
 
-**Use GitHub Codespaces**
+Create a `.env` file in the project root with:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+VITE_SUPABASE_URL=https://fvsxligdazghqsxmsbsp.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=<anon-key>
+VITE_SUPABASE_PROJECT_ID=fvsxligdazghqsxmsbsp
+```
 
-## What technologies are used for this project?
+These are the public/publishable Supabase keys — safe to commit, but Cloudflare needs them set explicitly.
 
-This project is built with:
+## Editing the Code
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Lovable**: open the [Lovable project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and prompt. Changes auto-commit to GitHub.
+- **Your IDE**: clone, edit, push — changes sync back to Lovable.
+- **GitHub web editor / Codespaces**: edit directly in the browser.
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### Option 1 — Lovable (default)
 
-## Can I connect a custom domain to my Lovable project?
+Click **Publish** (top right) in the Lovable editor. App goes live at `*.lovable.app`. Custom domains via **Project Settings → Domains**.
 
-Yes, you can!
+### Option 2 — Cloudflare Pages
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. **Connect GitHub repo**
+   Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → select this repo.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+2. **Build settings**
+   - Framework preset: **Vite**
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+
+3. **Environment variables** (set for both Production and Preview)
+   ```
+   VITE_SUPABASE_URL
+   VITE_SUPABASE_PUBLISHABLE_KEY
+   VITE_SUPABASE_PROJECT_ID
+   ```
+
+4. **SPA routing**
+   `public/_redirects` already contains `/* /index.html 200` so client-side routes work on refresh.
+
+5. **Custom domain** (optional)
+   Pages project → **Custom domains** → **Set up a domain**.
+
+Every push to the main branch triggers an automatic Cloudflare build. Supabase (database, edge functions, storage) keeps running on Supabase — nothing to migrate.
+
+## Tech Stack
+
+- Vite + React 18 + TypeScript
+- Tailwind CSS + shadcn-ui
+- Framer Motion
+- Supabase (Lovable Cloud) — database, auth, edge functions
