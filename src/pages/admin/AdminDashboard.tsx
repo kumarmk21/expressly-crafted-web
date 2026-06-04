@@ -65,7 +65,7 @@ const AdminDashboard = () => {
             <LogOut className="h-3.5 w-3.5" /> Sign out
           </button>
         </div>
-        <div className="container mx-auto px-4 flex gap-1 overflow-x-auto">
+        <div className="container mx-auto px-4 flex flex-wrap gap-1">
           {tabs.map((t) => (
             <button
               key={t.id}
