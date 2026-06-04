@@ -26,6 +26,7 @@ import {
   Search,
   Newspaper,
   Loader2,
+  Sparkles,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -151,28 +152,58 @@ const ModulesDashboard = ({ session, onLogout }: { session: EmpSession; onLogout
       </section>
 
       <main className="flex-1 container mx-auto px-4 py-10 lg:py-14">
-        {/* Featured: Team Blog */}
-        <Link
-          to="/employee-portal/blog"
-          className="group block bg-foreground text-white border border-foreground hover:border-primary mb-10 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 opacity-10 grain pointer-events-none" />
-          <div className="relative p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-primary text-white">
-              <Newspaper className="h-6 w-6" />
-            </span>
-            <div className="flex-1">
-              <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-1">New</div>
-              <h2 className="font-display uppercase text-2xl md:text-3xl leading-tight">Scorpion Team Blog</h2>
-              <p className="text-sm text-white/70 mt-1">
-                Share updates, milestones and announcements. Add posts with images and tags.
-              </p>
+        {/* Featured: Team Blog + Events & News */}
+        <div className="grid md:grid-cols-2 gap-4 mb-10">
+          <Link
+            to="/employee-portal/blog"
+            className="group block bg-foreground text-white border border-foreground hover:border-primary relative overflow-hidden"
+          >
+            <div className="absolute inset-0 opacity-10 grain pointer-events-none" />
+            <div className="relative p-6 md:p-7 flex flex-col gap-4 h-full">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-primary text-white">
+                <Newspaper className="h-5 w-5" />
+              </span>
+              <div className="flex-1">
+                <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-1">Internal</div>
+                <h2 className="font-display uppercase text-2xl leading-tight">Scorpion Team Blog</h2>
+                <p className="text-sm text-white/70 mt-1">
+                  Share updates, milestones and announcements with the team.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-wider text-xs px-4 py-2.5 self-start">
+                Open Blog <ArrowUpRight className="h-4 w-4" />
+              </span>
             </div>
-            <span className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-wider text-xs px-5 py-3 self-start md:self-auto">
-              Open Blog <ArrowUpRight className="h-4 w-4" />
-            </span>
-          </div>
-        </Link>
+          </Link>
+
+          <Link
+            to="/events-news"
+            className="group block bg-primary text-white border border-primary hover:bg-primary/90 relative overflow-hidden"
+          >
+            <div className="absolute inset-0 opacity-10 grain pointer-events-none" />
+            <div className="relative p-6 md:p-7 flex flex-col gap-4 h-full">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-white text-primary">
+                <Sparkles className="h-5 w-5" />
+              </span>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/90 mb-1">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-white opacity-75 animate-ping" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+                  </span>
+                  Live
+                </div>
+                <h2 className="font-display uppercase text-2xl leading-tight">Events & News</h2>
+                <p className="text-sm text-white/85 mt-1">
+                  Employee of the Month, townhalls, and the latest Scorpion stories.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-2 bg-white text-primary font-black uppercase tracking-wider text-xs px-4 py-2.5 self-start">
+                View Updates <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </div>
+          </Link>
+        </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
