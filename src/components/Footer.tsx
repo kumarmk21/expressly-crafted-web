@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, ArrowUpRight } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, ArrowUpRight, Lock } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
 
 const Footer = () => {
