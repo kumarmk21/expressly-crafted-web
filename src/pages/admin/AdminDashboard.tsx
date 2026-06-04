@@ -56,7 +56,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card">
+      <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link to="/" className="font-display uppercase text-xl">Scorpion<span className="text-primary">.</span> Admin</Link>
@@ -66,18 +66,20 @@ const AdminDashboard = () => {
             <LogOut className="h-3.5 w-3.5" /> Sign out
           </button>
         </div>
-        <div className="container mx-auto px-4 py-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 xl:grid-cols-11 gap-2">
+        <div className="container mx-auto px-4 py-3 overflow-x-auto">
+          <div className="flex min-w-max gap-2">
           {tabs.map((t) => (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
-              className={`min-h-12 px-3 py-2 text-[11px] font-bold uppercase tracking-wider border transition-colors text-left ${
+              className={`min-h-12 w-36 shrink-0 px-3 py-2 text-[11px] font-bold uppercase tracking-wider border transition-colors text-left ${
                 tab === t.id ? "border-primary bg-primary/10 text-primary" : "border-border bg-background text-muted-foreground hover:text-foreground hover:border-primary/50"
               }`}
             >
               {t.shortLabel}
             </button>
           ))}
+          </div>
         </div>
       </header>
       <main className="container mx-auto px-4 py-8">
