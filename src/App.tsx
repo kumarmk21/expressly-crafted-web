@@ -11,6 +11,7 @@ import EmployeeLogin from "./pages/EmployeeLogin";
 import EmployeeBlog from "./pages/EmployeeBlog";
 import Blog from "./pages/Blog";
 import Network from "./pages/Network";
+import Technology from "./pages/Technology";
 import ServiceDetail from "./pages/ServiceDetail";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
@@ -52,6 +53,7 @@ const App = () => (
               <Route path="/customer-portal" element={<CustomerPortal />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/network" element={<Network />} />
+              <Route path="/technology" element={<Technology />} />
               <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/legal/terms-and-conditions" element={<TermsAndConditions />} />
               <Route path="/legal/disclaimer" element={<Disclaimer />} />
