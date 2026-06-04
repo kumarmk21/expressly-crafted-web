@@ -48,6 +48,7 @@ const AdminDashboard = () => {
     { id: "technology", label: "Technology" },
     { id: "leadership", label: "Leadership" },
     { id: "jobs", label: "Careers / Jobs" },
+    { id: "empportal", label: "Employee Portal Modules" },
   ];
 
   return (
