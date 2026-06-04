@@ -718,6 +718,42 @@ export type Database = {
         }
         Relationships: []
       }
+      technology_items: {
+        Row: {
+          created_at: string
+          description: string
+          display_order: number
+          icon: string | null
+          id: string
+          image_url: string | null
+          no: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          display_order?: number
+          icon?: string | null
+          id?: string
+          image_url?: string | null
+          no: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          display_order?: number
+          icon?: string | null
+          id?: string
+          image_url?: string | null
+          no?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       tickets: {
         Row: {
           created_at: string

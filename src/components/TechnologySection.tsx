@@ -1,128 +1,38 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Monitor,
-  PackageSearch,
-  MapPinned,
-  Cloud,
-  HeadphonesIcon,
-  Radio,
-  ReceiptText,
-  Wallet,
-  Plug,
-  Tag,
-  Gavel,
-  Users,
+  Monitor, PackageSearch, MapPinned, Cloud, HeadphonesIcon, Radio,
+  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity,
   type LucideIcon,
 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-type Tech = {
-  no: string;
-  title: string;
-  desc: string;
-  icon: LucideIcon;
-  image: string;
+const ICONS: Record<string, LucideIcon> = {
+  Monitor, PackageSearch, MapPinned, Cloud, HeadphonesIcon, Radio,
+  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity,
 };
 
-const ITEMS: Tech[] = [
-  {
-    no: "01",
-    title: "Customer Portal",
-    desc: "Self-serve portal for bookings, tracking, invoices and MIS reports — anytime, anywhere.",
-    icon: Monitor,
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "02",
-    title: "API-based Booking & Pickup Request",
-    desc: "Plug-and-play APIs to push bookings and raise pickup requests directly from your system.",
-    icon: PackageSearch,
-    image:
-      "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "03",
-    title: "GPS Tracking on Middle Mile",
-    desc: "Live GPS visibility on every line-haul vehicle for real-time ETA and exception alerts.",
-    icon: MapPinned,
-    image:
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "04",
-    title: "Salesforce Module",
-    desc: "Salesforce-powered CRM driving lead-to-revenue tracking and account management.",
-    icon: Cloud,
-    image:
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "05",
-    title: "CRM & CSAT Module",
-    desc: "Unified CRM with built-in CSAT surveys to capture customer experience after every shipment.",
-    icon: HeadphonesIcon,
-    image:
-      "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "06",
-    title: "Control Tower",
-    desc: "24×7 control tower monitoring transit, hubs and exceptions across the entire network.",
-    icon: Radio,
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "07",
-    title: "Automated Customer Billing",
-    desc: "Rule-based automated billing engine — accurate invoices, faster cycles, zero leakage.",
-    icon: ReceiptText,
-    image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "08",
-    title: "Wallet-based Booking",
-    desc: "Prepaid wallet for instant bookings without payment friction or credit-limit holds.",
-    icon: Wallet,
-    image:
-      "https://images.unsplash.com/photo-1580048915913-4f3b1629d8eb?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "09",
-    title: "API-based Booking",
-    desc: "High-throughput booking APIs built for e-commerce, D2C and enterprise integrations.",
-    icon: Plug,
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "10",
-    title: "PRQ (Price Request Quote)",
-    desc: "On-demand pricing engine to generate accurate quotes against lane, weight and service.",
-    icon: Tag,
-    image:
-      "https://images.unsplash.com/photo-1556742400-b5b7c5121f6c?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "11",
-    title: "Bidding",
-    desc: "Digital bidding workflow for spot loads — transparent, competitive and fully auditable.",
-    icon: Gavel,
-    image:
-      "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=1200&q=70",
-  },
-  {
-    no: "12",
-    title: "Vendor Portal",
-    desc: "Dedicated vendor portal for indents, PODs, payments and performance scorecards.",
-    icon: Users,
-    image:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=70",
-  },
-];
+type Tech = {
+  id: string;
+  no: string;
+  title: string;
+  description: string;
+  image_url: string | null;
+  icon: string | null;
+  display_order: number;
+};
 
 const TechnologySection = () => {
+  const [items, setItems] = useState<Tech[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("technology_items" as any)
+      .select("*")
+      .order("display_order")
+      .then(({ data }) => setItems(((data as any[]) ?? []) as Tech[]));
+  }, []);
+
   return (
     <section id="technology" className="py-24 lg:py-32 bg-card">
       <div className="container mx-auto px-4">
@@ -148,27 +58,26 @@ const TechnologySection = () => {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {ITEMS.map((it, i) => {
-            const Icon = it.icon;
+          {items.map((it, i) => {
+            const Icon = (it.icon && ICONS[it.icon]) || Monitor;
             return (
               <motion.div
-                key={it.no}
+                key={it.id}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.04, duration: 0.4 }}
                 className="group relative overflow-hidden bg-card min-h-[280px]"
               >
-                {/* Background image */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center scale-105 group-hover:scale-110 transition-transform duration-700"
-                  style={{ backgroundImage: `url(${it.image})` }}
-                  aria-hidden="true"
-                />
-                {/* Overlay */}
+                {it.image_url && (
+                  <div
+                    className="absolute inset-0 bg-cover bg-center scale-105 group-hover:scale-110 transition-transform duration-700"
+                    style={{ backgroundImage: `url(${it.image_url})` }}
+                    aria-hidden="true"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/80 to-background/40 group-hover:from-background/90 group-hover:via-background/70 transition-colors" />
 
-                {/* Content */}
                 <div className="relative p-7 flex flex-col gap-4 h-full">
                   <div className="flex items-center justify-between">
                     <div className="h-12 w-12 bg-primary text-primary-foreground flex items-center justify-center shadow-lg">
@@ -182,7 +91,7 @@ const TechnologySection = () => {
                     <h3 className="font-display uppercase text-xl text-foreground leading-tight mb-2">
                       {it.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{it.desc}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{it.description}</p>
                   </div>
                 </div>
               </motion.div>
