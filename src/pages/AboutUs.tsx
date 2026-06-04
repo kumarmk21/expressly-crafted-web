@@ -282,7 +282,7 @@ const AboutUs = () => {
                   <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{leader.role}</p>
                 </div>
               </motion.div>
-            ))}
+            );})}
           </div>
         </div>
       </section>
