@@ -9,8 +9,9 @@ import NetworkStatsPanel from "./NetworkStatsPanel";
 import JobsPanel from "./JobsPanel";
 import TechnologyPanel from "./TechnologyPanel";
 import LeadershipPanel from "./LeadershipPanel";
+import EmpPortalPanel from "./EmpPortalPanel";
 
-type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "leadership" | "jobs";
+type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "leadership" | "jobs" | "empportal";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
