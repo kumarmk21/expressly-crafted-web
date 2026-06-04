@@ -131,6 +131,9 @@ const Footer = () => {
             <Link to="/legal/privacy-policy" className="hover:text-primary">Privacy Policy</Link>
             <Link to="/legal/terms-and-conditions" className="hover:text-primary">Terms &amp; Conditions</Link>
             <Link to="/legal/disclaimer" className="hover:text-primary">Disclaimer</Link>
+            <Link to="/admin" aria-label="Admin panel" title="Admin panel" className="inline-flex items-center gap-1 hover:text-primary">
+              <Lock className="h-3.5 w-3.5" /> Admin
+            </Link>
           </div>
         </div>
       </div>
