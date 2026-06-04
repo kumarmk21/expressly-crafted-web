@@ -11,7 +11,7 @@ Deno.serve(async (req) => {
     if (!userId || !password || typeof userId !== 'string' || typeof password !== 'string') {
       return new Response(
         JSON.stringify({ success: false, message: 'User ID and password are required' }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
@@ -23,7 +23,7 @@ Deno.serve(async (req) => {
     if (!apiRes.ok) {
       return new Response(
         JSON.stringify({ success: false, message: 'Authentication service unavailable' }),
-        { status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
@@ -34,14 +34,14 @@ Deno.serve(async (req) => {
     if (!user) {
       return new Response(
         JSON.stringify({ success: false, message: 'Invalid User ID or password' }),
-        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
     if (String(user.status).trim() !== '100') {
       return new Response(
         JSON.stringify({ success: false, message: 'User account is not active' }),
-        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
@@ -50,7 +50,7 @@ Deno.serve(async (req) => {
     if (!expected || expected !== password) {
       return new Response(
         JSON.stringify({ success: false, message: 'Invalid User ID or password' }),
-        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
