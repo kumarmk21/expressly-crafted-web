@@ -8,35 +8,49 @@ export const useAdmin = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
-      setSession(s);
-      if (!s) {
+    let active = true;
+    let requestId = 0;
+
+    const applySession = async (nextSession: Session | null) => {
+      const currentRequest = ++requestId;
+
+      if (!nextSession) {
+        if (!active || currentRequest !== requestId) return;
+        setSession(null);
         setIsAdmin(false);
         setLoading(false);
-      } else {
-        // defer to avoid deadlock inside the auth callback
-        setTimeout(() => checkRole(s.user.id), 0);
+        return;
       }
-    });
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      if (data.session) checkRole(data.session.user.id);
-      else setLoading(false);
-    });
-    return () => sub.subscription.unsubscribe();
-  }, []);
 
-  const checkRole = async (uid: string) => {
-    setLoading(true);
-    const { data } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", uid)
-      .eq("role", "admin")
-      .maybeSingle();
-    setIsAdmin(!!data);
-    setLoading(false);
-  };
+      if (active) {
+        setSession(nextSession);
+        setLoading(true);
+      }
+
+      const { data, error } = await supabase.rpc("has_role", {
+        _user_id: nextSession.user.id,
+        _role: "admin",
+      });
+
+      if (!active || currentRequest !== requestId) return;
+      if (error) console.error("Admin role check failed", error);
+      setIsAdmin(Boolean(data) && !error);
+      setLoading(false);
+    };
+
+    supabase.auth.getSession().then(({ data }) => {
+      void applySession(data.session);
+    });
+
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, nextSession) => {
+      setTimeout(() => void applySession(nextSession), 0);
+    });
+
+    return () => {
+      active = false;
+      sub.subscription.unsubscribe();
+    };
+  }, []);
 
   return { session, isAdmin, loading };
 };
