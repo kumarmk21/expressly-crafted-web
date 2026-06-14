@@ -49,6 +49,199 @@ export type Database = {
           },
         ]
       }
+      application_answers: {
+        Row: {
+          answer_text: string
+          application_id: string
+          created_at: string
+          id: string
+          question_id: string
+          updated_at: string
+        }
+        Insert: {
+          answer_text?: string
+          application_id: string
+          created_at?: string
+          id?: string
+          question_id: string
+          updated_at?: string
+        }
+        Update: {
+          answer_text?: string
+          application_id?: string
+          created_at?: string
+          id?: string
+          question_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "application_answers_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "application_answers_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      applications: {
+        Row: {
+          created_at: string
+          current_level: number
+          emp_id: string
+          id: string
+          is_draft: boolean
+          opportunity_type: string
+          status: string
+          submitted_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_level?: number
+          emp_id: string
+          id?: string
+          is_draft?: boolean
+          opportunity_type: string
+          status?: string
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_level?: number
+          emp_id?: string
+          id?: string
+          is_draft?: boolean
+          opportunity_type?: string
+          status?: string
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applications_emp_id_fkey"
+            columns: ["emp_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      approval_comments: {
+        Row: {
+          application_id: string
+          approver_id: string
+          comment: string
+          created_at: string
+          id: string
+          workflow_id: string | null
+        }
+        Insert: {
+          application_id: string
+          approver_id: string
+          comment: string
+          created_at?: string
+          id?: string
+          workflow_id?: string | null
+        }
+        Update: {
+          application_id?: string
+          approver_id?: string
+          comment?: string
+          created_at?: string
+          id?: string
+          workflow_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "approval_comments_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "approval_comments_approver_id_fkey"
+            columns: ["approver_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "approval_comments_workflow_id_fkey"
+            columns: ["workflow_id"]
+            isOneToOne: false
+            referencedRelation: "approval_workflow"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      approval_workflow: {
+        Row: {
+          actioned_at: string | null
+          application_id: string
+          approver_id: string | null
+          created_at: string
+          delegated_to: string | null
+          id: string
+          level: number
+          sla_deadline: string | null
+          status: string
+        }
+        Insert: {
+          actioned_at?: string | null
+          application_id: string
+          approver_id?: string | null
+          created_at?: string
+          delegated_to?: string | null
+          id?: string
+          level: number
+          sla_deadline?: string | null
+          status?: string
+        }
+        Update: {
+          actioned_at?: string | null
+          application_id?: string
+          approver_id?: string | null
+          created_at?: string
+          delegated_to?: string | null
+          id?: string
+          level?: number
+          sla_deadline?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "approval_workflow_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "approval_workflow_approver_id_fkey"
+            columns: ["approver_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "approval_workflow_delegated_to_fkey"
+            columns: ["delegated_to"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_post_likes: {
         Row: {
           created_at: string
@@ -320,6 +513,44 @@ export type Database = {
             columns: ["visit_record_id"]
             isOneToOne: false
             referencedRelation: "visit_records"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      documents: {
+        Row: {
+          application_id: string
+          file_name: string
+          file_path: string
+          file_size: number
+          file_type: string
+          id: string
+          uploaded_at: string
+        }
+        Insert: {
+          application_id: string
+          file_name: string
+          file_path: string
+          file_size?: number
+          file_type?: string
+          id?: string
+          uploaded_at?: string
+        }
+        Update: {
+          application_id?: string
+          file_name?: string
+          file_path?: string
+          file_size?: number
+          file_type?: string
+          id?: string
+          uploaded_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "applications"
             referencedColumns: ["id"]
           },
         ]
@@ -677,6 +908,44 @@ export type Database = {
           },
         ]
       }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          link: string | null
+          message: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          link?: string | null
+          message: string
+          type?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          link?: string | null
+          message?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       page_blocks: {
         Row: {
           block_type: string
@@ -742,6 +1011,48 @@ export type Database = {
           slug?: string
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      questions: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          is_active: boolean
+          max_chars: number
+          min_chars: number
+          path: string
+          question_text: string
+          question_type: string
+          section: string
+          tooltip_text: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          is_active?: boolean
+          max_chars?: number
+          min_chars?: number
+          path?: string
+          question_text: string
+          question_type?: string
+          section: string
+          tooltip_text?: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          is_active?: boolean
+          max_chars?: number
+          min_chars?: number
+          path?: string
+          question_text?: string
+          question_type?: string
+          section?: string
+          tooltip_text?: string
         }
         Relationships: []
       }
@@ -931,6 +1242,78 @@ export type Database = {
         }
         Relationships: []
       }
+      users: {
+        Row: {
+          created_at: string
+          date_of_joining: string
+          department: string
+          department_head_id: string | null
+          designation: string
+          email: string
+          emp_id: string
+          first_login: boolean
+          full_name: string
+          grade: string
+          id: string
+          is_active: boolean
+          manager_id: string | null
+          password_hash: string | null
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          date_of_joining?: string
+          department?: string
+          department_head_id?: string | null
+          designation?: string
+          email: string
+          emp_id: string
+          first_login?: boolean
+          full_name: string
+          grade?: string
+          id: string
+          is_active?: boolean
+          manager_id?: string | null
+          password_hash?: string | null
+          role?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          date_of_joining?: string
+          department?: string
+          department_head_id?: string | null
+          designation?: string
+          email?: string
+          emp_id?: string
+          first_login?: boolean
+          full_name?: string
+          grade?: string
+          id?: string
+          is_active?: boolean
+          manager_id?: string | null
+          password_hash?: string | null
+          role?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_department_head_id_fkey"
+            columns: ["department_head_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "users_manager_id_fkey"
+            columns: ["manager_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       visit_records: {
         Row: {
           approved_at: string | null
@@ -1030,6 +1413,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_my_role: { Args: never; Returns: string }
       get_vms_official_id: { Args: never; Returns: string }
       get_vms_role: {
         Args: never
