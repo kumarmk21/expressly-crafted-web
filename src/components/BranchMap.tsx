@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { MapPin, Phone, Mail, X } from "lucide-react";
-import indiaMap from "@/assets/india-map-outline.jpg";
+import networkMap from "@/assets/scorpion-network-map.jpg.asset.json";
 
 export type BranchLocation = {
   id: string;
@@ -162,11 +162,11 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
         })}
       </div>
 
-      <div className="relative w-full bg-background border border-border overflow-hidden rounded-sm">
+      <div className="relative w-full bg-[#FFD700] border border-border overflow-hidden rounded-sm">
         <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
           <img
-            src={indiaMap}
-            alt="India map showing Scorpion Express branch locations"
+            src={networkMap.url}
+            alt="Scorpion Express pan-India delivery network"
             loading="lazy"
             width={1024}
             height={1024}
