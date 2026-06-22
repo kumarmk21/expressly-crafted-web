@@ -162,12 +162,14 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
         })}
       </div>
 
-      <div className="relative w-full bg-[#fef3c7] border border-border overflow-hidden rounded-sm">
+      <div className="relative w-full bg-background border border-border overflow-hidden rounded-sm">
         <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
           <img
             src={indiaMap}
             alt="India map showing Scorpion Express branch locations"
             loading="lazy"
+            width={1024}
+            height={1024}
             className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
             draggable={false}
           />
@@ -202,7 +204,7 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
           {/* Address popover */}
           {active && (
             <div
-              className="absolute z-20 max-w-xs w-[88vw] sm:w-80 bg-white border border-primary shadow-2xl p-4 rounded-md"
+              className="absolute z-20 max-w-xs w-[88vw] sm:w-80 bg-card border border-primary shadow-2xl p-4 rounded-md"
               style={{
                 left: `${Math.min(Math.max(pins.find((p) => p.branch.id === active.id)?.pos.x ?? 50, 18), 82)}%`,
                 top: `${Math.min((pins.find((p) => p.branch.id === active.id)?.pos.y ?? 50) + 2, 80)}%`,
