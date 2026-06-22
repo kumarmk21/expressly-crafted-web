@@ -204,7 +204,7 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
           {/* Address popover */}
           {active && (
             <div
-              className="absolute z-20 max-w-xs w-[88vw] sm:w-80 bg-white border border-primary shadow-2xl p-4 rounded-md"
+              className="absolute z-20 max-w-xs w-[88vw] sm:w-80 bg-card border border-primary shadow-2xl p-4 rounded-md"
               style={{
                 left: `${Math.min(Math.max(pins.find((p) => p.branch.id === active.id)?.pos.x ?? 50, 18), 82)}%`,
                 top: `${Math.min((pins.find((p) => p.branch.id === active.id)?.pos.y ?? 50) + 2, 80)}%`,
