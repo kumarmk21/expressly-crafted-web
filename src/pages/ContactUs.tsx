@@ -281,13 +281,27 @@ const ContactUs = () => {
               <button
                 key={z.id}
                 onClick={() => setModalZone(z.id)}
-                className="relative group p-5 border text-left transition-all overflow-hidden bg-card border-border hover:border-primary hover:shadow-md hover:-translate-y-0.5"
+                className="relative group border text-left transition-all overflow-hidden bg-card border-border hover:border-primary hover:shadow-lg hover:-translate-y-0.5"
               >
-                <div className="absolute top-0 left-0 h-1 w-full bg-primary" />
-                <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Zone</div>
-                <div className="font-display text-2xl md:text-3xl tracking-wide text-foreground">{z.label}</div>
-                <div className="text-xs mt-2 font-bold uppercase tracking-wider text-muted-foreground">
-                  {counts[z.id] ?? 0} {counts[z.id] === 1 ? "branch" : "branches"}
+                <div className="absolute top-0 left-0 h-1 w-full bg-primary z-10" />
+                <div className="aspect-square overflow-hidden bg-[#f5d547]">
+                  <img
+                    src={z.image}
+                    alt={`Scorpion Express ${z.label} zone branches on India map`}
+                    loading="lazy"
+                    width={1024}
+                    height={1024}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-4">
+                  <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-1">Zone</div>
+                  <div className="font-display text-xl md:text-2xl tracking-wide text-foreground group-hover:text-primary transition-colors">
+                    {z.label}
+                  </div>
+                  <div className="text-xs mt-1 font-bold uppercase tracking-wider text-muted-foreground">
+                    {counts[z.id] ?? 0} {counts[z.id] === 1 ? "branch" : "branches"}
+                  </div>
                 </div>
               </button>
             ))}
