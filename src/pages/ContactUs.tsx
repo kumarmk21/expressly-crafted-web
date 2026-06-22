@@ -5,6 +5,11 @@ import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForms from "@/components/ContactForms";
+import zoneNorth from "@/assets/zone-north.jpg";
+import zoneSouth from "@/assets/zone-south.jpg";
+import zoneEast from "@/assets/zone-east.jpg";
+import zoneWest from "@/assets/zone-west.jpg";
+import zoneCentral from "@/assets/zone-central.jpg";
 
 type Location = {
   id: string;
@@ -22,11 +27,11 @@ type Location = {
 };
 
 const ZONES = [
-  { id: "East", label: "EAST" },
-  { id: "West", label: "WEST" },
-  { id: "North", label: "NORTH" },
-  { id: "South", label: "SOUTH" },
-  { id: "Central", label: "CENTRAL" },
+  { id: "North", label: "NORTH", image: zoneNorth },
+  { id: "South", label: "SOUTH", image: zoneSouth },
+  { id: "East", label: "EAST", image: zoneEast },
+  { id: "West", label: "WEST", image: zoneWest },
+  { id: "Central", label: "CENTRAL", image: zoneCentral },
 ];
 
 const HQ = [
