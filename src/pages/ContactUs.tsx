@@ -1,15 +1,11 @@
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Loader2, Building2, ArrowLeft, X } from "lucide-react";
+import { Phone, Mail, Loader2, Building2, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForms from "@/components/ContactForms";
-import zoneNorth from "@/assets/zone-north.jpg";
-import zoneSouth from "@/assets/zone-south.jpg";
-import zoneEast from "@/assets/zone-east.jpg";
-import zoneWest from "@/assets/zone-west.jpg";
-import zoneCentral from "@/assets/zone-central.jpg";
+import BranchMap from "@/components/BranchMap";
 
 type Location = {
   id: string;
