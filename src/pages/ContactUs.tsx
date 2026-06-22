@@ -1,38 +1,11 @@
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Loader2, Building2, ArrowLeft, X } from "lucide-react";
+import { Phone, Mail, Loader2, Building2, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForms from "@/components/ContactForms";
-import zoneNorth from "@/assets/zone-north.jpg";
-import zoneSouth from "@/assets/zone-south.jpg";
-import zoneEast from "@/assets/zone-east.jpg";
-import zoneWest from "@/assets/zone-west.jpg";
-import zoneCentral from "@/assets/zone-central.jpg";
-
-type Location = {
-  id: string;
-  location_code: string;
-  location_name: string;
-  hierarchy: string;
-  zone: string;
-  address: string | null;
-  city: string | null;
-  state: string | null;
-  pincode: string | null;
-  contact_number: string | null;
-  email: string | null;
-  is_active: boolean;
-};
-
-const ZONES = [
-  { id: "North", label: "NORTH", image: zoneNorth },
-  { id: "South", label: "SOUTH", image: zoneSouth },
-  { id: "East", label: "EAST", image: zoneEast },
-  { id: "West", label: "WEST", image: zoneWest },
-  { id: "Central", label: "CENTRAL", image: zoneCentral },
-];
+import BranchMap, { type BranchLocation } from "@/components/BranchMap";
 
 const HQ = [
   {
@@ -53,138 +26,15 @@ const HQ = [
   },
 ];
 
-const ZoneModal = ({
-  zone,
-  branches,
-  onClose,
-}: {
-  zone: string;
-  branches: Location[];
-  onClose: () => void;
-}) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-6"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-foreground/60 backdrop-blur-sm" />
-
-      {/* Glass panel */}
-      <div
-        ref={modalRef}
-        className="relative w-full max-w-6xl max-h-[85vh] mt-8 sm:mt-12 rounded-xl border border-white/20 shadow-2xl overflow-hidden flex flex-col"
-        style={{
-          background: "rgba(255, 255, 255, 0.75)",
-          backdropFilter: "blur(24px) saturate(140%)",
-          WebkitBackdropFilter: "blur(24px) saturate(140%)",
-        }}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/30 bg-white/40 shrink-0">
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary">
-              Zone
-            </span>
-            <h2 className="font-display uppercase text-2xl md:text-3xl text-foreground leading-none mt-1">
-              {zone}
-            </h2>
-            <p className="text-xs text-muted-foreground mt-1">
-              {branches.length} {branches.length === 1 ? "branch" : "branches"} found
-            </p>
-          </div>
-          <button
-            onClick={onClose}
-            className="h-9 w-9 rounded-full border border-white/40 bg-white/50 hover:bg-white/80 flex items-center justify-center transition-colors"
-            aria-label="Close"
-          >
-            <X className="h-4 w-4 text-foreground" />
-          </button>
-        </div>
-
-        {/* Scrollable content */}
-        <div className="overflow-y-auto flex-1 p-5 sm:p-6">
-          {branches.length === 0 ? (
-            <div className="text-center py-14 border border-dashed border-border/50 rounded-lg bg-white/30">
-              <p className="text-muted-foreground">No branches available in this zone.</p>
-            </div>
-          ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {branches.map((b) => (
-                <article
-                  key={b.id}
-                  className="bg-white/60 border border-white/40 rounded-lg p-5 hover:bg-white/80 hover:shadow-lg transition-all relative group"
-                >
-                  <span className="absolute top-0 left-0 h-0.5 w-0 bg-primary group-hover:w-full transition-all duration-300 rounded-tl-lg" />
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <h4 className="font-display uppercase text-lg leading-tight text-foreground group-hover:text-primary transition-colors">
-                      {b.location_name}
-                    </h4>
-                    <span className="text-[10px] font-mono font-bold px-2 py-1 bg-white/70 text-muted-foreground tracking-wider rounded border border-white/40">
-                      {b.location_code}
-                    </span>
-                  </div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground mb-3">
-                    Scorpion Express Pvt. Ltd.
-                  </p>
-                  {b.address && (
-                    <p className="flex items-start gap-2 text-sm text-foreground/85 mb-3 leading-relaxed">
-                      <MapPin className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                      <span>{b.address}</span>
-                    </p>
-                  )}
-                  {b.contact_number && (
-                    <p className="flex items-start gap-2 text-sm mb-1.5">
-                      <Phone className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                      <a href={`tel:${b.contact_number.split("/")[0].trim()}`} className="hover:text-primary">
-                        {b.contact_number}
-                      </a>
-                    </p>
-                  )}
-                  {b.email && (
-                    <p className="flex items-start gap-2 text-sm">
-                      <Mail className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                      <a href={`mailto:${b.email}`} className="hover:text-primary break-all">
-                        {b.email}
-                      </a>
-                    </p>
-                  )}
-                </article>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const ContactUs = () => {
-  const [locations, setLocations] = useState<Location[]>([]);
+  const [locations, setLocations] = useState<BranchLocation[]>([]);
   const [loading, setLoading] = useState(true);
-  const [modalZone, setModalZone] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
       const { data, error } = await supabase
         .from("locations" as any)
-        .select("*")
+        .select("id,location_code,location_name,zone,address,contact_number,email")
         .eq("is_active", true)
         .order("display_order")
         .order("location_name");
@@ -192,20 +42,6 @@ const ContactUs = () => {
       setLoading(false);
     })();
   }, []);
-
-  const counts = useMemo(() => {
-    const m: Record<string, number> = {};
-    ZONES.forEach((z) => (m[z.id] = 0));
-    locations.forEach((l) => {
-      if (m[l.zone] !== undefined) m[l.zone]++;
-    });
-    return m;
-  }, [locations]);
-
-  const modalBranches = useMemo(
-    () => (modalZone ? locations.filter((l) => l.zone === modalZone) : []),
-    [modalZone, locations]
-  );
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -227,7 +63,7 @@ const ContactUs = () => {
             We're across India. <span className="text-primary">Find your nearest branch.</span>
           </h1>
           <p className="mt-5 text-white/80 max-w-2xl leading-relaxed">
-            70+ branch offices across 5 zones. Click a zone below to see all branch addresses, phone numbers and emails.
+            70+ branch offices across 5 zones. Click any pin on the map below to see that branch's address, phone and email.
           </p>
         </div>
       </section>
@@ -261,14 +97,14 @@ const ContactUs = () => {
       {/* Contact forms (Business / Franchisee) */}
       <ContactForms />
 
-      {/* Zone selector */}
+      {/* Interactive Branch Map */}
       <section className="container mx-auto px-4 pb-20 flex-1">
         <div className="flex items-center gap-3 mb-6">
           <span className="h-px w-10 bg-primary" />
           <h2 className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Branch Network</h2>
         </div>
         <h3 className="font-display uppercase text-3xl md:text-4xl text-foreground mb-6">
-          Choose your zone
+          Our pan-India presence
         </h3>
 
         {loading ? (
@@ -276,49 +112,11 @@ const ContactUs = () => {
             <Loader2 className="h-6 w-6 animate-spin text-primary" />
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {ZONES.map((z) => (
-              <button
-                key={z.id}
-                onClick={() => setModalZone(z.id)}
-                className="relative group border text-left transition-all overflow-hidden bg-card border-border hover:border-primary hover:shadow-lg hover:-translate-y-0.5"
-              >
-                <div className="absolute top-0 left-0 h-1 w-full bg-primary z-10" />
-                <div className="aspect-square overflow-hidden bg-[#f5d547]">
-                  <img
-                    src={z.image}
-                    alt={`Scorpion Express ${z.label} zone branches on India map`}
-                    loading="lazy"
-                    width={1024}
-                    height={1024}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-1">Zone</div>
-                  <div className="font-display text-xl md:text-2xl tracking-wide text-foreground group-hover:text-primary transition-colors">
-                    {z.label}
-                  </div>
-                  <div className="text-xs mt-1 font-bold uppercase tracking-wider text-muted-foreground">
-                    {counts[z.id] ?? 0} {counts[z.id] === 1 ? "branch" : "branches"}
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
+          <BranchMap branches={locations} />
         )}
       </section>
 
       <Footer />
-
-      {/* Glassmorphism modal */}
-      {modalZone && (
-        <ZoneModal
-          zone={modalZone}
-          branches={modalBranches}
-          onClose={() => setModalZone(null)}
-        />
-      )}
     </div>
   );
 };
