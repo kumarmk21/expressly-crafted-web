@@ -258,10 +258,10 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
         </div>
       </div>
 
-      <p className="text-xs text-muted-foreground mt-4 flex items-center gap-2">
+      <p className="text-[11px] sm:text-xs text-muted-foreground mt-4 flex flex-wrap items-center gap-x-2 gap-y-1">
         <MapPin className="h-3.5 w-3.5 text-primary" />
-        Click any pin on the map to view that branch's address and contact details.
-        <span className="ml-auto font-mono">{pins.length} of {branches.length} mapped</span>
+        <span>Tap any pin on the map to view that branch's address and contact details.</span>
+        <span className="sm:ml-auto font-mono">{pins.length} of {branches.length} mapped</span>
       </p>
     </div>
   );
