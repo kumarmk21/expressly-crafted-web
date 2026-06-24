@@ -162,15 +162,15 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
         })}
       </div>
 
-      <div className="relative w-full bg-[#FFD700] border border-border overflow-hidden rounded-sm">
-        <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
+      <div className="relative w-full bg-[#F5B800] border border-border overflow-hidden rounded-sm">
+        <div className="relative w-full" style={{ aspectRatio: "16 / 10" }}>
           <img
             src={networkMap.url}
             alt="Scorpion Express pan-India delivery network"
             loading="lazy"
-            width={1024}
-            height={1024}
-            className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
+            width={1920}
+            height={1200}
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
             draggable={false}
           />
 
