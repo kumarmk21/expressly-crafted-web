@@ -119,15 +119,17 @@ const ZONE_COLORS: Record<string, string> = {
 };
 
 const ZONE_FILTERS = ["All", "North", "South", "East", "West", "Central"];
-const ASSET_ORIGIN =
-  typeof window !== "undefined" && window.location.hostname === "localhost"
-    ? "https://id-preview--b11bb29a-0b3e-4402-bb30-cd668cf03ac9.lovable.app"
-    : "";
-const MAP_IMAGE_URL = `${ASSET_ORIGIN}${networkMap.url}?v=20260624-2`;
+const MAP_IMAGE_SOURCES = [
+  `https://id-preview--b11bb29a-0b3e-4402-bb30-cd668cf03ac9.lovable.app${networkMap.url}?v=20260624-3`,
+  `https://expressly-crafted-web.lovable.app${networkMap.url}?v=20260624-3`,
+  `https://b11bb29a-0b3e-4402-bb30-cd668cf03ac9.lovableproject.com${networkMap.url}?v=20260624-3`,
+  `${networkMap.url}?v=20260624-3`,
+];
 
 const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
   const [filter, setFilter] = useState("All");
   const [active, setActive] = useState<BranchLocation | null>(null);
+  const [mapImageIndex, setMapImageIndex] = useState(0);
 
   const pins = useMemo(() => {
     return branches
@@ -170,13 +172,16 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
       <div className="relative w-full bg-[#F5B800] border border-border overflow-hidden rounded-sm">
         <div className="relative w-full" style={{ aspectRatio: "16 / 10" }}>
           <img
-            src={MAP_IMAGE_URL}
+            src={MAP_IMAGE_SOURCES[mapImageIndex]}
             alt="Scorpion Express pan-India delivery network"
             loading="eager"
             fetchPriority="high"
             decoding="async"
             width={1920}
             height={1200}
+            onError={() => {
+              setMapImageIndex((current) => Math.min(current + 1, MAP_IMAGE_SOURCES.length - 1));
+            }}
             className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
             draggable={false}
           />
