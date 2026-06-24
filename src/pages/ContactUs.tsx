@@ -51,18 +51,18 @@ const ContactUs = () => {
       <section className="relative bg-foreground text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10 grain" />
         <div className="absolute -top-20 -right-20 h-80 w-80 rounded-full bg-primary/30 blur-3xl" />
-        <div className="container mx-auto px-4 py-16 md:py-20 relative">
-          <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-white/70 hover:text-white mb-6">
+        <div className="container mx-auto px-4 py-12 md:py-20 relative">
+          <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-white/70 hover:text-white mb-5">
             <ArrowLeft className="h-3 w-3" /> Back to home
           </Link>
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-primary" />
             <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Contact Us</span>
           </div>
-          <h1 className="font-display uppercase text-5xl md:text-6xl lg:text-7xl leading-[0.95] max-w-3xl">
+          <h1 className="font-display uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95] max-w-3xl">
             We're across India. <span className="text-primary">Find your nearest branch.</span>
           </h1>
-          <p className="mt-5 text-white/80 max-w-2xl leading-relaxed">
+          <p className="mt-4 md:mt-5 text-sm md:text-base text-white/80 max-w-2xl leading-relaxed">
             70+ branch offices across 5 zones. Click any pin on the map below to see that branch's address, phone and email.
           </p>
         </div>
