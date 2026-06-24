@@ -119,6 +119,7 @@ const ZONE_COLORS: Record<string, string> = {
 };
 
 const ZONE_FILTERS = ["All", "North", "South", "East", "West", "Central"];
+const MAP_IMAGE_URL = `${networkMap.url}?v=20260624-2`;
 
 const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
   const [filter, setFilter] = useState("All");
@@ -165,9 +166,11 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
       <div className="relative w-full bg-[#F5B800] border border-border overflow-hidden rounded-sm">
         <div className="relative w-full" style={{ aspectRatio: "16 / 10" }}>
           <img
-            src={networkMap.url}
+            src={MAP_IMAGE_URL}
             alt="Scorpion Express pan-India delivery network"
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             width={1920}
             height={1200}
             className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
