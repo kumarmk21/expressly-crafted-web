@@ -119,7 +119,11 @@ const ZONE_COLORS: Record<string, string> = {
 };
 
 const ZONE_FILTERS = ["All", "North", "South", "East", "West", "Central"];
-const MAP_IMAGE_URL = `${networkMap.url}?v=20260624-2`;
+const ASSET_ORIGIN =
+  typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "https://id-preview--b11bb29a-0b3e-4402-bb30-cd668cf03ac9.lovable.app"
+    : "";
+const MAP_IMAGE_URL = `${ASSET_ORIGIN}${networkMap.url}?v=20260624-2`;
 
 const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
   const [filter, setFilter] = useState("All");
