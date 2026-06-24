@@ -98,7 +98,7 @@ const CITY_COORDS: Record<string, [number, number]> = {
 };
 
 // India outline image bounding-box inside the JPG (normalized 0..1)
-const MAP_BOUNDS = { left: 0.165, right: 0.86, top: 0.10, bottom: 0.91 };
+const MAP_BOUNDS = { left: 0.073, right: 0.396, top: 0.083, bottom: 0.842 };
 // Geographic bounds for projection
 const GEO = { latTop: 37, latBottom: 8, lngLeft: 68, lngRight: 97 };
 
