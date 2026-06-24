@@ -139,7 +139,7 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
   return (
     <div>
       {/* Zone filter pills */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex gap-2 mb-5 overflow-x-auto pb-1 -mx-1 px-1 sm:flex-wrap sm:overflow-visible">
         {ZONE_FILTERS.map((z) => {
           const isActive = filter === z;
           const count = z === "All" ? branches.length : branches.filter((b) => b.zone === z).length;
@@ -150,7 +150,7 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
                 setFilter(z);
                 setActive(null);
               }}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] border transition-all ${
+              className={`shrink-0 px-3 sm:px-4 py-2 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] border transition-all rounded-sm ${
                 isActive
                   ? "bg-primary text-primary-foreground border-primary"
                   : "bg-card text-foreground border-border hover:border-primary"
@@ -185,9 +185,9 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
               aria-label={`${branch.location_name} branch`}
             >
               <span className="relative flex items-center justify-center">
-                <span className="absolute inset-0 rounded-full bg-primary/30 animate-ping" style={{ width: 14, height: 14, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+                <span className="absolute rounded-full bg-primary/30 animate-ping" style={{ width: 12, height: 12, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
                 <MapPin
-                  className={`h-6 w-6 md:h-7 md:w-7 transition-all drop-shadow-md ${
+                  className={`h-4 w-4 sm:h-5 sm:w-5 md:h-7 md:w-7 transition-all drop-shadow-md ${
                     active?.id === branch.id ? "text-primary scale-125" : "text-primary group-hover:scale-125"
                   }`}
                   fill="currentColor"
@@ -195,7 +195,7 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
                   stroke="white"
                 />
               </span>
-              <span className="absolute left-1/2 -translate-x-1/2 mt-0.5 px-1.5 py-0.5 bg-foreground text-white text-[9px] font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none rounded-sm">
+              <span className="hidden sm:block absolute left-1/2 -translate-x-1/2 mt-0.5 px-1.5 py-0.5 bg-foreground text-white text-[9px] font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none rounded-sm">
                 {branch.location_name}
               </span>
             </button>
