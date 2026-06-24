@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { MapPin, Phone, Mail, X } from "lucide-react";
-import networkMap from "@/assets/scorpion-network-map.jpg.asset.json";
+import networkMap from "@/assets/scorpion-india-map.jpg.asset.json";
 
 export type BranchLocation = {
   id: string;
@@ -98,7 +98,7 @@ const CITY_COORDS: Record<string, [number, number]> = {
 };
 
 // India outline image bounding-box inside the JPG (normalized 0..1)
-const MAP_BOUNDS = { left: 0.165, right: 0.86, top: 0.10, bottom: 0.91 };
+const MAP_BOUNDS = { left: 0.073, right: 0.396, top: 0.083, bottom: 0.842 };
 // Geographic bounds for projection
 const GEO = { latTop: 37, latBottom: 8, lngLeft: 68, lngRight: 97 };
 
@@ -162,15 +162,15 @@ const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
         })}
       </div>
 
-      <div className="relative w-full bg-[#FFD700] border border-border overflow-hidden rounded-sm">
-        <div className="relative w-full" style={{ aspectRatio: "1 / 1" }}>
+      <div className="relative w-full bg-[#F5B800] border border-border overflow-hidden rounded-sm">
+        <div className="relative w-full" style={{ aspectRatio: "16 / 10" }}>
           <img
             src={networkMap.url}
             alt="Scorpion Express pan-India delivery network"
             loading="lazy"
-            width={1024}
-            height={1024}
-            className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
+            width={1920}
+            height={1200}
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
             draggable={false}
           />
 
