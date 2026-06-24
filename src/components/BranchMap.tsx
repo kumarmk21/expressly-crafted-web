@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { MapPin, Phone, Mail, X } from "lucide-react";
-import networkMap from "@/assets/scorpion-network-map.jpg.asset.json";
+import networkMap from "@/assets/scorpion-india-map.jpg.asset.json";
 
 export type BranchLocation = {
   id: string;
