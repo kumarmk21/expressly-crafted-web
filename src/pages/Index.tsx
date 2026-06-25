@@ -8,10 +8,16 @@ import ClientsSection from "@/components/ClientsSection";
 import LeadershipSection from "@/components/LeadershipSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Scorpion Express — Custodian First, Carrier Later"
+        description="India's premier freight and logistics provider — express, cold chain, FTL, air freight and warehousing across 24,000+ pincodes."
+        path="/"
+      />
       <TopBar />
       <Navbar />
       <main>
