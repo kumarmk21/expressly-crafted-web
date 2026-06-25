@@ -1,0 +1,30 @@
+# Scorpion Express
+
+> Scorpion Express Pvt Ltd is one of India's premier freight and logistics service providers — express cargo, cold chain, FTL, air freight, and warehousing across 24,000+ pincodes.
+
+## Pages
+
+- [Home](/): Overview of Scorpion Express services and network.
+- [About](/about): Company story, leadership, milestones and values.
+- [Contact](/contact): HQ details and pan-India branch network with addresses.
+- [Network](/network): Pan-India logistics network coverage and zones.
+- [Technology](/technology): Tracking, WMS, and digital logistics platforms.
+- [Careers](/careers): Current openings and how to apply.
+- [Blog](/blog): Insights on logistics, supply chain and operations.
+- [Events & News](/events-news): Company news and event updates.
+
+## Services
+
+- [Express](/services/express): Time-definite surface express delivery.
+- [Air Freight](/services/air): Domestic air cargo solutions.
+- [Cold Chain](/services/coldchain): Temperature-controlled logistics.
+- [Warehousing (WMS)](/services/wms): Warehouse management services.
+- [Cleantech](/services/cleantech): Reverse logistics for cleantech.
+- [FTL](/services/ftl): Full truckload road transport.
+- [MR Connect](/services/mrconnect): Medical representative connect logistics.
+
+## Optional
+
+- [Privacy Policy](/legal/privacy-policy)
+- [Terms & Conditions](/legal/terms-and-conditions)
+- [Disclaimer](/legal/disclaimer)
