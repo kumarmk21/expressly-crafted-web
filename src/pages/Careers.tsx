@@ -8,6 +8,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
+import Seo from "@/components/Seo";
 import ResumeUploadForm from "@/components/ResumeUploadForm";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -59,6 +60,11 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Careers at Scorpion Express | Join Our Logistics Team"
+        description="Explore current openings at Scorpion Express across operations, technology, sales and support. Apply today."
+        path="/careers"
+      />
       <TopBar />
       <Navbar />
 

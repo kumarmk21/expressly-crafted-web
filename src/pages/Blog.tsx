@@ -260,8 +260,13 @@ const Blog = () => {
   return (
     <div className="min-h-screen flex flex-col bg-muted/30">
       <Helmet>
-        <title>Blog — Scorpion Express</title>
-        <meta name="description" content="Updates, milestones, and stories from the Scorpion Express team." />
+        <title>Logistics Blog | Scorpion Express</title>
+        <meta name="description" content="Updates, milestones and stories from the Scorpion Express team — logistics insights from across India." />
+        <link rel="canonical" href="https://expressly-crafted-web.lovable.app/blog" />
+        <meta property="og:title" content="Logistics Blog | Scorpion Express" />
+        <meta property="og:description" content="Updates, milestones and stories from the Scorpion Express team." />
+        <meta property="og:url" content="https://expressly-crafted-web.lovable.app/blog" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
 
