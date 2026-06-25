@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForms from "@/components/ContactForms";
 import BranchMap, { type BranchLocation } from "@/components/BranchMap";
+import Seo from "@/components/Seo";
 
 const HQ = [
   {
@@ -45,6 +46,26 @@ const ContactUs = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <Seo
+        title="Contact Scorpion Express | Pan-India Branch Network"
+        description="Reach our HQ in Mumbai or any of 70+ branches across India. Phone, email and addresses for every Scorpion Express location."
+        path="/contact"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Scorpion Express Pvt Ltd",
+          telephone: "+91-22-2497-8815",
+          email: "info@scorpiongroup.in",
+          url: "https://expressly-crafted-web.lovable.app/contact",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "610, Shah & Nahar Industrial Estate, Dr. E. Moses Road, Worli",
+            addressLocality: "Mumbai",
+            postalCode: "400018",
+            addressCountry: "IN",
+          },
+        }}
+      />
       <Navbar />
 
       {/* Page header */}

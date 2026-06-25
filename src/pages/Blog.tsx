@@ -260,8 +260,13 @@ const Blog = () => {
   return (
     <div className="min-h-screen flex flex-col bg-muted/30">
       <Helmet>
-        <title>Blog — Scorpion Express</title>
-        <meta name="description" content="Updates, milestones, and stories from the Scorpion Express team." />
+        <title>Logistics Blog | Scorpion Express</title>
+        <meta name="description" content="Updates, milestones and stories from the Scorpion Express team — logistics insights from across India." />
+        <link rel="canonical" href="https://expressly-crafted-web.lovable.app/blog" />
+        <meta property="og:title" content="Logistics Blog | Scorpion Express" />
+        <meta property="og:description" content="Updates, milestones and stories from the Scorpion Express team." />
+        <meta property="og:url" content="https://expressly-crafted-web.lovable.app/blog" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
 
@@ -282,7 +287,7 @@ const Blog = () => {
         <div className="bg-white border border-border p-4 mb-6 flex flex-col md:flex-row md:items-center gap-3">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search posts…" className="pl-9 h-10" maxLength={100} />
+            <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search posts…" aria-label="Search blog posts" className="pl-9 h-10" maxLength={100} />
           </div>
           {allTags.length > 0 && (
             <div className="flex items-center gap-2 overflow-x-auto">

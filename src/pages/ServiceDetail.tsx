@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
+import Seo from "@/components/Seo";
 import { getServiceBySlug, services } from "@/data/services";
 import { useQuote } from "@/context/QuoteContext";
 
@@ -39,6 +40,20 @@ const ServiceDetail = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <Seo
+        title={`${service.title} | Scorpion Express`}
+        description={service.desc.slice(0, 158)}
+        path={`/services/${service.slug}`}
+        image={service.image}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: service.title,
+          description: service.desc,
+          provider: { "@type": "Organization", name: "Scorpion Express Pvt Ltd", url: "https://expressly-crafted-web.lovable.app" },
+          areaServed: "IN",
+        }}
+      />
       <TopBar />
       <Navbar />
 

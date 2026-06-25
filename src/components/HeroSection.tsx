@@ -27,7 +27,7 @@ const HeroSection = () => {
     <section className="relative bg-background overflow-hidden border-b border-border">
       {/* BG layers */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="h-full w-full object-cover opacity-30" />
+        <img src={heroBg} alt="" className="h-full w-full object-cover opacity-30" fetchPriority="high" decoding="async" width={1920} height={1080} />
         <div className="absolute inset-0 hero-gradient" />
         <div className="absolute inset-0 grain opacity-50" />
       </div>
@@ -134,6 +134,7 @@ const HeroSection = () => {
                     value={lr}
                     onChange={(e) => setLr(e.target.value)}
                     placeholder="e.g. SX1234567890"
+                    aria-label="Shipment tracking number"
                     className="w-full pl-10 pr-3 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground font-mono-tab text-sm focus:outline-none focus:border-primary"
                   />
                 </div>
