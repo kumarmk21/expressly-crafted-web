@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForms from "@/components/ContactForms";
 import BranchMap, { type BranchLocation } from "@/components/BranchMap";
+import Seo from "@/components/Seo";
 
 const HQ = [
   {
