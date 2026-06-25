@@ -122,9 +122,9 @@ const Careers = () => {
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <div className="relative flex-1 md:w-72">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search role or city" className="w-full pl-10 pr-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary" />
+                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search role or city" aria-label="Search jobs by role or city" className="w-full pl-10 pr-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary" />
               </div>
-              <select value={dept} onChange={(e) => setDept(e.target.value)} className="px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary">
+              <select value={dept} onChange={(e) => setDept(e.target.value)} aria-label="Filter jobs by department" className="px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary">
                 {departments.map((d) => (<option key={d} value={d}>{d}</option>))}
               </select>
             </div>
