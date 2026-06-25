@@ -5,6 +5,7 @@ import { ArrowRight, Target, Eye, Award, Building2, Users, Truck, Shield, User a
 import Navbar from "@/components/Navbar";
 import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 import jpnSingh from "@/assets/leadership/jpn-singh.jpg";
 import shaliniSingh from "@/assets/leadership/shalini-singh.jpg";
 import rajLalan from "@/assets/leadership/raj-lalan.jpg";
@@ -57,6 +58,11 @@ const AboutUs = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
+      <Seo
+        title="About Scorpion Express | Custodian First, Carrier Later"
+        description="Founded in 2000, Scorpion Express delivers pan-India freight, cold chain and warehousing with a custodian-first promise."
+        path="/about"
+      />
       <TopBar />
       <Navbar />
 
