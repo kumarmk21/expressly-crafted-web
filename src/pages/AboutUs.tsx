@@ -35,6 +35,7 @@ const LOCAL_PHOTOS: Record<string, string> = {
   "Manoj Kumar": manojKumar,
   "Mandar Babre": mandarBabre,
   "Anil Tiwari": anilTiwari,
+  "Pooja Patel Kalia": poojaPatelKalia.url,
 };
 
 type Leader = { id: string; name: string; role: string; photo_url: string | null; display_order: number };
