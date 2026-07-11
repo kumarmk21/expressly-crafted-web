@@ -13,6 +13,7 @@ import subratRath from "@/assets/leadership/subrat-rath.jpg";
 import mandarBabre from "@/assets/leadership/mandar-babre.jpg";
 import manojKumar from "@/assets/leadership/manoj-kumar.jpg";
 import anilTiwari from "@/assets/leadership/anil-tiwari.jpg";
+import poojaPatelKalia from "@/assets/leadership/pooja-patel-kalia.jpg.asset.json";
 import companyShowcase from "@/assets/hero-bg.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -34,6 +35,7 @@ const LOCAL_PHOTOS: Record<string, string> = {
   "Manoj Kumar": manojKumar,
   "Mandar Babre": mandarBabre,
   "Anil Tiwari": anilTiwari,
+  "Pooja Patel Kalia": poojaPatelKalia.url,
 };
 
 type Leader = { id: string; name: string; role: string; photo_url: string | null; display_order: number };
