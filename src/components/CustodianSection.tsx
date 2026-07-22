@@ -1,0 +1,145 @@
+import { motion } from "framer-motion";
+import { ShieldCheck, Video, Lock, FileCheck, ArrowRight } from "lucide-react";
+import containerLock from "@/assets/custodian/secure-container-lock.png.asset.json";
+import cctv from "@/assets/custodian/cctv-control-room.jpg";
+import envelope from "@/assets/custodian/secure-envelope.jpg";
+
+const pillars = [
+  {
+    icon: Video,
+    title: "24×7 CCTV Surveillance",
+    desc: "Every hub, dock and loading bay under live camera watch. Recorded, reviewed and audit-ready.",
+    image: cctv,
+  },
+  {
+    icon: Lock,
+    title: "Digital Locks & Sealed Containers",
+    desc: "Tamper-evident digital locks with unique seal numbers on every container — opened only at destination.",
+    image: containerLock.url,
+  },
+  {
+    icon: FileCheck,
+    title: "Tamper-Proof Secure Envelopes",
+    desc: "High-value documents move in serialised, tamper-evident envelopes with signature + PoD capture.",
+    image: envelope,
+  },
+];
+
+const CustodianSection = () => {
+  return (
+    <section className="relative bg-background border-b border-border overflow-hidden">
+      {/* subtle red spotlight */}
+      <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+      <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+
+      <div className="container mx-auto px-4 py-20 lg:py-28 relative z-10">
+        {/* Heading */}
+        <div className="grid lg:grid-cols-12 gap-8 mb-14">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <ShieldCheck className="h-5 w-5 text-primary" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
+                What "Custodian First" Means
+              </span>
+            </div>
+            <h2 className="font-display uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95] text-foreground">
+              Your cargo is <span className="text-primary">guarded</span>,
+              <br /> not just carried.
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-5 flex items-end"
+          >
+            <p className="text-base lg:text-lg text-foreground/70 leading-relaxed">
+              Before we move a single kilometre, we take custody of your goods —
+              with insured coverage, live surveillance, digital locks and
+              tamper-proof handling at every touchpoint. That's the Scorpion promise.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Pillars grid */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {pillars.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <motion.article
+                key={p.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="group relative bg-card border border-border overflow-hidden hover:border-primary transition-colors"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                  <div className="absolute top-4 left-4 h-10 w-10 flex items-center justify-center bg-primary text-white">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display uppercase text-xl text-foreground mb-2">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {p.desc}
+                  </p>
+                </div>
+              </motion.article>
+            );
+          })}
+        </div>
+
+        {/* Bottom trust strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-10 border border-border bg-card/50 p-6 lg:p-8 flex flex-wrap items-center justify-between gap-6"
+        >
+          <div className="flex items-center gap-4">
+            <div className="h-12 w-12 flex items-center justify-center bg-primary/10 border border-primary/30">
+              <ShieldCheck className="h-6 w-6 text-primary" />
+            </div>
+            <div>
+              <div className="font-display uppercase text-lg text-foreground">
+                Fully Insured · Chain-of-Custody Logged
+              </div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground mt-1">
+                From pickup scan to signed digital PoD — every hand-off is recorded.
+              </div>
+            </div>
+          </div>
+          <a
+            href="/about"
+            className="group inline-flex items-center gap-3 px-6 py-3 bg-primary text-white font-black uppercase tracking-wider text-xs hover:bg-primary/90 transition-colors"
+          >
+            How we protect cargo
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default CustodianSection;
