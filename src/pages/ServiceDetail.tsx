@@ -8,6 +8,7 @@ import TopBar from "@/components/TopBar";
 import Seo from "@/components/Seo";
 import { getServiceBySlug, services } from "@/data/services";
 import { useQuote } from "@/context/QuoteContext";
+import ColdChainExtras from "@/components/services/ColdChainExtras";
 
 const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -213,6 +214,8 @@ const ServiceDetail = () => {
           </aside>
         </div>
       </section>
+
+      {service.slug === "cold-chain" && <ColdChainExtras />}
 
       <section className="py-16 border-t border-border bg-muted">
         <div className="container mx-auto px-4">
