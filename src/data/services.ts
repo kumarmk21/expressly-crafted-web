@@ -141,8 +141,13 @@ export const services: ServiceItem[] = [
       { title: "Real-Time Monitoring", desc: "60-second IoT telemetry with a 24×7 control tower that acts on excursions before spoilage occurs." },
       { title: "Spoilage & Claims", desc: "<0.2% claim rate industry-benchmarked, with signed temperature reports delivered with every consignment." },
     ],
-
+    gallery: [
+      { src: coldReefer, caption: "Reefer trailers with dual-zone temperature control and locked set-points" },
+      { src: coldIot, caption: "24×7 cold-chain control tower — live IoT telemetry every 60 seconds" },
+      { src: coldStorage, caption: "GDP-compliant cold rooms & freezer farms across our national network" },
+    ],
   },
+
   {
     no: "05",
     slug: "wms",
