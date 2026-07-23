@@ -140,6 +140,30 @@ const ServiceDetail = () => {
               </ul>
             </div>
 
+            {service.gallery && service.gallery.length > 0 && (
+              <div>
+                <h3 className="text-xl font-bold mb-4">In the Field</h3>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {service.gallery.map((g) => (
+                    <figure key={g.src} className="rounded-xl overflow-hidden border border-border bg-card">
+                      <img
+                        src={g.src}
+                        alt={g.caption}
+                        loading="lazy"
+                        width={1024}
+                        height={1024}
+                        className="w-full h-48 object-cover"
+                      />
+                      <figcaption className="p-3 text-xs text-muted-foreground leading-snug">
+                        {g.caption}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            )}
+
+
             <div>
               <h3 className="text-xl font-bold mb-4">Capabilities</h3>
               <div className="space-y-3">

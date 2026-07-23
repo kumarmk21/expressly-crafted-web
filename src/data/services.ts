@@ -6,6 +6,10 @@ import serviceWms from "@/assets/services/wms.jpg";
 import serviceCleantech from "@/assets/services/cleantech.jpg";
 import serviceFtl from "@/assets/services/ftl.jpg";
 import serviceMrConnect from "@/assets/services/mrconnect.jpg";
+import coldReefer from "@/assets/cold-chain/reefer.jpg";
+import coldIot from "@/assets/cold-chain/iot.jpg";
+import coldStorage from "@/assets/cold-chain/storage.jpg";
+
 
 export type ServiceItem = {
   no: string;
@@ -20,7 +24,9 @@ export type ServiceItem = {
   features: string[];
   industries: string[];
   capabilities: { title: string; desc: string }[];
+  gallery?: { src: string; caption: string }[];
 };
+
 
 export const services: ServiceItem[] = [
   {
@@ -135,8 +141,13 @@ export const services: ServiceItem[] = [
       { title: "Real-Time Monitoring", desc: "60-second IoT telemetry with a 24×7 control tower that acts on excursions before spoilage occurs." },
       { title: "Spoilage & Claims", desc: "<0.2% claim rate industry-benchmarked, with signed temperature reports delivered with every consignment." },
     ],
-
+    gallery: [
+      { src: coldReefer, caption: "Reefer trailers with dual-zone temperature control and locked set-points" },
+      { src: coldIot, caption: "24×7 cold-chain control tower — live IoT telemetry every 60 seconds" },
+      { src: coldStorage, caption: "GDP-compliant cold rooms & freezer farms across our national network" },
+    ],
   },
+
   {
     no: "05",
     slug: "wms",
