@@ -6,6 +6,10 @@ import serviceWms from "@/assets/services/wms.jpg";
 import serviceCleantech from "@/assets/services/cleantech.jpg";
 import serviceFtl from "@/assets/services/ftl.jpg";
 import serviceMrConnect from "@/assets/services/mrconnect.jpg";
+import coldReefer from "@/assets/cold-chain/reefer.jpg";
+import coldIot from "@/assets/cold-chain/iot.jpg";
+import coldStorage from "@/assets/cold-chain/storage.jpg";
+
 
 export type ServiceItem = {
   no: string;
@@ -20,7 +24,9 @@ export type ServiceItem = {
   features: string[];
   industries: string[];
   capabilities: { title: string; desc: string }[];
+  gallery?: { src: string; caption: string }[];
 };
+
 
 export const services: ServiceItem[] = [
   {
