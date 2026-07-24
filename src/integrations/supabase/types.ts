@@ -307,6 +307,45 @@ export type Database = {
         }
         Relationships: []
       }
+      certifications: {
+        Row: {
+          active: boolean
+          created_at: string
+          display_order: number
+          id: string
+          issuer: string | null
+          kind: string
+          logo_url: string | null
+          title: string
+          updated_at: string
+          year: string | null
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          display_order?: number
+          id?: string
+          issuer?: string | null
+          kind?: string
+          logo_url?: string | null
+          title: string
+          updated_at?: string
+          year?: string | null
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          display_order?: number
+          id?: string
+          issuer?: string | null
+          kind?: string
+          logo_url?: string | null
+          title?: string
+          updated_at?: string
+          year?: string | null
+        }
+        Relationships: []
+      }
       clients: {
         Row: {
           created_at: string
