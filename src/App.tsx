@@ -67,6 +67,8 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <QuoteDialog />
+            <FraudAlertPopup />
+
           </BrowserRouter>
         </QuoteProvider>
       </TooltipProvider>
