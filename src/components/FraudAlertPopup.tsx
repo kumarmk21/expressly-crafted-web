@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import fraudImage from "@/assets/popup-fraud.png.asset.json";
+import fraudCdn from "@/assets/popup-fraud.png.asset.json";
+import fraudLocal from "@/assets/popup-fraud.png";
 
 const FraudAlertPopup = () => {
   const [open, setOpen] = useState(false);
@@ -36,7 +37,11 @@ const FraudAlertPopup = () => {
           <X className="h-5 w-5" />
         </button>
         <img
-          src={fraudImage.url}
+          src={fraudLocal}
+          onError={(e) => {
+            const img = e.currentTarget;
+            if (img.src !== fraudCdn.url) img.src = fraudCdn.url;
+          }}
           alt="Scorpion Express fraud alert: never share OTPs, passwords or make payments to personal accounts. Call 1800 22 1945."
           className="w-full rounded-lg shadow-2xl"
         />
