@@ -25,6 +25,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import { QuoteProvider } from "./context/QuoteContext";
 import QuoteDialog from "./components/QuoteDialog";
+import FraudAlertPopup from "./components/FraudAlertPopup";
 import { useVersionCheck } from "./hooks/useVersionCheck";
 
 const queryClient = new QueryClient();
@@ -66,6 +67,8 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <QuoteDialog />
+            <FraudAlertPopup />
+
           </BrowserRouter>
         </QuoteProvider>
       </TooltipProvider>
