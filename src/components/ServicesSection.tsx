@@ -8,7 +8,7 @@ const ServicesSection = () => {
   const { openQuote } = useQuote();
 
   return (
-    <section id="services" className="py-24 lg:py-32 bg-card relative overflow-hidden">
+    <section id="services" className="pt-24 lg:pt-32 pb-10 lg:pb-12 bg-card relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -84,7 +84,7 @@ const ServicesSection = () => {
         </div>
 
         {/* Giant Scorpion watermark */}
-        <div className="pointer-events-none mt-16 lg:mt-20 flex items-center justify-center select-none overflow-hidden">
+        <div className="pointer-events-none mt-6 lg:mt-8 flex items-center justify-center select-none overflow-hidden">
           <span className="font-display uppercase text-[22vw] sm:text-[18vw] lg:text-[14vw] leading-none tracking-tight text-foreground/[0.03] whitespace-nowrap">
             SCORPION
           </span>
