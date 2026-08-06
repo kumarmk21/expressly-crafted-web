@@ -29,14 +29,7 @@ const ClientsSection = () => {
 
   return (
     <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
-      {/* Giant Scorpion watermark */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
-        <span className="font-display uppercase text-[18vw] lg:text-[14vw] leading-none tracking-tight text-foreground/[0.03]">
-          SCORPION
-        </span>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
