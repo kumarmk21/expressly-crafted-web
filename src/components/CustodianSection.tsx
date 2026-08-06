@@ -1,27 +1,27 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Video, Lock, FileCheck, ArrowRight } from "lucide-react";
-import containerLock from "@/assets/custodian/secure-container-lock.png.asset.json";
-import cctv from "@/assets/custodian/cctv-control-room.jpg";
-import envelope from "@/assets/custodian/secure-envelope.jpg";
+import { ShieldCheck, Video, Lock, Split, ArrowRight } from "lucide-react";
+import cctvVehicle from "@/assets/custodian/cctv-vehicle.jpg";
+import bifurcatedCompartment from "@/assets/custodian/bifurcated-compartment.jpg";
+import digitalLock from "@/assets/custodian/digital-lock.jpg";
 
 const pillars = [
   {
     icon: Video,
-    title: "24×7 CCTV Surveillance",
-    desc: "Every hub, dock and loading bay under live camera watch. Recorded, reviewed and audit-ready.",
-    image: cctv,
+    title: "In-Vehicle CCTV Surveillance",
+    desc: "Every vehicle cabin and cargo bay under live camera watch. Recorded, reviewed and audit-ready on the move.",
+    image: cctvVehicle,
+  },
+  {
+    icon: Split,
+    title: "Bifurcated Compartments",
+    desc: "Separate zones for incompatible goods — pharma, food, chemicals — to eliminate cross-contamination and mixing.",
+    image: bifurcatedCompartment,
   },
   {
     icon: Lock,
     title: "Digital Locks & Sealed Containers",
     desc: "Tamper-evident digital locks with unique seal numbers on every container — opened only at destination.",
-    image: containerLock.url,
-  },
-  {
-    icon: FileCheck,
-    title: "Tamper-Proof Secure Envelopes",
-    desc: "High-value documents move in serialised, tamper-evident envelopes with signature + PoD capture.",
-    image: envelope,
+    image: digitalLock,
   },
 ];
 
