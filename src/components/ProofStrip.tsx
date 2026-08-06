@@ -12,8 +12,8 @@ type Cert = {
 };
 
 const STATS = [
-  { value: "20+", label: "Years in Business" },
-  { value: "99.4%", label: "On-Time Delivery" },
+  { value: "25+", label: "Years in Business" },
+  { value: "94%", label: "On-Time Delivery" },
   { value: "24,000+", label: "Pincodes Served" },
   { value: "99.9%", label: "System Uptime" },
 ];
