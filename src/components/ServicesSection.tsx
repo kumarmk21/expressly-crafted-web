@@ -82,6 +82,13 @@ const ServicesSection = () => {
             );
           })}
         </div>
+
+        {/* Giant Scorpion watermark */}
+        <div className="pointer-events-none mt-16 lg:mt-20 flex items-center justify-center select-none overflow-hidden">
+          <span className="font-display uppercase text-[22vw] sm:text-[18vw] lg:text-[14vw] leading-none tracking-tight text-foreground/[0.03] whitespace-nowrap">
+            SCORPION
+          </span>
+        </div>
       </div>
     </section>
   );
