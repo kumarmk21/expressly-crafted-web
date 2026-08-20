@@ -9,8 +9,6 @@ import Seo from "@/components/Seo";
 import jpnSingh from "@/assets/leadership/jpn-singh.jpg";
 import shaliniSingh from "@/assets/leadership/shalini-singh.jpg";
 import rajLalan from "@/assets/leadership/raj-lalan.jpg";
-import subratRath from "@/assets/leadership/subrat-rath.jpg";
-import mandarBabre from "@/assets/leadership/mandar-babre.jpg";
 import manojKumar from "@/assets/leadership/manoj-kumar.jpg";
 import anilTiwari from "@/assets/leadership/anil-tiwari.jpg";
 import poojaPatelKalia from "@/assets/leadership/pooja-patel-kalia.jpg.asset.json";
@@ -31,9 +29,7 @@ const LOCAL_PHOTOS: Record<string, string> = {
   "J P N Singh": jpnSingh,
   "Shalini Singh": shaliniSingh,
   "Raj Lalan Dwivedi": rajLalan,
-  "Subrat Rath": subratRath,
   "Manoj Kumar": manojKumar,
-  "Mandar Babre": mandarBabre,
   "Anil Tiwari": anilTiwari,
   "Pooja Patel Kalia": poojaPatelKalia.url,
 };
