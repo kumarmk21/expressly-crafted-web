@@ -10,7 +10,7 @@ const Network = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title="Pan-India Logistics Network | Scorpion Express"
-        description="70+ branches across 5 zones serving 24,000+ pincodes. Explore Scorpion Express's pan-India freight and delivery network."
+        description="70+ branches across 5 zones serving 25,000+ pincodes. Explore Scorpion Express's pan-India freight and delivery network."
         path="/network"
       />
       <TopBar />
