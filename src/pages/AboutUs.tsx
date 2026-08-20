@@ -254,7 +254,7 @@ const AboutUs = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch">
             {leadership.map((leader) => {
               const photo = leader.photo_url || LOCAL_PHOTOS[leader.name] || null;
               return (
@@ -263,14 +263,14 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white border border-border group overflow-hidden"
+                className="bg-white border border-border group overflow-hidden flex flex-col h-full"
               >
-                <div className="relative aspect-[3/4] bg-muted overflow-hidden">
+                <div className="relative aspect-[3/4] w-full bg-muted overflow-hidden shrink-0">
                   {photo ? (
                     <img
                       src={photo}
                       alt={leader.name}
-                      className="h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-b from-muted to-white">
@@ -281,12 +281,13 @@ const AboutUs = () => {
                     </div>
                   )}
                 </div>
-                <div className="p-5 border-t border-border">
+                <div className="p-5 border-t border-border flex-1 flex flex-col justify-start min-h-[104px]">
                   <h3 className="font-bold uppercase tracking-wide text-foreground text-sm">{leader.name}</h3>
                   <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{leader.role}</p>
                 </div>
               </motion.div>
             );})}
+
           </div>
         </div>
       </section>
