@@ -22,6 +22,8 @@ type Tech = {
   display_order: number;
 };
 
+const SALESFORCE_ID = "2928c658-bfb6-46da-8f9f-4e167c586d8a";
+
 const TechnologySection = () => {
   const [items, setItems] = useState<Tech[]>([]);
 
@@ -30,7 +32,23 @@ const TechnologySection = () => {
       .from("technology_items" as any)
       .select("*")
       .order("display_order")
-      .then(({ data }) => setItems(((data as any[]) ?? []) as Tech[]));
+      .then(({ data }) => {
+        const raw = ((data as any[]) ?? []) as Tech[];
+        setItems(
+          raw.map((it) =>
+            it.id === SALESFORCE_ID
+              ? {
+                  ...it,
+                  title: "Integrated Depots Management System",
+                  description:
+                    "A unified depots and hub operating system that gives real-time CAPA (capacity) visibility, bin-level space utilisation and dock-slot scheduling across the network. Inbound unloading, sorting, staging and outbound loading are barcode-tracked in real time. Built-in corrective and preventive action workflows flag mis-routes, damage-prone lanes and SLA breaches, then assign root-cause fixes and preventive checks so the same exception does not repeat.",
+                  image_url:
+                    "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=70",
+                }
+              : it
+          )
+        );
+      });
   }, []);
 
   return (
