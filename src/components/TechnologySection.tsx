@@ -44,6 +44,7 @@ const TechnologySection = () => {
                     "A unified depots and hub operating system that gives real-time CAPA (capacity) visibility, bin-level space utilisation and dock-slot scheduling across the network. Inbound unloading, sorting, staging and outbound loading are barcode-tracked in real time. Built-in corrective and preventive action workflows flag mis-routes, damage-prone lanes and SLA breaches, then assign root-cause fixes and preventive checks so the same exception does not repeat.",
                   image_url:
                     "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=70",
+                  icon: "Warehouse",
                 }
               : it
           )
