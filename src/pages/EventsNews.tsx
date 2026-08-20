@@ -100,7 +100,7 @@ const EventsNews = () => {
                   <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-primary text-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wider">
                     <Sparkles className="h-3 w-3" /> {e.month_year || "Featured"}
                   </div>
-                  <div className="aspect-[4/5] bg-muted overflow-hidden">
+                  <div className="aspect-[3/4] w-full bg-muted overflow-hidden">
                     {e.image_url ? (
                       <img
                         src={e.image_url}
@@ -192,7 +192,7 @@ const NewsCard = ({ item }: { item: Item }) => (
     className="group bg-card border border-border overflow-hidden hover:border-primary transition-colors flex flex-col"
   >
     {item.image_url && (
-      <div className="aspect-video bg-muted overflow-hidden">
+      <div className="aspect-[16/9] w-full bg-muted overflow-hidden">
         <img
           src={item.image_url}
           alt={item.title}

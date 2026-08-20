@@ -42,7 +42,7 @@ const ServicesSection = () => {
                 transition={{ delay: i * 0.05, duration: 0.4 }}
                 className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 flex flex-col"
               >
-                <div className="relative h-44 overflow-hidden">
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
                   <img
                     src={service.image}
                     alt={`${service.title} service`}

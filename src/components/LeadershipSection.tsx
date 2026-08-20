@@ -36,7 +36,7 @@ const LeadershipSection = () => {
                 <img
                   src={photo}
                   alt="JPN Singh — Founder, Scorpion Express"
-                  className="w-full h-[480px] lg:h-[600px] object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+                  className="w-full aspect-[3/4] object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-primary text-white px-6 py-4">
