@@ -81,7 +81,7 @@ const CustodianSection = () => {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="group relative bg-card border border-border overflow-hidden hover:border-primary transition-colors"
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted">
                   <img
                     src={p.image}
                     alt={p.title}

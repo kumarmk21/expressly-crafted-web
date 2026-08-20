@@ -182,7 +182,7 @@ export function RenderBlock({ type, content }: { type: string; content: any }): 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {items.map((it, i) => it.image && (
               <figure key={i} className="border border-border bg-card">
-                <img src={it.image} alt={it.caption || ""} className="w-full h-48 object-cover" />
+                <img src={it.image} alt={it.caption || ""} className="w-full h-full object-cover" />
                 {it.caption && <figcaption className="text-xs text-muted-foreground p-2">{it.caption}</figcaption>}
               </figure>
             ))}
