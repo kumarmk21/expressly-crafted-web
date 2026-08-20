@@ -61,7 +61,7 @@ const ContactUs = () => {
             "@type": "PostalAddress",
             streetAddress: "610, Shah & Nahar Industrial Estate, Dr. E. Moses Road, Worli",
             addressLocality: "Mumbai",
-            postalCode: "400018",
+            postalCode: "25000",
             addressCountry: "IN",
           },
         }}
