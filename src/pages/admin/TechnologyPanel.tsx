@@ -5,7 +5,7 @@ import { Loader2, Plus, Trash2, Upload, Image as ImageIcon } from "lucide-react"
 
 const ICON_OPTIONS = [
   "Monitor", "PackageSearch", "MapPinned", "Cloud", "HeadphonesIcon", "Radio",
-  "ReceiptText", "Wallet", "Plug", "Tag", "Gavel", "Users", "Truck", "Package", "Activity",
+  "ReceiptText", "Wallet", "Plug", "Tag", "Gavel", "Users", "Truck", "Package", "Activity", "Warehouse",
 ];
 
 const uploadTechImage = async (file: File): Promise<string | null> => {
