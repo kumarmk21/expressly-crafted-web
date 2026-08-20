@@ -153,7 +153,7 @@ const ServiceDetail = () => {
                         loading="lazy"
                         width={1024}
                         height={1024}
-                        className="w-full h-48 object-cover"
+                        className="w-full aspect-[16/9] object-cover"
                       />
                       <figcaption className="p-3 text-xs text-muted-foreground leading-snug">
                         {g.caption}
@@ -186,7 +186,7 @@ const ServiceDetail = () => {
                 loading="lazy"
                 width={1280}
                 height={800}
-                className="w-full h-56 object-cover"
+                className="w-full aspect-[16/9] object-cover"
               />
             </div>
             <div className="p-6 rounded-xl border border-border bg-card">
