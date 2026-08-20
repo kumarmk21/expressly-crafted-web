@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Monitor, PackageSearch, MapPinned, Cloud, HeadphonesIcon, Radio,
-  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity,
+  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity, Warehouse,
   type LucideIcon,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const ICONS: Record<string, LucideIcon> = {
   Monitor, PackageSearch, MapPinned, Cloud, HeadphonesIcon, Radio,
-  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity,
+  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity, Warehouse,
 };
 
 type Tech = {
