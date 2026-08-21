@@ -1,0 +1,1 @@
+update public.leadership_members set photo_url = '/__l5e/assets-v1/a61be980-4b02-41a5-8947-b443f9d2444f/rakesh-sahoo.jpg' where name = 'Rakesh Sahoo';
