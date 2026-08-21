@@ -41,9 +41,9 @@ const TechnologySection = () => {
             if (it.id === SALESFORCE_ID) {
               return {
                 ...it,
-                title: "Integrated Depots Management System",
+                title: "Integrated Depots Management Module",
                 description:
-                  "A unified depots and hub operating system that gives real-time CAPA (capacity) visibility, bin-level space utilisation and dock-slot scheduling across the network. Inbound unloading, sorting, staging and outbound loading are barcode-tracked in real time. Built-in corrective and preventive action workflows flag mis-routes, damage-prone lanes and SLA breaches, then assign root-cause fixes and preventive checks so the same exception does not repeat.",
+                  "A real-time Corrective and Preventive Action (CAPA) module that flags mis-routes, damage-prone lanes and SLA breaches across depots and hubs. It assigns root-cause fixes and preventive checks so the same exception does not repeat. Built-in workflows give operations teams full visibility from first alert to final closure.",
                 image_url:
                   "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=70",
                 icon: "Warehouse",
