@@ -265,7 +265,7 @@ const AboutUs = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-border group overflow-hidden flex flex-col h-full"
               >
-                <div className="relative aspect-[3/4] w-full bg-muted overflow-hidden shrink-0">
+                <div className="relative aspect-[1464/1920] w-full bg-muted overflow-hidden shrink-0">
                   {photo ? (
                     <img
                       src={photo}
