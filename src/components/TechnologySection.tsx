@@ -41,7 +41,7 @@ const TechnologySection = () => {
             if (it.id === SALESFORCE_ID) {
               return {
                 ...it,
-                title: "Integrated Depots Management Module",
+                title: "Integrated DEPS Management Module",
                 description:
                   "A real-time Corrective and Preventive Action (CAPA) module that flags mis-routes, damage-prone lanes and SLA breaches across depots and hubs. It assigns root-cause fixes and preventive checks so the same exception does not repeat. Built-in workflows give operations teams full visibility from first alert to final closure.",
                 image_url:
