@@ -43,7 +43,7 @@ const TechnologySection = () => {
                 ...it,
                 title: "Integrated DEPS Management Module",
                 description:
-                  "A real-time Corrective and Preventive Action (CAPA) module that flags mis-routes, damage-prone lanes and SLA breaches across depots and hubs. It assigns root-cause fixes and preventive checks so the same exception does not repeat. Built-in workflows give operations teams full visibility from first alert to final closure.",
+                  "A real-time Corrective and Preventive Action (CAPA) module for operations teams.",
                 image_url:
                   "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=70",
                 icon: "Warehouse",
