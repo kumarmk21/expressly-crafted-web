@@ -4,6 +4,7 @@ import { ShieldCheck, Video, Lock, Split, ArrowRight } from "lucide-react";
 import cctvVehicle from "@/assets/custodian/cctv-vehicle.jpg";
 import bifurcatedCompartment from "@/assets/custodian/bifurcated-compartment.jpg";
 import digitalLock from "@/assets/custodian/digital-lock.jpg";
+import protectVideo from "@/assets/custodian/protect-cargo.mp4.asset.json";
 
 const pillars = [
   {
