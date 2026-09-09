@@ -4,6 +4,7 @@ import { ShieldCheck, Video, Lock, Split, ArrowRight } from "lucide-react";
 import cctvVehicle from "@/assets/custodian/cctv-vehicle.jpg";
 import bifurcatedCompartment from "@/assets/custodian/bifurcated-compartment.jpg";
 import digitalLock from "@/assets/custodian/digital-lock.jpg";
+import protectVideo from "@/assets/custodian/protect-cargo.mp4.asset.json";
 
 const pillars = [
   {
@@ -108,6 +109,40 @@ const CustodianSection = () => {
             );
           })}
         </div>
+
+        {/* Short film */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-10 grid lg:grid-cols-12 gap-6 items-center"
+        >
+          <div className="lg:col-span-7 relative border border-border overflow-hidden bg-muted">
+            <video
+              src={protectVideo.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full aspect-video object-cover"
+              aria-label="How Scorpion Express protects cargo in transit"
+            />
+          </div>
+          <div className="lg:col-span-5">
+            <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-3">
+              Inside the vehicle
+            </div>
+            <h3 className="font-display uppercase text-2xl lg:text-3xl text-foreground leading-tight mb-3">
+              How we protect cargo
+            </h3>
+            <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
+              Sealed containers, digital tamper-evident locks, separated compartments
+              and live in-cabin cameras — working together on every trip.
+            </p>
+          </div>
+        </motion.div>
 
         {/* Bottom trust strip */}
         <motion.div
