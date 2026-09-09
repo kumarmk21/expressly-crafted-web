@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ShieldCheck, Video, Lock, Split, ArrowRight } from "lucide-react";
 import cctvVehicle from "@/assets/custodian/cctv-vehicle.jpg";
@@ -129,13 +130,14 @@ const CustodianSection = () => {
               </div>
             </div>
           </div>
-          <a
-            href="/about"
+          <Link
+            to="/about"
             className="group inline-flex items-center gap-3 px-6 py-3 bg-primary text-white font-black uppercase tracking-wider text-xs hover:bg-primary/90 transition-colors"
           >
             How we protect cargo
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
+
         </motion.div>
       </div>
     </section>
