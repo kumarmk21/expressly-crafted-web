@@ -123,7 +123,14 @@ const HeroSection = () => {
                   e.preventDefault();
                   const id = lr.trim();
                   if (!id) return;
-                  window.open(`http://103.211.171.59:8073/?lr=${encodeURIComponent(id)}`, "_blank", "noopener");
+                  const url = `http://103.211.171.59:8073/?lr=${encodeURIComponent(id)}`;
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.target = "_blank";
+                  a.rel = "noopener noreferrer";
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
                 }}
                 className="flex gap-2"
               >
@@ -142,6 +149,7 @@ const HeroSection = () => {
                   Track
                 </button>
               </form>
+
               <div className="mt-5 pt-5 border-t border-border grid grid-cols-3 gap-3 text-center">
                 <div>
                   <div className="font-display text-2xl text-foreground">24/7</div>
