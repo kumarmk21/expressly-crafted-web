@@ -8,7 +8,7 @@ const ServicesSection = () => {
   const { openQuote } = useQuote();
 
   return (
-    <section id="services" className="pt-24 lg:pt-32 pb-10 lg:pb-12 bg-card relative overflow-hidden">
+    <section id="services" className="pt-12 lg:pt-16 pb-10 lg:pb-12 bg-card relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
