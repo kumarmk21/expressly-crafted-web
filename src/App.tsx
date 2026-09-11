@@ -18,6 +18,7 @@ import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
 import CustomerPortal from "./pages/CustomerPortal";
 import ContactUs from "./pages/ContactUs";
+import CargoProtection from "./pages/CargoProtection";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsAndConditions from "./pages/legal/TermsAndConditions";
 import Disclaimer from "./pages/legal/Disclaimer";
@@ -57,6 +58,7 @@ const App = () => (
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/network" element={<Network />} />
               <Route path="/technology" element={<Technology />} />
+              <Route path="/cargo-protection" element={<CargoProtection />} />
               <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/legal/terms-and-conditions" element={<TermsAndConditions />} />
               <Route path="/legal/disclaimer" element={<Disclaimer />} />

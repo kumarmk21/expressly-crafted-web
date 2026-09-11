@@ -165,7 +165,7 @@ const CustodianSection = () => {
             </div>
           </div>
           <Link
-            to="/about"
+            to="/cargo-protection"
             className="group inline-flex items-center gap-3 px-6 py-3 bg-primary text-white font-black uppercase tracking-wider text-xs hover:bg-primary/90 transition-colors"
           >
             How we protect cargo
