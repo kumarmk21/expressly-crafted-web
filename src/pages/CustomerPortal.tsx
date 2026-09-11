@@ -76,6 +76,14 @@ const CustomerPortal = () => {
         aria-labelledby="portal-heading"
         className="relative bg-primary text-white overflow-hidden"
       >
+        <img
+          src={heroImg}
+          alt="Loading dock with Scorpion Express fleet ready for dispatch"
+          width={1600}
+          height={900}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-primary/85" />
         <div
           aria-hidden="true"
           className="absolute inset-0 opacity-15"
