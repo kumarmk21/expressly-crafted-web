@@ -5,10 +5,6 @@ import {
   Calculator,
   LogIn,
   ClipboardList,
-  PackageSearch,
-  BarChart3,
-  QrCode,
-  FileText,
   ArrowUpRight,
   Search,
   HeadphonesIcon,
@@ -16,6 +12,8 @@ import {
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import heroImg from "@/assets/customer-portal-hero.jpg";
+import supportImg from "@/assets/customer-portal-support.jpg";
 import { useQuote } from "@/context/QuoteContext";
 
 const primaryActions = [
