@@ -43,7 +43,7 @@ const tools = [
   {
     title: "Shipment Tracking",
     desc: "Live status by LR/AWB number.",
-    href: "http://103.211.171.59:8073/",
+    href: "https://dtrack.scorpiongroup.in/",
     icon: PackageSearch,
   },
   {
@@ -80,7 +80,7 @@ const CustomerPortal = () => {
     e.preventDefault();
     const id = lr.trim();
     if (!id) return;
-    window.open(`http://103.211.171.59:8073/?lr=${encodeURIComponent(id)}`, "_blank", "noopener");
+    window.open(`https://dtrack.scorpiongroup.in/?lr=${encodeURIComponent(id)}`, "_blank", "noopener");
   };
 
   return (

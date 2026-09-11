@@ -123,7 +123,7 @@ const HeroSection = () => {
                   e.preventDefault();
                   const id = lr.trim();
                   if (!id) return;
-                  const url = `http://103.211.171.59:8073/?lr=${encodeURIComponent(id)}`;
+                  const url = `https://dtrack.scorpiongroup.in/?lr=${encodeURIComponent(id)}`;
                   const a = document.createElement("a");
                   a.href = url;
                   a.target = "_blank";
