@@ -22,7 +22,7 @@ const primaryActions = [
   {
     title: "Freight Calculator",
     desc: "Get instant rates for your shipment lanes.",
-    href: "http://103.211.171.59:5025/",
+    href: "https://ratefinder.scorpiongroup.in/",
     icon: Calculator,
   },
   {
@@ -55,19 +55,19 @@ const tools = [
   {
     title: "QR Generator",
     desc: "Generate package QR codes.",
-    href: "http://103.211.171.59:5020/",
+    href: "https://qr.scorpiongroup.in/",
     icon: QrCode,
   },
   {
     title: "Complaint Management",
     desc: "Raise and track service tickets.",
-    href: "http://103.211.171.59:8000/",
+    href: "https://cms.scorpiongroup.in/",
     icon: HeadphonesIcon,
   },
   {
     title: "LR Uploader",
     desc: "Bulk upload lorry receipts.",
-    href: "http://103.211.171.59:5002/",
+    href: "https://lr.scorpiongroup.in/",
     icon: FileText,
   },
 ];
