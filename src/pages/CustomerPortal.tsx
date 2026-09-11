@@ -136,6 +136,18 @@ const CustomerPortal = () => {
         </div>
       </section>
 
+      {/* Highlights */}
+      <section className="bg-foreground text-white">
+        <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
+          {highlights.map((h) => (
+            <div key={h.label} className="py-6 px-4 text-center">
+              <div className="font-display text-2xl md:text-3xl">{h.value}</div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-white/70 mt-1">{h.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Primary actions */}
       <section className="container mx-auto px-4 py-14 lg:py-16">
         <div className="grid md:grid-cols-3 gap-4">
