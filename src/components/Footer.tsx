@@ -116,7 +116,7 @@ const Footer = () => {
               <Link to="/employee-login" className="text-[10px] uppercase tracking-wider px-3 py-2 border border-border text-foreground hover:border-primary hover:text-primary transition-colors font-bold">
                 Employee Portal
               </Link>
-              <a href="http://103.211.171.59:8000/" className="text-[10px] uppercase tracking-wider px-3 py-2 bg-primary text-white font-bold hover:bg-primary/90 transition-colors">
+              <a href="https://cms.scorpiongroup.in/" className="text-[10px] uppercase tracking-wider px-3 py-2 bg-primary text-white font-bold hover:bg-primary/90 transition-colors">
                 Customer Portal
               </a>
             </div>
