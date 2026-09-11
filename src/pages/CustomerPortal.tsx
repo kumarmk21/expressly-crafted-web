@@ -41,35 +41,18 @@ const primaryActions = [
 
 const tools = [
   {
-    title: "Shipment Tracking",
-    desc: "Live status by LR/AWB number.",
-    href: "https://dtrack.scorpiongroup.in/",
-    icon: PackageSearch,
-  },
-  {
-    title: "Analytics Dashboard",
-    desc: "Customer shipment insights.",
-    href: "https://analytics.scorpiongroup.in/",
-    icon: BarChart3,
-  },
-  {
-    title: "QR Generator",
-    desc: "Generate package QR codes.",
-    href: "https://qr.scorpiongroup.in/",
-    icon: QrCode,
-  },
-  {
     title: "Complaint Management",
-    desc: "Raise and track service tickets.",
+    desc: "Raise and track service tickets with full resolution history.",
     href: "https://cms.scorpiongroup.in/",
     icon: HeadphonesIcon,
   },
-  {
-    title: "LR Uploader",
-    desc: "Bulk upload lorry receipts.",
-    href: "https://lr.scorpiongroup.in/",
-    icon: FileText,
-  },
+];
+
+const highlights = [
+  { value: "25,000+", label: "Pincodes served" },
+  { value: "94%", label: "On-time delivery" },
+  { value: "24x7", label: "Control tower" },
+  { value: "75+", label: "Branches" },
 ];
 
 const CustomerPortal = () => {
