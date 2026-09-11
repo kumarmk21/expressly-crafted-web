@@ -5,10 +5,6 @@ import {
   Calculator,
   LogIn,
   ClipboardList,
-  PackageSearch,
-  BarChart3,
-  QrCode,
-  FileText,
   ArrowUpRight,
   Search,
   HeadphonesIcon,
@@ -16,6 +12,8 @@ import {
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import heroImg from "@/assets/customer-portal-hero.jpg";
+import supportImg from "@/assets/customer-portal-support.jpg";
 import { useQuote } from "@/context/QuoteContext";
 
 const primaryActions = [
@@ -41,35 +39,18 @@ const primaryActions = [
 
 const tools = [
   {
-    title: "Shipment Tracking",
-    desc: "Live status by LR/AWB number.",
-    href: "https://dtrack.scorpiongroup.in/",
-    icon: PackageSearch,
-  },
-  {
-    title: "Analytics Dashboard",
-    desc: "Customer shipment insights.",
-    href: "https://analytics.scorpiongroup.in/",
-    icon: BarChart3,
-  },
-  {
-    title: "QR Generator",
-    desc: "Generate package QR codes.",
-    href: "https://qr.scorpiongroup.in/",
-    icon: QrCode,
-  },
-  {
     title: "Complaint Management",
-    desc: "Raise and track service tickets.",
+    desc: "Raise and track service tickets with full resolution history.",
     href: "https://cms.scorpiongroup.in/",
     icon: HeadphonesIcon,
   },
-  {
-    title: "LR Uploader",
-    desc: "Bulk upload lorry receipts.",
-    href: "https://lr.scorpiongroup.in/",
-    icon: FileText,
-  },
+];
+
+const highlights = [
+  { value: "25,000+", label: "Pincodes served" },
+  { value: "94%", label: "On-time delivery" },
+  { value: "24x7", label: "Control tower" },
+  { value: "75+", label: "Branches" },
 ];
 
 const CustomerPortal = () => {
@@ -93,6 +74,14 @@ const CustomerPortal = () => {
         aria-labelledby="portal-heading"
         className="relative bg-primary text-white overflow-hidden"
       >
+        <img
+          src={heroImg}
+          alt="Loading dock with Scorpion Express fleet ready for dispatch"
+          width={1600}
+          height={900}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-primary/85" />
         <div
           aria-hidden="true"
           className="absolute inset-0 opacity-15"
@@ -142,6 +131,18 @@ const CustomerPortal = () => {
               </button>
             </form>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Highlights */}
+      <section className="bg-foreground text-white">
+        <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
+          {highlights.map((h) => (
+            <div key={h.label} className="py-6 px-4 text-center">
+              <div className="font-display text-2xl md:text-3xl">{h.value}</div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-white/70 mt-1">{h.label}</div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -198,24 +199,31 @@ const CustomerPortal = () => {
         </div>
       </section>
 
-      {/* Tools */}
+      {/* Support + Complaint Management */}
       <section className="bg-muted/40 border-y border-border">
-        <div className="container mx-auto px-4 py-14 lg:py-16">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-            <div>
-              <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">
-                Self-Service Tools
-              </div>
-              <h2 className="font-display text-3xl md:text-4xl text-foreground">
-                Manage your shipments end-to-end
-              </h2>
-            </div>
-            <p className="text-sm text-foreground/70 max-w-md">
-              Direct access to the tools your operations team uses every day.
-            </p>
+        <div className="container mx-auto px-4 py-14 lg:py-16 grid lg:grid-cols-2 gap-8 items-center">
+          <div className="relative overflow-hidden">
+            <img
+              src={supportImg}
+              alt="Scorpion Express control tower team supporting customers round the clock"
+              loading="lazy"
+              width={1200}
+              height={900}
+              className="w-full aspect-[16/9] object-cover"
+            />
           </div>
+          <div>
+            <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">
+              Service Support
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground">
+              Every issue tracked to closure
+            </h2>
+            <p className="text-sm text-foreground/70 mt-3 max-w-md">
+              Raise a service ticket and follow it from first alert to final resolution, with clear ownership at every step.
+            </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="mt-6 grid gap-3">
             {tools.map((t) => {
               const Icon = t.icon;
               return (
@@ -242,6 +250,7 @@ const CustomerPortal = () => {
                 </a>
               );
             })}
+            </div>
           </div>
         </div>
       </section>
