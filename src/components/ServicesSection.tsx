@@ -84,8 +84,8 @@ const ServicesSection = () => {
         </div>
 
         {/* Giant Scorpion watermark */}
-        <div className="pointer-events-none mt-4 flex items-center justify-center select-none overflow-hidden max-h-[9vw]">
-          <span className="font-display uppercase text-[14vw] leading-[0.7] tracking-tight text-foreground/[0.03] whitespace-nowrap">
+        <div className="pointer-events-none mt-2 flex items-center justify-center select-none overflow-hidden max-h-[6vw]">
+          <span className="font-display uppercase text-[12vw] leading-[0.62] tracking-tight text-foreground/[0.03] whitespace-nowrap">
             SCORPION
           </span>
         </div>
