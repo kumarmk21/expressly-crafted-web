@@ -11,6 +11,7 @@ import LeadershipSection from "@/components/LeadershipSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
+import FraudAlertPopup from "@/components/FraudAlertPopup";
 
 const Index = () => {
   return (
@@ -34,6 +35,8 @@ const Index = () => {
         <CTASection />
       </main>
       <Footer />
+      <FraudAlertPopup />
+
     </div>
   );
 };
