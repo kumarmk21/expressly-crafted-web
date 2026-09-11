@@ -232,6 +232,7 @@ const CustomerPortal = () => {
                 </a>
               );
             })}
+            </div>
           </div>
         </div>
       </section>
