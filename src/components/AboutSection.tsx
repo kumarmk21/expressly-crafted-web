@@ -10,7 +10,7 @@ const highlights = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="pt-24 lg:pt-32 pb-8 lg:pb-10 bg-background relative overflow-hidden">
+    <section id="about" className="pt-20 lg:pt-24 pb-0 bg-background relative overflow-hidden">
       {/* Giant watermark name */}
       <div
         aria-hidden="true"
