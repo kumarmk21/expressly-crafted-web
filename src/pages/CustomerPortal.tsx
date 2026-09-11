@@ -181,24 +181,31 @@ const CustomerPortal = () => {
         </div>
       </section>
 
-      {/* Tools */}
+      {/* Support + Complaint Management */}
       <section className="bg-muted/40 border-y border-border">
-        <div className="container mx-auto px-4 py-14 lg:py-16">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-            <div>
-              <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">
-                Self-Service Tools
-              </div>
-              <h2 className="font-display text-3xl md:text-4xl text-foreground">
-                Manage your shipments end-to-end
-              </h2>
-            </div>
-            <p className="text-sm text-foreground/70 max-w-md">
-              Direct access to the tools your operations team uses every day.
-            </p>
+        <div className="container mx-auto px-4 py-14 lg:py-16 grid lg:grid-cols-2 gap-8 items-center">
+          <div className="relative overflow-hidden">
+            <img
+              src={supportImg}
+              alt="Scorpion Express control tower team supporting customers round the clock"
+              loading="lazy"
+              width={1200}
+              height={900}
+              className="w-full aspect-[16/9] object-cover"
+            />
           </div>
+          <div>
+            <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">
+              Service Support
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground">
+              Every issue tracked to closure
+            </h2>
+            <p className="text-sm text-foreground/70 mt-3 max-w-md">
+              Raise a service ticket and follow it from first alert to final resolution, with clear ownership at every step.
+            </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="mt-6 grid gap-3">
             {tools.map((t) => {
               const Icon = t.icon;
               return (
