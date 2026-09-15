@@ -13,6 +13,7 @@ import manojKumar from "@/assets/leadership/manoj-kumar.jpg";
 import anilTiwari from "@/assets/leadership/anil-tiwari.jpg";
 import poojaPatelKalia from "@/assets/leadership/pooja-patel-kalia.jpg";
 import rakeshSahoo from "@/assets/leadership/rakesh-sahoo.jpg";
+import anilMishra from "@/assets/leadership/anil-mishra.jpg";
 import companyShowcase from "@/assets/services/express.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
