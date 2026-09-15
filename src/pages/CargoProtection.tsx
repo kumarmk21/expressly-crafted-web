@@ -150,22 +150,36 @@ const CargoProtection = () => {
         {/* Hero */}
         <section className="relative bg-card border-b border-border overflow-hidden">
           <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-          <div className="container mx-auto px-4 py-20 lg:py-28 relative z-10">
-            <div className="flex items-center gap-3 mb-6">
-              <ShieldCheck className="h-5 w-5 text-primary" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
-                Custodian First, Carrier Later
-              </span>
+          <div className="container mx-auto px-4 py-16 lg:py-24 relative z-10 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-3 mb-6">
+                <ShieldCheck className="h-5 w-5 text-primary" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
+                  Custodian First, Carrier Later
+                </span>
+              </div>
+              <h1 className="font-display uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95] text-foreground">
+                How we actually <span className="text-primary">protect</span> your cargo
+              </h1>
+              <p className="mt-6 max-w-2xl text-base lg:text-lg text-muted-foreground leading-relaxed">
+                Protection is not a promise at the end of a contract — it is a
+                sequence of controls that starts the moment we touch your goods
+                and closes only after settlement and corrective action. Here is
+                the full journey, stage by stage.
+              </p>
             </div>
-            <h1 className="font-display uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95] text-foreground max-w-4xl">
-              How we actually <span className="text-primary">protect</span> your cargo
-            </h1>
-            <p className="mt-6 max-w-2xl text-base lg:text-lg text-muted-foreground leading-relaxed">
-              Protection is not a promise at the end of a contract — it is a
-              sequence of controls that starts the moment we touch your goods
-              and closes only after settlement and corrective action. Here is
-              the full journey, stage by stage.
-            </p>
+            <div className="lg:col-span-5">
+              <div className="relative">
+                <div className="absolute -top-3 -left-3 right-3 bottom-3 border border-primary/40" />
+                <img
+                  src={heroProtect}
+                  alt="Scorpion Express handler scanning a sealed carton with a digital lock at a loading dock"
+                  width={1280}
+                  height={960}
+                  className="relative w-full aspect-[4/3] object-cover"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
