@@ -15,6 +15,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import handling from "@/assets/cargo-protection/handling.jpg";
+import heroProtect from "@/assets/cargo-protection/hero-protect.jpg";
 import controlTower from "@/assets/cargo-protection/control-tower.jpg";
 import claims from "@/assets/cargo-protection/claims.jpg";
 import capa from "@/assets/cargo-protection/capa.jpg";
