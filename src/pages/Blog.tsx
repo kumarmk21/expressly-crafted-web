@@ -216,8 +216,11 @@ const Blog = () => {
       // optimistic
       setLikedByMe((m) => { const c = { ...m }; delete c[post.id]; return c; });
       setLikeCounts((c) => ({ ...c, [post.id]: Math.max(0, (c[post.id] || 1) - 1) }));
-      const { error } = await supabase.from("blog_post_likes").delete().eq("id", existingId);
-      if (error) {
+      const { data: removed, error } = await (supabase.rpc as any)("unlike_blog_post", {
+        p_like_id: existingId,
+        p_visitor_key: visitorKey,
+      });
+      if (error || !removed) {
         toast.error("Couldn't remove like");
         fetchAll();
       }
