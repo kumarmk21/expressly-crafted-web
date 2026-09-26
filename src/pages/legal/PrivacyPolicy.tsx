@@ -4,7 +4,7 @@ const PrivacyPolicy = () => (
   <LegalLayout
     title="Privacy Policy"
     subtitle="How Scorpion Express collects, uses, and safeguards information when you interact with our services."
-    lastUpdated="May 2026"
+    lastUpdated="September 2026"
   >
     <h2>1. Introduction</h2>
     <p>
@@ -63,19 +63,31 @@ const PrivacyPolicy = () => (
       <a href="mailto:Info@Scorpiongroup.in">Info@Scorpiongroup.in</a>.
     </p>
 
-    <h2>8. Cookies</h2>
+    <h2>8. Consent for Enquiries</h2>
+    <p>
+      When you submit an enquiry or quote request, we ask for your clear consent before collecting and using the
+      personal data in the form. We use this information only to respond to your request, provide the requested service,
+      maintain necessary business records, and meet legal obligations. You may withdraw consent by contacting us;
+      withdrawal does not affect processing already completed lawfully.
+    </p>
+    <p>
+      We process personal data in accordance with applicable Indian law, including the Digital Personal Data Protection
+      Act, 2023 and rules in force from time to time.
+    </p>
+
+    <h2>9. Cookies</h2>
     <p>
       Our website uses cookies for essential functionality and analytics. You may control cookies through your browser
       settings; disabling them may affect site features.
     </p>
 
-    <h2>9. Updates to This Policy</h2>
+    <h2>10. Updates to This Policy</h2>
     <p>
       We may update this Privacy Policy from time to time. The "Last updated" date above reflects the most recent
       revision. Continued use of the Services after changes means you accept the updated policy.
     </p>
 
-    <h2>10. Contact Us</h2>
+    <h2>11. Contact Us</h2>
     <p>
       Scorpion Express Pvt. Ltd. · Mumbai, India · Toll Free 1800 22 1945 ·{" "}
       <a href="mailto:Info@Scorpiongroup.in">Info@Scorpiongroup.in</a>

@@ -8,6 +8,8 @@ import { useQuote } from "@/context/QuoteContext";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
+import { z } from "zod";
 
 const SERVICES = [
   "Express",
@@ -17,6 +19,18 @@ const SERVICES = [
   "Cleantech Solutions",
   "FTL",
 ];
+
+const quoteSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  company: z.string().trim().max(120),
+  email: z.union([z.string().trim().email("Enter a valid email address").max(255), z.literal("")]),
+  phone: z.string().trim().min(5, "Phone is required").max(30),
+  service: z.string().trim().min(1, "Select a service").max(100),
+  origin: z.string().trim().max(120),
+  destination: z.string().trim().max(120),
+  message: z.string().trim().max(2000),
+  privacy_consent: z.literal(true, { errorMap: () => ({ message: "Please accept the Privacy Policy to continue" }) }),
+});
 
 const QuoteDialog = () => {
   const { open, service, closeQuote } = useQuote();
@@ -29,6 +43,7 @@ const QuoteDialog = () => {
     origin: "",
     destination: "",
     message: "",
+    privacy_consent: false,
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -36,12 +51,13 @@ const QuoteDialog = () => {
     if (open) setForm((f) => ({ ...f, service: service || f.service }));
   }, [open, service]);
 
-  const update = (k: keyof typeof form, v: string) => setForm((f) => ({ ...f, [k]: v }));
+  const update = (k: keyof typeof form, v: string | boolean) => setForm((f) => ({ ...f, [k]: v }));
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.phone || !form.service) {
-      toast.error("Please fill name, phone and service.");
+    const parsed = quoteSchema.safeParse(form);
+    if (!parsed.success) {
+      toast.error(parsed.error.errors[0].message);
       return;
     }
     setSubmitting(true);
@@ -49,21 +65,22 @@ const QuoteDialog = () => {
     try {
       const { error } = await supabase.from('quote_requests').insert([
         {
-          name: form.name,
-          company: form.company || null,
-          email: form.email || null,
-          phone: form.phone,
-          service: form.service,
-          origin: form.origin || null,
-          destination: form.destination || null,
-          message: form.message || null,
+          name: parsed.data.name,
+          company: parsed.data.company || null,
+          email: parsed.data.email || null,
+          phone: parsed.data.phone,
+          service: parsed.data.service,
+          origin: parsed.data.origin || null,
+          destination: parsed.data.destination || null,
+          message: parsed.data.message || null,
+          privacy_consent: parsed.data.privacy_consent,
         }
       ]);
 
       if (error) throw error;
 
       toast.success("Quote request received. Our team will reach out shortly.");
-      setForm({ name: "", company: "", email: "", phone: "", service: "", origin: "", destination: "", message: "" });
+       setForm({ name: "", company: "", email: "", phone: "", service: "", origin: "", destination: "", message: "", privacy_consent: false });
       closeQuote();
     } catch (error: any) {
       console.error("Error submitting quote request:", error);
@@ -137,6 +154,19 @@ const QuoteDialog = () => {
               />
             </div>
           </div>
+          <label className="flex cursor-pointer items-start gap-3 text-xs leading-relaxed text-muted-foreground">
+            <input
+              type="checkbox"
+              required
+              checked={form.privacy_consent}
+              onChange={(e) => update("privacy_consent", e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-primary"
+            />
+            <span>
+              I consent to Scorpion Express collecting and using my personal data to respond to this enquiry, as
+              described in the <Link to="/legal/privacy-policy" target="_blank" className="font-semibold text-primary hover:underline">Privacy Policy</Link>. *
+            </span>
+          </label>
           <Button type="submit" disabled={submitting} className="w-full red-gradient text-primary-foreground font-bold">
             <Send className="h-4 w-4 mr-2" />
             {submitting ? "Sending…" : "Submit Enquiry"}
