@@ -6,7 +6,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import digitalLock from "@/assets/custodian/digital-lock.jpg";
-import evFleet from "@/assets/technology/ev-fleet.jpg";
+import evFleetAsset from "@/assets/technology/ev-fleet-real.jpg.asset.json";
+const evFleet = evFleetAsset.url;
 import { supabase } from "@/integrations/supabase/client";
 
 const ICONS: Record<string, LucideIcon> = {
