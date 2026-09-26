@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { MapPin, Phone, Mail, X } from "lucide-react";
-import networkMap from "@/assets/scorpion-india-map.jpg.asset.json";
+import networkMap from "@/assets/scorpion-india-map-clear.jpg";
 
 export type BranchLocation = {
   id: string;
@@ -98,7 +98,7 @@ const CITY_COORDS: Record<string, [number, number]> = {
 };
 
 // India outline image bounding-box inside the JPG (normalized 0..1)
-const MAP_BOUNDS = { left: 0.073, right: 0.396, top: 0.083, bottom: 0.842 };
+const MAP_BOUNDS = { left: 0.054, right: 0.538, top: 0.042, bottom: 0.905 };
 // Geographic bounds for projection
 const GEO = { latTop: 37, latBottom: 8, lngLeft: 68, lngRight: 97 };
 
@@ -119,12 +119,7 @@ const ZONE_COLORS: Record<string, string> = {
 };
 
 const ZONE_FILTERS = ["All", "North", "South", "East", "West", "Central"];
-const MAP_IMAGE_SOURCES = [
-  `https://id-preview--b11bb29a-0b3e-4402-bb30-cd668cf03ac9.lovable.app${networkMap.url}?v=20260624-3`,
-  `https://expressly-crafted-web.lovable.app${networkMap.url}?v=20260624-3`,
-  `https://b11bb29a-0b3e-4402-bb30-cd668cf03ac9.lovableproject.com${networkMap.url}?v=20260624-3`,
-  `${networkMap.url}?v=20260624-3`,
-];
+const MAP_IMAGE_SOURCES = [networkMap];
 
 const BranchMap = ({ branches }: { branches: BranchLocation[] }) => {
   const [filter, setFilter] = useState("All");
