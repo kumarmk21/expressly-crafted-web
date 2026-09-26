@@ -5,7 +5,7 @@ import scorpionLogo from "@/assets/scorpion-logo.png";
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-white text-foreground relative overflow-hidden border-t border-border">
+    <footer className="bg-white text-foreground relative overflow-hidden border-t border-border pb-14 md:pb-0">
       {/* Marquee brand strip — red band */}
       <div className="overflow-hidden bg-primary">
         <div className="flex animate-marquee whitespace-nowrap py-4 text-white">
