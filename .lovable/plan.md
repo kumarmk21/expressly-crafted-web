@@ -1,12 +1,15 @@
-# Fraud Notice and Enquiry Consent
+# Standardize Company and Service Copy
 
-## Changes
-- Replace the home-page fraud alert artwork with a clear branded notice stating that Scorpion Express never requests payments to personal UPI IDs or bank accounts and never charges job applicants any fee.
-- Add an unchecked, required privacy-consent box to business, franchise, and quote enquiry forms.
-- Link the consent text directly to the existing Privacy Policy and show a clear validation message if consent is missing.
-- Update the Privacy Policy wording for enquiry consent and India’s Digital Personal Data Protection Act, 2023.
+## Scope
+- Replace “India’s premier…” and similar positioning with: “Pan-India B2B express cargo and logistics since 2000.”
+- Use “logistics provider” consistently instead of alternating with “logistics service provider.”
+- Standardize the legal company name as “Scorpion Express Pvt. Ltd.” wherever the full name appears.
+- Add “Part Load (LTL)” as the first service across cards, menus, forms, footer, and searchable site copy.
+- Rename the Air product to “Air Express.”
+- Write “Full Truck Load (FTL)” on first visible mention, then use “FTL” afterward.
 
 ## Technical details
-- Extend each Zod form schema with explicit `privacy_consent: true` validation and enforce the native required checkbox state.
-- Submit a consent flag with enquiry records only where the current table supports it; otherwise enforce and document consent in the interface without changing unrelated data structures.
-- Verify the notice and consent controls on desktop and mobile, and confirm the current build remains clean.
+- Update shared service data so ordering and service pages remain consistent.
+- Reuse the existing express cargo image for Part Load (LTL), avoiding a new stock-style image.
+- Update static metadata, structured data, legal copy, admin defaults, and the stored homepage text where applicable.
+- Verify desktop and mobile-visible wording, service order, links, and the latest build status.
