@@ -15,6 +15,7 @@ import poojaPatelKalia from "@/assets/leadership/pooja-patel-kalia.jpg";
 import rakeshSahoo from "@/assets/leadership/rakesh-sahoo.jpg";
 import anilMishra from "@/assets/leadership/anil-mishra.jpg";
 import companyShowcase from "@/assets/services/express.jpg";
+import aboutHero from "@/assets/hero-bg.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const milestones = [
@@ -87,8 +88,8 @@ const AboutUs = () => {
           <div className="lg:col-span-5 relative">
             <div className="absolute -top-3 -left-3 h-20 w-20 border-l-4 border-t-4 border-primary" aria-hidden="true" />
             <img
-              src={companyShowcase}
-              alt="Scorpion Express cargo operations and logistics fleet"
+              src={aboutHero}
+              alt="Scorpion Express fleet at a logistics hub"
               className="relative w-full aspect-[4/3] lg:aspect-[3/4] object-cover border border-border"
             />
             <div className="absolute bottom-0 left-0 bg-primary px-5 py-3 text-primary-foreground font-bold uppercase text-xs tracking-widest">
