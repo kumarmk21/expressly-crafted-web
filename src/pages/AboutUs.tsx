@@ -15,8 +15,7 @@ import poojaPatelKalia from "@/assets/leadership/pooja-patel-kalia.jpg";
 import rakeshSahoo from "@/assets/leadership/rakesh-sahoo.jpg";
 import anilMishra from "@/assets/leadership/anil-mishra.jpg";
 import companyShowcase from "@/assets/services/express.jpg";
-import aboutHeroAsset from "@/assets/scorpion-fleet-depot.jpg.asset.json";
-const aboutHero = aboutHeroAsset.url;
+import aboutHero from "@/assets/scorpion-fleet-depot.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const milestones = [
