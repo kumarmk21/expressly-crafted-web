@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { BriefcaseBusiness, Landmark, X } from "lucide-react";
-import popupFraudAsset from "@/assets/popup-fraud.png.asset.json";
-
-const popupFraud = popupFraudAsset.url;
+import popupFraud from "@/assets/popup-fraud.png";
 
 const FraudAlertPopup = () => {
   const [open, setOpen] = useState(false);
