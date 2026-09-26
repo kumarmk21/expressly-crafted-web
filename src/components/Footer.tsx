@@ -111,7 +111,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                <span><div className="text-[10px] uppercase tracking-wider text-muted-foreground/70">Head Office</div>Scorpion Express Pvt. Ltd., Mumbai, India</span>
+                <span><div className="text-[10px] uppercase tracking-wider text-muted-foreground/70">Registered Office</div>Gala No 404 to 408, Shah Nahar Industrial Estate, Dr E Moses Road, Worli, Mumbai 400018, Maharashtra, India</span>
               </li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-2">
