@@ -12,6 +12,7 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import FraudAlertPopup from "@/components/FraudAlertPopup";
+import HomeShipmentTracker from "@/components/HomeShipmentTracker";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <TopBar />
       <Navbar />
       <main>
+        <HomeShipmentTracker />
         <HeroSection />
         <ProofStrip />
         <CustodianSection />
