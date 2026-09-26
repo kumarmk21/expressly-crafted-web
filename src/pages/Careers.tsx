@@ -32,6 +32,7 @@ type Job = {
 const Careers = () => {
   const [query, setQuery] = useState("");
   const [dept, setDept] = useState("All");
+  const [loc, setLoc] = useState("All");
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [applyJob, setApplyJob] = useState<Job | null>(null);
@@ -51,11 +52,14 @@ const Careers = () => {
 
   const departments = ["All", ...Array.from(new Set(jobs.map((j) => j.department).filter(Boolean)))];
 
+  const locations = ["All", ...Array.from(new Set(jobs.map((j) => j.location).filter(Boolean)))];
+
   const filtered = jobs.filter((o) => {
     const q = query.toLowerCase();
     const matchQ = o.title.toLowerCase().includes(q) || (o.location || "").toLowerCase().includes(q);
     const matchD = dept === "All" || o.department === dept;
-    return matchQ && matchD;
+    const matchL = loc === "All" || o.location === loc;
+    return matchQ && matchD && matchL;
   });
 
   return (
@@ -130,6 +134,9 @@ const Careers = () => {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search role or city" aria-label="Search jobs by role or city" className="w-full pl-10 pr-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary" />
               </div>
+              <select value={loc} onChange={(e) => setLoc(e.target.value)} aria-label="Filter jobs by location" className="px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary">
+                {locations.map((l) => (<option key={l} value={l}>{l === "All" ? "All locations" : l}</option>))}
+              </select>
               <select value={dept} onChange={(e) => setDept(e.target.value)} aria-label="Filter jobs by department" className="px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary">
                 {departments.map((d) => (<option key={d} value={d}>{d}</option>))}
               </select>
@@ -186,7 +193,7 @@ const Careers = () => {
             <p className="mt-3 text-foreground/70">Send your CV and a short note about what you'd like to build with us.</p>
           </div>
           <div className="flex flex-col gap-3">
-            <a href="tel:+911234567890" className="flex items-center justify-between gap-3 px-5 py-4 border border-border font-bold uppercase tracking-wider text-sm text-foreground hover:border-primary">
+            <a href="tel:1800221945" className="flex items-center justify-between gap-3 px-5 py-4 border border-border font-bold uppercase tracking-wider text-sm text-foreground hover:border-primary">
               <span className="inline-flex items-center gap-2"><Phone className="h-4 w-4" /> HR Helpline</span>
               <ArrowUpRight className="h-4 w-4" />
             </a>

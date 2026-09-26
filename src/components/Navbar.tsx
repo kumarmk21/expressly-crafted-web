@@ -37,6 +37,17 @@ const navLinks = [
       { label: "Full Truck Load (FTL)", to: "/services/ftl", icon: Truck, desc: "Dedicated full truck load" },
     ],
   },
+  {
+    label: "Industries",
+    href: "#industries",
+    children: [
+      { label: "Pharma & Healthcare", to: "/industries/pharma", icon: Stethoscope, desc: "Temperature-safe medicines" },
+      { label: "Auto Parts", to: "/industries/auto-parts", icon: Truck, desc: "Spares to plants & dealers" },
+      { label: "Electronics", to: "/industries/electronics", icon: PackageCheck, desc: "Secure high-value devices" },
+      { label: "FMCG", to: "/industries/fmcg", icon: Warehouse, desc: "High-volume distribution" },
+      { label: "E-commerce", to: "/industries/ecommerce", icon: PackageCheck, desc: "Line-haul & returns" },
+    ],
+  },
   { label: "Network & Infra", href: "/network" },
   { label: "Technology", href: "/technology" },
   { label: "Careers", href: "/careers" },
