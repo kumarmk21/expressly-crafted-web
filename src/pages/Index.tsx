@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import FraudAlertPopup from "@/components/FraudAlertPopup";
 import HomeShipmentTracker from "@/components/HomeShipmentTracker";
+import PincodeQuoteSection from "@/components/PincodeQuoteSection";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       <Navbar />
       <main>
         <HomeShipmentTracker />
+        <PincodeQuoteSection />
         <HeroSection />
         <ProofStrip />
         <CustodianSection />
