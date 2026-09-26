@@ -452,6 +452,7 @@ export type Database = {
         Row: {
           business_type: string | null
           company_name: string | null
+          consented_at: string | null
           created_at: string
           email: string
           first_name: string | null
@@ -462,6 +463,7 @@ export type Database = {
           message: string | null
           owns_vehicle: boolean | null
           phone: string
+          privacy_consent: boolean
           service_interested: string | null
           status: string
           worked_as_franchisee: boolean | null
@@ -469,6 +471,7 @@ export type Database = {
         Insert: {
           business_type?: string | null
           company_name?: string | null
+          consented_at?: string | null
           created_at?: string
           email: string
           first_name?: string | null
@@ -479,6 +482,7 @@ export type Database = {
           message?: string | null
           owns_vehicle?: boolean | null
           phone: string
+          privacy_consent?: boolean
           service_interested?: string | null
           status?: string
           worked_as_franchisee?: boolean | null
@@ -486,6 +490,7 @@ export type Database = {
         Update: {
           business_type?: string | null
           company_name?: string | null
+          consented_at?: string | null
           created_at?: string
           email?: string
           first_name?: string | null
@@ -496,6 +501,7 @@ export type Database = {
           message?: string | null
           owns_vehicle?: boolean | null
           phone?: string
+          privacy_consent?: boolean
           service_interested?: string | null
           status?: string
           worked_as_franchisee?: boolean | null
@@ -1098,6 +1104,7 @@ export type Database = {
       quote_requests: {
         Row: {
           company: string | null
+          consented_at: string | null
           created_at: string
           destination: string | null
           email: string | null
@@ -1106,10 +1113,12 @@ export type Database = {
           name: string
           origin: string | null
           phone: string
+          privacy_consent: boolean
           service: string
         }
         Insert: {
           company?: string | null
+          consented_at?: string | null
           created_at?: string
           destination?: string | null
           email?: string | null
@@ -1118,10 +1127,12 @@ export type Database = {
           name: string
           origin?: string | null
           phone: string
+          privacy_consent?: boolean
           service: string
         }
         Update: {
           company?: string | null
+          consented_at?: string | null
           created_at?: string
           destination?: string | null
           email?: string | null
@@ -1130,6 +1141,7 @@ export type Database = {
           name?: string
           origin?: string | null
           phone?: string
+          privacy_consent?: boolean
           service?: string
         }
         Relationships: []

@@ -37,6 +37,7 @@ const businessSchema = z.object({
   company_name: z.string().trim().max(120).optional().or(z.literal("")),
   service_interested: z.string().min(1, "Select a service"),
   message: z.string().trim().min(1, "Message is required").max(2000),
+  privacy_consent: z.literal(true, { errorMap: () => ({ message: "Please accept the Privacy Policy to continue" }) }),
 });
 
 const franchiseeSchema = z.object({
@@ -47,6 +48,7 @@ const franchiseeSchema = z.object({
   location: z.string().trim().max(120).optional().or(z.literal("")),
   worked_as_franchisee: z.boolean(),
   owns_vehicle: z.boolean(),
+  privacy_consent: z.literal(true, { errorMap: () => ({ message: "Please accept the Privacy Policy to continue" }) }),
 });
 
 const inputCls =
@@ -65,9 +67,10 @@ const BusinessForm = () => {
     company_name: "",
     service_interested: "",
     message: "",
+    privacy_consent: false,
   });
 
-  const update = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
+  const update = (k: string, v: string | boolean) => setForm((f) => ({ ...f, [k]: v }));
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,6 +99,7 @@ const BusinessForm = () => {
       company_name: "",
       service_interested: "",
       message: "",
+      privacy_consent: false,
     });
   };
 
@@ -178,10 +182,19 @@ const BusinessForm = () => {
         />
       </div>
 
-      <p className="text-xs text-muted-foreground">
-        Your submission is subject to our{" "}
-        <Link to="/terms" className="text-primary hover:underline">Terms & Conditions and Privacy Policy</Link>.
-      </p>
+      <label className="flex cursor-pointer items-start gap-3 text-xs leading-relaxed text-muted-foreground">
+        <input
+          type="checkbox"
+          required
+          checked={form.privacy_consent}
+          onChange={(e) => update("privacy_consent", e.target.checked)}
+          className="mt-0.5 h-4 w-4 shrink-0 accent-primary"
+        />
+        <span>
+          I consent to Scorpion Express collecting and using my personal data to respond to this enquiry, as described
+          in the <Link to="/legal/privacy-policy" target="_blank" className="font-semibold text-primary hover:underline">Privacy Policy</Link>. *
+        </span>
+      </label>
 
       <button
         type="submit"
@@ -205,6 +218,7 @@ const FranchiseeForm = () => {
     location: "",
     worked_as_franchisee: false,
     owns_vehicle: false,
+    privacy_consent: false,
   });
 
   const update = (k: string, v: any) => setForm((f) => ({ ...f, [k]: v }));
@@ -235,6 +249,7 @@ const FranchiseeForm = () => {
       location: "",
       worked_as_franchisee: false,
       owns_vehicle: false,
+      privacy_consent: false,
     });
   };
 
@@ -310,10 +325,19 @@ const FranchiseeForm = () => {
         <YesNo value={form.owns_vehicle} onChange={(v) => update("owns_vehicle", v)} />
       </div>
 
-      <p className="text-xs text-muted-foreground">
-        Your submission is subject to our{" "}
-        <Link to="/terms" className="text-primary hover:underline">Terms & Conditions and Privacy Policy</Link>.
-      </p>
+      <label className="flex cursor-pointer items-start gap-3 text-xs leading-relaxed text-muted-foreground">
+        <input
+          type="checkbox"
+          required
+          checked={form.privacy_consent}
+          onChange={(e) => update("privacy_consent", e.target.checked)}
+          className="mt-0.5 h-4 w-4 shrink-0 accent-primary"
+        />
+        <span>
+          I consent to Scorpion Express collecting and using my personal data to respond to this enquiry, as described
+          in the <Link to="/legal/privacy-policy" target="_blank" className="font-semibold text-primary hover:underline">Privacy Policy</Link>. *
+        </span>
+      </label>
 
       <button
         type="submit"
