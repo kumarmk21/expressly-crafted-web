@@ -1488,6 +1488,10 @@ export type Database = {
           tracking_number: string
         }[]
       }
+      unlike_blog_post: {
+        Args: { p_like_id: string; p_visitor_key: string }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "user"
