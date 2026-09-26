@@ -62,9 +62,10 @@ const CustodianSection = () => {
             className="lg:col-span-5 flex items-end"
           >
             <p className="text-base lg:text-lg text-foreground/70 leading-relaxed">
-              Before we move a single kilometre, we take custody of your goods —
-              with insured coverage, live surveillance, digital locks and
-              tamper-proof handling at every touchpoint. That's the Scorpion promise.
+              "Custodian First, Carrier Later" means we protect your goods before we move them.
+              Every consignment gets a packing check at pickup, with weak cartons re-packed or flagged.
+              Quality checks, digital locks and CCTV control damage at every hand-off.
+              If a loss or damage does occur, claims are settled within 15 working days of complete documents.
             </p>
           </motion.div>
         </div>

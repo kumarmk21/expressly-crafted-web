@@ -4,26 +4,29 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import DynamicPage from "./pages/DynamicPage";
+import { lazy, Suspense } from "react";
+import MobileContactBar from "./components/MobileContactBar";
+const IndustryDetail = lazy(() => import("./pages/IndustryDetail"));
+const DynamicPage = lazy(() => import("./pages/DynamicPage"));
 import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import EmployeeLogin from "./pages/EmployeeLogin";
-import EventsNews from "./pages/EventsNews";
-import EmployeeBlog from "./pages/EmployeeBlog";
-import Blog from "./pages/Blog";
-import Network from "./pages/Network";
-import Technology from "./pages/Technology";
-import ServiceDetail from "./pages/ServiceDetail";
-import AboutUs from "./pages/AboutUs";
-import Careers from "./pages/Careers";
-import CustomerPortal from "./pages/CustomerPortal";
-import ContactUs from "./pages/ContactUs";
-import CargoProtection from "./pages/CargoProtection";
-import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
-import TermsAndConditions from "./pages/legal/TermsAndConditions";
-import Disclaimer from "./pages/legal/Disclaimer";
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminDashboard from "./pages/admin/AdminDashboard";
+const NotFound = lazy(() => import("./pages/NotFound"));
+const EmployeeLogin = lazy(() => import("./pages/EmployeeLogin"));
+const EventsNews = lazy(() => import("./pages/EventsNews"));
+const EmployeeBlog = lazy(() => import("./pages/EmployeeBlog"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Network = lazy(() => import("./pages/Network"));
+const Technology = lazy(() => import("./pages/Technology"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+const Careers = lazy(() => import("./pages/Careers"));
+const CustomerPortal = lazy(() => import("./pages/CustomerPortal"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const CargoProtection = lazy(() => import("./pages/CargoProtection"));
+const PrivacyPolicy = lazy(() => import("./pages/legal/PrivacyPolicy"));
+const TermsAndConditions = lazy(() => import("./pages/legal/TermsAndConditions"));
+const Disclaimer = lazy(() => import("./pages/legal/Disclaimer"));
+const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 import { QuoteProvider } from "./context/QuoteContext";
 import QuoteDialog from "./components/QuoteDialog";
 
@@ -45,12 +48,14 @@ const App = () => (
         <VersionWatcher />
         <QuoteProvider>
           <BrowserRouter>
+            <Suspense fallback={<div className="min-h-screen" />}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/employee-login" element={<EmployeeLogin />} />
               <Route path="/events-news" element={<EventsNews />} />
               <Route path="/employee-portal/blog" element={<EmployeeBlog />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/industries/:slug" element={<IndustryDetail />} />
               <Route path="/services/:slug" element={<ServiceDetail />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/careers" element={<Careers />} />
@@ -68,6 +73,8 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </Suspense>
+            <MobileContactBar />
             <QuoteDialog />
 
 
