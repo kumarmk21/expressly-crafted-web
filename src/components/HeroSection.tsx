@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, ArrowRight, Zap, ShieldCheck, Globe2, Sparkles } from "lucide-react";
+import { ArrowRight, Zap, ShieldCheck, Globe2 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -14,7 +13,6 @@ const DEFAULT_HERO = {
 };
 
 const HeroSection = () => {
-  const [lr, setLr] = useState("");
   const [hero, setHero] = useState(DEFAULT_HERO);
 
   useEffect(() => {
@@ -61,12 +59,12 @@ const HeroSection = () => {
         </motion.h1>
 
         {/* Sub + CTAs */}
-        <div className="grid lg:grid-cols-12 gap-8 mt-10 lg:mt-14">
+        <div className="mt-10 lg:mt-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-7"
+            className="max-w-3xl"
           >
             <p className="text-lg lg:text-xl text-foreground/70 leading-relaxed max-w-2xl">
               {hero.subtext}
@@ -98,74 +96,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Tracker card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
-            className="lg:col-span-5"
-          >
-            <div className="bg-card border border-border p-6 lg:p-7 red-glow">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary">Live Tracking</span>
-                <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-                  </span>
-                  Active
-                </span>
-              </div>
-              <h2 className="font-display uppercase text-3xl text-foreground mb-2">Track Shipment</h2>
-              <p className="text-sm text-muted-foreground mb-5">Enter your LR / Docket number for real-time status.</p>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const id = lr.trim();
-                  if (!id) return;
-                  const url = `https://dtrack.scorpiongroup.in/?lr=${encodeURIComponent(id)}`;
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.target = "_blank";
-                  a.rel = "noopener noreferrer";
-                  document.body.appendChild(a);
-                  a.click();
-                  a.remove();
-                }}
-                className="flex gap-2"
-              >
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <input
-                    type="text"
-                    value={lr}
-                    onChange={(e) => setLr(e.target.value)}
-                    placeholder="e.g. SX1234567890"
-                    aria-label="Shipment tracking number"
-                    className="w-full pl-10 pr-3 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground font-mono-tab text-sm focus:outline-none focus:border-primary"
-                  />
-                </div>
-                <button type="submit" className="px-5 py-3 bg-primary text-white font-black uppercase text-xs tracking-wider hover:bg-primary/90 transition-colors">
-                  Track
-                </button>
-              </form>
-
-              <div className="mt-5 pt-5 border-t border-border grid grid-cols-3 gap-3 text-center">
-                <div>
-                  <div className="font-display text-2xl text-foreground">24/7</div>
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Support</div>
-                </div>
-                <div className="border-x border-border">
-                  <div className="font-display text-2xl text-foreground">Live</div>
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Visibility</div>
-                </div>
-                <div>
-                  <div className="font-display text-2xl text-foreground">PoD</div>
-                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mt-0.5">Digital</div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
 
