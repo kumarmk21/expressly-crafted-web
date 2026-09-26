@@ -111,7 +111,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                <span><div className="text-[10px] uppercase tracking-wider text-muted-foreground/70">Head Office</div>Scorpion Express Pvt. Ltd., Mumbai, India</span>
+                <span><div className="text-[10px] uppercase tracking-wider text-muted-foreground/70">Registered Office</div>Gala No 404 to 408, Shah Nahar Industrial Estate, Dr E Moses Road, Worli, Mumbai 400018, Maharashtra, India</span>
               </li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -121,6 +121,22 @@ const Footer = () => {
               <a href="https://cms.scorpiongroup.in/" className="text-[10px] uppercase tracking-wider px-3 py-2 bg-primary text-white font-bold hover:bg-primary/90 transition-colors">
                 Customer Portal
               </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Statutory company information — legal requirement */}
+        <div className="mt-16 border-t border-border pt-8">
+          <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-4">Company Information</div>
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 text-xs text-muted-foreground leading-relaxed">
+            <div>
+              <p className="text-sm font-semibold text-foreground">SCORPION EXPRESS PRIVATE LIMITED</p>
+              <p className="mt-2">Registered Office: Gala No 404 to 408, Shah Nahar Industrial Estate,<br />Dr E Moses Road, Worli, Mumbai 400018, Maharashtra, India</p>
+            </div>
+            <div className="space-y-1.5">
+              <p><span className="text-foreground font-semibold">CIN:</span> <span className="italic">To be added — awaiting Certificate of Incorporation details</span></p>
+              <p><span className="text-foreground font-semibold">GSTIN:</span> 27AAJCS7860C1Z5</p>
+              <p><span className="text-foreground font-semibold">Toll Free:</span> 1800 22 1945 &nbsp;·&nbsp; <span className="text-foreground font-semibold">Email:</span> Info@Scorpiongroup.in</p>
             </div>
           </div>
         </div>
