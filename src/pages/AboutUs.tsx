@@ -15,6 +15,7 @@ import poojaPatelKalia from "@/assets/leadership/pooja-patel-kalia.jpg";
 import rakeshSahoo from "@/assets/leadership/rakesh-sahoo.jpg";
 import anilMishra from "@/assets/leadership/anil-mishra.jpg";
 import companyShowcase from "@/assets/services/express.jpg";
+import aboutHero from "@/assets/hero-bg.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const milestones = [
@@ -70,18 +71,31 @@ const AboutUs = () => {
 
       {/* Hero — light, minimal red */}
       <section className="relative bg-white border-b border-border overflow-hidden">
-        <div className="container mx-auto px-4 py-16 lg:py-24 relative">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-12 bg-primary" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Scorpion Express</span>
+        <div className="container mx-auto px-4 py-12 lg:py-16 relative grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-12 bg-primary" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Scorpion Express</span>
+            </div>
+            <h1 className="font-display uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-foreground">
+              Pan-India B2B <br /> express cargo & logistics<span className="text-primary">.</span>
+            </h1>
+            <p className="mt-8 max-w-2xl text-lg text-foreground/70 leading-relaxed">
+              The driving force behind the Scorpion Group's ventures — founded on
+              one unwavering principle: <strong className="text-foreground font-bold">Custodian First, Carrier Later.</strong>
+            </p>
           </div>
-          <h1 className="font-display uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] max-w-5xl text-foreground">
-            Pan-India B2B <br /> express cargo & logistics<span className="text-primary">.</span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg text-foreground/70 leading-relaxed">
-            The driving force behind the Scorpion Group's ventures — founded on
-            one unwavering principle: <strong className="text-foreground font-bold">Custodian First, Carrier Later.</strong>
-          </p>
+          <div className="lg:col-span-5 relative">
+            <div className="absolute -top-3 -left-3 h-20 w-20 border-l-4 border-t-4 border-primary" aria-hidden="true" />
+            <img
+              src={aboutHero}
+              alt="Scorpion Express fleet at a logistics hub"
+              className="relative w-full aspect-[4/3] lg:aspect-[3/4] object-cover border border-border"
+            />
+            <div className="absolute bottom-0 left-0 bg-primary px-5 py-3 text-primary-foreground font-bold uppercase text-xs tracking-widest">
+              Delivering across India since 2000
+            </div>
+          </div>
         </div>
       </section>
 
