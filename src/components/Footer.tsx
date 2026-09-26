@@ -124,6 +124,22 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Statutory company information — legal requirement */}
+        <div className="mt-16 border-t border-border pt-8">
+          <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-4">Company Information</div>
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 text-xs text-muted-foreground leading-relaxed">
+            <div>
+              <p className="text-sm font-semibold text-foreground">SCORPION EXPRESS PRIVATE LIMITED</p>
+              <p className="mt-2">Registered Office: Gala No 404 to 408, Shah Nahar Industrial Estate,<br />Dr E Moses Road, Worli, Mumbai 400018, Maharashtra, India</p>
+            </div>
+            <div className="space-y-1.5">
+              <p><span className="text-foreground font-semibold">CIN:</span> <span className="italic">To be added — awaiting Certificate of Incorporation details</span></p>
+              <p><span className="text-foreground font-semibold">GSTIN:</span> 27AAJCS7860C1Z5</p>
+              <p><span className="text-foreground font-semibold">Toll Free:</span> 1800 22 1945 &nbsp;·&nbsp; <span className="text-foreground font-semibold">Email:</span> Info@Scorpiongroup.in</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="border-t border-border bg-muted/40">
