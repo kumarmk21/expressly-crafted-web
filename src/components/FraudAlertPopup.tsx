@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { BriefcaseBusiness, Landmark, ShieldAlert, X } from "lucide-react";
+import { BriefcaseBusiness, Landmark, X } from "lucide-react";
+import popupFraud from "@/assets/popup-fraud.png";
 
 const FraudAlertPopup = () => {
   const [open, setOpen] = useState(false);
@@ -32,40 +33,29 @@ const FraudAlertPopup = () => {
           onClick={() => setOpen(false)}
           className="absolute right-3 top-3 z-10 rounded-full bg-background/90 p-2 text-foreground shadow-lg transition-colors hover:bg-primary hover:text-primary-foreground"
         >
-          <X className="h-5 w-5" />
+          <X className="h-5 w-5" aria-hidden="true" />
         </button>
-        <div className="border-t-8 border-primary p-6 sm:p-8">
-          <div className="mb-5 flex items-center gap-3 pr-10">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-              <ShieldAlert className="h-6 w-6" aria-hidden="true" />
-            </span>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-primary">Public fraud notice</p>
-              <h2 className="text-2xl font-black uppercase text-foreground sm:text-3xl">Please stay alert</h2>
-            </div>
+
+        <img
+          src={popupFraud}
+          alt="Fraud alert: beware of fraudulent calls and messages in the name of Scorpion Express"
+          className="w-full rounded-t-lg"
+        />
+
+        <div className="space-y-3 p-5 sm:p-6">
+          <div className="flex gap-3 border border-border bg-muted p-4">
+            <Landmark className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+            <p className="text-sm font-semibold leading-relaxed text-foreground">
+              We never ask for payment to a personal UPI ID or personal bank account.
+            </p>
           </div>
-
-          <p className="mb-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Scorpion Express follows official payment and recruitment processes. Protect yourself from people falsely
-            claiming to represent our company.
-          </p>
-
-          <div className="space-y-3">
-            <div className="flex gap-3 border border-border bg-muted p-4">
-              <Landmark className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-              <p className="text-sm font-semibold leading-relaxed text-foreground">
-                We never ask for payment to a personal UPI ID or personal bank account.
-              </p>
-            </div>
-            <div className="flex gap-3 border border-border bg-muted p-4">
-              <BriefcaseBusiness className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-              <p className="text-sm font-semibold leading-relaxed text-foreground">
-                We never charge candidates any application, interview, recruitment, or job placement fee.
-              </p>
-            </div>
+          <div className="flex gap-3 border border-border bg-muted p-4">
+            <BriefcaseBusiness className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+            <p className="text-sm font-semibold leading-relaxed text-foreground">
+              We never charge candidates any application, interview, recruitment, or job placement fee.
+            </p>
           </div>
-
-          <p className="mt-5 border-l-2 border-primary pl-3 text-xs leading-relaxed text-muted-foreground">
+          <p className="border-l-2 border-primary pl-3 text-xs leading-relaxed text-muted-foreground">
             Do not share OTPs or passwords. If you receive a suspicious request, verify it with Scorpion Express at
             <a href="tel:1800221945" className="ml-1 font-bold text-primary hover:underline">1800 22 1945</a>.
           </p>
