@@ -192,8 +192,8 @@ const BusinessForm = () => {
           className="mt-0.5 h-4 w-4 shrink-0 accent-primary"
         />
         <span>
-          I consent to Scorpion Express collecting and using my personal data to respond to this enquiry, as described
-          in the <Link to="/legal/privacy-policy" target="_blank" className="font-semibold text-primary hover:underline">Privacy Policy</Link>. *
+          I consent to having this website store my submitted information so Scorpion Express can respond to my
+          enquiry. Read more in the <Link to="/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">Privacy Policy</Link>. *
         </span>
       </label>
 
@@ -335,8 +335,8 @@ const FranchiseeForm = () => {
           className="mt-0.5 h-4 w-4 shrink-0 accent-primary"
         />
         <span>
-          I consent to Scorpion Express collecting and using my personal data to respond to this enquiry, as described
-          in the <Link to="/legal/privacy-policy" target="_blank" className="font-semibold text-primary hover:underline">Privacy Policy</Link>. *
+          I consent to having this website store my submitted information so Scorpion Express can respond to my
+          enquiry. Read more in the <Link to="/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">Privacy Policy</Link>. *
         </span>
       </label>
 
