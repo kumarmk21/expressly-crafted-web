@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Monitor, PackageSearch, MapPinned, Cloud, HeadphonesIcon, Radio,
-  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity, Warehouse,
+  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity, Warehouse, Lock,
   type LucideIcon,
 } from "lucide-react";
+import digitalLock from "@/assets/custodian/digital-lock.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const ICONS: Record<string, LucideIcon> = {
   Monitor, PackageSearch, MapPinned, Cloud, HeadphonesIcon, Radio,
-  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity, Warehouse,
+  ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity, Warehouse, Lock,
 };
 
 type Tech = {
@@ -25,6 +26,7 @@ type Tech = {
 const SALESFORCE_ID = "2928c658-bfb6-46da-8f9f-4e167c586d8a";
 const WALLET_ID = "d03f2666-3ee3-4836-b0d7-271b33c244a7";
 const PRQ_ID = "fafdb6fc-702f-43e2-8efd-5fcc87e8fa88";
+const DIGITAL_LOCK_ID = "7f0c8650-24bf-4f2a-81e9-89bedf4b5cf2";
 
 const TechnologySection = () => {
   const [items, setItems] = useState<Tech[]>([]);
@@ -61,6 +63,12 @@ const TechnologySection = () => {
                 ...it,
                 image_url:
                   "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=70",
+              };
+            }
+            if (it.id === DIGITAL_LOCK_ID) {
+              return {
+                ...it,
+                image_url: digitalLock,
               };
             }
             return it;
