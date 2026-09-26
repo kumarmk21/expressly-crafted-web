@@ -57,6 +57,7 @@ const Footer = () => {
                 { l: "About", h: "/about" },
                 { l: "Services", h: "#services" },
                 { l: "Network & Infra", h: "/network" },
+                { l: "Careers", h: "/careers" },
                 { l: "Contact", h: "#contact" },
               ].map((link) => (
                 <li key={link.l}>
