@@ -6,16 +6,17 @@ import { toast } from "sonner";
 import { Link } from "react-router-dom";
 
 const SERVICES = [
-  "FTL",
+  "Part Load (LTL)",
   "Express Cargo Services",
   "Coldchain",
   "Smart Baggage",
-  "Air Services",
+  "Air Express",
   "Sample",
   "Stockiest",
   "Warehousing",
   "E-waste",
   "Clean Tech Solution",
+  "Full Truck Load (FTL)",
 ];
 
 const BUSINESS_TYPES = [

@@ -31,6 +31,33 @@ export type ServiceItem = {
 export const services: ServiceItem[] = [
   {
     no: "01",
+    slug: "ltl",
+    icon: PackageCheck,
+    title: "Part Load (LTL)",
+    desc: "Reliable pan-India part-load movement for B2B cargo, combining scheduled connectivity with secure handling and shipment visibility.",
+    image: serviceExpress,
+    iconColor: "red-gradient",
+    tagline: "Flexible part loads. Nationwide reach. Dependable delivery.",
+    content: [
+      "Part Load (LTL) is Scorpion Express's core B2B cargo service for shipments that do not require a dedicated vehicle. Cargo is consolidated through our pan-India network to provide dependable, cost-effective movement across major business and industrial centres.",
+      "Each consignment follows defined handling, sorting and line-haul processes, supported by shipment tracking and operational oversight from pickup through delivery.",
+      "The service is suited to regular commercial cargo, distributor replenishment, spare parts, pharmaceuticals, FMCG and other business shipments requiring scalable nationwide connectivity.",
+    ],
+    features: [
+      "Pan-India B2B part-load connectivity",
+      "Cost-effective movement for smaller consignments",
+      "Scheduled line-haul and hub operations",
+      "Shipment tracking from pickup to delivery",
+    ],
+    industries: ["Pharmaceuticals", "FMCG", "Manufacturing", "Retail"],
+    capabilities: [
+      { title: "Consolidated Network", desc: "Efficient part-load movement through scheduled hubs and line-haul connections." },
+      { title: "Flexible Volumes", desc: "Scalable capacity for recurring and on-demand B2B consignments." },
+      { title: "End-to-End Visibility", desc: "Tracked movement and operational oversight across the shipment journey." },
+    ],
+  },
+  {
+    no: "02",
     slug: "express",
     icon: PackageCheck,
     title: "Express",
@@ -58,10 +85,10 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    no: "02",
+    no: "03",
     slug: "air",
     icon: Plane,
-    title: "Air",
+    title: "Air Express",
     desc: "When speed is the ultimate priority. Direct air cargo connecting all major domestic and international hubs.",
     image: serviceAir,
     iconColor: "red-gradient",
@@ -87,7 +114,7 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    no: "03",
+    no: "04",
     slug: "mrconnect",
     icon: Stethoscope,
     title: "MRConnect",
@@ -115,7 +142,7 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    no: "04",
+    no: "05",
     slug: "cold-chain",
     icon: Snowflake,
     title: "Cold Chain",
@@ -149,7 +176,7 @@ export const services: ServiceItem[] = [
   },
 
   {
-    no: "05",
+    no: "06",
     slug: "wms",
     icon: Warehouse,
     title: "Warehousing",
@@ -176,7 +203,7 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    no: "06",
+    no: "07",
     slug: "cleantech",
     icon: Recycle,
     title: "Cleantech Solutions",
@@ -204,16 +231,16 @@ export const services: ServiceItem[] = [
     ],
   },
   {
-    no: "07",
+    no: "08",
     slug: "ftl",
     icon: Truck,
-    title: "FTL",
+    title: "Full Truck Load (FTL)",
     desc: "Dedicated point-to-point heavy haulage offering maximum capacity, uncompromised security, and direct routing.",
     image: serviceFtl,
     iconColor: "red-gradient",
     tagline: "Dedicated trucks. Direct routes. Total control.",
     content: [
-      "Dedicated Full-Truck-Load (FTL) transportation solutions designed for businesses that require exclusive vehicle movement, higher carrying capacity and direct point-to-point delivery without intermediate handling.",
+      "Dedicated Full Truck Load (FTL) transportation solutions designed for businesses that require exclusive vehicle movement, higher carrying capacity and direct point-to-point delivery without intermediate handling.",
       "Our FTL operations are built for customers moving high-value cargo, bulk commercial shipments, project materials and time-sensitive industrial goods across India. Whether it is a dedicated plant-to-warehouse movement, factory-to-distribution-centre supply or specialised project cargo, we deploy the right vehicle configuration from a fleet ranging from 9 MT to 32 MT capacities — including multi-axle trucks, containers, flatbeds, trailers and low-bed vehicles.",
       "Every vehicle is assigned exclusively to a single customer shipment, ensuring faster transit, reduced handling risk and improved cargo security. Shipments are monitored through real-time GPS tracking with geo-fencing, route monitoring, live status visibility and proactive exception alerts.",
       "Our centralized operations control team monitors active vehicle movement round the clock to ensure timely coordination, rapid issue resolution and consistent delivery performance across every route.",

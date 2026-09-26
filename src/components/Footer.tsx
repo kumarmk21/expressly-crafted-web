@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
-              India's premier freight & logistics service provider — delivering custodial excellence with a single promise: <strong className="text-foreground">Custodian First, Carrier Later.</strong>
+              Pan-India B2B express cargo and logistics since 2000. <strong className="text-foreground">Custodian First, Carrier Later.</strong>
             </p>
             <div className="flex gap-2 mt-8">
               {[
@@ -75,12 +75,13 @@ const Footer = () => {
             <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-5">Services</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               {[
+                ["Part Load (LTL)", "ltl"],
                 ["Express", "express"],
-                ["Air", "air"],
+                ["Air Express", "air"],
                 ["Cold Chain", "cold-chain"],
                 ["Warehousing", "wms"],
                 ["Cleantech Solutions", "cleantech"],
-                ["FTL", "ftl"],
+                ["Full Truck Load (FTL)", "ftl"],
               ].map(([label, slug]) => (
                 <li key={slug}>
                   <Link to={`/services/${slug}`} className="hover:text-primary transition-colors inline-flex items-center gap-1 group">

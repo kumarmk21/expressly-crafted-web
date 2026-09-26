@@ -62,7 +62,7 @@ const AboutUs = () => {
     <div className="min-h-screen bg-white flex flex-col">
       <Seo
         title="About Scorpion Express | Custodian First, Carrier Later"
-        description="Founded in 2000, Scorpion Express delivers pan-India freight, cold chain and warehousing with a custodian-first promise."
+        description="Pan-India B2B express cargo and logistics since 2000, delivered with a custodian-first promise."
         path="/about"
       />
       <TopBar />
@@ -76,7 +76,7 @@ const AboutUs = () => {
             <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Scorpion Express</span>
           </div>
           <h1 className="font-display uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] max-w-5xl text-foreground">
-            India's premier <br /> freight & logistics<span className="text-primary">.</span>
+            Pan-India B2B <br /> express cargo & logistics<span className="text-primary">.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-foreground/70 leading-relaxed">
             The driving force behind the Scorpion Group's ventures — founded on

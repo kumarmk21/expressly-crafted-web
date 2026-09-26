@@ -18,7 +18,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title="Scorpion Express — Custodian First, Carrier Later"
-        description="India's premier freight and logistics provider — express, cold chain, FTL, air freight and warehousing across 25,000+ pincodes."
+        description="Pan-India B2B express cargo and logistics since 2000. Part Load (LTL), Air Express, Full Truck Load (FTL), cold chain and warehousing across 25,000+ pincodes."
         path="/"
       />
       <TopBar />

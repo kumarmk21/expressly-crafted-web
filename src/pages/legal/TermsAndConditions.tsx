@@ -14,7 +14,8 @@ const TermsAndConditions = () => (
 
     <h2>2. Services</h2>
     <p>
-      Scorpion Express provides express, air, FTL, cold chain, warehousing (WMS), and cleantech logistics solutions
+      Scorpion Express provides Part Load (LTL), express cargo, Air Express, Full Truck Load (FTL), cold chain,
+      warehousing (WMS), and cleantech logistics solutions
       across India. Service availability, transit times, and serviceable pincodes are indicative and may change
       without notice.
     </p>

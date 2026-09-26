@@ -10,7 +10,7 @@ const DEFAULT_HERO = {
   headline_line1: "We move",
   headline_line2: "India",
   headline_tail: "Reliably.",
-  subtext: "India's premier freight & logistics partner — Express Cargo, Cold Chain, Air, FTL and Warehousing engineered with absolute custodial discipline.",
+  subtext: "Pan-India B2B express cargo and logistics since 2000.",
 };
 
 const HeroSection = () => {
