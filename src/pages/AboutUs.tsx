@@ -90,8 +90,11 @@ const AboutUs = () => {
             <div className="absolute -top-3 -left-3 h-20 w-20 border-l-4 border-t-4 border-primary" aria-hidden="true" />
             <img
               src={aboutHero}
-              alt="Scorpion Express fleet at a logistics hub"
-              className="relative w-full aspect-[4/3] lg:aspect-[3/4] object-cover border border-border"
+              alt="Scorpion Express last-mile fleet lined up at the company depot"
+              loading="lazy"
+              width={1040}
+              height={485}
+              className="relative w-full aspect-[4/3] object-cover border border-border"
             />
             <div className="absolute bottom-0 left-0 bg-primary px-5 py-3 text-primary-foreground font-bold uppercase text-xs tracking-widest">
               Delivering across India since 2000
