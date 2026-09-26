@@ -5,7 +5,7 @@ import { Loader2, Plus, Trash2, Upload, Image as ImageIcon, Warehouse } from "lu
 
 const ICON_OPTIONS = [
   "Monitor", "PackageSearch", "MapPinned", "Cloud", "HeadphonesIcon", "Radio",
-  "ReceiptText", "Wallet", "Plug", "Tag", "Gavel", "Users", "Truck", "Package", "Activity", "Warehouse",
+  "ReceiptText", "Wallet", "Plug", "Tag", "Gavel", "Users", "Truck", "Package", "Activity", "Warehouse", "Lock",
 ];
 
 const uploadTechImage = async (file: File): Promise<string | null> => {
