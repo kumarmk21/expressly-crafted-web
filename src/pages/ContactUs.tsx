@@ -53,7 +53,7 @@ const ContactUs = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          name: "Scorpion Express Pvt Ltd",
+          name: "Scorpion Express Pvt. Ltd.",
           telephone: "+91-22-2497-8815",
           email: "info@scorpiongroup.in",
           url: "https://expressly-crafted-web.lovable.app/contact",

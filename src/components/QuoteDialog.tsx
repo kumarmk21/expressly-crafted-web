@@ -12,12 +12,13 @@ import { Link } from "react-router-dom";
 import { z } from "zod";
 
 const SERVICES = [
+  "Part Load (LTL)",
   "Express",
-  "Air",
+  "Air Express",
   "Cold Chain",
   "Warehousing",
   "Cleantech Solutions",
-  "FTL",
+  "Full Truck Load (FTL)",
 ];
 
 const quoteSchema = z.object({

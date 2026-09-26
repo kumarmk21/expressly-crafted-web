@@ -51,7 +51,7 @@ const ServiceDetail = () => {
           "@type": "Service",
           name: service.title,
           description: service.desc,
-          provider: { "@type": "Organization", name: "Scorpion Express Pvt Ltd", url: "https://expressly-crafted-web.lovable.app" },
+          provider: { "@type": "Organization", name: "Scorpion Express Pvt. Ltd.", url: "https://expressly-crafted-web.lovable.app" },
           areaServed: "IN",
         }}
       />
