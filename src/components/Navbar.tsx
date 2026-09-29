@@ -72,8 +72,8 @@ const Navbar = () => {
             <span className="font-display text-2xl text-foreground tracking-wide">
               SCORPION<span className="text-primary">.</span>
             </span>
-            <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.25em] mt-1">
-              Custodian First · Carrier Later
+            <span className="mt-1 whitespace-nowrap text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-muted-foreground">
+              Custodian First, Carrier Later
             </span>
           </div>
         </Link>
