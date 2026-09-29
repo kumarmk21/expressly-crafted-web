@@ -79,7 +79,6 @@ const QuoteDialog = () => {
       ]);
 
       if (error) throw error;
-      supabase.functions.invoke("notify-enquiry", { body: { table: "quote_requests", phone: parsed.data.phone } }).catch(() => {});
 
       toast.success("Quote request received. Our team will reach out shortly.");
        setForm({ name: "", company: "", email: "", phone: "", service: "", origin: "", destination: "", message: "", privacy_consent: false });
