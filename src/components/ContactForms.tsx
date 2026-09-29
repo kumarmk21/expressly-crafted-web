@@ -90,6 +90,7 @@ const BusinessForm = () => {
       toast.error("Could not submit. Please try again.");
       return;
     }
+    supabase.functions.invoke("notify-enquiry", { body: { table: "contact_submissions", phone: parsed.data.phone } }).catch(() => {});
     toast.success("Thank you! We'll be in touch shortly.");
     setForm({
       first_name: "",
@@ -241,6 +242,7 @@ const FranchiseeForm = () => {
       toast.error("Could not submit. Please try again.");
       return;
     }
+    supabase.functions.invoke("notify-enquiry", { body: { table: "contact_submissions", phone: parsed.data.phone } }).catch(() => {});
     toast.success("Thank you! Our franchise team will reach out.");
     setForm({
       first_name: "",
