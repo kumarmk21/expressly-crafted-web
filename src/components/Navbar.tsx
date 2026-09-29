@@ -84,7 +84,7 @@ const Navbar = () => {
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <button className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                  <button className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors whitespace-nowrap">
                     {link.label}
                     <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                   </button>
@@ -134,7 +134,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="px-3.5 py-2 text-xs font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors"
+                className="px-3.5 py-2 text-xs font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
