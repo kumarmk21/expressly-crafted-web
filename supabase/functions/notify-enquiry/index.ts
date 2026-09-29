@@ -41,7 +41,7 @@ Deno.serve(async (req) => {
       <table style="width:100%;border-collapse:collapse;font-size:14px">
       ${rows.map(([k, v]) => `<tr><td style="border:1px solid #ddd;padding:8px 12px;background:#f6f6f6;font-weight:bold;width:160px">${k}</td><td style="border:1px solid #ddd;padding:8px 12px">${escapeHtml(v).replace(/\n/g, "<br/>")}</td></tr>`).join("")}
       </table><p style="font-size:12px;color:#777">Scorpion Express Pvt. Ltd. — website enquiry form</p></div>`;
-    const name = row.name ?? [row.first_name, row.last_name].filter(Boolean).join(" ") || row.phone;
+    const name = row.name || [row.first_name, row.last_name].filter(Boolean).join(" ") || row.phone;
     await sendSmtpMail({ password, to: TO_EMAILS, replyTo: row.email || SMTP_USER, subject: `${title} — ${name}`, html, attachment: null });
     return json({ ok: true });
   } catch (e) {
