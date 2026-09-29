@@ -79,7 +79,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1.5">
+        <div className="hidden lg:flex flex-1 items-center justify-center gap-1.5 min-w-0">
           {navLinks.map((link) => {
             if (link.children) {
               return (
