@@ -62,7 +62,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-background/90 backdrop-blur-md sticky top-0 z-50 border-b border-border">
-      <div className="container mx-auto flex items-center justify-between gap-6 px-4 py-3">
+      <div className="container mx-auto flex items-center justify-between gap-4 px-3 py-3">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 shrink-0 group" aria-label="Scorpion Express Home">
           <div className="h-12 w-12 lg:h-14 lg:w-14 bg-white rounded-sm flex items-center justify-center p-1.5 shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
@@ -79,12 +79,12 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1.5">
+        <div className="hidden lg:flex flex-1 items-center justify-center gap-1 min-w-0">
           {navLinks.map((link) => {
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <button className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                  <button className="flex items-center gap-1 px-2.5 py-2 text-[11px] font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors whitespace-nowrap">
                     {link.label}
                     <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                   </button>
@@ -134,7 +134,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="px-3.5 py-2 text-xs font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors"
+                className="px-2.5 py-2 text-[11px] font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
