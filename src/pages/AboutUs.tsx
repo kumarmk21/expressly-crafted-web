@@ -275,42 +275,71 @@ const AboutUs = () => {
             </h2>
           </div>
 
-          {/* Director featured on top */}
-          <div className="flex justify-center mb-12">
-            {leadership.slice(0, 1).map((leader) => {
-              const photo = leader.photo_url || LOCAL_PHOTOS[leader.name] || null;
-              return (
-                <motion.div
-                  key={leader.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="bg-white border border-border group overflow-hidden flex flex-col w-full max-w-xs"
-                >
-                  <div className="relative aspect-[1464/1920] w-full bg-muted overflow-hidden shrink-0">
-                    {photo ? (
-                      <img
-                        src={photo}
-                        alt={leader.name}
-                        className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-b from-muted to-white">
-                        <UserIcon className="h-14 w-14 text-border" strokeWidth={1} />
-                        <span className="mt-3 text-[10px] uppercase tracking-[0.25em] text-muted-foreground/70">
-                          Photo coming soon
-                        </span>
-                      </div>
-                    )}
+          {/* Director featured — full-width split-screen feature */}
+          {leadership.slice(0, 1).map((leader) => {
+            const photo = leader.photo_url || LOCAL_PHOTOS[leader.name] || null;
+            return (
+              <motion.div
+                key={leader.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="relative flex flex-col lg:flex-row bg-muted mb-16 shadow-xl border border-border overflow-hidden"
+              >
+                {/* Portrait */}
+                <div className="lg:w-5/12 relative aspect-[4/3] lg:aspect-auto lg:min-h-[560px]">
+                  {photo ? (
+                    <img
+                      src={photo}
+                      alt={leader.name}
+                      className="absolute inset-0 h-full w-full object-cover object-top"
+                    />
+                  ) : (
+                    <div className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-b from-muted to-white">
+                      <UserIcon className="h-16 w-16 text-border" strokeWidth={1} />
+                      <span className="mt-3 text-[10px] uppercase tracking-[0.25em] text-muted-foreground/70">
+                        Photo coming soon
+                      </span>
+                    </div>
+                  )}
+                  {/* Credo badge */}
+                  <div className="absolute bottom-0 left-0 bg-primary text-primary-foreground p-6 md:p-8 z-10 max-w-[85%]">
+                    <p className="font-display text-xl md:text-2xl uppercase leading-tight">
+                      Custodian First,<br />Carrier Later
+                    </p>
                   </div>
-                  <div className="p-6 border-t-2 border-primary flex flex-col justify-start min-h-[112px]">
-                    <h3 className="font-bold uppercase tracking-wide text-foreground text-base">{leader.name}</h3>
-                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{leader.role}</p>
+                </div>
+
+                {/* Details */}
+                <div className="lg:w-7/12 p-8 md:p-14 lg:p-20 flex flex-col justify-center relative">
+                  <div
+                    aria-hidden="true"
+                    className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-foreground/5 pointer-events-none"
+                  />
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <span className="h-px w-10 bg-primary" />
+                      <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Leadership</span>
+                    </div>
+                    <h3 className="font-display uppercase text-4xl md:text-6xl text-foreground tracking-tight leading-[0.95] mb-3">
+                      {leader.name}
+                    </h3>
+                    <p className="text-primary font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-8">
+                      {leader.role}
+                    </p>
+                    <div className="w-20 h-1.5 bg-foreground mb-8" aria-hidden="true" />
+                    <p className="text-base md:text-lg leading-relaxed text-foreground/80 max-w-2xl">
+                      The founder of the Scorpion Group, whose vision of
+                      <strong className="text-foreground"> "Custodian First, Carrier Later" </strong>
+                      has shaped a culture of safeguarding every consignment — building a trusted pan-India logistics network over two decades.
+                    </p>
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                </div>
+              </motion.div>
+            );
+          })}
+
 
           {/* Remaining leadership in the same order */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch">
