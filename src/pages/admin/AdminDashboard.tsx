@@ -12,13 +12,14 @@ import LeadershipPanel from "./LeadershipPanel";
 import EmpPortalPanel from "./EmpPortalPanel";
 import EventsNewsPanel from "./EventsNewsPanel";
 import CertificationsPanel from "./CertificationsPanel";
+import SubmissionsPanel from "./SubmissionsPanel";
 
-type Tab = "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "leadership" | "jobs" | "empportal" | "eventsnews" | "certifications";
+type Tab = "submissions" | "content" | "images" | "clients" | "locations" | "pages" | "network" | "technology" | "leadership" | "jobs" | "empportal" | "eventsnews" | "certifications";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { session, isAdmin, loading } = useAdmin();
-  const [tab, setTab] = useState<Tab>("content");
+  const [tab, setTab] = useState<Tab>("submissions");
 
   useEffect(() => {
     if (!loading && (!session || !isAdmin)) navigate("/admin/login", { replace: true });
@@ -41,6 +42,7 @@ const AdminDashboard = () => {
   }
 
   const tabs: { id: Tab; label: string; shortLabel: string }[] = [
+    { id: "submissions", label: "Form Submissions & Resumes", shortLabel: "Submissions" },
     { id: "content", label: "Site Content", shortLabel: "Content" },
     { id: "images", label: "Images", shortLabel: "Images" },
     { id: "clients", label: "Clients", shortLabel: "Clients" },
@@ -89,6 +91,7 @@ const AdminDashboard = () => {
           <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Admin Menu</span>
           <h1 className="font-display uppercase text-2xl md:text-3xl">{activeTab?.label}</h1>
         </div>
+        {tab === "submissions" && <SubmissionsPanel />}
         {tab === "content" && <SiteContentPanel />}
         {tab === "images" && <ImagesPanel />}
         {tab === "clients" && <ClientsPanel />}
