@@ -7,7 +7,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const HR_EMAIL = "dhanushedge17@gmail.com";
+const HR_EMAILS = ["anil.mishra@scorpiongroup.in", "dhanushedge17@gmail.com"];
 const SMTP_HOST = "in-mum-m314.icewarpcloud.in";
 const SMTP_PORT = 587;
 const SMTP_USER = "info@scorpiongroup.in";
@@ -61,20 +61,21 @@ Deno.serve(async (req) => {
       };
     }
 
-    const html = `
-      <h2>New Job Application</h2>
-      <p><strong>Role:</strong> ${escapeHtml(app.role)}</p>
-      <p><strong>Name:</strong> ${escapeHtml(app.name)}</p>
-      <p><strong>Email:</strong> ${escapeHtml(app.email)}</p>
-      <p><strong>Phone:</strong> ${escapeHtml(app.phone)}</p>
-      <p><strong>Experience:</strong> ${escapeHtml(app.experience ?? "—")}</p>
-      <p><strong>Message:</strong><br/>${escapeHtml(app.message ?? "—").replace(/\n/g, "<br/>")}</p>
-      <p><strong>Resume:</strong> <a href="${resumeLink}">${escapeHtml(app.resume_file_name || "Download resume")}</a></p>
-    `;
+    const rows: [string, string][] = [
+      ["Role", app.role], ["Name", app.name], ["Email", app.email], ["Phone", app.phone],
+      ["Experience", app.experience ?? "—"], ["Message", app.message ?? "—"],
+      ["Submitted", new Date(app.created_at).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })],
+    ];
+    const html = `<div style="font-family:Arial,sans-serif;max-width:640px">
+      <div style="background:#C8102E;color:#fff;padding:14px 18px;font-size:18px;font-weight:bold">New Job Application</div>
+      <table style="width:100%;border-collapse:collapse;font-size:14px">
+      ${rows.map(([k, v]) => `<tr><td style="border:1px solid #ddd;padding:8px 12px;background:#f6f6f6;font-weight:bold;width:160px">${k}</td><td style="border:1px solid #ddd;padding:8px 12px">${escapeHtml(String(v)).replace(/\n/g, "<br/>")}</td></tr>`).join("")}
+      <tr><td style="border:1px solid #ddd;padding:8px 12px;background:#f6f6f6;font-weight:bold">Resume</td><td style="border:1px solid #ddd;padding:8px 12px"><a href="${resumeLink}">${escapeHtml(app.resume_file_name || "Download resume")}</a> (also attached)</td></tr>
+      </table><p style="font-size:12px;color:#777">Scorpion Express Pvt. Ltd. — website careers form</p></div>`;
 
     await sendSmtpMail({
       password: smtpPassword,
-      to: HR_EMAIL,
+      to: HR_EMAILS,
       replyTo: app.email,
       subject: `New Application: ${app.role} — ${app.name}`,
       html,
@@ -107,7 +108,7 @@ async function sendSmtpMail({
   attachment,
 }: {
   password: string;
-  to: string;
+  to: string[];
   replyTo: string;
   subject: string;
   html: string;
@@ -159,7 +160,7 @@ async function sendSmtpMail({
     await expect([334], base64EncodeUtf8(SMTP_USER));
     await expect([235], base64EncodeUtf8(password));
     await expect([250], `MAIL FROM:<${SMTP_USER}>`);
-    await expect([250, 251], `RCPT TO:<${to}>`);
+    for (const r of to) await expect([250, 251], `RCPT TO:<${r}>`);
     await expect([354], "DATA");
     await writeLine(buildMimeMessage({ to, replyTo, subject, html, attachment }));
     await expect([250], ".");
@@ -180,7 +181,7 @@ function buildMimeMessage({
   html,
   attachment,
 }: {
-  to: string;
+  to: string[];
   replyTo: string;
   subject: string;
   html: string;
@@ -190,7 +191,7 @@ function buildMimeMessage({
   const safeFilename = attachment?.filename.replace(/[\r\n"]/g, "_") ?? "resume";
   const lines = [
     `From: ${FROM_NAME} <${SMTP_USER}>`,
-    `To: ${to}`,
+    `To: ${to.join(", ")}`,
     `Reply-To: ${replyTo}`,
     `Subject: ${encodeHeader(subject)}`,
     `Date: ${new Date().toUTCString()}`,
