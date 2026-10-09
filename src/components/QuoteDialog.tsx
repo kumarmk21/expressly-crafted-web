@@ -97,7 +97,7 @@ const QuoteDialog = () => {
         <DialogHeader>
           <DialogTitle className="text-2xl font-black">Get a Quote</DialogTitle>
           <DialogDescription>
-            Tell us about your shipment. Our logistics expert will respond within 1 business hour.
+            Tell us about your shipment and our team will get back to you.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={submit} className="space-y-4 mt-2">
