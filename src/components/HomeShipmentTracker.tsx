@@ -16,18 +16,18 @@ const HomeShipmentTracker = () => {
   };
 
   return (
-    <section className="relative z-20 border-b border-border bg-card" aria-labelledby="shipment-tracker-title">
+    <section className="relative z-20 border-b-4 border-primary-foreground/15 bg-primary shadow-lg shadow-primary/20" aria-labelledby="shipment-tracker-title">
       <div className="container mx-auto px-4 py-5 lg:py-6">
         <div className="grid items-center gap-4 lg:grid-cols-[minmax(220px,0.7fr)_minmax(480px,1.3fr)] lg:gap-10">
           <div>
-            <div className="mb-1.5 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-primary">
+            <div className="mb-1.5 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground/80">
               <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-foreground opacity-80" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-foreground" />
               </span>
               Live Shipment Tracking
             </div>
-            <h2 id="shipment-tracker-title" className="font-display text-2xl uppercase text-foreground sm:text-3xl">
+            <h2 id="shipment-tracker-title" className="font-display text-2xl uppercase text-primary-foreground sm:text-3xl">
               Where is your shipment?
             </h2>
           </div>
@@ -49,15 +49,19 @@ const HomeShipmentTracker = () => {
                   placeholder="Enter LR / Docket number"
                   aria-label="Shipment tracking number"
                   required
-                  className="h-14 w-full rounded-sm border border-border bg-background pl-12 pr-4 font-mono-tab text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-14 w-full rounded-sm border-2 border-primary-foreground/40 bg-primary-foreground pl-12 pr-4 font-mono-tab text-base text-foreground placeholder:text-muted-foreground focus:border-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary-foreground/60"
                 />
               </div>
-              <Button type="submit" size="lg" className="h-14 rounded-sm px-8 font-black uppercase tracking-wider sm:min-w-36">
+              <Button
+                type="submit"
+                size="lg"
+                className="h-14 rounded-sm bg-primary-foreground px-8 font-black uppercase tracking-wider text-primary hover:bg-primary-foreground/90 sm:min-w-36"
+              >
                 Track Now
               </Button>
             </form>
-            <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
-              <ShieldCheck className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+            <p className="mt-2 flex items-center gap-1.5 text-xs font-medium text-primary-foreground/85">
+              <ShieldCheck className="h-3.5 w-3.5 text-primary-foreground" aria-hidden="true" />
               Real-time status and digital proof of delivery
             </p>
           </div>
