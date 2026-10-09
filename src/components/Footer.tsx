@@ -134,7 +134,7 @@ const Footer = () => {
               <p className="mt-2">Registered Office: 404, Shah Nahar Industrial Estate,<br />Dr E Moses Road, Worli, Mumbai 400018, Maharashtra, India</p>
             </div>
             <div className="space-y-1.5">
-              <p><span className="text-foreground font-semibold">CIN:</span> <span className="italic">To be added — awaiting Certificate of Incorporation details</span></p>
+              <p><span className="text-foreground font-semibold">CIN:</span> U51109BR2006PTC012270</p>
               <p><span className="text-foreground font-semibold">GSTIN:</span> 27AAJCS7860C1Z5</p>
               <p><span className="text-foreground font-semibold">Toll Free:</span> 1800 22 1945 &nbsp;·&nbsp; <span className="text-foreground font-semibold">Email:</span> Info@Scorpiongroup.in</p>
             </div>
