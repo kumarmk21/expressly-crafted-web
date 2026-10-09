@@ -16,18 +16,18 @@ const HomeShipmentTracker = () => {
   };
 
   return (
-    <section className="relative z-20 border-b border-border bg-card" aria-labelledby="shipment-tracker-title">
+    <section className="relative z-20 border-b-4 border-primary-foreground/15 bg-primary shadow-lg shadow-primary/20" aria-labelledby="shipment-tracker-title">
       <div className="container mx-auto px-4 py-5 lg:py-6">
         <div className="grid items-center gap-4 lg:grid-cols-[minmax(220px,0.7fr)_minmax(480px,1.3fr)] lg:gap-10">
           <div>
-            <div className="mb-1.5 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-primary">
+            <div className="mb-1.5 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground/80">
               <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-foreground opacity-80" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary-foreground" />
               </span>
               Live Shipment Tracking
             </div>
-            <h2 id="shipment-tracker-title" className="font-display text-2xl uppercase text-foreground sm:text-3xl">
+            <h2 id="shipment-tracker-title" className="font-display text-2xl uppercase text-primary-foreground sm:text-3xl">
               Where is your shipment?
             </h2>
           </div>
