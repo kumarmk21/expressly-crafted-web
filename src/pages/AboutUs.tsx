@@ -288,7 +288,8 @@ const AboutUs = () => {
                 className="relative flex flex-col lg:flex-row bg-muted mb-16 shadow-xl border border-border overflow-hidden"
               >
                 {/* Portrait */}
-                <div className="lg:w-5/12 relative aspect-[4/3] lg:aspect-auto lg:min-h-[560px]">
+                <div className="lg:w-5/12 relative shrink-0">
+                  <div className="relative aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[560px]">
                   {photo ? (
                     <img
                       src={photo}
@@ -303,8 +304,9 @@ const AboutUs = () => {
                       </span>
                     </div>
                   )}
-                  {/* Credo badge */}
-                  <div className="absolute bottom-0 left-0 bg-primary text-primary-foreground p-6 md:p-8 z-10 max-w-[85%]">
+                  </div>
+                  {/* Keep the mobile credo below the portrait so it never covers him. */}
+                  <div className="relative lg:absolute lg:bottom-0 lg:left-0 bg-primary text-primary-foreground px-6 py-4 md:p-8 z-10 lg:max-w-[85%]">
                     <p className="font-display text-xl md:text-2xl uppercase leading-tight">
                       Custodian First,<br />Carrier Later
                     </p>
