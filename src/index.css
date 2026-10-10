@@ -113,6 +113,16 @@
     font-weight: 600;
     letter-spacing: 0;
   }
+
+  /* Section headlines: light serif, never bold, never capitals */
+  .section-headline {
+    font-family: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1.15;
+  }
 }
 
 @layer utilities {
