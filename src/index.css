@@ -137,9 +137,9 @@
   }
 
   .font-display {
-    font-family: 'Hind', 'Segoe UI', system-ui, sans-serif;
-    font-weight: 600;
-    line-height: 1.15;
+    font-family: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.2;
   }
 
   /* Section headlines: light serif, never bold, never capitals */
@@ -151,6 +151,21 @@
     text-transform: none;
     line-height: 1.25;
     padding-bottom: 0.1em;
+  }
+
+  /* Headings that carry a weight utility keep the same light serif. */
+  :is(h1, h2, h3, h4, h5, h6)[class*="font-bold"],
+  :is(h1, h2, h3, h4, h5, h6)[class*="font-extrabold"],
+  :is(h1, h2, h3, h4, h5, h6)[class*="font-black"],
+  :is(h1, h2, h3, h4, h5, h6)[class*="font-semibold"] {
+    font-family: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    font-weight: 400;
+    text-transform: none;
+  }
+
+  /* Tight line-heights were tuned for condensed capitals; the serif needs room. */
+  :is(h1, h2, h3, h4, h5, h6)[class*="leading-"] {
+    line-height: 1.18;
   }
 
   .grain {
