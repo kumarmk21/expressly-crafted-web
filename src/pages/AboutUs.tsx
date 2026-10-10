@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Target, Eye, Award, Building2, Users, Truck, Shield, User as UserIcon } from "lucide-react";
@@ -37,6 +38,70 @@ const LOCAL_PHOTOS: Record<string, string> = {
   "Pooja Patel Kalia": poojaPatelKalia,
   "Rakesh Sahoo": rakeshSahoo,
   "Anil Mishra": anilMishra,
+};
+
+const MilestonesSlider = () => {
+  const [perView, setPerView] = useState(3);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const update = () =>
+      setPerView(window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const maxIndex = Math.max(0, milestones.length - perView);
+  const current = Math.min(index, maxIndex);
+
+  return (
+    <div className="border border-border bg-white">
+      <div className="overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${current * (100 / perView)}%)` }}
+        >
+          {milestones.map((m) => (
+            <div
+              key={m.year}
+              className="shrink-0 border-r border-border bg-white p-7"
+              style={{ width: `${100 / perView}%` }}
+            >
+              <div className="font-display text-5xl text-primary leading-none">{m.year}</div>
+              <div className="h-px w-10 bg-primary my-3" />
+              <p className="text-sm text-foreground/75 leading-relaxed">{m.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex items-center justify-between border-t border-border px-4 py-3">
+        <span className="text-xs text-muted-foreground">
+          {current + 1} / {maxIndex + 1}
+        </span>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            aria-label="Previous milestones"
+            onClick={() => setIndex(Math.max(0, current - 1))}
+            disabled={current === 0}
+            className="p-2 border border-border text-foreground/70 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-foreground/70"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next milestones"
+            onClick={() => setIndex(Math.min(maxIndex, current + 1))}
+            disabled={current === maxIndex}
+            className="p-2 border border-border text-foreground/70 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-foreground/70"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 type Leader = { id: string; name: string; role: string; photo_url: string | null; display_order: number };
@@ -249,15 +314,7 @@ const AboutUs = () => {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-            {milestones.map((m) => (
-              <div key={m.year} className="bg-white p-7">
-                <div className="font-display text-5xl text-foreground leading-none">{m.year}</div>
-                <div className="h-px w-10 bg-primary my-3" />
-                <p className="text-sm text-foreground/75 leading-relaxed">{m.text}</p>
-              </div>
-            ))}
-          </div>
+          <MilestonesSlider />
         </div>
       </section>
 
