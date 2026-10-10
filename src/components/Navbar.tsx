@@ -70,7 +70,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex flex-col leading-none">
             <span className="font-display text-2xl text-foreground tracking-wide">
-              SCORPION<span className="text-primary">.</span>
+              Scorpion<span className="text-primary">.</span>
             </span>
             <span className="mt-1 whitespace-nowrap text-[8px] font-bold uppercase leading-none tracking-normal text-muted-foreground">
               Custodian First, Carrier Later
