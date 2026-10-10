@@ -16,8 +16,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Hind", "Segoe UI", "system-ui", "sans-serif"],
-        display: ["Hind", "Segoe UI", "system-ui", "sans-serif"],
-        heading: ["Hind", "Segoe UI", "system-ui", "sans-serif"],
+        display: ["Fraunces", "Iowan Old Style", "Georgia", "serif"],
+        heading: ["Fraunces", "Iowan Old Style", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
