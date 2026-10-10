@@ -11,7 +11,7 @@ import Seo from "@/components/Seo";
 const HQ = [
   {
     title: "Registered Office",
-    lines: ["Ashok Cinema Bldg., Buddha Marg,", "Patna - 800 001, INDIA"],
+    lines: ["Ashok Cinema Bldg., Buddha Marg,", "Patna - 800 001, India"],
     email: "pat@scorpiongroup.in",
     phone: null as string | null,
   },
@@ -20,7 +20,7 @@ const HQ = [
     lines: [
       "610, Shah & Nahar Industrial Estate,",
       "Dr. E. Moses Road, Worli, Mumbai,",
-      "INDIA – 400 018",
+      "India – 400 018",
     ],
     email: "info@scorpiongroup.in",
     phone: "+91 22 2497 8815/16/17 · Toll Free 1800 22 1945",

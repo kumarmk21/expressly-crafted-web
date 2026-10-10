@@ -287,7 +287,7 @@ const CargoProtection = () => {
                   className="border border-border bg-background p-6 hover:border-primary transition-colors"
                 >
                   <div className="text-xs font-bold tracking-[0.3em] text-primary mb-3">
-                    STEP {String(i + 1).padStart(2, "0")}
+                    Step {String(i + 1).padStart(2, "0")}
                   </div>
                   <h3 className="font-display uppercase text-lg text-foreground mb-2">
                     {c.step}
