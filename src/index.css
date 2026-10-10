@@ -121,7 +121,8 @@
     font-style: normal;
     letter-spacing: 0;
     text-transform: none;
-    line-height: 1.15;
+    line-height: 1.22;
+    padding-bottom: 0.08em;
   }
 }
 
