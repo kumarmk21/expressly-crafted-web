@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Feature Shalini Singh like the Managing Director, add a tribute quote, and show the remaining leaders three per row
+
 - [x] Tighten the home banner, enlarge and highlight navigation, and show only the logo with tagline
 
 - [x] Standardize classic sentence-case typography across the website and verify key pages

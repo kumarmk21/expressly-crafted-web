@@ -275,9 +275,10 @@ const AboutUs = () => {
             </h2>
           </div>
 
-          {/* Director featured — full-width split-screen feature */}
-          {leadership.slice(0, 1).map((leader) => {
+          {/* Both directors share the same full-width portrait treatment. */}
+          {leadership.slice(0, 2).map((leader) => {
             const photo = leader.photo_url || LOCAL_PHOTOS[leader.name] || null;
+            const isShalini = leader.name === "Shalini Singh";
             return (
               <motion.div
                 key={leader.id}
@@ -305,7 +306,7 @@ const AboutUs = () => {
                     </div>
                   )}
                   </div>
-                  {/* Keep the mobile credo below the portrait so it never covers him. */}
+                  {/* Keep the mobile credo below the portrait so it never covers the photo. */}
                   <div className="relative lg:absolute lg:bottom-0 lg:left-0 bg-primary text-primary-foreground px-6 py-4 md:p-8 z-10 lg:max-w-[85%]">
                     <p className="font-display text-xl md:text-2xl uppercase leading-tight">
                       Custodian First,<br />Carrier Later
@@ -328,14 +329,20 @@ const AboutUs = () => {
                       {leader.name}
                     </h3>
                     <p className="text-primary font-bold uppercase tracking-[0.2em] text-sm md:text-base mb-8">
-                      {leader.role}
+                      {isShalini ? "Director — Scorpion Express Pvt. Ltd." : leader.role}
                     </p>
                     <div className="w-20 h-1.5 bg-foreground mb-8" aria-hidden="true" />
-                    <p className="text-base md:text-lg leading-relaxed text-foreground/80 max-w-2xl">
-                      The founder of the Scorpion Group, whose vision of
-                      <strong className="text-foreground"> "Custodian First, Carrier Later" </strong>
-                      has shaped a culture of safeguarding every consignment — building a trusted pan-India logistics network over two decades.
-                    </p>
+                    {isShalini ? (
+                      <blockquote className="text-xl md:text-2xl leading-relaxed text-foreground/80 max-w-2xl border-l-2 border-primary pl-5">
+                        “Great leadership brings strength to every journey, care to every decision, and confidence to every person.”
+                      </blockquote>
+                    ) : (
+                      <p className="text-base md:text-lg leading-relaxed text-foreground/80 max-w-2xl">
+                        The founder of the Scorpion Group, whose vision of
+                        <strong className="text-foreground"> "Custodian First, Carrier Later" </strong>
+                        has shaped a culture of safeguarding every consignment — building a trusted pan-India logistics network over two decades.
+                      </p>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -344,8 +351,8 @@ const AboutUs = () => {
 
 
           {/* Remaining leadership in the same order */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 items-stretch">
-            {leadership.slice(1).map((leader) => {
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 items-stretch">
+            {leadership.slice(2).map((leader) => {
               const photo = leader.photo_url || LOCAL_PHOTOS[leader.name] || null;
               return (
               <motion.div
