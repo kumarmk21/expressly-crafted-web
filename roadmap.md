@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Standardize classic sentence-case typography across the website and verify key pages
+- [x] Standardize classic sentence-case typography across the website and verify key pages
 
 - [x] Standardize company positioning and description site-wide
 - [x] Standardize the incorporated company name with punctuation
