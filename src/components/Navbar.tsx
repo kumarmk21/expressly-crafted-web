@@ -214,7 +214,7 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground/80 bg-card border border-border hover:bg-primary hover:text-white hover:border-primary transition-colors"
+                  className="block rounded-sm px-4 py-3 text-base font-semibold text-primary bg-primary/5 border border-primary hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
                   {link.label}
                 </a>
