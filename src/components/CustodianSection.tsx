@@ -49,7 +49,7 @@ const CustodianSection = () => {
                 What "Custodian First" Means
               </span>
             </div>
-            <h2 className="section-headline text-4xl md:text-5xl lg:text-6xl text-foreground">
+            <h2 className="section-headline text-4xl md:text-5xl lg:text-6xl !leading-[1.3] text-foreground">
               Your cargo is <span className="text-primary">guarded</span>,
               <br /> not just carried.
             </h2>
