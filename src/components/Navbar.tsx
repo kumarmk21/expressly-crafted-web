@@ -19,10 +19,11 @@ import {
 } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
 import { useQuote } from "@/context/QuoteContext";
+import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about" },
   {
     label: "Services",
     href: "#services",
@@ -62,32 +63,25 @@ const Navbar = () => {
 
   return (
     <nav className="bg-background/90 backdrop-blur-md sticky top-0 z-50 border-b border-border">
-      <div className="container mx-auto flex items-center justify-between gap-4 px-3 py-3">
+      <div className="container mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-2">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 shrink-0 group" aria-label="Scorpion Express Home">
-          <div className="h-12 w-12 lg:h-14 lg:w-14 bg-white rounded-sm flex items-center justify-center p-1.5 shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
-            <img src={scorpionLogo} alt="Scorpion Express logo" className="h-full w-full object-contain" />
-          </div>
-          <div className="hidden md:flex flex-col leading-none">
-            <span className="font-display text-2xl text-foreground tracking-wide">
-              Scorpion<span className="text-primary">.</span>
-            </span>
-            <span className="mt-1 whitespace-nowrap text-[8px] font-bold uppercase leading-none tracking-normal text-muted-foreground">
-              Custodian First, Carrier Later
-            </span>
-          </div>
+        <Link to="/" className="flex shrink-0 flex-col items-center gap-1" aria-label="Scorpion Express Home">
+          <img src={scorpionLogo} alt="Scorpion Express logo" className="h-14 w-24 object-contain lg:h-16 lg:w-28" />
+          <span className="whitespace-nowrap text-[11px] font-semibold leading-tight text-foreground">
+            Custodian First, Carrier Later
+          </span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex flex-1 items-center justify-center gap-1 min-w-0">
+        <div className="hidden lg:flex order-3 w-full flex-wrap items-center justify-center gap-1.5 min-w-0">
           {navLinks.map((link) => {
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <button className="flex items-center gap-1 px-2.5 py-2 text-[11px] font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors whitespace-nowrap">
+                  <Button variant="outline" className="flex items-center gap-1 h-10 rounded-sm px-3 py-2 text-sm font-semibold text-primary border border-primary bg-primary/5 hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap">
                     {link.label}
                     <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
-                  </button>
+                  </Button>
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="w-[640px] bg-card border border-border shadow-2xl">
                       <div className="grid grid-cols-2">
@@ -121,9 +115,9 @@ const Navbar = () => {
                       </div>
                       <div className="p-3 flex items-center justify-between bg-muted">
                         <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Custom requirement?</span>
-                        <button onClick={() => openQuote()} className="flex items-center gap-1.5 text-xs font-bold text-primary uppercase tracking-wider hover:underline">
+                        <Button variant="link" onClick={() => openQuote()} className="flex items-center gap-1.5 text-xs font-bold text-primary uppercase tracking-wider hover:underline">
                           <FileText className="h-3.5 w-3.5" /> Request a Quote
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -134,7 +128,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="px-2.5 py-2 text-[11px] font-bold tracking-wide uppercase text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors whitespace-nowrap"
+                className="h-10 rounded-sm px-3 py-2 text-sm font-semibold text-primary border border-primary bg-primary/5 hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -143,29 +137,31 @@ const Navbar = () => {
         </div>
 
         {/* Portals */}
-        <div className="hidden lg:flex items-center gap-1.5 shrink-0">
+        <div className="hidden lg:flex items-center gap-2 shrink-0 ml-auto">
           <Link
             to="/employee-login"
-            className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-foreground/80 border border-border bg-card hover:bg-primary hover:text-white hover:border-primary transition-colors"
+            className="flex items-center gap-2 px-3.5 py-2 text-sm font-bold uppercase tracking-wider text-primary border border-primary bg-primary/5 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
           >
             <LogIn className="h-3.5 w-3.5" /> Employee
           </Link>
           <Link
             to="/customer-portal"
-            className="flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider bg-primary text-white hover:bg-primary/90 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 text-sm font-black uppercase tracking-wider bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             <User className="h-3.5 w-3.5" /> Customer Portal
           </Link>
         </div>
 
         {/* Mobile toggle */}
-        <button
-          className="lg:hidden p-2 -mr-2 text-foreground hover:bg-muted"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        </Button>
       </div>
 
       {/* Mobile menu */}
@@ -176,13 +172,14 @@ const Navbar = () => {
               if (link.children) {
                 return (
                   <div key={link.label} className="border border-border">
-                    <button
-                      className="flex items-center justify-between w-full px-4 py-3 text-sm font-bold uppercase tracking-wider text-foreground bg-muted"
+                    <Button
+                      variant="outline"
+                      className="flex h-12 items-center justify-between w-full rounded-sm px-4 py-3 text-base font-semibold text-primary border-primary bg-primary/5"
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                     >
                       {link.label}
                       <ChevronDown className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
-                    </button>
+                    </Button>
                     {mobileServicesOpen && (
                       <div>
                         {link.children.map((child) => {
@@ -234,7 +231,7 @@ const Navbar = () => {
               <Link
                 to="/customer-portal"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider bg-primary text-white"
+                className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider bg-primary text-primary-foreground"
               >
                 <User className="h-3.5 w-3.5" /> Customer
               </Link>
