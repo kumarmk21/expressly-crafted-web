@@ -92,15 +92,16 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Archivo Black', 'Hind', sans-serif;
-    letter-spacing: -0.01em;
+    font-family: 'Hind', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
   }
 
   .font-display {
-    font-family: 'Barlow Condensed', 'Archivo Black', sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.005em;
-    line-height: 0.95;
+    font-family: 'Hind', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.15;
   }
 
   .font-mono-tab {
@@ -117,6 +118,26 @@
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
+
+  /* Shared typography also covers admin-managed page content and dialogs. */
+  .uppercase, .capitalize,
+  [class*="prose-headings:"] :is(h1, h2, h3, h4, h5, h6) {
+    text-transform: none;
+  }
+
+  [class*="tracking-"] {
+    letter-spacing: 0;
+  }
+
+  .font-bold, .font-extrabold, .font-black {
+    font-weight: 600;
+  }
+
+  .font-display {
+    font-family: 'Hind', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+    line-height: 1.15;
+  }
 
   .grain {
     background-image:
