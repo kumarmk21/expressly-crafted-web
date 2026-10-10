@@ -32,13 +32,13 @@ const HeroSection = () => {
       {/* red spotlight */}
       <div className="absolute right-0 top-0 h-full w-1/2 spotlight" />
 
-      <div className="container mx-auto px-4 relative z-10 pt-16 lg:pt-24 pb-12">
+      <div className="container mx-auto px-4 relative z-10 pt-6 lg:pt-8 pb-8">
         {/* eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-           className="flex items-center gap-3 mb-6"
+           className="flex items-center gap-3 mb-4"
         >
           <span className="h-px w-12 bg-primary" />
           <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
@@ -70,7 +70,7 @@ const HeroSection = () => {
               {hero.subtext}
             </p>
 
-            <div className="flex flex-wrap gap-3 mt-8">
+            <div className="flex flex-wrap gap-3 mt-5">
               <a
                 href="#services"
                 className="group inline-flex items-center gap-3 px-6 py-4 bg-primary text-white font-black uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors"
@@ -87,7 +87,7 @@ const HeroSection = () => {
             </div>
 
             {/* Trust badges row */}
-            <div className="mt-10 flex flex-wrap items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
+            <div className="mt-6 flex flex-wrap items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
               <div className="flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> Time-Definite</div>
               <div className="h-3 w-px bg-white/15 hidden sm:block" />
               <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" /> GPTW Certified</div>
