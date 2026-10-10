@@ -249,15 +249,7 @@ const AboutUs = () => {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-            {milestones.map((m) => (
-              <div key={m.year} className="bg-white p-7">
-                <div className="font-display text-5xl text-foreground leading-none">{m.year}</div>
-                <div className="h-px w-10 bg-primary my-3" />
-                <p className="text-sm text-foreground/75 leading-relaxed">{m.text}</p>
-              </div>
-            ))}
-          </div>
+          <MilestonesSlider />
         </div>
       </section>
 
