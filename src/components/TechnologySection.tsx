@@ -102,7 +102,7 @@ const TechnologySection = () => {
             </span>
           </div>
           <h2 className="font-display uppercase text-5xl lg:text-7xl text-foreground leading-[0.9]">
-            Tech that runs<span className="text-primary">.</span> the network.
+            Tech that runs the network<span className="text-primary">.</span>
           </h2>
           <p className="text-muted-foreground mt-5 max-w-2xl">
             Purpose-built platforms and integrations that connect customers, vendors and operations
