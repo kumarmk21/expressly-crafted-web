@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
+  { label: "About", href: "/about" },
   {
     label: "Services",
     href: "#services",
@@ -63,22 +63,29 @@ const Navbar = () => {
 
   return (
     <nav className="bg-background/90 backdrop-blur-md sticky top-0 z-50 border-b border-border">
-      <div className="container mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-2">
+      <div className="container mx-auto flex items-center justify-between gap-4 px-3 py-3">
         {/* Logo */}
-        <Link to="/" className="flex shrink-0 flex-col items-center gap-1" aria-label="Scorpion Express Home">
-          <img src={scorpionLogo} alt="Scorpion Express logo" className="h-14 w-24 object-contain lg:h-16 lg:w-28" />
-          <span className="whitespace-nowrap text-[11px] font-semibold leading-tight text-foreground">
-            Custodian First, Carrier Later
-          </span>
+        <Link to="/" className="flex items-center gap-3 shrink-0 group" aria-label="Scorpion Express Home">
+          <div className="h-12 w-12 lg:h-14 lg:w-14 bg-card rounded-sm flex items-center justify-center p-1.5 shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
+            <img src={scorpionLogo} alt="Scorpion Express logo" className="h-full w-full object-contain" />
+          </div>
+          <div className="hidden md:flex flex-col leading-none">
+            <span className="font-display text-2xl text-foreground tracking-wide">
+              Scorpion<span className="text-primary">.</span>
+            </span>
+            <span className="mt-1 whitespace-nowrap text-[8px] font-bold uppercase leading-none tracking-normal text-muted-foreground">
+              Custodian First, Carrier Later
+            </span>
+          </div>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex order-3 w-full flex-wrap items-center justify-center gap-1.5 min-w-0">
+        <div className="hidden lg:flex flex-1 items-center justify-center gap-1 min-w-0">
           {navLinks.map((link) => {
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <Button variant="outline" className="flex items-center gap-1 h-10 rounded-sm px-3 py-2 text-sm font-semibold text-primary border border-primary bg-primary/5 hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap">
+                  <Button variant="outline" className="flex items-center gap-1 h-auto rounded-none px-2.5 py-2 text-[11px] font-bold text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap">
                     {link.label}
                     <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                   </Button>
@@ -128,7 +135,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="h-10 rounded-sm px-3 py-2 text-sm font-semibold text-primary border border-primary bg-primary/5 hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap"
+                className="h-auto rounded-none px-2.5 py-2 text-[11px] font-bold text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -137,16 +144,16 @@ const Navbar = () => {
         </div>
 
         {/* Portals */}
-        <div className="hidden lg:flex items-center gap-2 shrink-0 ml-auto">
+        <div className="hidden lg:flex items-center gap-1.5 shrink-0">
           <Link
             to="/employee-login"
-            className="flex items-center gap-2 px-3.5 py-2 text-sm font-bold uppercase tracking-wider text-primary border border-primary bg-primary/5 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+            className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
           >
             <LogIn className="h-3.5 w-3.5" /> Employee
           </Link>
           <Link
             to="/customer-portal"
-            className="flex items-center gap-2 px-4 py-2.5 text-sm font-black uppercase tracking-wider bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             <User className="h-3.5 w-3.5" /> Customer Portal
           </Link>
@@ -174,7 +181,7 @@ const Navbar = () => {
                   <div key={link.label} className="border border-border">
                     <Button
                       variant="outline"
-                      className="flex h-12 items-center justify-between w-full rounded-sm px-4 py-3 text-base font-semibold text-primary border-primary bg-primary/5"
+                      className="flex h-auto items-center justify-between w-full rounded-none px-4 py-3 text-sm font-bold text-foreground bg-muted"
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                     >
                       {link.label}
@@ -214,7 +221,7 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block rounded-sm px-4 py-3 text-base font-semibold text-primary bg-primary/5 border border-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="block px-4 py-3 text-sm font-bold text-foreground/80 bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
                   {link.label}
                 </a>
