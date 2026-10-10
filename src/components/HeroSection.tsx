@@ -38,7 +38,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center gap-3 mb-8"
+           className="flex items-center gap-3 mb-6"
         >
           <span className="h-px w-12 bg-primary" />
           <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
@@ -46,20 +46,20 @@ const HeroSection = () => {
           </span>
         </motion.div>
 
-        {/* Massive display headline */}
+        {/* Balanced headline */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="font-display uppercase text-[14vw] sm:text-[10vw] lg:text-[8.5rem] xl:text-[10rem] leading-[0.85] text-foreground max-w-6xl"
+          className="hero-headline text-[42px] sm:text-6xl lg:text-7xl xl:text-[80px] leading-[1.12] text-foreground max-w-5xl"
         >
           {hero.headline_line1}
           <br />
-          {hero.headline_line2}<span className="text-primary">.</span> <span className="text-muted-foreground/50">{hero.headline_tail}</span>
+          {hero.headline_line2}<span className="text-primary">.</span> <span className="text-muted-foreground">{hero.headline_tail}</span>
         </motion.h1>
 
         {/* Sub + CTAs */}
-        <div className="mt-10 lg:mt-14">
+        <div className="mt-6 lg:mt-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
