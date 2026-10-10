@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Tighten the home banner, enlarge and highlight navigation, and show only the logo with tagline
+- [x] Tighten the home banner, enlarge and highlight navigation, and show only the logo with tagline
 
 - [x] Standardize classic sentence-case typography across the website and verify key pages
 
