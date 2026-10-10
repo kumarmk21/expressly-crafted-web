@@ -106,6 +106,12 @@
   .font-mono-tab {
     font-feature-settings: 'tnum' 1;
   }
+
+  .hero-headline {
+    font-family: 'Hind', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
 }
 
 @layer utilities {
