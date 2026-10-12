@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Clock, IndianRupee, Search, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const HomeShipmentTracker = () => {
@@ -64,6 +64,41 @@ const HomeShipmentTracker = () => {
               Real-time status and digital proof of delivery
             </p>
           </div>
+        </div>
+
+        {/* Quick tools: Rate Finder & TAT Finder */}
+        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          {[
+            {
+              label: "Rate Finder",
+              desc: "Check freight rates for your lane",
+              href: "https://ratefinder.scorpiongroup.in/",
+              Icon: IndianRupee,
+            },
+            {
+              label: "TAT Finder",
+              desc: "See transit time between pincodes",
+              href: "https://tat.scorpiongroup.in/",
+              Icon: Clock,
+            },
+          ].map(({ label, desc, href, Icon }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 rounded-sm border border-border bg-background p-3 transition-colors hover:border-primary hover:bg-primary/5"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-sm font-bold text-foreground">{label}</span>
+                <span className="block text-xs text-muted-foreground">{desc}</span>
+              </span>
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" aria-hidden="true" />
+            </a>
+          ))}
         </div>
       </div>
     </section>
