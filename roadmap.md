@@ -1,6 +1,7 @@
 # Roadmap
 
 - [x] Make the home statistics band larger and more attractive
+- [x] Set the About-page intro headline to medium size
 - [x] Settle statistics numbers at medium size and rewrite the tracking headline
 - [x] Give the milestones cards motion and Scorpion Red highlighting
 
