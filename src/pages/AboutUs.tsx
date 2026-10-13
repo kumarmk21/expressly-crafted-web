@@ -352,18 +352,29 @@ const AboutUs = () => {
       <section className="py-20 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+            >
               <div className="flex items-center gap-3 mb-4">
-                <span className="h-px w-10 bg-foreground/30" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Milestones</span>
+                <span className="h-px w-10 bg-primary" />
+                <span className="text-[11px] font-heavy uppercase tracking-[0.3em] text-primary">Milestones</span>
               </div>
               <h2 className="font-display uppercase text-4xl lg:text-6xl text-foreground leading-[0.9]">
                 Two decades.<br /> One relentless journey.
               </h2>
-            </div>
-            <p className="text-muted-foreground max-w-sm">
+            </motion.div>
+            <motion.p
+              className="text-muted-foreground max-w-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: "easeOut", delay: 0.15 }}
+            >
               Some of the key moments that have shaped Scorpion Express into what it is today.
-            </p>
+            </motion.p>
           </div>
 
           <MilestonesSlider />
