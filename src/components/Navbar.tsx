@@ -182,9 +182,10 @@ const Navbar = () => {
                   <div key={link.label} className="border border-border">
                     <Button
                       variant="outline"
-                      className="flex h-auto items-center justify-between w-full rounded-none px-4 py-3 text-sm font-bold text-foreground bg-muted"
+                      className="flex h-auto items-center justify-between w-full rounded-none px-4 py-3.5 text-base font-heavy text-primary bg-primary/[0.05] border-primary/55"
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                     >
+
                       {link.label}
                       <ChevronDown className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
                     </Button>
@@ -208,7 +209,7 @@ const Navbar = () => {
                               }`}>
                                 <Icon className="h-4 w-4" />
                               </span>
-                              <span className="text-sm font-bold uppercase tracking-wide">{child.label}</span>
+                              <span className="text-sm font-heavy text-primary">{child.label}</span>
                             </Link>
                           );
                         })}
