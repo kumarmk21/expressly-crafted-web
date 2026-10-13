@@ -21,7 +21,7 @@ const HomeShipmentTracker = () => {
       aria-labelledby="shipment-tracker-title"
     >
       <div className="container mx-auto px-4 py-5 lg:py-6">
-        <div className="grid items-center gap-4 lg:grid-cols-[minmax(220px,0.7fr)_minmax(480px,1.3fr)] lg:gap-10">
+        <div className="grid items-center gap-4 lg:grid-cols-[minmax(320px,1fr)_minmax(460px,1.2fr)] lg:gap-8">
           <div>
             <div className="mb-1.5 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-primary">
               <span className="relative flex h-2 w-2" aria-hidden="true">
@@ -30,7 +30,7 @@ const HomeShipmentTracker = () => {
               </span>
               Live Shipment Tracking
             </div>
-            <h2 id="shipment-tracker-title" className="tracker-headline text-[30px] text-foreground sm:text-[40px]">
+            <h2 id="shipment-tracker-title" className="tracker-headline text-[28px] text-foreground sm:text-[34px] lg:text-[32px] xl:text-[36px]">
               See exactly where{" "}
               <span className="font-medium text-primary underline decoration-primary/30 decoration-2 underline-offset-[10px]">
                 your cargo
