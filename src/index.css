@@ -145,6 +145,15 @@
     font-weight: 700;
   }
 
+  /* Home tracking prompt: same shared face, deliberately lighter and larger. */
+  .tracker-headline {
+    font-family: 'Hind', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.15;
+  }
+
+
 
 
   .grain {
