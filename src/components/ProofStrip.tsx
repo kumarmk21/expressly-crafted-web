@@ -61,7 +61,7 @@ const StatValue = ({ value, active }: { value: string; active: boolean }) => {
   }, [active, target]);
 
   return (
-    <span className="font-mono-tab font-heavy leading-none text-foreground text-5xl sm:text-6xl lg:text-[76px]">
+    <span className="font-mono-tab font-heavy leading-none whitespace-nowrap text-foreground text-4xl sm:text-[40px] lg:text-[46px]">
       {formatNumber(current, decimals)}
       {suffix && <span className="text-primary">{suffix}</span>}
     </span>
