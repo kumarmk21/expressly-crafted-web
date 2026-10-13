@@ -1,6 +1,9 @@
 # Roadmap
 
+- [x] Highlight the header menu boxes in Scorpion Red with larger bold text
+
 - [x] Enlarge the footer menu links and highlight the Navigate/Services panels
+
 
 - [x] Feature Shalini Singh like the Managing Director, add a tribute quote, and show the remaining leaders three per row
 
