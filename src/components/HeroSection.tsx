@@ -25,7 +25,7 @@ const HeroSection = () => {
     <section className="relative bg-background overflow-hidden border-b border-border">
       {/* BG layers */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Scorpion Express truck on the highway" className="h-full w-full object-cover" fetchPriority="high" decoding="async" width={1920} height={1088} />
+        <img src={heroBg} alt="Scorpion Express truck on the highway" className="h-full w-full object-cover md:object-[right_center]" fetchPriority="high" decoding="async" width={1920} height={1088} />
         <div className="absolute inset-0 hero-gradient hidden md:block" />
         <div className="absolute inset-0 hero-gradient-mobile md:hidden" />
         <div className="absolute inset-0 grain opacity-50" />
