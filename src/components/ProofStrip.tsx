@@ -1,6 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Award, ShieldCheck, Trophy } from "lucide-react";
+import {
+  Activity,
+  Award,
+  CalendarClock,
+  MapPin,
+  ShieldCheck,
+  Timer,
+  Trophy,
+} from "lucide-react";
 
 type Cert = {
   id: string;
@@ -12,14 +20,58 @@ type Cert = {
 };
 
 const STATS = [
-  { value: "25+", label: "Years in Business" },
-  { value: "94%", label: "On-Time Delivery" },
-  { value: "25,000+", label: "Pincodes Served" },
-  { value: "99.9%", label: "System Uptime" },
+  { value: "25+", label: "Years in Business", Icon: CalendarClock },
+  { value: "94%", label: "On-Time Delivery", Icon: Timer },
+  { value: "25,000+", label: "Pincodes Served", Icon: MapPin },
+  { value: "99.9%", label: "System Uptime", Icon: Activity },
 ];
+
+const splitValue = (value: string) => {
+  const suffix = value.match(/[+%]$/)?.[0] ?? "";
+  const digits = value.replace(/[+%]$/, "").replace(/,/g, "");
+  return { suffix, digits };
+};
+
+const formatNumber = (n: number, decimals: number) =>
+  n.toLocaleString("en-IN", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+
+const StatValue = ({ value, active }: { value: string; active: boolean }) => {
+  const { suffix, digits } = splitValue(value);
+  const target = Number(digits);
+  const decimals = (digits.split(".")[1] ?? "").length;
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!active || !Number.isFinite(target)) return;
+    let raf = 0;
+    const start = performance.now();
+    const duration = 1400;
+    const step = (now: number) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setCurrent(target * eased);
+      if (p < 1) raf = requestAnimationFrame(step);
+      else setCurrent(target);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [active, target]);
+
+  return (
+    <span className="font-mono-tab font-heavy leading-none text-foreground text-5xl sm:text-6xl lg:text-[76px]">
+      {formatNumber(current, decimals)}
+      {suffix && <span className="text-primary">{suffix}</span>}
+    </span>
+  );
+};
 
 const ProofStrip = () => {
   const [certs, setCerts] = useState<Cert[]>([]);
+  const [active, setActive] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     supabase
@@ -30,23 +82,56 @@ const ProofStrip = () => {
       .then(({ data }) => setCerts(((data as unknown) as Cert[]) ?? []));
   }, []);
 
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setActive(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section aria-label="Certifications, awards and proof points" className="relative z-10 border-t border-border bg-card/70 backdrop-blur">
-      <div className="container mx-auto px-4 py-6 lg:py-8">
+    <section
+      aria-label="Certifications, awards and proof points"
+      className="relative z-10 border-t border-border bg-card/70 backdrop-blur"
+    >
+      <div className="container mx-auto px-4 py-8 lg:py-10">
+        <div className="mb-5 flex items-center gap-3">
+          <span className="h-px flex-1 bg-border" aria-hidden="true" />
+          <span className="text-xs font-heavy uppercase text-primary">
+            Why teams keep shipping with us
+          </span>
+          <span className="h-px flex-1 bg-border" aria-hidden="true" />
+        </div>
+
         {/* Stats row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
-          {STATS.map((s) => (
-            <div key={s.label} className="bg-card px-4 py-4 lg:py-5 text-center">
-              <div className="font-display uppercase text-2xl lg:text-3xl text-foreground leading-none">
-                {s.value.includes("%") || s.value.includes("+") ? (
-                  <>
-                    <span>{s.value.replace(/[+%]/g, "")}</span>
-                    <span className="text-primary">{s.value.match(/[+%]/)?.[0]}</span>
-                  </>
-                ) : s.value}
-              </div>
-              <div className="mt-1.5 text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                {s.label}
+        <div
+          ref={ref}
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {STATS.map(({ value, label, Icon }) => (
+            <div
+              key={label}
+              className="group relative overflow-hidden rounded-sm border border-border bg-background p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:bg-primary/[0.04] hover:shadow-lg hover:shadow-primary/10 lg:p-7"
+            >
+              <span
+                className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100"
+                aria-hidden="true"
+              />
+              <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-sm bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                <Icon className="h-6 w-6" aria-hidden="true" />
+              </span>
+              <StatValue value={value} active={active} />
+              <div className="mt-3 text-sm font-bold text-muted-foreground">
+                {label}
               </div>
             </div>
           ))}
@@ -54,10 +139,10 @@ const ProofStrip = () => {
 
         {/* Certifications & awards */}
         {certs.length > 0 && (
-          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              Certified & Awarded
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <div className="flex items-center gap-2 text-[11px] font-heavy uppercase text-primary">
+              <ShieldCheck className="h-4 w-4" />
+              Certified &amp; Awarded
             </div>
             <div className="flex flex-wrap items-center gap-2">
               {certs.map((c) => {
@@ -66,12 +151,17 @@ const ProofStrip = () => {
                   <div
                     key={c.id}
                     title={[c.title, c.issuer, c.year].filter(Boolean).join(" · ")}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 border border-border bg-background text-[11px] uppercase tracking-wider text-foreground/80 hover:border-primary hover:text-primary transition-colors"
+                    className="inline-flex items-center gap-2 rounded-sm border border-border bg-background px-3 py-2 text-xs text-foreground/80 transition-colors hover:border-primary hover:text-primary"
                   >
                     {c.logo_url ? (
                       <img src={c.logo_url} alt="" className="h-4 w-4 object-contain" />
                     ) : (
-                      <Icon className={`h-3.5 w-3.5 ${c.kind === "award" ? "text-primary" : "text-foreground/60"}`} />
+                      <Icon
+                        className={`h-4 w-4 ${
+                          c.kind === "award" ? "text-primary" : "text-foreground/60"
+                        }`}
+                        aria-hidden="true"
+                      />
                     )}
                     <span className="font-bold">{c.title}</span>
                     {c.year && <span className="text-muted-foreground">· {c.year}</span>}

@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Make the home statistics band larger and more attractive
+
 - [x] Highlight the header menu boxes in Scorpion Red with larger bold text
 
 - [x] Enlarge the footer menu links and highlight the Navigate/Services panels
