@@ -31,10 +31,11 @@ const HomeShipmentTracker = () => {
               Live Shipment Tracking
             </div>
             <h2 id="shipment-tracker-title" className="tracker-headline text-[30px] text-foreground sm:text-[40px]">
-              Where is your{" "}
+              See exactly where{" "}
               <span className="font-medium text-primary underline decoration-primary/30 decoration-2 underline-offset-[10px]">
-                shipment?
-              </span>
+                your cargo
+              </span>{" "}
+              is.
             </h2>
 
           </div>
