@@ -80,7 +80,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex flex-1 items-center justify-center gap-1 min-w-0">
+        <div className="hidden nav:flex flex-1 items-center justify-center gap-1 min-w-0">
           {navLinks.map((link) => {
             if (link.children) {
               return (
@@ -144,7 +144,7 @@ const Navbar = () => {
         </div>
 
         {/* Portals */}
-        <div className="hidden lg:flex items-center gap-1.5 shrink-0">
+        <div className="hidden nav:flex items-center gap-1.5 shrink-0">
           <Link
             to="/employee-login"
             className="flex items-center gap-2 px-2 py-2.5 xl:px-2.5 text-[12px] xl:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
@@ -165,7 +165,7 @@ const Navbar = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="lg:hidden text-foreground"
+          className="nav:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -175,7 +175,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-background border-t border-border max-h-[calc(100vh-90px)] overflow-y-auto">
+        <div className="nav:hidden bg-background border-t border-border max-h-[calc(100vh-90px)] overflow-y-auto">
           <div className="container mx-auto px-4 py-4 space-y-1">
             {navLinks.map((link) => {
               if (link.children) {
