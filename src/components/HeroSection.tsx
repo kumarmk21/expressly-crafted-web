@@ -32,7 +32,7 @@ const HeroSection = () => {
       {/* red spotlight */}
       <div className="absolute right-0 top-0 h-full w-1/2 spotlight hidden md:block" />
 
-      <div className="container mx-auto px-4 relative z-10 pt-6 lg:pt-8 pb-8">
+      <div className="container mx-auto px-4 relative z-10 pt-4 lg:pt-8 pb-8">
         {/* eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
