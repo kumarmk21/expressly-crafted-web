@@ -20,8 +20,8 @@ const HomeShipmentTracker = () => {
       className="relative z-20 border-b border-border bg-card"
       aria-labelledby="shipment-tracker-title"
     >
-      <div className="container mx-auto px-4 py-5 lg:py-6">
-        <div className="grid items-center gap-4 lg:grid-cols-[minmax(320px,1fr)_minmax(460px,1.2fr)] lg:gap-8">
+      <div className="container mx-auto px-4 py-4 lg:py-6">
+        <div className="grid items-center gap-3 lg:grid-cols-[minmax(320px,1fr)_minmax(460px,1.2fr)] lg:gap-8">
           <div>
             <div className="mb-1.5 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-primary">
               <span className="relative flex h-2 w-2" aria-hidden="true">
@@ -30,7 +30,7 @@ const HomeShipmentTracker = () => {
               </span>
               Live Shipment Tracking
             </div>
-            <h2 id="shipment-tracker-title" className="tracker-headline text-[28px] text-foreground sm:text-[34px] lg:text-[32px] xl:text-[36px]">
+            <h2 id="shipment-tracker-title" className="tracker-headline text-[24px] text-foreground sm:text-[34px] lg:text-[32px] xl:text-[36px]">
               See exactly where{" "}
               <span className="font-medium text-primary underline decoration-primary/30 decoration-2 underline-offset-[10px]">
                 your cargo
@@ -46,7 +46,7 @@ const HomeShipmentTracker = () => {
                 event.preventDefault();
                 trackShipment();
               }}
-              className="flex flex-col gap-2 rounded-sm border-2 border-primary bg-primary/[0.05] p-2.5 shadow-sm shadow-primary/10 sm:flex-row"
+              className="flex flex-col gap-2 rounded-sm border-2 border-primary bg-primary/[0.05] p-2 shadow-sm shadow-primary/10 sm:flex-row"
             >
               <div className="relative min-w-0 flex-1">
                 <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-primary" aria-hidden="true" />
@@ -57,10 +57,10 @@ const HomeShipmentTracker = () => {
                   placeholder="Enter LR / Docket number"
                   aria-label="Shipment tracking number"
                   required
-                  className="h-14 w-full rounded-sm border border-primary/30 bg-background pl-12 pr-4 font-mono-tab text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-12 w-full rounded-sm border border-primary/30 bg-background pl-12 pr-4 font-mono-tab text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 />
               </div>
-              <Button type="submit" size="lg" className="h-14 rounded-sm px-8 font-black uppercase tracking-wider sm:min-w-36">
+              <Button type="submit" size="lg" className="h-12 rounded-sm px-6 font-black uppercase tracking-wider sm:min-w-36">
                 Track Now
               </Button>
             </form>
@@ -72,7 +72,7 @@ const HomeShipmentTracker = () => {
         </div>
 
         {/* Quick tools: Rate Finder & TAT Finder */}
-        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {[
             {
               label: "Rate Finder",
@@ -92,9 +92,9 @@ const HomeShipmentTracker = () => {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 rounded-sm border border-border bg-background p-3 transition-colors hover:border-primary hover:bg-primary/5"
+              className="group flex items-center gap-3 rounded-sm border border-border bg-background p-2.5 transition-colors hover:border-primary hover:bg-primary/5"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <Icon className="h-5 w-5" aria-hidden="true" />
               </span>
               <span className="min-w-0 flex-1">

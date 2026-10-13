@@ -24,12 +24,15 @@ const Footer = () => {
           {/* Brand block */}
           <div className="lg:col-span-3">
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-14 w-14 bg-white border border-border rounded-sm p-1.5 flex items-center justify-center">
-                <img src={scorpionLogo} alt="Scorpion Express" className="h-full w-full object-contain" />
-              </div>
+              <img
+                src={scorpionLogo}
+                alt="Scorpion Express"
+                className="h-14 w-auto object-contain"
+                width={585}
+                height={348}
+              />
               <div>
-                <div className="font-display text-2xl tracking-wide text-foreground">SCORPION<span className="text-primary">.</span></div>
-                <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-0.5">Express Logistics</div>
+                <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-0.5">Custodian First, Carrier Later</div>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">

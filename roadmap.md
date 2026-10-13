@@ -4,6 +4,9 @@
 - [x] Set the About-page intro headline to medium size
 - [x] Settle statistics numbers at medium size and rewrite the tracking headline
 - [x] Give the milestones cards motion and Scorpion Red highlighting
+- [x] Replace the home banner background image with a nicer one
+- [x] Add Scorpion branding to the home banner truck
+- [x] Use the supplied Scorpion logo and match the banner image to its red
 
 - [x] Highlight the header menu boxes in Scorpion Red with larger bold text
 
