@@ -51,7 +51,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="hero-headline text-[42px] sm:text-6xl lg:text-7xl xl:text-[80px] leading-[1.12] text-foreground max-w-5xl"
+          className="hero-headline text-[36px] sm:text-5xl lg:text-6xl xl:text-[64px] leading-[1.12] text-foreground max-w-5xl"
         >
           {hero.headline_line1}
           <br />
