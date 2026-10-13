@@ -60,7 +60,7 @@ const HomeShipmentTracker = () => {
                   className="h-12 w-full rounded-sm border border-primary/30 bg-background pl-12 pr-4 font-mono-tab text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 />
               </div>
-              <Button type="submit" size="lg" className="h-12 rounded-sm px-6 font-black uppercase tracking-wider sm:min-w-36">
+              <Button type="submit" size="lg" className="pulse-cta btn-sheen h-12 rounded-sm px-6 font-black uppercase tracking-wider sm:min-w-36">
                 Track Now
               </Button>
             </form>
