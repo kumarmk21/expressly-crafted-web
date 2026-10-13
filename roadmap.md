@@ -2,6 +2,7 @@
 
 - [x] Make the home statistics band larger and more attractive
 - [x] Settle statistics numbers at medium size and rewrite the tracking headline
+- [x] Give the milestones cards motion and Scorpion Red highlighting
 
 - [x] Highlight the header menu boxes in Scorpion Red with larger bold text
 
