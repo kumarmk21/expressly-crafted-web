@@ -66,16 +66,17 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between gap-4 px-3 py-3">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 shrink-0 group" aria-label="Scorpion Express Home">
-          <div className="flex flex-col">
+          <div className="flex items-center gap-2.5">
             <img
               src={scorpionLogo}
               alt="Scorpion Express logo"
-              className="h-12 w-auto lg:h-14 object-contain shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow"
+              className="h-11 w-auto lg:h-12 rounded-md object-contain transition-transform group-hover:scale-[1.03]"
               width={585}
               height={348}
             />
-            <span className="mt-1 whitespace-nowrap text-[8px] font-bold uppercase leading-none tracking-normal text-muted-foreground">
-              Custodian First, Carrier Later
+            <span className="hidden sm:block border-l-2 border-primary pl-2.5 text-[11px] font-semibold leading-tight text-foreground/80">
+              Custodian First,<br />
+              <span className="text-primary">Carrier Later</span>
             </span>
           </div>
         </Link>
