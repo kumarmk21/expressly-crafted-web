@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, ShieldCheck, Globe2 } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-bg-branded.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const DEFAULT_HERO = {
@@ -25,7 +25,7 @@ const HeroSection = () => {
     <section className="relative bg-background overflow-hidden border-b border-border">
       {/* BG layers */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Scorpion Express truck on the highway" className="h-full w-full object-cover object-[right_center] md:object-center" fetchPriority="high" decoding="async" width={1920} height={1088} />
+        <img src={heroBg} alt="Scorpion Express truck on the highway" className="h-full w-full object-cover object-[right_center] md:object-center" fetchPriority="high" decoding="async" width={1376} height={768} />
         <div className="absolute inset-0 hero-gradient hidden md:block" />
         <div className="absolute inset-0 hero-gradient-mobile md:hidden" />
         <div className="absolute inset-0 grain opacity-50" />
