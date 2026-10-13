@@ -85,7 +85,7 @@ const Navbar = () => {
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <Button variant="outline" className="flex items-center gap-1 h-auto rounded-none px-1.5 py-2.5 xl:px-2 2xl:px-3 text-[12px] xl:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap">
+                  <Button variant="outline" className="flex items-center gap-1 h-auto rounded-none px-1.5 py-2.5 2xl:px-3 text-[12px] navmd:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap">
                     {link.label}
                     <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                   </Button>
@@ -135,7 +135,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="h-auto rounded-none px-1.5 py-2.5 xl:px-2 2xl:px-3 text-[12px] xl:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
+                className="h-auto rounded-none px-1.5 py-2.5 2xl:px-3 text-[12px] navmd:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -147,16 +147,17 @@ const Navbar = () => {
         <div className="hidden nav:flex items-center gap-1.5 shrink-0">
           <Link
             to="/employee-login"
-            className="flex items-center gap-2 px-2 py-2.5 xl:px-2.5 text-[12px] xl:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
+            className="flex items-center gap-2 px-2 py-2.5 2xl:px-2.5 text-[12px] navmd:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
           >
             <LogIn className="h-4 w-4 shrink-0" /> Employee
           </Link>
           <Link
             to="/customer-portal"
-            className="flex items-center gap-2 px-2.5 py-2.5 xl:px-3 text-[12px] xl:text-[13px] 2xl:text-[15px] font-heavy bg-primary text-primary-foreground hover:bg-primary/90 transition-colors whitespace-nowrap"
+            className="flex items-center gap-2 px-2.5 py-2.5 2xl:px-3 text-[12px] navmd:text-[13px] 2xl:text-[15px] font-heavy bg-primary text-primary-foreground hover:bg-primary/90 transition-colors whitespace-nowrap"
           >
             <User className="h-4 w-4 shrink-0" /> Customer Portal
           </Link>
+
 
 
         </div>

@@ -17,7 +17,10 @@ export default {
       screens: {
         /* Desktop header row needs ~1080px to show all menu boxes without crowding. */
         nav: "1080px",
+        /* Room for the larger 13px menu boxes. */
+        navmd: "1180px",
       },
+
       fontFamily: {
 
         sans: ["Hind", "Segoe UI", "system-ui", "sans-serif"],
