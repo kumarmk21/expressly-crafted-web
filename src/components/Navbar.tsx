@@ -74,7 +74,7 @@ const Navbar = () => {
               width={585}
               height={348}
             />
-            <span className="hidden sm:block border-l-2 border-primary pl-2.5 text-[11px] font-semibold leading-tight text-foreground/80">
+            <span className="hidden sm:block nav:hidden navmd:block border-l-2 border-primary pl-2.5 text-[11px] font-semibold leading-tight text-foreground/80">
               Custodian First,<br />
               <span className="text-primary">Carrier Later</span>
             </span>
