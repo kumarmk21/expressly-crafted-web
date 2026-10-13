@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, ShieldCheck, Globe2 } from "lucide-react";
-import heroBg from "@/assets/hero-bg-scorpion-red.jpg";
+import heroBg from "@/assets/hero-bg-rbg.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const DEFAULT_HERO = {
