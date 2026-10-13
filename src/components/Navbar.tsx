@@ -80,12 +80,12 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex flex-1 items-center justify-center gap-1 min-w-0">
+        <div className="hidden nav:flex flex-1 items-center justify-center gap-1 min-w-0">
           {navLinks.map((link) => {
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <Button variant="outline" className="flex items-center gap-1 h-auto rounded-none px-2.5 py-2 text-[11px] font-bold text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap">
+                  <Button variant="outline" className="flex items-center gap-1 h-auto rounded-none px-1.5 py-2.5 2xl:px-3 text-[12px] navmd:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap">
                     {link.label}
                     <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                   </Button>
@@ -135,7 +135,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="h-auto rounded-none px-2.5 py-2 text-[11px] font-bold text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
+                className="h-auto rounded-none px-1.5 py-2.5 2xl:px-3 text-[12px] navmd:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -144,26 +144,29 @@ const Navbar = () => {
         </div>
 
         {/* Portals */}
-        <div className="hidden lg:flex items-center gap-1.5 shrink-0">
+        <div className="hidden nav:flex items-center gap-1.5 shrink-0">
           <Link
             to="/employee-login"
-            className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+            className="flex items-center gap-2 px-2 py-2.5 2xl:px-2.5 text-[12px] navmd:text-[13px] 2xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
           >
-            <LogIn className="h-3.5 w-3.5" /> Employee
+            <LogIn className="h-4 w-4 shrink-0" /> Employee
           </Link>
           <Link
             to="/customer-portal"
-            className="flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="flex items-center gap-2 px-2.5 py-2.5 2xl:px-3 text-[12px] navmd:text-[13px] 2xl:text-[15px] font-heavy bg-primary text-primary-foreground hover:bg-primary/90 transition-colors whitespace-nowrap"
           >
-            <User className="h-3.5 w-3.5" /> Customer Portal
+            <User className="h-4 w-4 shrink-0" /> Customer Portal
           </Link>
+
+
+
         </div>
 
         {/* Mobile toggle */}
         <Button
           variant="ghost"
           size="icon"
-          className="lg:hidden text-foreground"
+          className="nav:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -173,7 +176,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-background border-t border-border max-h-[calc(100vh-90px)] overflow-y-auto">
+        <div className="nav:hidden bg-background border-t border-border max-h-[calc(100vh-90px)] overflow-y-auto">
           <div className="container mx-auto px-4 py-4 space-y-1">
             {navLinks.map((link) => {
               if (link.children) {
@@ -181,9 +184,10 @@ const Navbar = () => {
                   <div key={link.label} className="border border-border">
                     <Button
                       variant="outline"
-                      className="flex h-auto items-center justify-between w-full rounded-none px-4 py-3 text-sm font-bold text-foreground bg-muted"
+                      className="flex h-auto items-center justify-between w-full rounded-none px-4 py-3.5 text-base font-heavy text-primary bg-primary/[0.05] border-primary/55"
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                     >
+
                       {link.label}
                       <ChevronDown className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
                     </Button>
@@ -207,7 +211,7 @@ const Navbar = () => {
                               }`}>
                                 <Icon className="h-4 w-4" />
                               </span>
-                              <span className="text-sm font-bold uppercase tracking-wide">{child.label}</span>
+                              <span className="text-sm font-heavy text-primary">{child.label}</span>
                             </Link>
                           );
                         })}
@@ -221,28 +225,30 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-bold text-foreground/80 bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="block px-4 py-3.5 text-base font-heavy text-primary bg-primary/[0.05] border border-primary/55 hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
                   {link.label}
                 </a>
+
               );
             })}
             <div className="pt-3 mt-3 grid grid-cols-2 gap-2 border-t border-border">
               <Link
                 to="/employee-login"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider border border-border"
+                className="flex items-center justify-center gap-2 px-3 py-3 text-sm font-heavy text-primary border border-primary/55 bg-primary/[0.05]"
               >
-                <LogIn className="h-3.5 w-3.5" /> Employee
+                <LogIn className="h-4 w-4" /> Employee
               </Link>
               <Link
                 to="/customer-portal"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider bg-primary text-primary-foreground"
+                className="flex items-center justify-center gap-2 px-3 py-3 text-sm font-heavy bg-primary text-primary-foreground"
               >
-                <User className="h-3.5 w-3.5" /> Customer
+                <User className="h-4 w-4" /> Customer
               </Link>
             </div>
+
           </div>
         </div>
       )}

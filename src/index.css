@@ -140,6 +140,12 @@
     line-height: 1.15;
   }
 
+  /* True bold for emphasised UI (nav items) that must exceed the 600 cap. */
+  .font-heavy {
+    font-weight: 700;
+  }
+
+
 
   .grain {
     background-image:
