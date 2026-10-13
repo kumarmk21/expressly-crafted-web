@@ -207,18 +207,6 @@
     );
 }
 
-/* Phones: the photo is pushed off the right edge and kept as a faint backdrop,
-   so the headline, subtext and buttons never sit on top of the truck. */
-.hero-gradient-mobile {
-  background: linear-gradient(
-    90deg,
-    hsl(0 0% 100%) 0%,
-    hsl(0 0% 100% / 0.99) 42%,
-    hsl(0 0% 100% / 0.82) 62%,
-    hsl(0 0% 100% / 0.22) 100%
-  );
-}
-
 .light-gradient {
   background: linear-gradient(
     180deg,
