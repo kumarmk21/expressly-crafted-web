@@ -85,7 +85,7 @@ const Navbar = () => {
             if (link.children) {
               return (
                 <div key={link.label} className="relative group">
-                  <Button variant="outline" className="flex items-center gap-1 h-auto rounded-none px-2.5 py-2 text-[11px] font-bold text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap">
+                  <Button variant="outline" className="flex items-center gap-1 h-auto rounded-none px-2 py-2.5 lg:px-2.5 xl:px-3.5 text-[12px] lg:text-[13px] xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap">
                     {link.label}
                     <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
                   </Button>
@@ -135,7 +135,7 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="h-auto rounded-none px-2.5 py-2 text-[11px] font-bold text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
+                className="h-auto rounded-none px-2 py-2.5 lg:px-2.5 xl:px-3.5 text-[12px] lg:text-[13px] xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
