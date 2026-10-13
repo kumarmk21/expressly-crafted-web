@@ -50,47 +50,57 @@ const Footer = () => {
 
           {/* Navigate */}
           <div className="lg:col-span-2">
-            <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-5">Navigate</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              {[
-                { l: "Home", h: "/" },
-                { l: "About", h: "/about" },
-                { l: "Services", h: "#services" },
-                { l: "Network & Infra", h: "/network" },
-                { l: "Careers", h: "/careers" },
-                { l: "Contact", h: "#contact" },
-              ].map((link) => (
-                <li key={link.l}>
-                  <a href={link.h} className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
-                    {link.l}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="border border-primary/30 bg-primary/[0.04] p-5">
+              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4">Navigate</h4>
+              <ul className="space-y-2">
+                {[
+                  { l: "Home", h: "/" },
+                  { l: "About", h: "/about" },
+                  { l: "Services", h: "#services" },
+                  { l: "Network & Infra", h: "/network" },
+                  { l: "Careers", h: "/careers" },
+                  { l: "Contact", h: "#contact" },
+                ].map((link) => (
+                  <li key={link.l}>
+                    <a
+                      href={link.h}
+                      className="group inline-flex w-full items-center justify-between gap-2 border border-border bg-background px-3 py-2.5 text-base font-semibold text-foreground transition-colors hover:border-primary hover:bg-primary/5 hover:text-primary"
+                    >
+                      {link.l}
+                      <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Services */}
           <div className="lg:col-span-3">
-            <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-5">Services</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              {[
-                ["Part Load (LTL)", "ltl"],
-                ["Express", "express"],
-                ["Air Express", "air"],
-                ["Cold Chain", "cold-chain"],
-                ["Warehousing", "wms"],
-                ["Cleantech Solutions", "cleantech"],
-                ["Full Truck Load (FTL)", "ftl"],
-              ].map(([label, slug]) => (
-                <li key={slug}>
-                  <Link to={`/services/${slug}`} className="hover:text-primary transition-colors inline-flex items-center gap-1 group">
-                    {label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className="border border-primary/30 bg-primary/[0.04] p-5">
+              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4">Services</h4>
+              <ul className="space-y-2">
+                {[
+                  ["Part Load (LTL)", "ltl"],
+                  ["Express", "express"],
+                  ["Air Express", "air"],
+                  ["Cold Chain", "cold-chain"],
+                  ["Warehousing", "wms"],
+                  ["Cleantech Solutions", "cleantech"],
+                  ["Full Truck Load (FTL)", "ftl"],
+                ].map(([label, slug]) => (
+                  <li key={slug}>
+                    <Link
+                      to={`/services/${slug}`}
+                      className="group inline-flex w-full items-center justify-between gap-2 border border-border bg-background px-3 py-2.5 text-base font-semibold text-foreground transition-colors hover:border-primary hover:bg-primary/5 hover:text-primary"
+                    >
+                      {label}
+                      <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Contact */}
