@@ -147,16 +147,17 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center gap-1.5 shrink-0">
           <Link
             to="/employee-login"
-            className="flex items-center gap-2 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-foreground/80 border border-border bg-card hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+            className="flex items-center gap-2 px-3 py-2.5 text-[13px] xl:text-[15px] font-heavy text-primary border border-primary/55 bg-primary/[0.05] hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors whitespace-nowrap"
           >
-            <LogIn className="h-3.5 w-3.5" /> Employee
+            <LogIn className="h-4 w-4" /> Employee
           </Link>
           <Link
             to="/customer-portal"
-            className="flex items-center gap-2 px-4 py-2.5 text-xs font-black uppercase tracking-wider bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="flex items-center gap-2 px-3.5 py-2.5 text-[13px] xl:text-[15px] font-heavy bg-primary text-primary-foreground hover:bg-primary/90 transition-colors whitespace-nowrap"
           >
-            <User className="h-3.5 w-3.5" /> Customer Portal
+            <User className="h-4 w-4" /> Customer Portal
           </Link>
+
         </div>
 
         {/* Mobile toggle */}
@@ -221,28 +222,30 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-bold text-foreground/80 bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="block px-4 py-3.5 text-base font-heavy text-primary bg-primary/[0.05] border border-primary/55 hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
                   {link.label}
                 </a>
+
               );
             })}
             <div className="pt-3 mt-3 grid grid-cols-2 gap-2 border-t border-border">
               <Link
                 to="/employee-login"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider border border-border"
+                className="flex items-center justify-center gap-2 px-3 py-3 text-sm font-heavy text-primary border border-primary/55 bg-primary/[0.05]"
               >
-                <LogIn className="h-3.5 w-3.5" /> Employee
+                <LogIn className="h-4 w-4" /> Employee
               </Link>
               <Link
                 to="/customer-portal"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs font-bold uppercase tracking-wider bg-primary text-primary-foreground"
+                className="flex items-center justify-center gap-2 px-3 py-3 text-sm font-heavy bg-primary text-primary-foreground"
               >
-                <User className="h-3.5 w-3.5" /> Customer
+                <User className="h-4 w-4" /> Customer
               </Link>
             </div>
+
           </div>
         </div>
       )}
