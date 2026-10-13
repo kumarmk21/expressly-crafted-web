@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Target, Eye, Award, Building2, Users, Truck, Shield, User as UserIcon } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -43,6 +43,7 @@ const LOCAL_PHOTOS: Record<string, string> = {
 const MilestonesSlider = () => {
   const [perView, setPerView] = useState(3);
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const update = () =>
@@ -55,52 +56,103 @@ const MilestonesSlider = () => {
   const maxIndex = Math.max(0, milestones.length - perView);
   const current = Math.min(index, maxIndex);
 
+  // The journey keeps moving on its own, and stops while someone is reading.
+  useEffect(() => {
+    if (paused || maxIndex === 0) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = setInterval(
+      () => setIndex((i) => (i >= maxIndex ? 0 : i + 1)),
+      4500,
+    );
+    return () => clearInterval(timer);
+  }, [paused, maxIndex]);
+
+  const wrap: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.09, delayChildren: 0.12 } },
+  };
+  const rise: Variants = {
+    hidden: { opacity: 0, y: 28 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+  };
+
   return (
-    <div className="border border-border bg-white">
-      <div className="overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="rounded-sm border border-primary/30 bg-primary/[0.04] p-3 lg:p-4"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <motion.div
+        variants={wrap}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className="overflow-hidden"
+      >
         <div
-          className="flex transition-transform duration-500 ease-out"
+          className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
           style={{ transform: `translateX(-${current * (100 / perView)}%)` }}
         >
           {milestones.map((m) => (
             <div
               key={m.year}
-              className="shrink-0 border-r border-border bg-white p-7"
+              className="shrink-0 px-1.5"
               style={{ width: `${100 / perView}%` }}
             >
-              <div className="font-display text-5xl text-primary leading-none">{m.year}</div>
-              <div className="h-px w-10 bg-primary my-3" />
-              <p className="text-sm text-foreground/75 leading-relaxed">{m.text}</p>
+              <motion.div
+                variants={rise}
+                whileHover={{ y: -6 }}
+                className="group relative flex h-full flex-col overflow-hidden rounded-sm border border-primary/25 bg-background p-6 shadow-sm shadow-primary/5 transition-colors duration-300 hover:border-primary/60 hover:bg-primary/[0.06] lg:p-7"
+              >
+                <span
+                  className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100"
+                  aria-hidden="true"
+                />
+                <div className="font-display text-4xl leading-none text-primary transition-transform duration-300 group-hover:scale-105 lg:text-5xl">
+                  {m.year}
+                </div>
+                <div className="my-3 h-px w-10 bg-primary/50 transition-all duration-300 group-hover:w-16 group-hover:bg-primary" />
+                <p className="text-sm leading-relaxed text-foreground/75">{m.text}</p>
+              </motion.div>
             </div>
           ))}
         </div>
-      </div>
-      <div className="flex items-center justify-between border-t border-border px-4 py-3">
-        <span className="text-xs text-muted-foreground">
+      </motion.div>
+
+      <div className="mt-3 flex items-center justify-between gap-4 border-t border-primary/20 px-1 pt-3">
+        <span className="font-mono-tab text-xs font-heavy text-primary">
           {current + 1} / {maxIndex + 1}
         </span>
         <div className="flex gap-2">
-          <button
+          <motion.button
             type="button"
             aria-label="Previous milestones"
             onClick={() => setIndex(Math.max(0, current - 1))}
             disabled={current === 0}
-            className="p-2 border border-border text-foreground/70 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-foreground/70"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            className="border border-primary/40 bg-background p-2 text-primary transition-colors hover:bg-primary hover:text-primary-foreground disabled:opacity-30 disabled:hover:bg-background disabled:hover:text-primary"
           >
             <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             aria-label="Next milestones"
             onClick={() => setIndex(Math.min(maxIndex, current + 1))}
             disabled={current === maxIndex}
-            className="p-2 border border-border text-foreground/70 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-foreground/70"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            className="border border-primary/40 bg-background p-2 text-primary transition-colors hover:bg-primary hover:text-primary-foreground disabled:opacity-30 disabled:hover:bg-background disabled:hover:text-primary"
           >
             <ChevronRight className="h-4 w-4" />
-          </button>
+          </motion.button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
