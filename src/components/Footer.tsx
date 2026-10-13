@@ -22,7 +22,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-12 gap-12">
           {/* Brand block */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-3">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-14 w-14 bg-white border border-border rounded-sm p-1.5 flex items-center justify-center">
                 <img src={scorpionLogo} alt="Scorpion Express" className="h-full w-full object-contain" />
@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
 
           {/* Navigate */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <div className="border border-primary/30 bg-primary/[0.04] p-5">
               <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4">Navigate</h4>
               <ul className="space-y-2">
