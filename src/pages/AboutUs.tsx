@@ -194,7 +194,7 @@ const AboutUs = () => {
               <span className="h-px w-12 bg-primary" />
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Scorpion Express</span>
             </div>
-            <h1 className="font-display uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-foreground">
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl leading-tight text-foreground">
               Pan-India B2B <br /> express cargo & logistics<span className="text-primary">.</span>
             </h1>
             <p className="mt-8 max-w-2xl text-lg text-foreground/70 leading-relaxed">
