@@ -6,9 +6,9 @@ import { supabase } from "@/integrations/supabase/client";
 
 const DEFAULT_HERO = {
   eyebrow: "Custodian First · Carrier Later",
-  headline_line1: "We move",
-  headline_line2: "India",
-  headline_tail: "Reliably.",
+  headline_line1: "We Scorpions strive",
+  headline_line2: "to make the world happy",
+  headline_tail: "",
   subtext: "Pan-India B2B express cargo and logistics since 2000.",
 };
 
