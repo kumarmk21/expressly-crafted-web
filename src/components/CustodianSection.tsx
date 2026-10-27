@@ -92,7 +92,6 @@ const CustodianSection = () => {
                     height={768}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
                   <div className="absolute top-4 left-4 h-10 w-10 flex items-center justify-center bg-primary text-white">
                     <Icon className="h-5 w-5" />
                   </div>
