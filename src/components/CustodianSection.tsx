@@ -4,6 +4,7 @@ import { ShieldCheck, Video, Lock, Split, ArrowRight } from "lucide-react";
 import cctvVehicle from "@/assets/custodian/cctv-vehicle.jpg";
 import bifurcatedCompartment from "@/assets/custodian/bifurcated-compartment.jpg";
 import digitalLock from "@/assets/custodian/digital-lock.jpg";
+import protectCargoTruck from "@/assets/protect-cargo-truck.jpg";
 
 const pillars = [
   {
@@ -118,15 +119,12 @@ const CustodianSection = () => {
           className="mt-10 grid lg:grid-cols-12 gap-6 items-center"
         >
           <div className="lg:col-span-7 relative border border-border overflow-hidden bg-muted">
-            <video
-              src="/videos/protect-cargo.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
+            <img
+              src={protectCargoTruck}
+              alt="Red Scorpion Express truck with open cargo bay showing boxes secured on pallets"
+              loading="lazy"
+              decoding="async"
               className="w-full aspect-video object-cover"
-              aria-label="How Scorpion Express protects cargo in transit"
             />
           </div>
           <div className="lg:col-span-5">
