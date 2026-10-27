@@ -33,20 +33,7 @@ const HeroSection = () => {
       <div className="absolute right-0 top-0 h-full w-1/2 spotlight hidden md:block" />
 
       <div className="container mx-auto px-4 relative z-10 pt-4 lg:pt-8 pb-8">
-        {/* eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-           className="flex items-center gap-3 mb-4"
-        >
-          <span className="h-px w-12 bg-primary" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
-            {hero.eyebrow}
-          </span>
-        </motion.div>
-
-        {/* Balanced headline */}
+        {/* headline */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
