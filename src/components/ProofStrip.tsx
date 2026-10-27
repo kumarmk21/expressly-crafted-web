@@ -107,7 +107,7 @@ const ProofStrip = () => {
         <div className="mb-5 flex items-center gap-3">
           <span className="h-px flex-1 bg-border" aria-hidden="true" />
           <span className="text-xs font-heavy uppercase text-primary">
-            Why teams keep shipping with us
+            Why Businesses Trust Us to Keep Their Shipments Moving
           </span>
           <span className="h-px flex-1 bg-border" aria-hidden="true" />
         </div>
