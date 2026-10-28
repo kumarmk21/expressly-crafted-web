@@ -9,6 +9,7 @@
 - [x] Keep every word in the About story headline intact (no split or lone word) from 320px up; verify all widths
 
 - [x] Update About story typography, six portrait heights and label; revise cargo headings and container imagery; verify pages
+- [x] Set the six secondary leadership portraits to a medium 9/10 photo frame after the short fixed heights were called too short; verify desktop and phone
 
 - [x] Update illustrative staff images across Contact, Technology, Careers, Cargo Protection, Customer Portal and industry workplace scenes with red Scorpion uniforms; verify images
 

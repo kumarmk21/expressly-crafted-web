@@ -496,7 +496,7 @@ const AboutUs = () => {
                 viewport={{ once: true }}
                 className="bg-card border border-border overflow-hidden flex flex-col h-full min-w-0"
               >
-                <div className="relative h-[220px] sm:h-[260px] lg:h-[320px] w-full bg-muted overflow-hidden shrink-0">
+                <div className="relative w-full aspect-[9/10] bg-muted overflow-hidden shrink-0">
                   {photo ? (
                     <img
                       src={photo}
