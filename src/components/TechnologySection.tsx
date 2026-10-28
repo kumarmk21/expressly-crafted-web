@@ -70,42 +70,23 @@ const TechnologySection = () => {
         const raw = ((data as any[]) ?? []) as Tech[];
         setItems(
           raw.map((it) => {
+            if (LOCAL_IMAGES[it.no]) {
+              return { ...it, image_url: LOCAL_IMAGES[it.no] };
+            }
             if (it.id === SALESFORCE_ID) {
               return {
                 ...it,
                 title: "Integrated DEPS Management Module",
                 description:
                   "A real-time Corrective and Preventive Action (CAPA) module for operations teams.",
-                image_url:
-                  "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=70",
                 icon: "Warehouse",
               };
             }
-            if (it.id === WALLET_ID) {
-              return {
-                ...it,
-                image_url:
-                  "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=70",
-              };
-            }
-            if (it.id === PRQ_ID) {
-              return {
-                ...it,
-                image_url:
-                  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=70",
-              };
-            }
             if (it.id === DIGITAL_LOCK_ID) {
-              return {
-                ...it,
-                image_url: digitalLock,
-              };
+              return { ...it, image_url: digitalLock };
             }
             if (it.id === EV_FLEET_ID) {
-              return {
-                ...it,
-                image_url: evFleet,
-              };
+              return { ...it, image_url: evFleet };
             }
             return it;
           })
