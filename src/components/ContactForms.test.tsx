@@ -17,10 +17,10 @@ describe("Contact enquiry storage", () => {
     fireEvent.change(inputs[3], { target: { value: "9876543210" } });
     fireEvent.change(inputs[4], { target: { value: "Example Company" } });
     fireEvent.change(container.querySelector("select") as HTMLSelectElement, { target: { value: "Manufacturer" } });
-    fireEvent.click(screen.getByRole("button", { name: "Part Load (LTL)", exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: "Part Load (LTL)" }));
     fireEvent.change(container.querySelector("textarea") as HTMLTextAreaElement, { target: { value: "Please arrange Mumbai to Pune delivery." } });
     fireEvent.click(screen.getByRole("checkbox"));
-    fireEvent.click(screen.getByRole("button", { name: "Submit", exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: "Submit" }));
     await waitFor(() => expect(mocks.insert).toHaveBeenCalledWith({
       form_type: "business", first_name: "Example", last_name: "Customer", email: "example@example.com",
       phone: "9876543210", company_name: "Example Company", business_type: "Manufacturer",
