@@ -2,6 +2,7 @@
 
 - Public enquiry consent is persisted in Supabase and enforced by database triggers, so consent cannot be bypassed from the browser.
 - Home-page shipment tracking lives in a dedicated top-of-page component because tracking is the primary customer task.
+- The homepage banner keeps its angular brand treatment in shared CSS and builds linked service tiles from the canonical services data, so the reference-inspired presentation does not duplicate service definitions or replace tracking.
 - Pages other than Home load on demand (React.lazy) to keep the mobile first load small.
 - Shared typography rules live in the global stylesheet and Tailwind font aliases so static pages, dialogs, and admin-managed content use the same presentation; every heading resolves to the single shared heading font through those rules rather than per-component font styling.
 - The header's desktop menu and its size steps use the custom `nav`/`navmd` breakpoints in tailwind.config.ts instead of lg/xl, because the menu row only fits without overlapping above those widths; keep new header controls on those breakpoints and re-check collisions at 1080/1202/1280/1440 when labels change.

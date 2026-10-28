@@ -207,6 +207,35 @@
     );
 }
 
+/* Reference-inspired logistics banner: clear fleet photo and angular brand panel. */
+.logistics-banner { background: hsl(var(--brand-ink)); }
+.logistics-banner-scene { min-height: 360px; }
+.logistics-banner-photo { object-position: center 62%; }
+.logistics-banner-accent {
+  background: hsl(var(--primary));
+  clip-path: polygon(0 0, 49% 0, 55% 50%, 49% 100%, 0 100%);
+}
+.logistics-banner-panel {
+  background: hsl(var(--brand-ink));
+  clip-path: polygon(0 0, 46% 0, 52% 50%, 46% 100%, 0 100%);
+}
+.logistics-banner-copy { width: 44%; }
+.logistics-banner-services { margin-top: -1px; }
+.logistics-service-icon { clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%); }
+.logistics-service-tile { border-bottom: 3px solid hsl(var(--primary)); }
+@media (max-width: 767px) {
+  .logistics-banner-scene { min-height: 480px; }
+  .logistics-banner-photo { top: auto; height: 200px; object-position: right center; }
+  .logistics-banner-accent { clip-path: polygon(0 0, 100% 0, 100% 60%, 0 69%); }
+  .logistics-banner-panel { clip-path: polygon(0 0, 100% 0, 100% 58%, 0 67%); }
+  .logistics-banner-copy { width: 100%; max-width: 100%; padding-block: 24px 200px; }
+  .logistics-banner-copy h1 { font-size: 36px; }
+  .logistics-banner-copy > p { max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logistics-service-tile, .logistics-service-tile svg { transition: none; }
+}
+
 .light-gradient {
   background: linear-gradient(
     180deg,

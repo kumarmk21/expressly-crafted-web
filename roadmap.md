@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Refresh the homepage banner with reference-inspired red-and-black styling and linked service tiles; verify desktop/mobile
+
 - [x] Improve Technology page layout and image clarity; verify desktop and mobile
 
 - [x] Verify live Contact enquiry persistence and Admin reading/sharing through focused tests
