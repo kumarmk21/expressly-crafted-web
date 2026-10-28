@@ -23,20 +23,20 @@ const Footer = () => {
         <div className="grid lg:grid-cols-2 gap-7 lg:gap-12">
           {/* Brand block */}
           <div>
-            <div className="flex items-center gap-4 mb-5">
+            <div className="flex items-center gap-4 mb-3">
               <img
                 src={scorpionLogo}
                 alt="Scorpion Express"
-                className="h-14 w-auto object-contain"
+                className="h-10 w-auto object-contain"
                 width={585}
                 height={348}
               />
               <div className="text-[10px] tracking-[0.25em] text-muted-foreground">Custodian First, Carrier Later</div>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+            <p className="text-xs text-muted-foreground leading-relaxed max-w-md">
               Pan-India B2B express cargo and logistics since 2000. Custodian First, Carrier Later.
             </p>
-            <div className="flex gap-2 mt-6">
+            <div className="flex gap-2 mt-4">
               {[
                 { Icon: Facebook, href: "https://www.facebook.com/scorpiongroupmumbai/", label: "Facebook" },
                 { Icon: Instagram, href: "https://www.instagram.com/scorpiongroupmumbai/", label: "Instagram" },
