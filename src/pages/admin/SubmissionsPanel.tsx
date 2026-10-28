@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
-import { Download, FileText, Loader2, Trash2 } from "lucide-react";
+import { Download, FileText, Loader2, Trash2, Eye, Copy, Mail, MessageSquare, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { submissionDetails, submissionShareLinks } from "@/lib/submissionSharing";
 
 type Col = { key: string; label: string };
 type Source = { id: string; label: string; table: string; cols: Col[]; resume?: boolean };
@@ -50,6 +53,17 @@ const SubmissionsPanel = () => {
   const [active, setActive] = useState(SOURCES[0]);
   const [rows, setRows] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selected, setSelected] = useState<Record<string, unknown> | null>(null);
+  const details = selected ? submissionDetails(active.label, active.cols, selected) : "";
+  const shareLinks = submissionShareLinks(active.label, details);
+  const copyDetails = async () => {
+    try {
+      await navigator.clipboard.writeText(details);
+      toast.success("Details copied.");
+    } catch {
+      toast.error("Could not copy. Select and copy the details below.");
+    }
+  };
 
   const load = async () => {
     setLoading(true);
@@ -97,18 +111,21 @@ const SubmissionsPanel = () => {
     <div className="space-y-5">
       <div className="flex flex-wrap gap-2">
         {SOURCES.map((s) => (
-          <button key={s.id} onClick={() => setActive(s)}
+          <Button variant="outline" key={s.id} onClick={() => { setSelected(null); setActive(s); }}
             className={`px-4 py-2 text-xs font-bold uppercase tracking-wider border rounded-sm ${active.id === s.id ? "bg-primary text-primary-foreground border-primary" : "bg-card border-border hover:border-primary"}`}>
             {s.label}
-          </button>
+          </Button>
         ))}
       </div>
 
       <div className="flex items-center justify-between gap-3">
         <p className="text-sm text-muted-foreground">{loading ? "Loading…" : `${rows.length} entries`}</p>
-        <button onClick={download} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-primary/90">
+        <div className="flex items-center gap-2">
+        <Button variant="outline" size="icon" onClick={load} disabled={loading} aria-label="Refresh entries" title="Refresh entries"><RefreshCw className="h-4 w-4" /></Button>
+        <Button onClick={download} disabled={loading || !rows.length}>
           <Download className="h-4 w-4" /> Download Excel
-        </button>
+        </Button>
+        </div>
       </div>
 
       {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : !rows.length ? (
@@ -120,7 +137,7 @@ const SubmissionsPanel = () => {
               <tr>
                 <th className="p-2 text-xs uppercase whitespace-nowrap">Date</th>
                 {active.cols.map((c) => <th key={c.key} className="p-2 text-xs uppercase whitespace-nowrap">{c.label}</th>)}
-                <th className="p-2" />
+                <th className="p-2 sticky right-0 bg-muted">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -130,14 +147,17 @@ const SubmissionsPanel = () => {
                   {active.cols.map((c) => (
                     <td key={c.key} className="p-2 max-w-xs break-words">
                       {active.resume && c.key === "resume_file_name" ? (
-                        <button onClick={() => openResume(r.resume_url)} className="inline-flex items-center gap-1 text-primary hover:underline">
+                        <Button variant="link" onClick={() => openResume(r.resume_url)} className="h-auto p-0 text-left whitespace-normal">
                           <FileText className="h-3.5 w-3.5" /> {fmt(r[c.key])}
-                        </button>
+                        </Button>
                       ) : fmt(r[c.key])}
                     </td>
                   ))}
-                  <td className="p-2">
-                    <button onClick={() => remove(r.id)} className="text-destructive hover:text-primary" aria-label="Delete"><Trash2 className="h-4 w-4" /></button>
+                  <td className="p-2 sticky right-0 bg-card">
+                    <div className="flex gap-1">
+                      <Button variant="outline" size="icon" onClick={() => setSelected(r)} aria-label="View and share entry" title="View and share entry"><Eye className="h-4 w-4" /></Button>
+                      <Button variant="ghost" size="icon" onClick={() => remove(r.id)} className="text-destructive" aria-label="Delete" title="Delete entry"><Trash2 className="h-4 w-4" /></Button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -145,6 +165,17 @@ const SubmissionsPanel = () => {
           </table>
         </div>
       )}
+      <Dialog open={Boolean(selected)} onOpenChange={open => { if (!open) setSelected(null); }}>
+        <DialogContent className="max-w-2xl max-h-[90dvh] overflow-y-auto">
+          <DialogHeader><DialogTitle>{active.label} details</DialogTitle><DialogDescription>Share only with the person who needs this customer’s information.</DialogDescription></DialogHeader>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" onClick={copyDetails}><Copy className="h-4 w-4" /> Copy details</Button>
+            <Button variant="outline" asChild><a href={shareLinks.email}><Mail className="h-4 w-4" /> Email</a></Button>
+            <Button variant="outline" asChild><a href={shareLinks.whatsapp} target="_blank" rel="noopener noreferrer"><MessageSquare className="h-4 w-4" /> WhatsApp</a></Button>
+          </div>
+          <div className="whitespace-pre-wrap break-words select-text rounded-md border border-border bg-muted/40 p-4 text-sm leading-relaxed">{details}</div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
