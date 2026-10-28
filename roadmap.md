@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Update About story typography, six portrait heights and label; revise cargo headings and container imagery; verify pages
+- [x] Update About story typography, six portrait heights and label; revise cargo headings and container imagery; verify pages
 
 - [x] Update illustrative staff images across Contact, Technology, Careers, Cargo Protection, Customer Portal and industry workplace scenes with red Scorpion uniforms; verify images
 
