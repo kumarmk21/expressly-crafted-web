@@ -153,6 +153,13 @@
     line-height: 1.15;
   }
 
+  /* About story headline: keep it on two even lines, even on the smallest phones. */
+  @media (max-width: 359px) {
+    .about-story-heading {
+      font-size: 26px;
+    }
+  }
+
 
 
 
