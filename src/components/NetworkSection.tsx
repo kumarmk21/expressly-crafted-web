@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import fleetDepot from "@/assets/scorpion-fleet-depot.jpg";
 import { MapPin, Building2, Package, Route, Activity, Truck, type LucideIcon } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -22,26 +23,30 @@ const StatGrid = ({
   title: string;
   items: Stat[];
   cols?: 3 | 4;
-}) => (
-  <div className="mb-14">
-    <div className="flex items-center gap-3 mb-6">
+}) => {
+  const reducedMotion = useReducedMotion();
+  return (
+  <div className="mb-8 lg:mb-10">
+    <div className="flex items-center gap-3 mb-4">
       <span className="h-px w-8 bg-primary" />
       <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary">{title}</h3>
     </div>
-    <div className={`grid grid-cols-2 ${cols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-px bg-border border border-border`}>
+    <div className={`grid grid-cols-2 ${cols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-3`}>
       {items.map((s, i) => {
         const Icon = s.icon ? ICONS[s.icon] : undefined;
         return (
           <motion.div
             key={s.id}
-            initial={{ opacity: 0, y: 16 }}
+            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.4 }}
-            className="bg-card p-6 flex flex-col gap-2 hover:bg-primary/5 transition-colors"
+            transition={{ delay: reducedMotion ? 0 : i * 0.07, duration: 0.45 }}
+            whileHover={reducedMotion ? undefined : { y: -4 }}
+            className="relative overflow-hidden rounded-md border border-border bg-card p-4 lg:p-5 flex flex-col gap-3 hover:border-primary/50 hover:bg-primary/5 transition-colors"
           >
-            {Icon && <Icon className="h-5 w-5 text-primary" />}
-            <span className="font-display text-4xl lg:text-5xl text-foreground leading-none">
+            <span className="absolute inset-x-0 top-0 h-0.5 bg-primary/50" aria-hidden="true" />
+            {Icon && <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-primary/10 text-primary"><Icon className="h-5 w-5" /></span>}
+            <span className="font-display text-3xl lg:text-4xl text-foreground leading-none">
               {s.value}
             </span>
             <span className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">
@@ -52,10 +57,12 @@ const StatGrid = ({
       })}
     </div>
   </div>
-);
+  );
+};
 
 const NetworkSection = () => {
   const [stats, setStats] = useState<Stat[]>([]);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     supabase
@@ -69,13 +76,13 @@ const NetworkSection = () => {
   const byCat = (cat: string) => stats.filter((s) => s.category === cat);
 
   return (
-    <section id="network" className="py-24 lg:py-32 bg-background">
+    <section id="network" className="py-8 lg:py-10 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-14 max-w-4xl"
+          className="mb-6 max-w-4xl"
         >
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-primary" />
@@ -83,14 +90,42 @@ const NetworkSection = () => {
               Network & Infrastructure
             </span>
           </div>
-          <h2 className="font-display uppercase text-5xl lg:text-7xl text-foreground leading-[0.9]">
+          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground leading-tight">
             India-wide reach<span className="text-primary">.</span> Engineered to scale.
-          </h2>
-          <p className="text-muted-foreground mt-5 max-w-2xl">
+          </h1>
+          <p className="text-muted-foreground mt-4 max-w-2xl leading-relaxed">
             A pan-India network of branches, franchisees, hubs and pick-up associates — backed by a
             24×7 Operation Control Tower monitoring every move end-to-end.
           </p>
         </motion.div>
+
+        <motion.figure
+          initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.65 }}
+          className="mb-8 lg:mb-10"
+        >
+          <div className="overflow-hidden border border-border">
+            <motion.img
+              src={fleetDepot}
+              alt="Scorpion Express branded delivery fleet lined up outside its logistics depot"
+              width={1040}
+              height={480}
+              fetchPriority="high"
+              decoding="async"
+              initial={reducedMotion ? false : { scale: 1.04 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="w-full h-auto object-contain"
+            />
+          </div>
+          <figcaption className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
+            <Truck className="h-4 w-4 text-primary" aria-hidden="true" />
+            Scorpion Express fleet & logistics infrastructure
+          </figcaption>
+        </motion.figure>
 
         {CATEGORIES.map((c) => {
           const items = byCat(c.key);
@@ -99,18 +134,19 @@ const NetworkSection = () => {
         })}
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-10 border border-border bg-card p-8 lg:p-10 flex flex-col lg:flex-row gap-6 lg:items-center"
+          className="mt-6 border-y border-border bg-secondary/40 p-5 lg:p-6 flex flex-col sm:flex-row gap-4 sm:items-center"
         >
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-primary text-white">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-primary/10 text-primary">
             <Activity className="h-6 w-6" />
           </div>
           <div className="flex-1">
             <h3 className="font-display uppercase text-2xl lg:text-3xl text-foreground mb-2">
               Operation Control Tower
             </h3>
+            <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-primary"><span className={reducedMotion ? "h-2 w-2 rounded-full bg-primary" : "live-dot"} aria-hidden="true" />24×7 monitoring</div>
             <p className="text-sm text-muted-foreground max-w-3xl">
               24×7 operation activity monitoring with end-to-end transit vehicle tracking via GPS,
               mobile tracking and real-time calling — ensuring every shipment stays on time, every
