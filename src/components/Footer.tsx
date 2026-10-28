@@ -19,8 +19,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-12 gap-12">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand block */}
           <div className="lg:col-span-3">
             <div className="flex items-center gap-3 mb-6">
