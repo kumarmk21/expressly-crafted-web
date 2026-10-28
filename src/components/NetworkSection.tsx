@@ -181,6 +181,8 @@ const NetworkSection = () => {
           </figcaption>
         </motion.figure>
 
+        <ZoneStrip />
+
         {CATEGORIES.map((c) => {
           const items = byCat(c.key);
           if (!items.length) return null;
