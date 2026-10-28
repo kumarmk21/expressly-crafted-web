@@ -16,8 +16,7 @@ import billingDeskIndia from "@/assets/technology/billing-desk-india.jpg";
 import biddingDriverIndia from "@/assets/technology/bidding-driver-india.jpg";
 import walletBookingIndia from "@/assets/technology/wallet-booking-india.jpg";
 import prqQuoteIndia from "@/assets/technology/prq-quote-india.jpg";
-import evFleetAsset from "@/assets/technology/ev-fleet-real.jpg.asset.json";
-const evFleet = evFleetAsset.url;
+import evFleetIndia from "@/assets/technology/ev-fleet-india.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const ICONS: Record<string, LucideIcon> = {
@@ -84,7 +83,7 @@ const TechnologySection = () => {
               return { ...it, image_url: digitalLock };
             }
             if (it.id === EV_FLEET_ID) {
-              return { ...it, image_url: evFleet };
+              return { ...it, image_url: evFleetIndia };
             }
             return it;
           })
