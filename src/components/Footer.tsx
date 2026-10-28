@@ -8,41 +8,41 @@ const Footer = () => {
     <footer className="bg-white text-foreground relative overflow-hidden border-t border-border pb-14 md:pb-0">
       {/* Brand strip — red band */}
       <div className="overflow-hidden bg-primary">
-        <div className="flex animate-marquee whitespace-nowrap py-3 text-white">
+        <div className="flex animate-marquee whitespace-nowrap py-1.5 text-white">
           {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="flex items-center gap-6 px-6">
-              <span className="font-display text-lg tracking-wide">Scorpion Express</span>
-              <span className="text-[10px] tracking-[0.3em] opacity-80">Custodian First · Carrier Later</span>
+            <div key={i} className="flex items-center gap-5 px-5">
+              <span className="font-display text-sm tracking-wide">Scorpion Express</span>
+              <span className="text-[9px] tracking-[0.3em] opacity-80">Custodian First · Carrier Later</span>
               <span className="h-1 w-1 rounded-full bg-white/70" />
             </div>
           ))}
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+      <div className="container mx-auto px-4 py-7">
+        <div className="grid lg:grid-cols-2 gap-7 lg:gap-12">
           {/* Brand block */}
           <div>
-            <div className="flex items-center gap-4 mb-5">
+            <div className="flex items-center gap-4 mb-3">
               <img
                 src={scorpionLogo}
                 alt="Scorpion Express"
-                className="h-14 w-auto object-contain"
+                className="h-10 w-auto object-contain"
                 width={585}
                 height={348}
               />
               <div className="text-[10px] tracking-[0.25em] text-muted-foreground">Custodian First, Carrier Later</div>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+            <p className="text-xs text-muted-foreground leading-relaxed max-w-md">
               Pan-India B2B express cargo and logistics since 2000. Custodian First, Carrier Later.
             </p>
-            <div className="flex gap-2 mt-6">
+            <div className="flex gap-2 mt-4">
               {[
                 { Icon: Facebook, href: "https://www.facebook.com/scorpiongroupmumbai/", label: "Facebook" },
                 { Icon: Instagram, href: "https://www.instagram.com/scorpiongroupmumbai/", label: "Instagram" },
                 { Icon: Linkedin, href: "https://www.linkedin.com/company/scorpionexpress/", label: "LinkedIn" },
               ].map(({ Icon, href, label }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="h-9 w-9 flex items-center justify-center border border-border text-muted-foreground hover:bg-primary hover:text-white hover:border-primary transition-colors" aria-label={label}>
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="h-8 w-8 flex items-center justify-center border border-border text-muted-foreground hover:bg-primary hover:text-white hover:border-primary transition-colors" aria-label={label}>
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
@@ -51,8 +51,8 @@ const Footer = () => {
 
           {/* Contact block */}
           <div className="lg:border-l lg:border-border lg:pl-16">
-            <h4 className="text-xs font-semibold text-muted-foreground mb-5">Get in touch</h4>
-            <ul className="space-y-4 text-sm text-muted-foreground">
+            <h4 className="text-[11px] font-semibold text-muted-foreground mb-3">Get in touch</h4>
+            <ul className="space-y-2.5 text-xs text-muted-foreground">
               <li>
                 <a href="tel:18002219455" className="flex items-start gap-3 hover:text-primary transition-colors">
                   <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" />
