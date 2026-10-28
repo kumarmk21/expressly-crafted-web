@@ -53,8 +53,8 @@ const Footer = () => {
 
           {/* Navigate */}
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold text-foreground mb-5">Navigate</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Navigate</h4>
+            <ul className="space-y-2.5">
               {[
                 { l: "Home", h: "/" },
                 { l: "About Us", h: "/about" },
@@ -78,8 +78,8 @@ const Footer = () => {
 
           {/* Services */}
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold text-foreground mb-5">Services</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Services</h4>
+            <ul className="space-y-2.5">
               {[
                 ["Part Load (LTL)", "ltl"],
                 ["Express", "express"],
@@ -104,7 +104,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold text-foreground mb-5">Get in touch</h4>
+            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Get in touch</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li>
                 <a href="tel:18002219455" className="flex items-start gap-3 hover:text-primary transition-colors">
