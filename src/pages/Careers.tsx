@@ -1,33 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import {
-  Briefcase, MapPin, Clock, ArrowUpRight, Search, Users, TrendingUp,
-  HeartHandshake, GraduationCap, Mail, Phone, X,
-} from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Briefcase, MapPin, Clock, ArrowUpRight, ArrowDown, Search, Users, Truck, ShieldCheck, Upload, FileText, AlertCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
 import Seo from "@/components/Seo";
 import ResumeUploadForm from "@/components/ResumeUploadForm";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
+import fleetDepot from "@/assets/scorpion-fleet-depot.jpg";
 
-const perks = [
-  { icon: TrendingUp, title: "Growth Path", desc: "Clear career progression and internal mobility across functions." },
-  { icon: GraduationCap, title: "Learning Budget", desc: "Certifications, workshops and on-the-job mentoring." },
-  { icon: HeartHandshake, title: "Health & Wellness", desc: "Medical cover for you and your family." },
-  { icon: Users, title: "People First", desc: "A culture built around respect, ownership and craft." },
+const teams = [
+  { icon: Truck, title: "Operations & transport", desc: "Keep cargo moving through our branches, hubs and delivery network." },
+  { icon: Users, title: "Sales & customer support", desc: "Build business relationships and help customers with their shipments." },
+  { icon: ShieldCheck, title: "Technology & support", desc: "Bring problem-solving, coordination and care to everyday logistics." },
 ];
-
-type Job = {
-  id: string;
-  title: string;
-  department: string;
-  location: string;
-  job_type: string;
-  experience: string;
-  description: string;
-};
+type Job = { id: string; title: string; department: string; location: string; job_type: string; experience: string; description: string };
 
 const Careers = () => {
   const [query, setQuery] = useState("");
@@ -35,206 +25,105 @@ const Careers = () => {
   const [loc, setLoc] = useState("All");
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [reload, setReload] = useState(0);
   const [applyJob, setApplyJob] = useState<Job | null>(null);
-
+  const reducedMotion = useReducedMotion();
   useEffect(() => {
-    (supabase as any)
-      .from("job_openings")
-      .select("*")
-      .eq("is_active", true)
-      .order("display_order", { ascending: true })
-      .order("created_at", { ascending: false })
-      .then(({ data }: any) => {
-        setJobs((data as Job[]) ?? []);
+    let active = true;
+    setLoading(true);
+    setLoadError(false);
+    (supabase as any).from("job_openings").select("*").eq("is_active", true)
+      .order("display_order", { ascending: true }).order("created_at", { ascending: false })
+      .then(({ data, error }: any) => {
+        if (!active) return;
+        setJobs(error ? [] : (data ?? []));
+        setLoadError(Boolean(error));
         setLoading(false);
       });
-  }, []);
-
-  const departments = ["All", ...Array.from(new Set(jobs.map((j) => j.department).filter(Boolean)))];
-
-  const locations = ["All", ...Array.from(new Set(jobs.map((j) => j.location).filter(Boolean)))];
-
-  const filtered = jobs.filter((o) => {
-    const q = query.toLowerCase();
-    const matchQ = o.title.toLowerCase().includes(q) || (o.location || "").toLowerCase().includes(q);
-    const matchD = dept === "All" || o.department === dept;
-    const matchL = loc === "All" || o.location === loc;
-    return matchQ && matchD && matchL;
+    return () => { active = false; };
+  }, [reload]);
+  const departments = ["All", ...Array.from(new Set(jobs.map(j => j.department).filter(Boolean)))];
+  const locations = ["All", ...Array.from(new Set(jobs.map(j => j.location).filter(Boolean)))];
+  const filtered = jobs.filter(j => {
+    const q = query.trim().toLowerCase();
+    return ((j.title || "").toLowerCase().includes(q) || (j.location || "").toLowerCase().includes(q))
+      && (dept === "All" || j.department === dept) && (loc === "All" || j.location === loc);
   });
-
+  const reveal = { initial: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 16 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: reducedMotion ? 0 : 0.45 } };
   return (
     <div className="min-h-screen bg-background">
-      <Seo
-        title="Careers at Scorpion Express | Join Our Logistics Team"
-        description="Explore current openings at Scorpion Express across operations, technology, sales and support. Apply today."
-        path="/careers"
-      />
-      <TopBar />
-      <Navbar />
+      <Seo title="Careers at Scorpion Express | Join Our Logistics Team" description="Explore current jobs by location and department at Scorpion Express, or upload your resume directly to our HR team." path="/careers" />
+      <TopBar /><Navbar />
+      <main>
+        <section className="relative overflow-hidden">
+          <img src={fleetDepot} alt="Scorpion Express branded fleet at our logistics depot" className="absolute inset-0 h-full w-full object-cover object-center" fetchPriority="high" />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/65 to-foreground/10" />
+          <div className="container relative mx-auto px-4 py-12 md:py-16">
+            <motion.div {...reveal} className="max-w-xl text-primary-foreground">
+              <p className="mb-3 text-sm font-semibold">Careers at Scorpion Express</p>
+              <h1 className="text-3xl md:text-5xl leading-tight">Build a career that<br className="hidden sm:block" /> moves India.</h1>
+              <p className="mt-4 max-w-md text-base leading-relaxed text-primary-foreground/90">Behind every shipment is a team that makes it happen. Bring your ambition, your ideas and your commitment to our next chapter.</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button asChild><a href="#openings">Explore jobs <ArrowDown /></a></Button>
+                <Button variant="secondary" asChild><a href="#resume"><Upload /> Upload your resume</a></Button>
+              </div>
+              <p className="mt-6 flex items-center gap-2 text-sm text-primary-foreground/85"><MapPin className="h-4 w-4" /> Pan-India B2B express cargo and logistics since 2000.</p>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* Hero */}
-      <section className="relative bg-primary text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_40%),radial-gradient(circle_at_80%_60%,white,transparent_40%)]" />
-        <div className="container mx-auto px-4 py-20 lg:py-28 relative">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-3xl">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] mb-5">
-              <span className="h-px w-10 bg-white" /> Careers at Scorpion
-            </div>
-            <h1 className="font-display text-4xl md:text-6xl leading-tight">
-              Build India's most trusted logistics network.
-            </h1>
-            <p className="mt-5 text-white/85 text-lg max-w-2xl">
-              We're hiring across operations, technology, sales and customer success. If you love solving real
-              problems on the ground, you'll feel at home here.
-            </p>
+        <section className="container mx-auto px-4 py-9 md:py-12">
+          <motion.div {...reveal} className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
+            <div><p className="text-sm text-primary font-semibold mb-2">People behind the network</p><h2 className="text-2xl md:text-3xl">Your work makes a difference.</h2></div>
+            <p className="text-sm text-muted-foreground max-w-md">From the first pickup to the final delivery, we take ownership and treat every shipment with care.</p>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Why join */}
-      <section className="container mx-auto px-4 py-16 lg:py-20">
-        <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <div>
-            <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">Why join us</div>
-            <h2 className="font-display text-3xl md:text-4xl text-foreground leading-tight">
-              A place where ownership is the default.
-            </h2>
-            <p className="mt-4 text-foreground/75">
-              We are a team of operators, engineers and customer-obsessed problem-solvers. We move fast, take
-              accountability, and treat every shipment like our own.
-            </p>
+          <div className="grid md:grid-cols-3 gap-4">
+            {teams.map((team, i) => <motion.div key={team.title} {...reveal} transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : i * 0.08 }} className="rounded-md border border-border bg-card p-5 hover:border-primary/50 transition-colors">
+              <team.icon className="h-6 w-6 text-primary mb-4" /><h3 className="text-lg font-semibold">{team.title}</h3><p className="mt-2 text-sm text-muted-foreground leading-relaxed">{team.desc}</p>
+            </motion.div>)}
           </div>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {perks.map((p) => {
-              const Icon = p.icon;
-              return (
-                <div key={p.title} className="border border-border p-5 bg-card hover:border-primary/40 transition-colors">
-                  <span className="inline-flex h-10 w-10 items-center justify-center bg-primary/10 text-primary mb-3">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div className="font-bold text-foreground">{p.title}</div>
-                  <p className="text-sm text-foreground/70 mt-1">{p.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Openings */}
-      <section className="bg-muted/40 border-y border-border">
-        <div className="container mx-auto px-4 py-16 lg:py-20">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
-            <div>
-              <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">Current Openings</div>
-              <h2 className="font-display text-3xl md:text-4xl text-foreground">Find your next role</h2>
+        <section id="openings" className="scroll-mt-24 border-y border-border bg-muted/40">
+          <div className="container mx-auto px-4 py-9 md:py-12">
+            <div className="flex flex-wrap items-end justify-between gap-3 mb-5"><div><p className="text-sm text-primary font-semibold mb-2">Current openings</p><h2 className="text-2xl md:text-3xl">Find your next role</h2></div>{!loading && !loadError && <p className="text-sm text-muted-foreground">{filtered.length} {filtered.length === 1 ? "open role" : "open roles"}</p>}</div>
+            <div className="grid sm:grid-cols-[1fr_auto_auto] gap-3 mb-6">
+              <div className="relative"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" /><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search role or city" aria-label="Search jobs by role or city" className="w-full rounded-md pl-10 pr-3 py-2.5 border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring" /></div>
+              <select value={loc} onChange={e => setLoc(e.target.value)} aria-label="Filter jobs by location" className="min-w-0 rounded-md px-3 py-2.5 border border-input bg-background text-sm">{locations.map(l => <option key={l} value={l}>{l === "All" ? "All locations" : l}</option>)}</select>
+              <select value={dept} onChange={e => setDept(e.target.value)} aria-label="Filter jobs by department" className="min-w-0 rounded-md px-3 py-2.5 border border-input bg-background text-sm">{departments.map(d => <option key={d} value={d}>{d === "All" ? "All departments" : d}</option>)}</select>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-              <div className="relative flex-1 md:w-72">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search role or city" aria-label="Search jobs by role or city" className="w-full pl-10 pr-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary" />
-              </div>
-              <select value={loc} onChange={(e) => setLoc(e.target.value)} aria-label="Filter jobs by location" className="px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary">
-                {locations.map((l) => (<option key={l} value={l}>{l === "All" ? "All locations" : l}</option>))}
-              </select>
-              <select value={dept} onChange={(e) => setDept(e.target.value)} aria-label="Filter jobs by department" className="px-3 py-2.5 border border-border bg-background text-sm focus:outline-none focus:border-primary">
-                {departments.map((d) => (<option key={d} value={d}>{d}</option>))}
-              </select>
+            <div className="grid gap-3" aria-live="polite">
+              {loading && <p className="py-8 text-center text-muted-foreground">Loading openings…</p>}
+              {!loading && loadError && <div className="text-center py-8"><p className="text-muted-foreground mb-3">We couldn’t load the openings. You can still submit your resume below.</p><Button variant="outline" onClick={() => setReload(n => n + 1)}>Try again</Button></div>}
+              {!loading && !loadError && filtered.map(job => <article key={job.id} className="rounded-md bg-card border border-border p-5 hover:border-primary/50 transition-colors">
+                <div className="flex flex-col sm:flex-row justify-between gap-4"><div className="min-w-0"><h3 className="text-lg font-semibold">{job.title}</h3><div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-sm text-muted-foreground">{job.location && <span className="inline-flex items-center gap-1.5"><MapPin className="h-4 w-4" />{job.location}</span>}{job.job_type && <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4" />{job.job_type}</span>}{job.department && <span className="text-primary">{job.department}</span>}{job.experience && <span>{job.experience}</span>}</div></div><Button onClick={() => setApplyJob(job)} className="self-start shrink-0">Apply <ArrowUpRight /></Button></div>
+                {job.description && <p className="mt-3 text-sm text-muted-foreground whitespace-pre-line leading-relaxed">{job.description}</p>}
+              </article>)}
+              {!loading && !loadError && filtered.length === 0 && <div className="py-8 text-center"><Briefcase className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="text-lg font-semibold">{jobs.length === 0 ? "Your next opportunity starts here." : "No matching roles"}</h3><p className="text-sm text-muted-foreground mt-2">{jobs.length === 0 ? "No openings are listed right now. Share your resume with our HR team below." : "Try another city or department, or send us your resume."}</p>{jobs.length > 0 && <Button variant="link" onClick={() => { setQuery(""); setDept("All"); setLoc("All"); }}>Clear filters</Button>}</div>}
             </div>
           </div>
+        </section>
 
-          <div className="grid gap-3">
-            {loading && (
-              <div className="text-center py-14 border border-dashed border-border bg-card text-foreground/60">Loading openings…</div>
-            )}
-            {!loading && filtered.map((job) => (
-              <div key={job.id} className="group flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-card border border-border p-5 hover:border-primary transition-colors">
-                <div className="flex items-start gap-4">
-                  <span className="hidden sm:inline-flex h-11 w-11 items-center justify-center bg-primary/10 text-primary">
-                    <Briefcase className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <div className="font-bold text-foreground text-lg">{job.title}</div>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-sm text-foreground/70">
-                      {job.location && (<span className="inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> {job.location}</span>)}
-                      {job.job_type && (<span className="inline-flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> {job.job_type}</span>)}
-                      {job.department && (<span className="text-xs font-bold uppercase tracking-wider text-primary">{job.department}</span>)}
-                      {job.experience && (<span className="text-xs uppercase tracking-wider text-muted-foreground">{job.experience}</span>)}
-                    </div>
-                    {job.description && (
-                      <p className="text-sm text-foreground/70 mt-2 max-w-2xl whitespace-pre-line">{job.description}</p>
-                    )}
-                  </div>
-                </div>
-                <button
-                  onClick={() => setApplyJob(job)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-wider bg-primary text-white hover:bg-primary/90 transition-colors self-start md:self-auto"
-                >
-                  Apply <ArrowUpRight className="h-4 w-4" />
-                </button>
-              </div>
-            ))}
-            {!loading && filtered.length === 0 && (
-              <div className="text-center py-14 border border-dashed border-border bg-card text-foreground/60">
-                {jobs.length === 0 ? "No openings posted right now. Please check back soon." : "No roles match your search."}
-              </div>
-            )}
+        <section id="resume" className="scroll-mt-24 container mx-auto px-4 py-9 md:py-12">
+          <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-7 lg:gap-12 items-start">
+            <motion.div {...reveal}><p className="text-sm font-semibold text-primary mb-2">Introduce yourself</p><h2 className="text-2xl md:text-3xl">A place for your potential.</h2><p className="mt-3 text-muted-foreground leading-relaxed">Don’t see the right opening? Tell us about your experience and the role you’re interested in. Submit your resume directly to our HR team.</p>
+              <div className="mt-6 flex items-start gap-3 border-l-2 border-primary pl-4"><FileText className="h-5 w-5 text-primary shrink-0 mt-1" /><div><h3 className="font-semibold">Your application</h3><p className="text-sm text-muted-foreground mt-1">Include your contact details, preferred role and relevant experience so our team can assess your profile.</p></div></div>
+              <div className="mt-6 flex items-start gap-3 bg-muted/60 rounded-md p-4"><AlertCircle className="h-5 w-5 text-primary shrink-0" /><p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">Recruitment is always free.</span> Scorpion Express never charges a fee for jobs or asks for payment to personal UPI IDs or bank accounts.</p></div>
+              <Button asChild variant="link" className="px-0 mt-4"><Link to="/about">Meet Scorpion Express <ArrowUpRight /></Link></Button>
+            </motion.div>
+            <ResumeUploadForm />
           </div>
-        </div>
-      </section>
-
-
-      {/* CTA */}
-      <section className="container mx-auto px-4 py-16 lg:py-20">
-        <div className="bg-card border border-border p-8 md:p-12 grid md:grid-cols-[1.2fr_1fr] gap-8 items-center">
-          <div>
-            <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-3">Don't see your role?</div>
-            <h2 className="font-display text-3xl text-foreground leading-tight">Write to us — great people always find a place.</h2>
-            <p className="mt-3 text-foreground/70">Send your CV and a short note about what you'd like to build with us.</p>
-          </div>
-          <div className="flex flex-col gap-3">
-            <a href="tel:1800221945" className="flex items-center justify-between gap-3 px-5 py-4 border border-border font-bold uppercase tracking-wider text-sm text-foreground hover:border-primary">
-              <span className="inline-flex items-center gap-2"><Phone className="h-4 w-4" /> HR Helpline</span>
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <Link to="/about" className="text-xs uppercase tracking-[0.2em] text-muted-foreground hover:text-primary mt-1">
-              Learn more about Scorpion →
-            </Link>
-          </div>
-        </div>
-      </section>
-
+        </section>
+      </main>
       <Footer />
-
-      {/* Apply dialog */}
-      {applyJob && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-start md:items-center justify-center overflow-y-auto p-4" onClick={() => setApplyJob(null)}>
-          <div className="bg-background w-full max-w-2xl my-8" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-start justify-between border-b border-border p-5">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-1">Apply for</div>
-                <h3 className="font-display text-2xl text-foreground">{applyJob.title}</h3>
-                <div className="text-xs text-muted-foreground mt-1">
-                  {[applyJob.department, applyJob.location, applyJob.job_type].filter(Boolean).join(" · ")}
-                </div>
-              </div>
-              <button onClick={() => setApplyJob(null)} className="p-2 text-muted-foreground hover:text-primary" aria-label="Close">
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            <div className="p-5">
-              <ResumeUploadForm
-                defaultRole={applyJob.title}
-                jobOpeningId={applyJob.id}
-                lockRole
-                onSubmitted={() => setApplyJob(null)}
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      <Dialog open={Boolean(applyJob)} onOpenChange={open => { if (!open) setApplyJob(null); }}>
+        <DialogContent className="max-w-2xl w-[calc(100%-2rem)] max-h-[90dvh] overflow-y-auto p-4 sm:p-6">
+          <DialogHeader><DialogTitle className="pr-6 text-2xl">Apply for {applyJob?.title}</DialogTitle><DialogDescription>{[applyJob?.department, applyJob?.location, applyJob?.job_type].filter(Boolean).join(" · ")}</DialogDescription></DialogHeader>
+          {applyJob && <ResumeUploadForm key={applyJob.id} defaultRole={applyJob.title} jobOpeningId={applyJob.id} lockRole onSubmitted={() => setApplyJob(null)} />}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
-
 export default Careers;
