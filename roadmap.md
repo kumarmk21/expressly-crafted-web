@@ -1,5 +1,8 @@
 # Roadmap
 
+- [ ] Verify Contact enquiries persist and appear in Admin
+- [ ] Allow sharing enquiry details from Admin and test the behavior
+
 - [x] Replace Careers truck photo with careers-related team imagery
 - [x] Refresh Contact page imagery and presentation; verify both pages
 
