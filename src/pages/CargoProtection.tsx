@@ -75,7 +75,7 @@ const stages = [
   {
     no: "05",
     icon: ShieldCheck,
-    title: "Control Tower Oversight",
+    title: "Control tower- real time monitoring",
     image: controlTower,
     body: "A 24x7 control tower watches every active trip. Deviations — unscheduled halts, route changes, temperature excursions or delays — are escalated in real time to the operations team and, where needed, to you.",
     points: [
@@ -153,12 +153,6 @@ const CargoProtection = () => {
           <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
           <div className="container mx-auto px-4 py-16 lg:py-24 relative z-10 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-7">
-              <div className="flex items-center gap-3 mb-6">
-                <ShieldCheck className="h-5 w-5 text-primary" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
-                  Custodian First, Carrier Later
-                </span>
-              </div>
               <h1 className="font-display uppercase text-4xl md:text-5xl lg:text-6xl leading-[0.95] text-foreground">
                 How we actually <span className="text-primary">protect</span> your cargo
               </h1>

@@ -32,7 +32,7 @@ const AboutSection = () => {
           >
             <div className="flex items-center gap-3 mb-3">
               <span className="h-px w-10 bg-primary" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Us · Est. Scorpion Group</span>
+              <span className="text-[11px] font-bold text-primary">About Us · Scorpion Group</span>
             </div>
             <h2 className="font-display uppercase text-3xl md:text-4xl lg:text-5xl text-foreground leading-tight mb-5">
               A legacy of <span className="text-primary">combined</span> logistics leadership.

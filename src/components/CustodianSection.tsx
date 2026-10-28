@@ -121,7 +121,7 @@ const CustodianSection = () => {
           <div className="lg:col-span-7 relative border border-border overflow-hidden bg-muted">
             <img
               src={protectCargoTruck}
-              alt="Red Scorpion Express truck with open cargo bay showing boxes secured on pallets"
+              alt="Red Scorpion Express container truck with closed cargo doors at a logistics depot"
               loading="lazy"
               decoding="async"
               className="w-full aspect-video object-cover"
@@ -129,7 +129,7 @@ const CustodianSection = () => {
           </div>
           <div className="lg:col-span-5">
             <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-3">
-              Inside the vehicle
+              Secure Scorpion containers
             </div>
             <h3 className="font-display uppercase text-2xl lg:text-3xl text-foreground leading-tight mb-3">
               How we protect cargo
