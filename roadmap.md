@@ -4,6 +4,8 @@
 
 - [x] Join "nation-wide" into "nationwide" in the About story headline and keep it on two even lines; verify desktop/mobile
 
+- [x] Keep every word in the About story headline intact (no split or lone word) from 320px up; verify all widths
+
 - [x] Update About story typography, six portrait heights and label; revise cargo headings and container imagery; verify pages
 
 - [x] Update illustrative staff images across Contact, Technology, Careers, Cargo Protection, Customer Portal and industry workplace scenes with red Scorpion uniforms; verify images
