@@ -19,8 +19,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-12 gap-12">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand block */}
           <div className="lg:col-span-3">
             <div className="flex items-center gap-3 mb-6">
@@ -38,7 +38,7 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
               Pan-India B2B express cargo and logistics since 2000. <strong className="text-foreground">Custodian First, Carrier Later.</strong>
             </p>
-            <div className="flex gap-2 mt-8">
+            <div className="flex gap-2 mt-6">
               {[
                 { Icon: Facebook, href: "https://www.facebook.com/scorpiongroupmumbai/", label: "Facebook" },
                 { Icon: Instagram, href: "https://www.instagram.com/scorpiongroupmumbai/", label: "Instagram" },
@@ -53,8 +53,8 @@ const Footer = () => {
 
           {/* Navigate */}
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold text-foreground mb-5">Navigate</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Navigate</h4>
+            <ul className="space-y-2.5">
               {[
                 { l: "Home", h: "/" },
                 { l: "About Us", h: "/about" },
@@ -66,7 +66,7 @@ const Footer = () => {
                 <li key={link.l}>
                   <a
                     href={link.h}
-                    className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="group inline-flex items-center gap-2 text-[13px] text-muted-foreground transition-colors hover:text-primary"
                   >
                     <span className="h-px w-3 bg-border transition-all group-hover:w-5 group-hover:bg-primary" aria-hidden="true" />
                     {link.l}
@@ -78,8 +78,8 @@ const Footer = () => {
 
           {/* Services */}
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold text-foreground mb-5">Services</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Services</h4>
+            <ul className="space-y-2.5">
               {[
                 ["Part Load (LTL)", "ltl"],
                 ["Express", "express"],
@@ -92,7 +92,7 @@ const Footer = () => {
                 <li key={slug}>
                   <Link
                     to={`/services/${slug}`}
-                    className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="group inline-flex items-center gap-2 text-[13px] text-muted-foreground transition-colors hover:text-primary"
                   >
                     <span className="h-px w-3 bg-border transition-all group-hover:w-5 group-hover:bg-primary" aria-hidden="true" />
                     {label}
@@ -104,7 +104,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="lg:col-span-3">
-            <h4 className="text-sm font-semibold text-foreground mb-5">Get in touch</h4>
+            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Get in touch</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li>
                 <a href="tel:18002219455" className="flex items-start gap-3 hover:text-primary transition-colors">
@@ -135,7 +135,7 @@ const Footer = () => {
         </div>
 
         {/* Statutory company information — legal requirement */}
-        <div className="mt-16 border-t border-border pt-8">
+        <div className="mt-10 border-t border-border pt-6">
           <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-4">Company Information</div>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 text-xs text-muted-foreground leading-relaxed">
             <div>
