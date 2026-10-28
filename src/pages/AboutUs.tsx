@@ -253,33 +253,35 @@ const AboutUs = () => {
 
       {/* Intro / Story */}
       <section className="py-20 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5">
-            <div className="border border-border bg-muted/30 p-6 lg:p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="h-px w-10 bg-foreground/30" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
+        <div className="container mx-auto px-4">
+          <div className="border border-border bg-muted/30 p-6 lg:p-10">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+              <div className="lg:col-span-5">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="h-px w-10 bg-foreground/30" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
+                </div>
+                <h2 className="font-display text-4xl lg:text-5xl leading-snug text-foreground">
+                  From 4 offices to a <span className="text-primary">nation-wide</span> network.
+                </h2>
               </div>
-              <h2 className="font-display text-4xl lg:text-5xl leading-snug text-foreground">
-                From 4 offices to a <span className="text-primary">nation-wide</span> network.
-              </h2>
+              <div className="lg:col-span-7 border-t border-border pt-6 lg:border-t-0 lg:pt-0 lg:border-l lg:border-border lg:pl-12 space-y-5 text-foreground/75 leading-relaxed text-[15px]">
+                <p>
+                  Established in <strong>2000</strong> by <strong>Mr. J P N Singh</strong>, the Scorpion Group set out to
+                  redefine industry benchmarks in Express Cargo. Its flagship venture, <strong>Scorpion Express</strong>,
+                  grew rapidly into a trusted pan-India logistics partner.
+                </p>
+                <p>
+                  In <strong>2005</strong>, the group expanded into specialized pharmaceutical packaging with{" "}
+                  <strong>Scorpion Containers Pvt. Ltd.</strong>, operating 9 manufacturing units across 5 states and
+                  international trading offices in China and Korea.
+                </p>
+                <p>
+                  Today, Scorpion Express operates across India with both asset-based and non-asset 3PL solutions —
+                  tailored for B2B, B2C and B2D sectors, and engineered to exceed every supply chain goal.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="lg:col-span-7 space-y-5 text-foreground/75 leading-relaxed text-[15px]">
-            <p>
-              Established in <strong>2000</strong> by <strong>Mr. J P N Singh</strong>, the Scorpion Group set out to
-              redefine industry benchmarks in Express Cargo. Its flagship venture, <strong>Scorpion Express</strong>,
-              grew rapidly into a trusted pan-India logistics partner.
-            </p>
-            <p>
-              In <strong>2005</strong>, the group expanded into specialized pharmaceutical packaging with{" "}
-              <strong>Scorpion Containers Pvt. Ltd.</strong>, operating 9 manufacturing units across 5 states and
-              international trading offices in China and Korea.
-            </p>
-            <p>
-              Today, Scorpion Express operates across India with both asset-based and non-asset 3PL solutions —
-              tailored for B2B, B2C and B2D sectors, and engineered to exceed every supply chain goal.
-            </p>
           </div>
         </div>
       </section>
