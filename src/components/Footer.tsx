@@ -8,19 +8,19 @@ const Footer = () => {
     <footer className="bg-white text-foreground relative overflow-hidden border-t border-border pb-14 md:pb-0">
       {/* Brand strip — red band */}
       <div className="overflow-hidden bg-primary">
-        <div className="flex animate-marquee whitespace-nowrap py-3 text-white">
+        <div className="flex animate-marquee whitespace-nowrap py-1.5 text-white">
           {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="flex items-center gap-6 px-6">
-              <span className="font-display text-lg tracking-wide">Scorpion Express</span>
-              <span className="text-[10px] tracking-[0.3em] opacity-80">Custodian First · Carrier Later</span>
+            <div key={i} className="flex items-center gap-5 px-5">
+              <span className="font-display text-sm tracking-wide">Scorpion Express</span>
+              <span className="text-[9px] tracking-[0.3em] opacity-80">Custodian First · Carrier Later</span>
               <span className="h-1 w-1 rounded-full bg-white/70" />
             </div>
           ))}
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+      <div className="container mx-auto px-4 py-7">
+        <div className="grid lg:grid-cols-2 gap-7 lg:gap-12">
           {/* Brand block */}
           <div>
             <div className="flex items-center gap-4 mb-5">
