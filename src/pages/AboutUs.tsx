@@ -256,16 +256,16 @@ const AboutUs = () => {
         <div className="container mx-auto px-4">
           <div className="border border-border bg-muted/30 p-6 lg:p-10">
             <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-6">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="h-px w-10 bg-foreground/30" />
                   <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
                 </div>
-                <h2 className="font-display text-3xl lg:text-5xl leading-snug text-foreground text-balance">
-                  From 4 offices to a <span className="text-primary">nationwide</span> network.
+                <h2 className="font-display text-3xl lg:text-[44px] xl:text-5xl leading-snug text-foreground text-balance">
+                  From 4 offices to a <span className="text-primary whitespace-nowrap">nationwide</span> network.
                 </h2>
               </div>
-              <div className="lg:col-span-7 border-t border-border pt-6 lg:border-t-0 lg:pt-0 lg:border-l lg:border-border lg:pl-12 space-y-5 text-foreground/75 leading-relaxed text-[15px]">
+              <div className="lg:col-span-6 border-t border-border pt-6 lg:border-t-0 lg:pt-0 lg:border-l lg:border-border lg:pl-12 space-y-5 text-foreground/75 leading-relaxed text-[15px]">
                 <p>
                   Established in <strong>2000</strong> by <strong>Mr. J P N Singh</strong>, the Scorpion Group set out to
                   redefine industry benchmarks in Express Cargo. Its flagship venture, <strong>Scorpion Express</strong>,
