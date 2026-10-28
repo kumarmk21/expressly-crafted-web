@@ -255,13 +255,15 @@ const AboutUs = () => {
       <section className="py-20 lg:py-24 bg-white">
         <div className="container mx-auto px-4 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-10 bg-foreground/30" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
+            <div className="border border-border bg-muted/30 p-6 lg:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="h-px w-10 bg-foreground/30" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
+              </div>
+              <h2 className="font-normal text-4xl lg:text-5xl leading-snug text-foreground">
+                From 4 offices to a <span className="text-primary">nation-wide</span> network.
+              </h2>
             </div>
-            <h2 className="font-normal text-3xl lg:text-4xl leading-snug text-foreground">
-              From 4 offices to a <span className="text-primary">nation-wide</span> network.
-            </h2>
           </div>
           <div className="lg:col-span-7 space-y-5 text-foreground/75 leading-relaxed text-[15px]">
             <p>
