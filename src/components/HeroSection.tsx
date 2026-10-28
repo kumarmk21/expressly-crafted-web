@@ -32,7 +32,7 @@ const HeroSection = () => {
       {/* red spotlight */}
       <div className="absolute right-0 top-0 h-full w-1/2 spotlight hidden md:block" />
 
-      <div className="container mx-auto px-4 relative z-10 pt-4 lg:pt-8 pb-8">
+      <div className="container mx-auto px-4 relative z-10 pt-5 lg:pt-6 pb-6">
         {/* headline */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -46,7 +46,7 @@ const HeroSection = () => {
         </motion.h1>
 
         {/* Sub + CTAs */}
-        <div className="mt-6 lg:mt-8">
+        <div className="mt-5 lg:mt-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

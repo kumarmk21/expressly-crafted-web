@@ -20,7 +20,7 @@ const HomeShipmentTracker = () => {
       className="relative z-20 border-b border-border bg-card"
       aria-labelledby="shipment-tracker-title"
     >
-      <div className="container mx-auto px-4 py-4 lg:py-6">
+      <div className="container mx-auto px-4 py-4 lg:py-4">
         <div className="grid items-center gap-3 lg:grid-cols-[minmax(320px,1fr)_minmax(460px,1.2fr)] lg:gap-8">
           <div>
             <div className="mb-1.5 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-primary">

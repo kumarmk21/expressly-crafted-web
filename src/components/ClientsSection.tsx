@@ -28,23 +28,23 @@ const ClientsSection = () => {
   }, []);
 
   return (
-    <section className="pt-10 lg:pt-12 pb-24 lg:pb-32 bg-background relative overflow-hidden">
+    <section className="py-8 lg:py-10 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mb-14"
+          className="max-w-3xl mb-6"
         >
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-primary" />
             <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">Our Clients</span>
           </div>
-          <h2 className="font-display uppercase text-4xl lg:text-5xl text-foreground leading-[0.95] mb-5">
+          <h2 className="font-display uppercase text-3xl lg:text-4xl text-foreground leading-tight mb-3">
             Trusted by India's <span className="text-primary">leading brands.</span>
           </h2>
-          <p className="text-lg text-foreground/70 leading-relaxed">
+          <p className="text-base text-foreground/70 leading-relaxed">
             We believe every client is a valuable long-term partner.
           </p>
         </motion.div>

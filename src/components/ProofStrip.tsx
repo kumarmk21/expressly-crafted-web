@@ -103,10 +103,10 @@ const ProofStrip = () => {
       aria-label="Certifications, awards and proof points"
       className="relative z-10 border-t border-border bg-card/70 backdrop-blur"
     >
-      <div className="container mx-auto px-4 py-8 lg:py-10">
+      <div className="container mx-auto px-4 py-6 lg:py-8">
         <div className="mb-5 flex items-center gap-3">
           <span className="h-px flex-1 bg-border" aria-hidden="true" />
-          <span className="text-xs font-heavy uppercase text-primary">
+          <span className="text-xs font-heavy uppercase text-primary text-center">
             Why Businesses Trust Us to Keep Their Shipments Moving
           </span>
           <span className="h-px flex-1 bg-border" aria-hidden="true" />
@@ -120,7 +120,7 @@ const ProofStrip = () => {
           {STATS.map(({ value, label, Icon }) => (
             <div
               key={label}
-              className="group relative overflow-hidden rounded-sm border border-border bg-background p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:bg-primary/[0.04] hover:shadow-lg hover:shadow-primary/10 lg:p-7"
+              className="group relative overflow-hidden rounded-sm border border-border bg-background p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:bg-primary/[0.04] hover:shadow-lg hover:shadow-primary/10 lg:p-5"
             >
               <span
                 className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100"

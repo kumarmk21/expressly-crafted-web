@@ -8,20 +8,20 @@ const ServicesSection = () => {
   const { openQuote } = useQuote();
 
   return (
-    <section id="services" className="pt-6 lg:pt-8 pb-4 lg:pb-6 bg-card relative overflow-hidden">
+    <section id="services" className="py-8 lg:py-12 bg-card relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-7"
         >
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-primary" />
             <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">What We Do</span>
           </div>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="font-display uppercase text-5xl lg:text-7xl text-foreground leading-[0.9] max-w-3xl">
+            <h2 className="font-display uppercase text-3xl md:text-4xl lg:text-5xl text-foreground leading-tight max-w-3xl">
               One promise<span className="text-primary">.</span> Custodian first, carrier later.
             </h2>
             <p className="text-muted-foreground max-w-md">
@@ -40,7 +40,7 @@ const ServicesSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05, duration: 0.4 }}
-                className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 flex flex-col"
               >
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
                   <img

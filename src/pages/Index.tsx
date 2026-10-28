@@ -22,7 +22,7 @@ const Index = () => {
       />
       <TopBar />
       <Navbar />
-      <main>
+      <main className="home-page">
         <HomeShipmentTracker />
         <HeroSection />
         <ProofStrip />

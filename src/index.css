@@ -265,3 +265,19 @@ main a[class*="border"], main div[class*="rounded"][class*="border"] { transitio
   .pulse-cta, .live-dot, .btn-sheen::after { animation: none; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Home and footer use wider content tracks without oversized side gutters. */
+.home-page .container,
+.compact-footer .container {
+  width: 100%;
+  max-width: 1600px;
+  padding-inline: 20px;
+}
+@media (min-width: 768px) {
+  .home-page .container,
+  .compact-footer .container { padding-inline: 28px; }
+}
+@media (min-width: 1440px) {
+  .home-page .container,
+  .compact-footer .container { padding-inline: 40px; }
+}
