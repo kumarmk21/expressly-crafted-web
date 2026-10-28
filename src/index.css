@@ -153,7 +153,14 @@
     line-height: 1.15;
   }
 
-  /* About story headline: keep it on two even lines, even on the smallest phones. */
+  /* About story headline: Archivo gives it its own look and avoids the Hind "ffi"
+     ligature gap in words like "offices"; keep it on two even lines at all widths. */
+  .about-story-heading {
+    font-family: 'Archivo', 'Hind', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 700;
+    font-feature-settings: 'liga' 0, 'clig' 0;
+  }
+
   @media (max-width: 359px) {
     .about-story-heading {
       font-size: 24px;

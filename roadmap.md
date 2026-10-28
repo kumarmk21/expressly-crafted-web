@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Set the About story headline in Archivo and remove the "offices" letter gap; verify all widths
+
 - [x] Join the About "Our Story" headline and story paragraphs into one bordered panel; verify desktop/mobile
 
 - [x] Join "nation-wide" into "nationwide" in the About story headline and keep it on two even lines; verify desktop/mobile
