@@ -38,7 +38,7 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
               Pan-India B2B express cargo and logistics since 2000. <strong className="text-foreground">Custodian First, Carrier Later.</strong>
             </p>
-            <div className="flex gap-2 mt-8">
+            <div className="flex gap-2 mt-6">
               {[
                 { Icon: Facebook, href: "https://www.facebook.com/scorpiongroupmumbai/", label: "Facebook" },
                 { Icon: Instagram, href: "https://www.instagram.com/scorpiongroupmumbai/", label: "Instagram" },
@@ -135,7 +135,7 @@ const Footer = () => {
         </div>
 
         {/* Statutory company information — legal requirement */}
-        <div className="mt-16 border-t border-border pt-8">
+        <div className="mt-10 border-t border-border pt-6">
           <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-4">Company Information</div>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 text-xs text-muted-foreground leading-relaxed">
             <div>
