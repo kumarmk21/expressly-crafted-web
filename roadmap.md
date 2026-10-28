@@ -2,6 +2,8 @@
 
 - [x] Join the About "Our Story" headline and story paragraphs into one bordered panel; verify desktop/mobile
 
+- [x] Join "nation-wide" into "nationwide" in the About story headline and keep it on two even lines; verify desktop/mobile
+
 - [x] Update About story typography, six portrait heights and label; revise cargo headings and container imagery; verify pages
 
 - [x] Update illustrative staff images across Contact, Technology, Careers, Cargo Protection, Customer Portal and industry workplace scenes with red Scorpion uniforms; verify images
