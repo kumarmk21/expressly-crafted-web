@@ -40,6 +40,16 @@ const LOCAL_PHOTOS: Record<string, string> = {
   "Anil Mishra": anilMishra,
 };
 
+// Match the framing of the existing photos without changing the originals.
+const PORTRAIT_FRAMING: Record<string, string> = {
+  "Raj Lalan Dwivedi": "leadership-portrait-raj",
+  "Manoj Kumar": "leadership-portrait-manoj",
+  "Anil Mishra": "leadership-portrait-mishra",
+  "Anil Tiwari": "leadership-portrait-tiwari",
+  "Rakesh Sahoo": "leadership-portrait-rakesh",
+  "Pooja Patel Kalia": "leadership-portrait-pooja",
+};
+
 const MilestonesSlider = () => {
   const [perView, setPerView] = useState(3);
   const [index, setIndex] = useState(0);
@@ -471,7 +481,7 @@ const AboutUs = () => {
 
 
           {/* Remaining leadership in the same order */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 items-stretch">
+          <div className="leadership-grid grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6 items-stretch">
             {leadership.slice(2).map((leader) => {
               const photo = leader.photo_url || LOCAL_PHOTOS[leader.name] || null;
               return (
@@ -480,14 +490,18 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white border border-border group overflow-hidden flex flex-col h-full"
+                className="bg-card border border-border overflow-hidden flex flex-col h-full min-w-0"
               >
                 <div className="relative aspect-[1464/1920] w-full bg-muted overflow-hidden shrink-0">
                   {photo ? (
                     <img
                       src={photo}
                       alt={leader.name}
-                      className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      width={1464}
+                      height={1920}
+                      loading="lazy"
+                      decoding="async"
+                      className={`leadership-portrait absolute inset-0 h-full w-full object-cover object-top ${leader.photo_url ? "" : PORTRAIT_FRAMING[leader.name] ?? ""}`}
                     />
                   ) : (
                     <div className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-b from-muted to-white">
