@@ -42,7 +42,7 @@ const Footer = () => {
                 { Icon: Instagram, href: "https://www.instagram.com/scorpiongroupmumbai/", label: "Instagram" },
                 { Icon: Linkedin, href: "https://www.linkedin.com/company/scorpionexpress/", label: "LinkedIn" },
               ].map(({ Icon, href, label }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="h-9 w-9 flex items-center justify-center border border-border text-muted-foreground hover:bg-primary hover:text-white hover:border-primary transition-colors" aria-label={label}>
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="h-8 w-8 flex items-center justify-center border border-border text-muted-foreground hover:bg-primary hover:text-white hover:border-primary transition-colors" aria-label={label}>
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
@@ -51,8 +51,8 @@ const Footer = () => {
 
           {/* Contact block */}
           <div className="lg:border-l lg:border-border lg:pl-16">
-            <h4 className="text-xs font-semibold text-muted-foreground mb-5">Get in touch</h4>
-            <ul className="space-y-4 text-sm text-muted-foreground">
+            <h4 className="text-[11px] font-semibold text-muted-foreground mb-3">Get in touch</h4>
+            <ul className="space-y-2.5 text-xs text-muted-foreground">
               <li>
                 <a href="tel:18002219455" className="flex items-start gap-3 hover:text-primary transition-colors">
                   <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" />
