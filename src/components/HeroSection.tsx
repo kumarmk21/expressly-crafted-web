@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { services } from "@/data/services";
+import { motion } from "framer-motion";
+import { ArrowRight, Zap, ShieldCheck, Globe2 } from "lucide-react";
 import heroBg from "@/assets/hero-bg-rbg.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -24,53 +21,86 @@ const HeroSection = () => {
     });
   }, []);
 
-  const reducedMotion = useReducedMotion();
-  const featuredServices = ["ltl", "ftl", "wms", "air"]
-    .map((slug) => services.find((service) => service.slug === slug))
-    .filter((service) => service !== undefined);
-
   return (
-    <section aria-label="Scorpion Express logistics" className="logistics-banner relative overflow-hidden">
-      <div className="logistics-banner-scene relative">
-        <img src={heroBg} alt="Red Scorpion Express truck travelling on an Indian highway" className="logistics-banner-photo absolute inset-0 h-full w-full object-cover" fetchPriority="high" decoding="async" width={1376} height={768} />
-        <div className="logistics-banner-accent absolute inset-0" aria-hidden="true" />
-        <div className="logistics-banner-panel absolute inset-0" aria-hidden="true" />
-        <div className="container relative z-10 mx-auto">
+    <section className="relative bg-background overflow-hidden border-b border-border">
+      {/* BG layers — tablet and desktop only; phones get the truck as its own card */}
+      <div className="absolute inset-0 hidden md:block">
+        <img src={heroBg} alt="" className="h-full w-full object-cover" fetchPriority="high" decoding="async" width={1376} height={768} />
+        <div className="absolute inset-0 hero-gradient" />
+        <div className="absolute inset-0 grain opacity-50" />
+      </div>
+      {/* red spotlight */}
+      <div className="absolute right-0 top-0 h-full w-1/2 spotlight hidden md:block" />
+
+      <div className="container mx-auto px-4 relative z-10 pt-5 lg:pt-6 pb-6">
+        {/* headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="hero-headline text-[30px] sm:text-5xl lg:text-6xl xl:text-[64px] leading-[1.12] text-foreground max-w-5xl"
+        >
+          {hero.headline_line1}
+          <br />
+          {hero.headline_line2}<span className="text-primary">.</span> <span className="text-muted-foreground">{hero.headline_tail}</span>
+        </motion.h1>
+
+        {/* Sub + CTAs */}
+        <div className="mt-5 lg:mt-6">
           <motion.div
-            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-            className="logistics-banner-copy max-w-xl py-8 md:py-10"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-3xl"
           >
-            <p className="mb-3 flex items-center gap-2 text-sm text-primary-foreground/80"><span className="h-0.5 w-8 bg-primary" />{hero.eyebrow}</p>
-            <h1 className="hero-headline text-4xl leading-tight text-primary-foreground md:text-5xl">Scorpion <span className="text-primary">Express</span></h1>
-            <p className="mt-3 max-w-md text-xl leading-snug text-primary-foreground md:text-2xl">{hero.headline_line1} {hero.headline_line2}{hero.headline_tail ? ` ${hero.headline_tail}` : ""}.</p>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-primary-foreground/75 md:text-base">{hero.subtext}</p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Button asChild><a href="#services">Explore services <ArrowRight className="h-4 w-4" /></a></Button>
-              <Button asChild variant="outline" className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:border-primary"><a href="#contact">Talk to an expert</a></Button>
+            <p className="text-base lg:text-xl text-foreground/70 leading-relaxed max-w-2xl">
+              {hero.subtext}
+            </p>
+
+            <div className="flex flex-wrap gap-3 mt-4">
+              <a
+                href="#services"
+                className="group inline-flex items-center gap-3 px-5 py-3 sm:px-6 sm:py-4 bg-primary text-white font-black uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors"
+              >
+                Explore Services
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 px-5 py-3 sm:px-6 sm:py-4 border border-border text-foreground font-black uppercase tracking-wider text-sm hover:border-primary hover:text-primary transition-colors"
+              >
+                Talk to an Expert
+              </a>
+            </div>
+
+            {/* Trust badges row */}
+            <div className="mt-5 flex flex-wrap items-center gap-6 text-xs uppercase tracking-widest text-muted-foreground">
+              <div className="flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> Time-Definite</div>
+              <div className="h-3 w-px bg-white/15 hidden sm:block" />
+              <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary" /> GPTW Certified</div>
+              <div className="h-3 w-px bg-white/15 hidden sm:block" />
+              <div className="flex items-center gap-2"><Globe2 className="h-4 w-4 text-primary" /> Pan-India + Intl</div>
+            </div>
+
+            {/* Phones: the branded truck sits in its own card so nothing overlaps it */}
+            <div className="md:hidden mt-5 overflow-hidden rounded-lg border border-primary/25 shadow-sm">
+              <img
+                src={heroBg}
+                alt="Scorpion Express truck on the highway"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+                decoding="async"
+                width={1376}
+                height={768}
+              />
             </div>
           </motion.div>
+
         </div>
       </div>
-      <div className="logistics-banner-services relative z-10">
-        <div className="container mx-auto grid grid-cols-2 gap-3 pb-4 md:grid-cols-4 md:gap-4 md:pb-5">
-          {featuredServices.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <motion.div key={service.slug} initial={reducedMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reducedMotion ? 0 : 0.15 + index * 0.08 }}>
-                <Button asChild variant="outline" className="logistics-service-tile group flex h-full min-h-24 w-full justify-start gap-3 whitespace-normal rounded-md border-border bg-card p-3 text-left text-card-foreground hover:border-primary hover:bg-card hover:text-primary md:min-h-28 md:p-4">
-                  <Link to={`/services/${service.slug}`}>
-                    <span className={`logistics-service-icon flex h-12 w-12 shrink-0 items-center justify-center md:h-14 md:w-14 ${index % 2 === 0 ? "bg-primary text-primary-foreground" : "bg-foreground text-background"}`}><Icon className="h-6 w-6 md:h-7 md:w-7" /></span>
-                    <span className="min-w-0 flex-1 text-sm font-semibold leading-snug md:text-base">{service.title}</span>
-                    <ArrowRight className="hidden h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1 xl:block" />
-                  </Link>
-                </Button>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
+
+
+
     </section>
   );
 };
