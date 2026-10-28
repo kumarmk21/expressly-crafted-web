@@ -66,7 +66,7 @@ const Footer = () => {
                 <li key={link.l}>
                   <a
                     href={link.h}
-                    className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="group inline-flex items-center gap-2 text-[13px] text-muted-foreground transition-colors hover:text-primary"
                   >
                     <span className="h-px w-3 bg-border transition-all group-hover:w-5 group-hover:bg-primary" aria-hidden="true" />
                     {link.l}
@@ -92,7 +92,7 @@ const Footer = () => {
                 <li key={slug}>
                   <Link
                     to={`/services/${slug}`}
-                    className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="group inline-flex items-center gap-2 text-[13px] text-muted-foreground transition-colors hover:text-primary"
                   >
                     <span className="h-px w-3 bg-border transition-all group-hover:w-5 group-hover:bg-primary" aria-hidden="true" />
                     {label}
