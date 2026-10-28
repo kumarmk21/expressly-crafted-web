@@ -34,9 +34,9 @@ const CustodianSection = () => {
       <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
       <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
 
-      <div className="container mx-auto px-4 py-20 lg:py-28 relative z-10">
+      <div className="container mx-auto px-4 py-8 lg:py-12 relative z-10">
         {/* Heading */}
-        <div className="grid lg:grid-cols-12 gap-8 mb-14">
+        <div className="grid lg:grid-cols-12 gap-6 mb-7">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,13 +44,13 @@ const CustodianSection = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7"
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-3">
               <ShieldCheck className="h-5 w-5 text-primary" />
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
                 What "Custodian First" Means
               </span>
             </div>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-tight text-foreground">
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl leading-tight text-foreground">
               Your cargo is <span className="text-primary">guarded</span>,
               <br /> not just carried.
             </h2>
@@ -116,7 +116,7 @@ const CustodianSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-10 grid lg:grid-cols-12 gap-6 items-center"
+          className="mt-7 grid lg:grid-cols-12 gap-6 items-center"
         >
           <div className="lg:col-span-7 relative border border-border overflow-hidden bg-muted">
             <img
@@ -147,7 +147,7 @@ const CustodianSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-10 border border-border bg-card/50 p-6 lg:p-8 flex flex-wrap items-center justify-between gap-6"
+          className="mt-6 border border-border bg-card/50 p-4 lg:p-5 flex flex-wrap items-center justify-between gap-6"
         >
           <div className="flex items-center gap-4">
             <div className="h-12 w-12 flex items-center justify-center bg-primary/10 border border-primary/30">

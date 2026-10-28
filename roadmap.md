@@ -1,5 +1,8 @@
 # Roadmap
 
+- [x] Tighten home-page side gutters and section gaps
+- [x] Finish compact professional footer and verify desktop/mobile layout
+
 - [x] Make the home statistics band larger and more attractive
 - [x] Set the About-page intro headline to medium size
 - [x] Settle statistics numbers at medium size and rewrite the tracking headline

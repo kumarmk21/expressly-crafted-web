@@ -10,7 +10,7 @@ const highlights = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="pt-20 lg:pt-24 pb-0 bg-background relative overflow-hidden">
+    <section id="about" className="py-8 lg:py-12 bg-background relative overflow-hidden">
       {/* Giant watermark name */}
       <div
         aria-hidden="true"
@@ -21,7 +21,7 @@ const AboutSection = () => {
         </span>
       </div>
       <div className="container mx-auto px-4 relative">
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* Left: bold statement */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -30,11 +30,11 @@ const AboutSection = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7"
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-3">
               <span className="h-px w-10 bg-primary" />
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Us · Est. Scorpion Group</span>
             </div>
-            <h2 className="font-display uppercase text-5xl lg:text-7xl text-foreground leading-[0.9] mb-8">
+            <h2 className="font-display uppercase text-3xl md:text-4xl lg:text-5xl text-foreground leading-tight mb-5">
               A legacy of <span className="text-primary">combined</span> logistics leadership.
             </h2>
             <div className="space-y-5 text-foreground/70 leading-relaxed max-w-2xl">
@@ -47,7 +47,7 @@ const AboutSection = () => {
             </div>
             <a
               href="#contact"
-              className="mt-10 inline-flex items-center gap-3 px-6 py-4 bg-primary text-white font-black uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors group"
+              className="mt-5 inline-flex items-center gap-3 px-6 py-4 bg-primary text-white font-black uppercase tracking-wider text-sm hover:bg-primary/90 transition-colors group"
             >
               Get in Touch
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
