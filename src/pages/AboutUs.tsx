@@ -260,7 +260,7 @@ const AboutUs = () => {
                 <span className="h-px w-10 bg-foreground/30" />
                 <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
               </div>
-              <h2 className="font-normal text-4xl lg:text-5xl leading-snug text-foreground">
+              <h2 className="font-display text-4xl lg:text-5xl leading-snug text-foreground">
                 From 4 offices to a <span className="text-primary">nation-wide</span> network.
               </h2>
             </div>
