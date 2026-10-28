@@ -225,7 +225,7 @@
 .logistics-service-tile { border-bottom: 3px solid hsl(var(--primary)); }
 @media (max-width: 767px) {
   .logistics-banner-scene { min-height: 480px; }
-  .logistics-banner-photo { object-position: 76% bottom; }
+  .logistics-banner-photo { top: auto; height: 200px; object-position: right center; }
   .logistics-banner-accent { clip-path: polygon(0 0, 100% 0, 100% 60%, 0 69%); }
   .logistics-banner-panel { clip-path: polygon(0 0, 100% 0, 100% 58%, 0 67%); }
   .logistics-banner-copy { width: 100%; max-width: 100%; padding-block: 24px 200px; }
