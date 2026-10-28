@@ -36,8 +36,6 @@ type Tech = {
 };
 
 const SALESFORCE_ID = "2928c658-bfb6-46da-8f9f-4e167c586d8a";
-const WALLET_ID = "d03f2666-3ee3-4836-b0d7-271b33c244a7";
-const PRQ_ID = "fafdb6fc-702f-43e2-8efd-5fcc87e8fa88";
 const DIGITAL_LOCK_ID = "7f0c8650-24bf-4f2a-81e9-89bedf4b5cf2";
 const EV_FLEET_ID = "9e2a4c17-58d3-4b6e-8f21-3c7d90ab51e4";
 
@@ -131,7 +129,7 @@ const TechnologySection = () => {
                 className="group overflow-hidden rounded-md border border-border bg-card hover:border-primary/50 transition-colors flex flex-col"
               >
                 <div className="aspect-[16/9] overflow-hidden bg-muted border-b border-border">
-                  {it.image_url ? <img src={it.image_url} alt={it.title} width={1200} height={675} loading={i < 3 ? "eager" : "lazy"} decoding="async" className="h-full w-full object-cover" /> : <div className="flex h-full items-center justify-center text-primary"><Icon className="h-14 w-14" /></div>}
+                  {it.image_url ? <img src={it.image_url} alt={it.title} width={1216} height={688} loading={i < 3 ? "eager" : "lazy"} decoding="async" className="h-full w-full object-cover" /> : <div className="flex h-full items-center justify-center text-primary"><Icon className="h-14 w-14" /></div>}
                 </div>
                 <div className="p-5 flex flex-col gap-4 flex-1">
                   <div className="flex items-center justify-between">
