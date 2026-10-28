@@ -6,6 +6,16 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import digitalLock from "@/assets/custodian/digital-lock.jpg";
+import portalIndia from "@/assets/technology/portal-india.jpg";
+import bookingCounterIndia from "@/assets/technology/booking-counter-india.jpg";
+import gpsHighwayIndia from "@/assets/technology/gps-highway-india.jpg";
+import opsTeamIndia from "@/assets/technology/ops-team-india.jpg";
+import supportDeskIndia from "@/assets/technology/support-desk-india.jpg";
+import controlTowerIndia from "@/assets/technology/control-tower-india.jpg";
+import billingDeskIndia from "@/assets/technology/billing-desk-india.jpg";
+import biddingDriverIndia from "@/assets/technology/bidding-driver-india.jpg";
+import walletBookingIndia from "@/assets/technology/wallet-booking-india.jpg";
+import prqQuoteIndia from "@/assets/technology/prq-quote-india.jpg";
 import evFleetAsset from "@/assets/technology/ev-fleet-real.jpg.asset.json";
 const evFleet = evFleetAsset.url;
 import { supabase } from "@/integrations/supabase/client";
@@ -30,6 +40,22 @@ const WALLET_ID = "d03f2666-3ee3-4836-b0d7-271b33c244a7";
 const PRQ_ID = "fafdb6fc-702f-43e2-8efd-5fcc87e8fa88";
 const DIGITAL_LOCK_ID = "7f0c8650-24bf-4f2a-81e9-89bedf4b5cf2";
 const EV_FLEET_ID = "9e2a4c17-58d3-4b6e-8f21-3c7d90ab51e4";
+
+// Indian-context photography, keyed by card number ("no" from technology_items).
+const LOCAL_IMAGES: Record<string, string> = {
+  "01": portalIndia,
+  "02": bookingCounterIndia,
+  "03": gpsHighwayIndia,
+  "04": opsTeamIndia,
+  "05": supportDeskIndia,
+  "06": controlTowerIndia,
+  "07": billingDeskIndia,
+  "08": walletBookingIndia,
+  "09": prqQuoteIndia,
+  "10": biddingDriverIndia,
+  "11": opsTeamIndia,
+  "12": controlTowerIndia,
+};
 
 const TechnologySection = () => {
   const [items, setItems] = useState<Tech[]>([]);
