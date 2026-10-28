@@ -9,3 +9,4 @@
 - About-page leadership portrait framing is scoped per seeded local photo in shared CSS; preserve original images and let admin-uploaded replacements use neutral framing.
 - Careers uses the shared resume form for both general applications and job-specific dialogs, so uploads, admin records and HR notifications follow the same path.
 - Careers and Contact use the shared semantic photo-overlay treatment to keep headings readable without obscuring desktop subjects; Contact retains its existing enquiry forms and branch map.
+- Admin submission sharing formats only the source's displayed fields and opens copy/email/WhatsApp drafts; never publish submission data or private resume paths as public links.

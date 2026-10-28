@@ -1,5 +1,9 @@
 # Roadmap
 
+- [x] Verify live Contact enquiry persistence and Admin reading/sharing through focused tests
+- [x] Allow sharing enquiry details from Admin and test the behavior
+- [ ] Verify signed-in Admin end-to-end: external Supabase session unavailable in this workspace
+
 - [x] Replace Careers truck photo with careers-related team imagery
 - [x] Refresh Contact page imagery and presentation; verify both pages
 
