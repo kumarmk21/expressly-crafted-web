@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, ArrowUpRight, Lock } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Lock } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
 
 const Footer = () => {
@@ -104,7 +104,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div className="lg:col-span-3">
-            <h4 className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-5">Get in touch</h4>
+            <h4 className="text-sm font-semibold text-foreground mb-5">Get in touch</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li>
                 <a href="tel:18002219455" className="flex items-start gap-3 hover:text-primary transition-colors">
