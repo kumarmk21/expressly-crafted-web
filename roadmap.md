@@ -1,5 +1,8 @@
 # Roadmap
 
+- [ ] Improve Careers page imagery, layout and useful job content
+- [ ] Make resume upload available without selecting an open job and verify submission
+
 - [x] Tighten home-page side gutters and section gaps
 - [x] Finish compact professional footer and verify desktop/mobile layout
 
