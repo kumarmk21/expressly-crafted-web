@@ -267,6 +267,16 @@ main a[class*="border"], main div[class*="rounded"][class*="border"] { transitio
 }
 
 /* Home and footer use wider content tracks without oversized side gutters. */
+.leadership-portrait {
+  transform-origin: top center;
+}
+.leadership-portrait-raj { transform: translateY(-1.5%) scale(1.08); }
+.leadership-portrait-manoj { transform: scale(1.08); }
+.leadership-portrait-mishra { transform: translateY(-3%) scale(1.02); }
+.leadership-portrait-tiwari { transform: translateY(-4%) scale(1.08); }
+.leadership-portrait-rakesh { transform: translateY(-6%) scale(1.32); }
+.leadership-portrait-pooja { transform: translateY(-10%) scale(1.08); }
+
 .home-page .container,
 .compact-footer .container {
   width: 100%;
