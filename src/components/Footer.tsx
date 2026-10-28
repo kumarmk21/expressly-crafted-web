@@ -6,24 +6,24 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-white text-foreground relative overflow-hidden border-t border-border pb-14 md:pb-0">
-      {/* Marquee brand strip — red band */}
+      {/* Brand strip — red band */}
       <div className="overflow-hidden bg-primary">
-        <div className="flex animate-marquee whitespace-nowrap py-4 text-white">
+        <div className="flex animate-marquee whitespace-nowrap py-3 text-white">
           {Array.from({ length: 12 }).map((_, i) => (
             <div key={i} className="flex items-center gap-6 px-6">
-              <span className="font-display uppercase text-2xl tracking-wide">Scorpion Express</span>
-              <span className="text-xs uppercase tracking-[0.3em] opacity-80">Custodian First · Carrier Later</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
+              <span className="font-display text-lg tracking-wide">Scorpion Express</span>
+              <span className="text-[10px] tracking-[0.3em] opacity-80">Custodian First · Carrier Later</span>
+              <span className="h-1 w-1 rounded-full bg-white/70" />
             </div>
           ))}
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Brand block */}
-          <div className="lg:col-span-3">
-            <div className="flex items-center gap-3 mb-6">
+          <div>
+            <div className="flex items-center gap-4 mb-5">
               <img
                 src={scorpionLogo}
                 alt="Scorpion Express"
@@ -31,12 +31,10 @@ const Footer = () => {
                 width={585}
                 height={348}
               />
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-0.5">Custodian First, Carrier Later</div>
-              </div>
+              <div className="text-[10px] tracking-[0.25em] text-muted-foreground">Custodian First, Carrier Later</div>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
-              Pan-India B2B express cargo and logistics since 2000. <strong className="text-foreground">Custodian First, Carrier Later.</strong>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+              Pan-India B2B express cargo and logistics since 2000. Custodian First, Carrier Later.
             </p>
             <div className="flex gap-2 mt-6">
               {[
@@ -44,90 +42,39 @@ const Footer = () => {
                 { Icon: Instagram, href: "https://www.instagram.com/scorpiongroupmumbai/", label: "Instagram" },
                 { Icon: Linkedin, href: "https://www.linkedin.com/company/scorpionexpress/", label: "LinkedIn" },
               ].map(({ Icon, href, label }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="h-10 w-10 flex items-center justify-center border border-border text-foreground hover:bg-primary hover:text-white hover:border-primary transition-colors" aria-label={label}>
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="h-9 w-9 flex items-center justify-center border border-border text-muted-foreground hover:bg-primary hover:text-white hover:border-primary transition-colors" aria-label={label}>
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Navigate */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Navigate</h4>
-            <ul className="space-y-2.5">
-              {[
-                { l: "Home", h: "/" },
-                { l: "About Us", h: "/about" },
-                { l: "Services", h: "#services" },
-                { l: "Network & Infra", h: "/network" },
-                { l: "Careers", h: "/careers" },
-                { l: "Contact", h: "#contact" },
-              ].map((link) => (
-                <li key={link.l}>
-                  <a
-                    href={link.h}
-                    className="group inline-flex items-center gap-2 text-[13px] text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    <span className="h-px w-3 bg-border transition-all group-hover:w-5 group-hover:bg-primary" aria-hidden="true" />
-                    {link.l}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Services</h4>
-            <ul className="space-y-2.5">
-              {[
-                ["Part Load (LTL)", "ltl"],
-                ["Express", "express"],
-                ["Air Express", "air"],
-                ["Cold Chain", "cold-chain"],
-                ["Warehousing", "wms"],
-                ["Cleantech Solutions", "cleantech"],
-                ["Full Truck Load (FTL)", "ftl"],
-              ].map(([label, slug]) => (
-                <li key={slug}>
-                  <Link
-                    to={`/services/${slug}`}
-                    className="group inline-flex items-center gap-2 text-[13px] text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    <span className="h-px w-3 bg-border transition-all group-hover:w-5 group-hover:bg-primary" aria-hidden="true" />
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs font-semibold text-muted-foreground mb-4">Get in touch</h4>
+          {/* Contact block */}
+          <div className="lg:border-l lg:border-border lg:pl-16">
+            <h4 className="text-xs font-semibold text-muted-foreground mb-5">Get in touch</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li>
                 <a href="tel:18002219455" className="flex items-start gap-3 hover:text-primary transition-colors">
                   <Phone className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                  <span><div className="text-[10px] uppercase tracking-wider text-muted-foreground/70">Toll Free</div>1800 22 1945</span>
+                  <span><span className="block text-[10px] tracking-wider text-muted-foreground/70">Toll Free</span>1800 22 1945</span>
                 </a>
               </li>
               <li>
                 <a href="mailto:Info@Scorpiongroup.in" className="flex items-start gap-3 hover:text-primary transition-colors">
                   <Mail className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                  <span><div className="text-[10px] uppercase tracking-wider text-muted-foreground/70">Email</div>Info@Scorpiongroup.in</span>
+                  <span><span className="block text-[10px] tracking-wider text-muted-foreground/70">Email</span>Info@Scorpiongroup.in</span>
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 text-primary shrink-0" />
-                <span><div className="text-[10px] uppercase tracking-wider text-muted-foreground/70">Registered Office</div>404, Shah Nahar Industrial Estate, Dr E Moses Road, Worli, Mumbai 400018, Maharashtra, India</span>
+                <span><span className="block text-[10px] tracking-wider text-muted-foreground/70">Registered Office</span>404, Shah Nahar Industrial Estate, Dr E Moses Road, Worli, Mumbai 400018, Maharashtra, India</span>
               </li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-2">
-              <Link to="/employee-login" className="text-[10px] uppercase tracking-wider px-3 py-2 border border-border text-foreground hover:border-primary hover:text-primary transition-colors font-bold">
+              <Link to="/employee-login" className="text-xs px-4 py-2 border border-border text-foreground hover:border-primary hover:text-primary transition-colors font-semibold">
                 Employee Portal
               </Link>
-              <a href="https://cms.scorpiongroup.in/" className="text-[10px] uppercase tracking-wider px-3 py-2 bg-primary text-white font-bold hover:bg-primary/90 transition-colors">
+              <a href="https://cms.scorpiongroup.in/" className="text-xs px-4 py-2 bg-primary text-white font-semibold hover:bg-primary/90 transition-colors">
                 Customer Portal
               </a>
             </div>
@@ -136,7 +83,7 @@ const Footer = () => {
 
         {/* Statutory company information — legal requirement */}
         <div className="mt-10 border-t border-border pt-6">
-          <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary mb-4">Company Information</div>
+          <div className="text-[11px] font-semibold text-primary mb-3">Company Information</div>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 text-xs text-muted-foreground leading-relaxed">
             <div>
               <p className="text-sm font-semibold text-foreground">SCORPION EXPRESS PRIVATE LIMITED</p>
@@ -152,9 +99,9 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-border bg-muted/40">
-        <div className="container mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+        <div className="container mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <p>© {year} Scorpion Express Pvt. Ltd. · All rights reserved.</p>
-          <div className="flex gap-6 uppercase tracking-wider">
+          <div className="flex gap-6">
             <Link to="/legal/privacy-policy" className="hover:text-primary">Privacy Policy</Link>
             <Link to="/legal/terms-and-conditions" className="hover:text-primary">Terms &amp; Conditions</Link>
             <Link to="/legal/disclaimer" className="hover:text-primary">Disclaimer</Link>
