@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Improve Technology page layout and image clarity; verify desktop and mobile
+
 - [x] Verify live Contact enquiry persistence and Admin reading/sharing through focused tests
 - [x] Allow sharing enquiry details from Admin and test the behavior
 - [ ] Verify signed-in Admin end-to-end: external Supabase session unavailable in this workspace
