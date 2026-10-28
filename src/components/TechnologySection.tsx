@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Monitor, PackageSearch, MapPinned, Cloud, HeadphonesIcon, Radio,
   ReceiptText, Wallet, Plug, Tag, Gavel, Users, Truck, Package, Activity, Warehouse, Lock, Zap,
@@ -33,6 +33,7 @@ const EV_FLEET_ID = "9e2a4c17-58d3-4b6e-8f21-3c7d90ab51e4";
 
 const TechnologySection = () => {
   const [items, setItems] = useState<Tech[]>([]);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     supabase
@@ -87,13 +88,13 @@ const TechnologySection = () => {
   }, []);
 
   return (
-    <section id="technology" className="py-24 lg:py-32 bg-card">
+    <section id="technology" className="py-9 md:py-12 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-14 max-w-4xl"
+          className="mb-7 max-w-4xl"
         >
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-primary" />
@@ -101,53 +102,47 @@ const TechnologySection = () => {
               Technology
             </span>
           </div>
-          <h2 className="font-display uppercase text-5xl lg:text-7xl text-foreground leading-[0.9]">
+          <h1 className="text-3xl md:text-5xl text-foreground leading-tight">
             Tech that runs the network<span className="text-primary">.</span>
-          </h2>
+          </h1>
           <p className="text-muted-foreground mt-5 max-w-2xl">
             Purpose-built platforms and integrations that connect customers, vendors and operations
             on a single real-time stack — from booking to billing.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map((it, i) => {
             const Icon = (it.icon && ICONS[it.icon]) || Monitor;
             return (
-              <motion.div
+              <motion.article
                 key={it.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.04, duration: 0.4 }}
-                className="group relative overflow-hidden bg-card min-h-[280px]"
+                transition={{ delay: reducedMotion ? 0 : Math.min(i, 5) * 0.04, duration: reducedMotion ? 0 : 0.4 }}
+                className="group overflow-hidden rounded-md border border-border bg-card hover:border-primary/50 transition-colors flex flex-col"
               >
-                {it.image_url && (
-                  <div
-                    className="absolute inset-0 bg-cover bg-center scale-105 group-hover:scale-110 transition-transform duration-700"
-                    style={{ backgroundImage: `url(${it.image_url})` }}
-                    aria-hidden="true"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/80 to-background/40 group-hover:from-background/90 group-hover:via-background/70 transition-colors" />
-
-                <div className="relative p-7 flex flex-col gap-4 h-full">
+                <div className="aspect-[16/9] overflow-hidden bg-muted border-b border-border">
+                  {it.image_url ? <img src={it.image_url} alt={it.title} width={1200} height={675} loading={i < 3 ? "eager" : "lazy"} decoding="async" className="h-full w-full object-cover" /> : <div className="flex h-full items-center justify-center text-primary"><Icon className="h-14 w-14" /></div>}
+                </div>
+                <div className="p-5 flex flex-col gap-4 flex-1">
                   <div className="flex items-center justify-between">
-                    <div className="h-12 w-12 bg-primary text-primary-foreground flex items-center justify-center shadow-lg">
-                      <Icon className="h-6 w-6" />
+                    <div className="h-10 w-10 rounded-md bg-primary/10 text-primary flex items-center justify-center">
+                      <Icon className="h-5 w-5" />
                     </div>
                     <span className="text-xs font-bold tracking-widest text-foreground/70">
                       — {it.no}
                     </span>
                   </div>
-                  <div className="mt-auto">
+                  <div>
                     <h3 className="font-display uppercase text-xl text-foreground leading-tight mb-2">
                       {it.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{it.description}</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>
