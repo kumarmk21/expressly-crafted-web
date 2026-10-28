@@ -4,6 +4,7 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const SERVICES = [
   "Part Load (LTL)",
@@ -53,7 +54,7 @@ const franchiseeSchema = z.object({
 });
 
 const inputCls =
-  "w-full bg-white border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors rounded-sm";
+  "w-full bg-background border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors rounded-sm";
 
 const labelCls = "block text-xs font-bold uppercase tracking-wider text-foreground/80 mb-1.5";
 
@@ -155,18 +156,19 @@ const BusinessForm = () => {
         <label className={labelCls}>Service interested in *</label>
         <div className="flex flex-wrap gap-2">
           {SERVICES.map((s) => (
-            <button
+            <Button
+              variant="outline"
               type="button"
               key={s}
               onClick={() => update("service_interested", s)}
               className={`text-xs px-3 py-2 border transition-colors rounded-sm ${
                 form.service_interested === s
                   ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-white border-border hover:border-primary text-foreground"
+                  : "bg-background border-border hover:border-primary text-foreground"
               }`}
             >
               {s}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -197,14 +199,14 @@ const BusinessForm = () => {
         </span>
       </label>
 
-      <button
+      <Button
         type="submit"
         disabled={submitting}
         className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold uppercase tracking-wider text-sm px-7 py-3.5 hover:bg-primary/90 disabled:opacity-60 transition-colors rounded-sm"
       >
         {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
         {submitting ? "Submitting…" : "Submit"}
-      </button>
+      </Button>
     </form>
   );
 };
@@ -260,18 +262,19 @@ const FranchiseeForm = () => {
         { l: "Yes", v: true },
         { l: "No", v: false },
       ].map((o) => (
-        <button
+        <Button
+          variant="outline"
           type="button"
           key={o.l}
           onClick={() => onChange(o.v)}
           className={`px-5 py-2 text-xs font-bold uppercase tracking-wider border rounded-sm transition-colors ${
             value === o.v
               ? "bg-primary text-primary-foreground border-primary"
-              : "bg-white border-border hover:border-primary text-foreground"
+              : "bg-background border-border hover:border-primary text-foreground"
           }`}
         >
           {o.l}
-        </button>
+        </Button>
       ))}
     </div>
   );
@@ -340,14 +343,14 @@ const FranchiseeForm = () => {
         </span>
       </label>
 
-      <button
+      <Button
         type="submit"
         disabled={submitting}
         className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold uppercase tracking-wider text-sm px-7 py-3.5 hover:bg-primary/90 disabled:opacity-60 transition-colors rounded-sm"
       >
         {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
         {submitting ? "Submitting…" : "Submit"}
-      </button>
+      </Button>
     </form>
   );
 };
@@ -356,7 +359,7 @@ const ContactForms = () => {
   const [tab, setTab] = useState<"business" | "franchisee">("business");
 
   return (
-    <section className="container mx-auto px-4 pb-16">
+    <section className="container mx-auto px-4 pb-9 md:pb-12">
       <div className="grid lg:grid-cols-5 gap-8">
         {/* Left intro */}
         <div className="lg:col-span-2">
@@ -380,14 +383,14 @@ const ContactForms = () => {
 
         {/* Right form card */}
         <div className="lg:col-span-3">
-          <div className="bg-primary p-1 rounded-sm shadow-xl">
-            <div className="bg-card p-6 md:p-8 rounded-sm">
+          <div className="border border-border border-t-2 border-t-primary bg-card rounded-md p-4 sm:p-6">
               <div className="flex gap-2 mb-6 border-b border-border">
                 {[
                   { id: "business", label: "Business Inquiry" },
                   { id: "franchisee", label: "Franchisee" },
                 ].map((t) => (
-                  <button
+                  <Button
+                    variant="ghost"
                     key={t.id}
                     onClick={() => setTab(t.id as any)}
                     className={`px-5 py-3 text-sm font-bold uppercase tracking-wider transition-colors -mb-px border-b-2 ${
@@ -397,14 +400,13 @@ const ContactForms = () => {
                     }`}
                   >
                     {t.label}
-                  </button>
+                  </Button>
                 ))}
               </div>
 
               <h3 className="font-display uppercase text-2xl text-foreground mb-5">Contact us</h3>
 
               {tab === "business" ? <BusinessForm /> : <FranchiseeForm />}
-            </div>
           </div>
         </div>
       </div>
