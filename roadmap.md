@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Update illustrative staff images across Contact, Technology, Careers, Cargo Protection, Customer Portal and industry workplace scenes with red Scorpion uniforms; verify images
+
 - [x] Revert the reference-inspired homepage banner design and keep the earlier banner
 
 - [x] Improve Technology page layout and image clarity; verify desktop and mobile
