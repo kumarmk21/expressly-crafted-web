@@ -10,7 +10,7 @@ import ResumeUploadForm from "@/components/ResumeUploadForm";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
-import fleetDepot from "@/assets/scorpion-fleet-depot.jpg";
+import careersTeam from "@/assets/careers-team.jpg";
 
 const teams = [
   { icon: Truck, title: "Operations & transport", desc: "Keep cargo moving through our branches, hubs and delivery network." },
@@ -57,18 +57,18 @@ const Careers = () => {
       <TopBar /><Navbar />
       <main>
         <section className="relative overflow-hidden">
-          <img src={fleetDepot} alt="Scorpion Express branded fleet at our logistics depot" className="absolute inset-0 h-full w-full object-cover object-center" fetchPriority="high" />
-          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/65 to-foreground/10" />
+          <img src={careersTeam} alt="An illustrative workplace team collaborating in a bright office" width={1536} height={1024} className="absolute inset-0 h-full w-full object-cover object-center" fetchPriority="high" />
+          <div className="absolute inset-0 people-page-overlay" />
           <div className="container relative mx-auto px-4 py-12 md:py-16">
-            <motion.div {...reveal} className="max-w-xl text-primary-foreground">
-              <p className="mb-3 text-sm font-semibold">Careers at Scorpion Express</p>
+            <motion.div {...reveal} className="max-w-xl text-foreground">
+              <p className="mb-3 text-sm font-semibold text-primary">Careers at Scorpion Express</p>
               <h1 className="text-3xl md:text-5xl leading-tight">Build a career that<br className="hidden sm:block" /> moves India.</h1>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-primary-foreground/90">Behind every shipment is a team that makes it happen. Bring your ambition, your ideas and your commitment to our next chapter.</p>
+              <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">Behind every shipment is a team that makes it happen. Bring your ambition, your ideas and your commitment to our next chapter.</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild><a href="#openings">Explore jobs <ArrowDown /></a></Button>
                 <Button variant="secondary" asChild><a href="#resume"><Upload /> Upload your resume</a></Button>
               </div>
-              <p className="mt-6 flex items-center gap-2 text-sm text-primary-foreground/85"><MapPin className="h-4 w-4" /> Pan-India B2B express cargo and logistics since 2000.</p>
+              <p className="mt-6 flex items-center gap-2 text-sm text-muted-foreground"><MapPin className="h-4 w-4 text-primary shrink-0" /> Pan-India B2B express cargo and logistics since 2000.</p>
             </motion.div>
           </div>
         </section>

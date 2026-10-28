@@ -267,6 +267,15 @@ main a[class*="border"], main div[class*="rounded"][class*="border"] { transitio
 }
 
 /* Home and footer use wider content tracks without oversized side gutters. */
+.people-page-overlay {
+  background: linear-gradient(90deg, hsl(var(--background) / .98) 0%, hsl(var(--background) / .94) 29%, hsl(var(--background) / .76) 46%, hsl(var(--background) / .08) 72%);
+}
+@media (max-width: 767px) {
+  .people-page-overlay {
+    background: linear-gradient(90deg, hsl(var(--background) / .96), hsl(var(--background) / .78));
+  }
+}
+
 .leadership-portrait {
   transform-origin: top center;
 }
