@@ -1,8 +1,62 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import fleetDepot from "@/assets/scorpion-fleet-depot.jpg";
+import zoneNorth from "@/assets/zone-north.jpg";
+import zoneSouth from "@/assets/zone-south.jpg";
+import zoneEast from "@/assets/zone-east.jpg";
+import zoneWest from "@/assets/zone-west.jpg";
+import zoneCentral from "@/assets/zone-central.jpg";
 import { MapPin, Building2, Package, Route, Activity, Truck, type LucideIcon } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+
+const ZONES: { name: string; img: string; tag: string }[] = [
+  { name: "North", img: zoneNorth, tag: "Northern corridor" },
+  { name: "West", img: zoneWest, tag: "Western corridor" },
+  { name: "Central", img: zoneCentral, tag: "Central corridor" },
+  { name: "South", img: zoneSouth, tag: "Southern corridor" },
+  { name: "East", img: zoneEast, tag: "Eastern corridor" },
+];
+
+const ZoneStrip = () => {
+  const reducedMotion = useReducedMotion();
+  return (
+    <div className="mb-8 lg:mb-10">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="h-px w-8 bg-primary" />
+        <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Five zones. One network.</h3>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {ZONES.map((z, i) => (
+          <motion.div
+            key={z.name}
+            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: reducedMotion ? 0 : i * 0.08, duration: 0.45 }}
+            whileHover={reducedMotion ? undefined : { y: -5 }}
+            className="group relative overflow-hidden rounded-md border border-border bg-card transition-colors hover:border-primary/60"
+          >
+            <div className="overflow-hidden aspect-square">
+              <img
+                src={z.img}
+                alt={`${z.name} zone of the Scorpion Express network`}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="bg-primary px-3 py-2">
+              <span className="block font-display text-sm text-primary-foreground leading-none">{z.name}</span>
+              <span className="mt-1 block text-[10px] uppercase tracking-wider text-primary-foreground/80 leading-none">
+                {z.tag}
+              </span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const ICONS: Record<string, LucideIcon> = { MapPin, Building2, Package, Route, Truck, Activity };
 
@@ -126,6 +180,8 @@ const NetworkSection = () => {
             Scorpion Express fleet & logistics infrastructure
           </figcaption>
         </motion.figure>
+
+        <ZoneStrip />
 
         {CATEGORIES.map((c) => {
           const items = byCat(c.key);
