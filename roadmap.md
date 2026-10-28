@@ -1,5 +1,8 @@
 # Roadmap
 
+- [x] Replace Careers truck photo with careers-related team imagery
+- [x] Refresh Contact page imagery and presentation; verify both pages
+
 - [x] Improve Careers page imagery, layout and useful job content
 - [x] Make resume upload available without selecting an open job and verify submission
 
