@@ -6,8 +6,17 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import digitalLock from "@/assets/custodian/digital-lock.jpg";
-import evFleetAsset from "@/assets/technology/ev-fleet-real.jpg.asset.json";
-const evFleet = evFleetAsset.url;
+import portalIndia from "@/assets/technology/portal-india.jpg";
+import bookingCounterIndia from "@/assets/technology/booking-counter-india.jpg";
+import gpsHighwayIndia from "@/assets/technology/gps-highway-india.jpg";
+import opsTeamIndia from "@/assets/technology/ops-team-india.jpg";
+import supportDeskIndia from "@/assets/technology/support-desk-india.jpg";
+import controlTowerIndia from "@/assets/technology/control-tower-india.jpg";
+import billingDeskIndia from "@/assets/technology/billing-desk-india.jpg";
+import biddingDriverIndia from "@/assets/technology/bidding-driver-india.jpg";
+import walletBookingIndia from "@/assets/technology/wallet-booking-india.jpg";
+import prqQuoteIndia from "@/assets/technology/prq-quote-india.jpg";
+import evFleetIndia from "@/assets/technology/ev-fleet-india.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const ICONS: Record<string, LucideIcon> = {
@@ -26,10 +35,24 @@ type Tech = {
 };
 
 const SALESFORCE_ID = "2928c658-bfb6-46da-8f9f-4e167c586d8a";
-const WALLET_ID = "d03f2666-3ee3-4836-b0d7-271b33c244a7";
-const PRQ_ID = "fafdb6fc-702f-43e2-8efd-5fcc87e8fa88";
 const DIGITAL_LOCK_ID = "7f0c8650-24bf-4f2a-81e9-89bedf4b5cf2";
 const EV_FLEET_ID = "9e2a4c17-58d3-4b6e-8f21-3c7d90ab51e4";
+
+// Indian-context photography, keyed by card number ("no" from technology_items).
+const LOCAL_IMAGES: Record<string, string> = {
+  "01": portalIndia,
+  "02": bookingCounterIndia,
+  "03": gpsHighwayIndia,
+  "04": opsTeamIndia,
+  "05": supportDeskIndia,
+  "06": controlTowerIndia,
+  "07": billingDeskIndia,
+  "08": walletBookingIndia,
+  "09": prqQuoteIndia,
+  "10": biddingDriverIndia,
+  "11": opsTeamIndia,
+  "12": controlTowerIndia,
+};
 
 const TechnologySection = () => {
   const [items, setItems] = useState<Tech[]>([]);
@@ -44,42 +67,23 @@ const TechnologySection = () => {
         const raw = ((data as any[]) ?? []) as Tech[];
         setItems(
           raw.map((it) => {
+            if (LOCAL_IMAGES[it.no]) {
+              return { ...it, image_url: LOCAL_IMAGES[it.no] };
+            }
             if (it.id === SALESFORCE_ID) {
               return {
                 ...it,
                 title: "Integrated DEPS Management Module",
                 description:
                   "A real-time Corrective and Preventive Action (CAPA) module for operations teams.",
-                image_url:
-                  "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=70",
                 icon: "Warehouse",
               };
             }
-            if (it.id === WALLET_ID) {
-              return {
-                ...it,
-                image_url:
-                  "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=70",
-              };
-            }
-            if (it.id === PRQ_ID) {
-              return {
-                ...it,
-                image_url:
-                  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=70",
-              };
-            }
             if (it.id === DIGITAL_LOCK_ID) {
-              return {
-                ...it,
-                image_url: digitalLock,
-              };
+              return { ...it, image_url: digitalLock };
             }
             if (it.id === EV_FLEET_ID) {
-              return {
-                ...it,
-                image_url: evFleet,
-              };
+              return { ...it, image_url: evFleetIndia };
             }
             return it;
           })
@@ -124,7 +128,7 @@ const TechnologySection = () => {
                 className="group overflow-hidden rounded-md border border-border bg-card hover:border-primary/50 transition-colors flex flex-col"
               >
                 <div className="aspect-[16/9] overflow-hidden bg-muted border-b border-border">
-                  {it.image_url ? <img src={it.image_url} alt={it.title} width={1200} height={675} loading={i < 3 ? "eager" : "lazy"} decoding="async" className="h-full w-full object-cover" /> : <div className="flex h-full items-center justify-center text-primary"><Icon className="h-14 w-14" /></div>}
+                  {it.image_url ? <img src={it.image_url} alt={it.title} width={1216} height={688} loading={i < 3 ? "eager" : "lazy"} decoding="async" className="h-full w-full object-cover" /> : <div className="flex h-full items-center justify-center text-primary"><Icon className="h-14 w-14" /></div>}
                 </div>
                 <div className="p-5 flex flex-col gap-4 flex-1">
                   <div className="flex items-center justify-between">
