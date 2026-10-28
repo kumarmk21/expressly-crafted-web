@@ -259,7 +259,7 @@ const AboutUs = () => {
               <span className="h-px w-10 bg-foreground/30" />
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
             </div>
-            <h2 className="font-display uppercase text-4xl lg:text-5xl leading-[0.95] text-foreground">
+            <h2 className="font-normal text-3xl lg:text-4xl leading-snug text-foreground">
               From 4 offices to a <span className="text-primary">nation-wide</span> network.
             </h2>
           </div>
@@ -492,7 +492,7 @@ const AboutUs = () => {
                 viewport={{ once: true }}
                 className="bg-card border border-border overflow-hidden flex flex-col h-full min-w-0"
               >
-                <div className="relative aspect-[1464/1920] w-full bg-muted overflow-hidden shrink-0">
+                <div className="relative h-[220px] sm:h-[260px] lg:h-[320px] w-full bg-muted overflow-hidden shrink-0">
                   {photo ? (
                     <img
                       src={photo}
