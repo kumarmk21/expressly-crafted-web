@@ -1,14 +1,26 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { services } from "@/data/services";
 import scorpionLogo from "@/assets/scorpion-logo.png";
+
+const quickLinks = [
+  { label: "Home", to: "/" },
+  { label: "About Us", to: "/about" },
+  { label: "Our Network", to: "/network" },
+  { label: "Technology", to: "/technology" },
+  { label: "Cargo Protection", to: "/cargo-protection" },
+  { label: "Careers", to: "/careers" },
+  { label: "Events & News", to: "/events-news" },
+  { label: "Contact Us", to: "/contact" },
+];
 
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className="compact-footer border-t-2 border-primary bg-secondary/40 text-foreground pb-14 md:pb-0">
       <div className="container mx-auto px-4 py-5 lg:py-6">
-        <div className="grid gap-5 md:grid-cols-[0.8fr_1.4fr_1fr] lg:gap-8">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.7fr_1fr_1.2fr_1fr] lg:gap-6">
           <div>
             <img src={scorpionLogo} alt="Scorpion Express" className="h-10 w-auto rounded-sm object-contain" width={585} height={348} loading="lazy" />
             <p className="mt-2 text-xs font-semibold">Custodian First, Carrier Later</p>
@@ -25,7 +37,27 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className="min-w-0 border-t border-border pt-4 md:border-t-0 md:pt-0">
+          <nav aria-label="Quick links" className="min-w-0 border-t border-border pt-4 sm:border-t-0 sm:pt-0">
+            <h4 className="mb-2 text-sm font-semibold">Quick Links</h4>
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
+              {quickLinks.map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} className="hover:text-primary">{label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav aria-label="Our services" className="min-w-0 border-t border-border pt-4 sm:border-t-0 sm:pt-0">
+            <h4 className="mb-2 text-sm font-semibold">Our Services</h4>
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link to={`/services/${service.slug}`} className="hover:text-primary">{service.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="min-w-0 border-t border-border pt-4 lg:border-t-0 lg:pt-0">
             <p className="text-sm font-semibold">SCORPION EXPRESS PRIVATE LIMITED</p>
             <div className="mt-2 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -36,7 +68,7 @@ const Footer = () => {
               <p><span className="font-semibold text-foreground">GSTIN:</span> 27AAJCS7860C1Z5</p>
             </div>
           </div>
-          <div className="min-w-0 border-t border-border pt-4 md:border-t-0 md:pt-0">
+          <div className="min-w-0 border-t border-border pt-4 lg:border-t-0 lg:pt-0">
             <h4 className="mb-2 text-sm font-semibold">Get in touch</h4>
             <div className="space-y-2 text-xs text-muted-foreground">
               <a href="tel:1800221945" className="flex items-center gap-2 hover:text-primary"><Phone className="h-4 w-4 shrink-0 text-primary" /><span>Toll Free: 1800 22 1945</span></a>
