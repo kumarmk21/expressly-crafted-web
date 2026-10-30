@@ -484,12 +484,6 @@ const AboutUs = () => {
                     </div>
                   )}
                   </div>
-                  {/* Keep the mobile credo below the portrait so it never covers the photo. */}
-                  <div className="relative lg:absolute lg:bottom-0 lg:left-0 bg-primary text-primary-foreground px-6 py-4 md:p-8 z-10 lg:max-w-[85%]">
-                    <p className="font-display text-xl md:text-2xl uppercase leading-tight">
-                      Custodian First,<br />Carrier Later
-                    </p>
-                  </div>
                 </div>
 
                 {/* Details */}
