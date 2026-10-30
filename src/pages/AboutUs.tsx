@@ -229,6 +229,26 @@ const AboutUs = () => {
         </div>
       </section>
 
+      {/* Welcome / About Us */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-px w-10 bg-primary" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Us</span>
+            </div>
+            <div className="space-y-5 text-foreground/75 leading-relaxed text-[15px] lg:text-base">
+              <p>
+                Welcome to <strong className="text-foreground">Scorpion Express Pvt. Ltd.</strong>, the Pioneer of the Scorpion Group's Endeavors. As the maiden venture of our esteemed group, Scorpion Express stands as a testament to our enduring legacy in the Express Cargo domain. Our hallmark lies in our excellence and diverse service range, catering seamlessly to both B2B and B2C sectors nationwide. Our core mission? To ascend as India's premier Freight and Logistics Service Provider, setting benchmarks in quality and innovation.
+              </p>
+              <p>
+                Nationwide, Scorpion Express has carved out a significant footprint, offering both asset-based and third-party logistics solutions that resonate with our commitment to versatility and client satisfaction. Each business sector presents unique challenges and logistics demands; recognizing this, we are adept at crafting specialized support and tailored solutions. These are not just designed to meet, but exceed your supply chain goals, ensuring optimal outcomes for your business. Join us at Scorpion Express, where we don't just meet expectations—we redefine them.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Company Showcase Image */}
       <section className="bg-white">
         <div className="container mx-auto px-4 -mt-2">
@@ -267,18 +287,7 @@ const AboutUs = () => {
               </div>
               <div className="lg:col-span-6 border-t border-border pt-6 lg:border-t-0 lg:pt-0 lg:border-l lg:border-border lg:pl-12 space-y-5 text-foreground/75 leading-relaxed text-[15px]">
                 <p>
-                  Established in <strong>2000</strong> by <strong>Mr. J P N Singh</strong>, the Scorpion Group set out to
-                  redefine industry benchmarks in Express Cargo. Its flagship venture, <strong>Scorpion Express</strong>,
-                  grew rapidly into a trusted pan-India logistics partner.
-                </p>
-                <p>
-                  In <strong>2005</strong>, the group expanded into specialized pharmaceutical packaging with{" "}
-                  <strong>Scorpion Containers Pvt. Ltd.</strong>, operating 9 manufacturing units across 5 states and
-                  international trading offices in China and Korea.
-                </p>
-                <p>
-                  Today, Scorpion Express operates across India with both asset-based and non-asset 3PL solutions —
-                  tailored for B2B, B2C and B2D sectors, and engineered to exceed every supply chain goal.
+                  Established in the year <strong>2000</strong> by <strong>Mr. J P N Singh</strong>, the Scorpion Group embarked on a mission to redefine industry benchmarks and pioneer innovations. Its principal entity, <strong>Scorpion Express</strong>, swiftly experienced significant growth, securing a widespread presence across the nation. Shortly thereafter, the group identified the essential demand for specialized packaging within the pharmaceutical sector, leading to the inception of <strong>Scorpion Containers Pvt. Ltd.</strong> in 2005. This new venture prioritized the establishment of manufacturing facilities focused on research and development, delivering tailored packaging solutions that cater to the distinct requirements of the industry. Our odyssey commenced with these initial endeavors, as we persist in enhancing and broadening our heritage.
                 </p>
               </div>
             </div>
