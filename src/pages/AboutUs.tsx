@@ -274,22 +274,57 @@ const AboutUs = () => {
       {/* Intro / Story */}
       <section className="py-20 lg:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="border border-border bg-muted/30 p-6 lg:p-10">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-              <div className="lg:col-span-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="h-px w-10 bg-foreground/30" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
-                </div>
-                <h2 className="font-display about-story-heading text-3xl lg:text-[44px] xl:text-5xl leading-snug text-foreground text-balance">
-                  From 4 offices to a <span className="text-primary whitespace-nowrap">nationwide</span> network.
-                </h2>
-              </div>
-              <div className="lg:col-span-6 border-t border-border pt-6 lg:border-t-0 lg:pt-0 lg:border-l lg:border-border lg:pl-12 space-y-5 text-foreground/75 leading-relaxed text-[15px]">
-                <p>
-                  Established in the year <strong>2000</strong> by <strong>Mr. J P N Singh</strong>, the Scorpion Group embarked on a mission to redefine industry benchmarks and pioneer innovations. Its principal entity, <strong>Scorpion Express</strong>, swiftly experienced significant growth, securing a widespread presence across the nation. Shortly thereafter, the group identified the essential demand for specialized packaging within the pharmaceutical sector, leading to the inception of <strong>Scorpion Containers Pvt. Ltd.</strong> in 2005. This new venture prioritized the establishment of manufacturing facilities focused on research and development, delivering tailored packaging solutions that cater to the distinct requirements of the industry. Our odyssey commenced with these initial endeavors, as we persist in enhancing and broadening our heritage.
-                </p>
-              </div>
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <span className="h-px w-10 bg-foreground/30" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-foreground/70">Our Story</span>
+              <span className="h-px w-10 bg-foreground/30" />
+            </div>
+            <h2 className="font-display uppercase text-4xl lg:text-5xl text-foreground leading-tight">
+              A Journey of <span className="text-primary">Trust</span>
+            </h2>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <div className="relative border-l-2 border-primary/30 pl-8 lg:pl-12 space-y-10">
+              {[
+                {
+                  year: "2000",
+                  title: "The Beginning",
+                  text: "Established in the year 2000 by Mr. J P N Singh, the Scorpion Group embarked on a mission to redefine industry benchmarks and pioneer innovations.",
+                },
+                {
+                  year: "Growth",
+                  title: "Scorpion Express Expands",
+                  text: "Its principal entity, Scorpion Express, swiftly experienced significant growth, securing a widespread presence across the nation.",
+                },
+                {
+                  year: "2005",
+                  title: "Scorpion Containers is Born",
+                  text: "The group identified the essential demand for specialized packaging within the pharmaceutical sector, leading to the inception of Scorpion Containers Pvt. Ltd. in 2005 — with manufacturing facilities focused on research and development, delivering tailored packaging solutions for the industry.",
+                },
+                {
+                  year: "Today",
+                  title: "The Journey Continues",
+                  text: "Our odyssey commenced with these initial endeavors, as we persist in enhancing and broadening our heritage.",
+                },
+              ].map((milestone, i) => (
+                <motion.div
+                  key={milestone.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="relative"
+                >
+                  <span className="absolute -left-[41px] lg:-left-[57px] top-1 h-4 w-4 rounded-full bg-primary border-4 border-white shadow" />
+                  <div className="bg-muted/30 border border-border p-6 lg:p-8 hover:border-primary/40 transition-colors">
+                    <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-2">{milestone.year}</div>
+                    <h3 className="font-display uppercase text-xl lg:text-2xl text-foreground mb-3">{milestone.title}</h3>
+                    <p className="text-foreground/75 leading-relaxed text-[15px]">{milestone.text}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
