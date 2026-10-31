@@ -1,0 +1,4 @@
+CREATE OR REPLACE FUNCTION public.assign_verified_hr_role() RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path=public AS $$ BEGIN IF lower(NEW.email)='hr@scorpiongroup.in' AND NEW.email_confirmed_at IS NOT NULL THEN INSERT INTO public.user_roles(user_id,role) VALUES(NEW.id,'hr'::public.app_role) ON CONFLICT (user_id,role) DO NOTHING; END IF; RETURN NEW; END; $$;
+REVOKE ALL ON FUNCTION public.assign_verified_hr_role() FROM PUBLIC, anon, authenticated;
+CREATE TRIGGER assign_verified_hr_role AFTER INSERT OR UPDATE OF email_confirmed_at ON auth.users FOR EACH ROW EXECUTE FUNCTION public.assign_verified_hr_role();
+INSERT INTO public.user_roles(user_id,role) SELECT id,'hr'::public.app_role FROM auth.users WHERE lower(email)='hr@scorpiongroup.in' AND email_confirmed_at IS NOT NULL ON CONFLICT (user_id,role) DO NOTHING;

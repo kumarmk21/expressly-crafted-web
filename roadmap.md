@@ -1,6 +1,7 @@
 # Roadmap
 
-- [ ] Add restricted HR sign-in and vacancy management, provision the requested account, and verify real edits
+- [x] Add restricted HR sign-in and complete vacancy editor; register the requested account and test permissions and updates
+- [ ] Verify signed-in HR vacancy edits end-to-end: waiting for HR email confirmation
 
 - [x] Set the About story headline in Archivo and remove the "offices" letter gap; verify all widths
 

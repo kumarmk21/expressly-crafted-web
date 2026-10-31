@@ -1,5 +1,7 @@
 # Project Rules
 
+- HR uses a dedicated lazy-loaded page and the shared vacancy editor; server-enforced HR roles allow only job management, assigned on confirmation of the designated HR email, never through browser state.
+
 - Public enquiry consent is persisted in Supabase and enforced by database triggers, so consent cannot be bypassed from the browser.
 - Home-page shipment tracking lives in a dedicated top-of-page component because tracking is the primary customer task.
 - Pages other than Home load on demand (React.lazy) to keep the mobile first load small.

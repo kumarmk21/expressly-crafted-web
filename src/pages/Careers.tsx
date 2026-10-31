@@ -67,6 +67,7 @@ const Careers = () => {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild><a href="#openings">Explore jobs <ArrowDown /></a></Button>
                 <Button variant="secondary" asChild><a href="#resume"><Upload /> Upload your resume</a></Button>
+                <Button variant="outline" asChild><Link to="/hr"><Briefcase /> HR sign in</Link></Button>
               </div>
               <p className="mt-6 flex items-center gap-2 text-sm text-muted-foreground"><MapPin className="h-4 w-4 text-primary shrink-0" /> Pan-India B2B express cargo and logistics since 2000.</p>
             </motion.div>

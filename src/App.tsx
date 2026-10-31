@@ -19,6 +19,7 @@ const Technology = lazy(() => import("./pages/Technology"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const Careers = lazy(() => import("./pages/Careers"));
+const HR = lazy(() => import("./pages/HR"));
 const CustomerPortal = lazy(() => import("./pages/CustomerPortal"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const CargoProtection = lazy(() => import("./pages/CargoProtection"));
@@ -59,6 +60,7 @@ const App = () => (
               <Route path="/services/:slug" element={<ServiceDetail />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/careers" element={<Careers />} />
+              <Route path="/hr" element={<HR />} />
               <Route path="/customer-portal" element={<CustomerPortal />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/network" element={<Network />} />
