@@ -1,0 +1,2 @@
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.job_openings TO authenticated;
+CREATE POLICY "HR manage job openings" ON public.job_openings FOR ALL TO authenticated USING (public.has_role(auth.uid(), 'hr'::public.app_role)) WITH CHECK (public.has_role(auth.uid(), 'hr'::public.app_role));
