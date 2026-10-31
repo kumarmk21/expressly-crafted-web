@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Add restricted HR sign-in and vacancy management, provision the requested account, and verify real edits
+
 - [x] Set the About story headline in Archivo and remove the "offices" letter gap; verify all widths
 
 - [x] Join the About "Our Story" headline and story paragraphs into one bordered panel; verify desktop/mobile
