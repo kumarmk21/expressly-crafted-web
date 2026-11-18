@@ -249,9 +249,9 @@ const AboutUs = () => {
             transition={{ duration: 0.55 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-5">
               <span className="h-px w-10 bg-primary" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Us</span>
+              <span className="inline-block bg-primary text-primary-foreground text-sm font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-sm shadow-[0_6px_16px_-6px_hsl(var(--primary)/0.6)]">About Us</span>
             </div>
             <div className="relative overflow-hidden border border-primary/25 border-l-8 border-l-primary bg-gradient-to-br from-primary/[0.07] via-card to-card rounded-lg p-7 lg:p-12 space-y-5 text-foreground/80 leading-relaxed text-base lg:text-lg shadow-[0_20px_50px_-20px_hsl(var(--primary)/0.35)]">
               <span className="pointer-events-none absolute -top-10 -right-10 h-40 w-40 rounded-full bg-primary/[0.06]" aria-hidden="true" />
