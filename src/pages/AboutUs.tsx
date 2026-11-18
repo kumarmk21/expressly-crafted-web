@@ -253,7 +253,10 @@ const AboutUs = () => {
               <span className="h-px w-10 bg-primary" />
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Us</span>
             </div>
-            <div className="relative border border-border border-l-4 border-l-primary bg-muted/30 rounded-md p-6 lg:p-10 space-y-5 text-foreground/75 leading-relaxed text-[15px] lg:text-base shadow-sm">
+            <div className="relative overflow-hidden border border-primary/25 border-l-8 border-l-primary bg-gradient-to-br from-primary/[0.07] via-card to-card rounded-lg p-7 lg:p-12 space-y-5 text-foreground/80 leading-relaxed text-base lg:text-lg shadow-[0_20px_50px_-20px_hsl(var(--primary)/0.35)]">
+              <span className="pointer-events-none absolute -top-10 -right-10 h-40 w-40 rounded-full bg-primary/[0.06]" aria-hidden="true" />
+              <span className="pointer-events-none absolute -bottom-14 -left-14 h-48 w-48 rounded-full bg-primary/[0.05]" aria-hidden="true" />
+              <span className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-[0.25em] px-4 py-1.5 rounded-bl-lg" aria-hidden="true">Since 2000</span>
               <p>
                 Welcome to <strong className="text-foreground">Scorpion Express Pvt. Ltd.</strong>, the Pioneer of the Scorpion Group's Endeavors. As the maiden venture of our esteemed group, Scorpion Express stands as a testament to our enduring legacy in the Express Cargo domain. Our hallmark lies in our excellence and diverse service range, catering seamlessly to both B2B and B2C sectors nationwide. Our core mission? To ascend as India's premier Freight and Logistics Service Provider, setting benchmarks in quality and innovation.
               </p>
