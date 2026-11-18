@@ -199,7 +199,12 @@ const AboutUs = () => {
       {/* Hero — light, minimal red */}
       <section className="relative bg-white border-b border-border overflow-hidden">
         <div className="container mx-auto px-4 py-12 lg:py-16 relative grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="lg:col-span-7"
+          >
             <div className="flex items-center gap-3 mb-6">
               <span className="h-px w-12 bg-primary" />
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Scorpion Express</span>
@@ -211,8 +216,13 @@ const AboutUs = () => {
               The driving force behind the Scorpion Group's ventures — founded on
               one unwavering principle: <strong className="text-foreground font-bold">Custodian First, Carrier Later.</strong>
             </p>
-          </div>
-          <div className="lg:col-span-5 relative">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+            className="lg:col-span-5 relative"
+          >
             <div className="absolute -top-3 -left-3 h-20 w-20 border-l-4 border-t-4 border-primary" aria-hidden="true" />
             <img
               src={aboutHero}
@@ -225,19 +235,25 @@ const AboutUs = () => {
             <div className="absolute bottom-0 left-0 bg-primary px-5 py-3 text-primary-foreground font-bold uppercase text-xs tracking-widest">
               Delivering across India since 2000
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Welcome / About Us */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="max-w-4xl mx-auto"
+          >
             <div className="flex items-center gap-3 mb-4">
               <span className="h-px w-10 bg-primary" />
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">About Us</span>
             </div>
-            <div className="space-y-5 text-foreground/75 leading-relaxed text-[15px] lg:text-base">
+            <div className="relative border border-border border-l-4 border-l-primary bg-muted/30 rounded-md p-6 lg:p-10 space-y-5 text-foreground/75 leading-relaxed text-[15px] lg:text-base shadow-sm">
               <p>
                 Welcome to <strong className="text-foreground">Scorpion Express Pvt. Ltd.</strong>, the Pioneer of the Scorpion Group's Endeavors. As the maiden venture of our esteemed group, Scorpion Express stands as a testament to our enduring legacy in the Express Cargo domain. Our hallmark lies in our excellence and diverse service range, catering seamlessly to both B2B and B2C sectors nationwide. Our core mission? To ascend as India's premier Freight and Logistics Service Provider, setting benchmarks in quality and innovation.
               </p>
@@ -245,7 +261,7 @@ const AboutUs = () => {
                 Nationwide, Scorpion Express has carved out a significant footprint, offering both asset-based and third-party logistics solutions that resonate with our commitment to versatility and client satisfaction. Each business sector presents unique challenges and logistics demands; recognizing this, we are adept at crafting specialized support and tailored solutions. These are not just designed to meet, but exceed your supply chain goals, ensuring optimal outcomes for your business. Join us at Scorpion Express, where we don't just meet expectations—we redefine them.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -317,8 +333,8 @@ const AboutUs = () => {
                   transition={{ delay: i * 0.1 }}
                   className="relative"
                 >
-                  <span className="absolute -left-[41px] lg:-left-[57px] top-1 h-4 w-4 rounded-full bg-primary border-4 border-white shadow" />
-                  <div className="bg-muted/30 border border-border p-6 lg:p-8 hover:border-primary/40 transition-colors">
+                  <span className="absolute -left-[41px] lg:-left-[57px] top-1 h-4 w-4 rounded-full bg-primary border-4 border-white shadow ring-4 ring-primary/15" />
+                  <div className="bg-card border border-border rounded-md p-6 lg:p-8 shadow-sm hover:border-primary/50 hover:shadow-[0_14px_36px_-16px_hsl(var(--primary)/0.35)] hover:-translate-y-1 transition-all">
                     <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-2">{milestone.year}</div>
                     <h3 className="font-display uppercase text-xl lg:text-2xl text-foreground mb-3">{milestone.title}</h3>
                     <p className="text-foreground/75 leading-relaxed text-[15px]">{milestone.text}</p>
@@ -350,11 +366,11 @@ const AboutUs = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative bg-white border border-border p-8 lg:p-10"
+              className="relative bg-card border border-border rounded-md p-8 lg:p-10 shadow-sm hover:shadow-[0_18px_44px_-18px_hsl(var(--primary)/0.4)] hover:border-primary/50 transition-all"
             >
-              <div className="absolute top-0 left-0 h-1 w-16 bg-primary" />
+              <div className="absolute top-0 left-0 h-1 w-16 bg-primary rounded-tl-md" />
               <div className="flex items-center gap-4 mb-5">
-                <div className="h-12 w-12 bg-foreground/5 text-foreground flex items-center justify-center">
+                <div className="h-12 w-12 rounded-md bg-primary text-primary-foreground flex items-center justify-center shadow-[0_8px_20px_-8px_hsl(var(--primary)/0.6)]">
                   <Eye className="h-6 w-6" />
                 </div>
                 <h3 className="font-display uppercase text-2xl text-foreground">Our Vision</h3>
@@ -373,11 +389,11 @@ const AboutUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="relative bg-white border border-border p-8 lg:p-10"
+              className="relative bg-card border border-border rounded-md p-8 lg:p-10 shadow-sm hover:shadow-[0_18px_44px_-18px_hsl(var(--primary)/0.4)] hover:border-primary/50 transition-all"
             >
-              <div className="absolute top-0 left-0 h-1 w-16 bg-primary" />
+              <div className="absolute top-0 left-0 h-1 w-16 bg-primary rounded-tl-md" />
               <div className="flex items-center gap-4 mb-5">
-                <div className="h-12 w-12 bg-foreground/5 text-foreground flex items-center justify-center">
+                <div className="h-12 w-12 rounded-md bg-primary text-primary-foreground flex items-center justify-center shadow-[0_8px_20px_-8px_hsl(var(--primary)/0.6)]">
                   <Target className="h-6 w-6" />
                 </div>
                 <h3 className="font-display uppercase text-2xl text-foreground">Our Mission</h3>
@@ -394,10 +410,12 @@ const AboutUs = () => {
           </div>
 
           {/* Core values strip */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border mt-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-md overflow-hidden mt-8">
             {values.map(({ icon: Icon, label, desc }) => (
-              <div key={label} className="bg-white p-6 transition-colors">
-                <Icon className="h-6 w-6 text-foreground/80 mb-3" />
+              <div key={label} className="group bg-card p-6 transition-colors hover:bg-primary/[0.05]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary mb-3 transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon className="h-5 w-5" />
+                </span>
                 <div className="font-bold uppercase tracking-wide text-sm text-foreground">{label}</div>
                 <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{desc}</p>
               </div>
@@ -464,7 +482,7 @@ const AboutUs = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative flex flex-col lg:flex-row bg-muted mb-16 shadow-xl border border-border overflow-hidden"
+                className="relative flex flex-col lg:flex-row bg-card mb-16 shadow-xl border border-border overflow-hidden rounded-md"
               >
                 {/* Portrait */}
                 <div className="lg:w-5/12 relative shrink-0">
@@ -532,7 +550,7 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-card border border-border overflow-hidden flex flex-col h-full min-w-0"
+                className="group bg-card border border-border rounded-md overflow-hidden flex flex-col h-full min-w-0 shadow-sm hover:shadow-[0_16px_40px_-16px_hsl(var(--primary)/0.35)] hover:border-primary/50 hover:-translate-y-1 transition-all"
               >
                 <div className="relative w-full aspect-[9/10] bg-muted overflow-hidden shrink-0">
                   {photo ? (
@@ -554,8 +572,8 @@ const AboutUs = () => {
                     </div>
                   )}
                 </div>
-                <div className="p-5 border-t border-border flex-1 flex flex-col justify-start min-h-[104px]">
-                  <h3 className="font-bold uppercase tracking-wide text-foreground text-sm">{leader.name}</h3>
+                <div className="p-5 border-t-2 border-t-primary/60 flex-1 flex flex-col justify-start min-h-[104px]">
+                  <h3 className="font-bold uppercase tracking-wide text-foreground text-sm group-hover:text-primary transition-colors">{leader.name}</h3>
                   <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{leader.role}</p>
                 </div>
               </motion.div>
