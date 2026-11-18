@@ -1,4 +1,4 @@
-import { Truck, Plane, Snowflake, Warehouse, Recycle, PackageCheck, Stethoscope } from "lucide-react";
+import { Truck, Plane, Snowflake, Warehouse, Flame, PackageCheck, Stethoscope } from "lucide-react";
 import serviceExpress from "@/assets/services/express.jpg";
 import serviceAir from "@/assets/services/air.jpg";
 import serviceColdchain from "@/assets/services/coldchain.jpg";
@@ -205,11 +205,11 @@ export const services: ServiceItem[] = [
   {
     no: "07",
     slug: "cleantech",
-    icon: Recycle,
+    icon: Flame,
     title: "Cleantech Solutions",
     desc: "Compliant, secure and environmentally responsible disposal solutions for expired pharmaceutical products, food inventory and regulated commercial waste.",
     image: serviceCleantech,
-    iconColor: "bg-gradient-to-br from-emerald-500 to-green-700",
+    iconColor: "bg-gradient-to-br from-red-500 to-red-700",
     tagline: "Safe, compliant disposal solutions for expired pharmaceutical and food products.",
     content: [
       "Our Cleantech Solutions division helps pharmaceutical, FMCG and food businesses manage end-of-life and expired inventory through a fully controlled, transparent and regulation-compliant disposal ecosystem. From batch-level pickups to large-scale destruction programmes, every movement is documented, monitored and reconciled to ensure complete accountability.",
