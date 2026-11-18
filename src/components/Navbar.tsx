@@ -16,6 +16,7 @@ import {
   FileText,
   ArrowUpRight,
   Stethoscope,
+  Shirt,
 } from "lucide-react";
 import scorpionLogo from "@/assets/scorpion-logo.png";
 import { useQuote } from "@/context/QuoteContext";
@@ -47,6 +48,7 @@ const navLinks = [
       { label: "Electronics", to: "/industries/electronics", icon: PackageCheck, desc: "Secure high-value devices" },
       { label: "FMCG", to: "/industries/fmcg", icon: Warehouse, desc: "High-volume distribution" },
       { label: "E-commerce", to: "/industries/ecommerce", icon: PackageCheck, desc: "Line-haul & returns" },
+      { label: "Merchandising & Garments", to: "/industries/garments", icon: Shirt, desc: "Apparel factory to store" },
     ],
   },
   { label: "Network & Infra", href: "/network" },

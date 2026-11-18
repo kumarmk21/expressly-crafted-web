@@ -3,6 +3,7 @@ import wms from "@/assets/services/wms.jpg";
 import autoParts from "@/assets/industries/auto-parts.jpg";
 import electronics from "@/assets/industries/electronics.jpg";
 import ecommerce from "@/assets/industries/ecommerce.jpg";
+import garments from "@/assets/industries/garments.jpg";
 
 export type Industry = {
   slug: string;
@@ -185,6 +186,41 @@ export const industries: Industry[] = [
     services: [
       { label: "Express", to: "/services/express" },
       { label: "Air Express", to: "/services/air" },
+    ],
+  },
+  {
+    slug: "garments",
+    name: "Merchandising & Garments",
+    tagline: "Careful, on-time movement of apparel from factory to store.",
+    image: garments,
+    intro:
+      "Garments and fashion merchandise are seasonal, size-sensitive and unforgiving of delays. We move hanging and boxed apparel from factories and warehouses to distributors and retail stores with clean handling and store-ready delivery.",
+    challenges: [
+      "Seasonal launches with fixed store dates",
+      "Creasing and damage to hanging garments",
+      "Size, style and colour-wise sorting at delivery",
+    ],
+    howWeHandle: [
+      "Hanging-garment and flat-pack handling as per product need",
+      "Style, size and colour-wise segregation checked at pickup",
+      "Scheduled deliveries matched to store and launch dates",
+      "Clean, dry vehicles with no mixing with odorous cargo",
+    ],
+    example: {
+      title: "Festive collection launch, Tirupur factory to North India stores",
+      situation:
+        "An apparel brand needed its festive collection moved from Tirupur to 25 retail stores across Delhi NCR, Punjab and Rajasthan within a fixed launch week.",
+      approach: [
+        "Cartons segregated style-wise and scanned at the factory dock",
+        "Express line-haul to regional hubs, then scheduled store deliveries",
+        "Delivery appointments booked with each store in advance",
+      ],
+      outcome: "All stores received their complete, sorted stock before launch day, with carton-level tracking throughout.",
+    },
+    services: [
+      { label: "Express", to: "/services/express" },
+      { label: "Part Load (LTL)", to: "/services/ltl" },
+      { label: "Warehousing", to: "/services/wms" },
     ],
   },
 ];
