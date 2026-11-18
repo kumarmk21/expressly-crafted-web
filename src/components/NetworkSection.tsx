@@ -69,7 +69,7 @@ const StatGrid = ({
       <span className="h-px w-8 bg-primary" />
       <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-primary">{title}</h3>
     </div>
-    <div className={`grid grid-cols-2 ${cols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-3`}>
+    <div className={`grid grid-cols-2 ${cols === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-3 lg:gap-4`}>
       {items.map((s, i) => {
         const Icon = s.icon ? ICONS[s.icon] : undefined;
         return (
@@ -79,15 +79,25 @@ const StatGrid = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: reducedMotion ? 0 : i * 0.07, duration: 0.45 }}
-            whileHover={reducedMotion ? undefined : { y: -4 }}
-            className="relative overflow-hidden rounded-md border border-border bg-card p-4 lg:p-5 flex flex-col gap-3 hover:border-primary/50 hover:bg-primary/5 transition-colors"
+            whileHover={reducedMotion ? undefined : { y: -6 }}
+            className="group relative overflow-hidden rounded-lg border border-border bg-gradient-to-br from-card to-primary/[0.04] p-4 lg:p-6 flex flex-col gap-3 hover:border-primary/60 hover:shadow-[0_16px_40px_-16px_hsl(var(--primary)/0.35)] transition-all"
           >
-            <span className="absolute inset-x-0 top-0 h-0.5 bg-primary/50" aria-hidden="true" />
-            {Icon && <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-primary/10 text-primary"><Icon className="h-5 w-5" /></span>}
-            <span className="font-display text-3xl lg:text-4xl text-foreground leading-none">
+            <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-primary/70 to-transparent" aria-hidden="true" />
+            {Icon && (
+              <Icon
+                className="pointer-events-none absolute -bottom-4 -right-4 h-24 w-24 text-primary/[0.06] transition-transform duration-500 group-hover:scale-110 group-hover:text-primary/10"
+                aria-hidden="true"
+              />
+            )}
+            {Icon && (
+              <span className="flex h-11 w-11 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-[0_8px_20px_-8px_hsl(var(--primary)/0.6)]">
+                <Icon className="h-5 w-5" />
+              </span>
+            )}
+            <span className="font-display text-3xl lg:text-[2.75rem] text-foreground leading-none tracking-tight">
               {s.value}
             </span>
-            <span className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">
+            <span className="text-[11px] lg:text-xs uppercase tracking-[0.15em] text-muted-foreground font-bold">
               {s.label}
             </span>
           </motion.div>
