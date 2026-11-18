@@ -8,8 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 
-type Job = { id: string; title: string; department: string; location: string; job_type: string; experience: string; description: string; is_active: boolean; display_order: number };
-const empty = { title: "", department: "", location: "", job_type: "Full-time", experience: "", description: "", display_order: 0, is_active: true };
+type Job = { id: string; title: string; department: string; location: string; job_type: string; experience: string; description: string; short_description: string | null; is_active: boolean; display_order: number };
+const empty = { title: "", department: "", location: "", job_type: "Full-time", experience: "", description: "", short_description: "", display_order: 0, is_active: true };
 export default function JobsPanel() {
   const [rows, setRows] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
@@ -50,6 +50,7 @@ export default function JobsPanel() {
         {([['title', 'Job title'], ['department', 'Department'], ['location', 'Location'], ['job_type', 'Employment type'], ['experience', 'Experience']] as const).map(([key, label]) =>
           <div key={key} className="space-y-2"><Label htmlFor={`job-${key}`}>{label}</Label><Input id={`job-${key}`} required={key === 'title'} value={form[key]} onChange={e => setForm({ ...form, [key]: e.target.value })} /></div>)}
         <div className="space-y-2"><Label htmlFor="job-order">Display order</Label><Input id="job-order" type="number" value={form.display_order} onChange={e => setForm({ ...form, display_order: Number(e.target.value) })} /></div>
+        <div className="sm:col-span-2 space-y-2"><Label htmlFor="job-short-description">Small description (shown on the Careers page)</Label><Textarea id="job-short-description" rows={2} value={form.short_description} onChange={e => setForm({ ...form, short_description: e.target.value })} /></div>
         <div className="sm:col-span-2 space-y-2"><Label htmlFor="job-description">Job description</Label><Textarea id="job-description" rows={5} value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} /></div>
       </div>
       <div className="flex items-center gap-3"><Switch id="job-published" checked={form.is_active} onCheckedChange={checked => setForm({ ...form, is_active: checked })} /><Label htmlFor="job-published">Published on Careers</Label></div>
@@ -59,7 +60,8 @@ export default function JobsPanel() {
     {loading ? <Loader2 aria-label="Loading vacancies" className="animate-spin" /> : failed ? <p role="alert" className="text-destructive">Vacancies could not be loaded. Please try again.</p> : rows.length === 0 ? <p className="text-muted-foreground">No vacancies yet.</p> : <div className="grid md:grid-cols-2 gap-4">{rows.map(row => <article key={row.id} className="border border-border rounded-md bg-card p-5">
       <div className="flex items-start justify-between gap-3"><h3 className="text-lg font-semibold break-words">{row.title}</h3><span className={row.is_active ? "text-primary text-sm shrink-0" : "text-muted-foreground text-sm shrink-0"}>{row.is_active ? "Published" : "Closed"}</span></div>
       <p className="text-sm text-muted-foreground mt-2">{[row.department, row.location, row.job_type, row.experience].filter(Boolean).join(" · ")}</p>
-      <p className="mt-3 text-sm whitespace-pre-line break-words line-clamp-3">{row.description}</p>
+      <p className="mt-3 text-sm break-words line-clamp-2">{row.short_description || row.description}</p>
+      {row.description && row.description !== row.short_description && <p className="mt-2 text-sm text-muted-foreground whitespace-pre-line break-words line-clamp-3">{row.description}</p>}
       <div className="mt-4 flex gap-2"><Button variant="outline" size="sm" onClick={() => { const { id, ...values } = row; setEditing(id); setForm(values); }}><Pencil /> Edit</Button><Button variant="ghost" size="sm" aria-label={`Delete ${row.title}`} onClick={() => remove(row.id)}><Trash2 className="text-destructive" /> Delete</Button></div>
     </article>)}</div>}
   </div>;

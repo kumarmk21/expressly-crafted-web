@@ -17,7 +17,7 @@ const teams = [
   { icon: Users, title: "Sales & customer support", desc: "Build business relationships and help customers with their shipments." },
   { icon: ShieldCheck, title: "Technology & support", desc: "Bring problem-solving, coordination and care to everyday logistics." },
 ];
-type Job = { id: string; title: string; department: string; location: string; job_type: string; experience: string; description: string };
+type Job = { id: string; title: string; department: string; location: string; job_type: string; experience: string; description: string; short_description: string | null };
 
 const Careers = () => {
   const [query, setQuery] = useState("");
@@ -99,7 +99,8 @@ const Careers = () => {
               {!loading && loadError && <div className="text-center py-8"><p className="text-muted-foreground mb-3">We couldn’t load the openings. You can still submit your resume below.</p><Button variant="outline" onClick={() => setReload(n => n + 1)}>Try again</Button></div>}
               {!loading && !loadError && filtered.map(job => <article key={job.id} className="rounded-md bg-card border border-border p-5 hover:border-primary/50 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between gap-4"><div className="min-w-0"><h3 className="text-lg font-semibold">{job.title}</h3><div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-sm text-muted-foreground">{job.location && <span className="inline-flex items-center gap-1.5"><MapPin className="h-4 w-4" />{job.location}</span>}{job.job_type && <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4" />{job.job_type}</span>}{job.department && <span className="text-primary">{job.department}</span>}{job.experience && <span>{job.experience}</span>}</div></div><Button onClick={() => setApplyJob(job)} className="self-start shrink-0">Apply <ArrowUpRight /></Button></div>
-                {job.description && <p className="mt-3 text-sm text-muted-foreground whitespace-pre-line leading-relaxed">{job.description}</p>}
+                {job.short_description && <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{job.short_description}</p>}
+                {job.description && job.description !== job.short_description && <details className="mt-2 group"><summary className="cursor-pointer list-none inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline [&::-webkit-details-marker]:hidden">Full job details <ArrowDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" /></summary><p className="mt-2 text-sm text-muted-foreground whitespace-pre-line leading-relaxed">{job.description}</p></details>}
               </article>)}
               {!loading && !loadError && filtered.length === 0 && <div className="py-8 text-center"><Briefcase className="h-8 w-8 text-primary mx-auto mb-3" /><h3 className="text-lg font-semibold">{jobs.length === 0 ? "Your next opportunity starts here." : "No matching roles"}</h3><p className="text-sm text-muted-foreground mt-2">{jobs.length === 0 ? "No openings are listed right now. Share your resume with our HR team below." : "Try another city or department, or send us your resume."}</p>{jobs.length > 0 && <Button variant="link" onClick={() => { setQuery(""); setDept("All"); setLoc("All"); }}>Clear filters</Button>}</div>}
             </div>
