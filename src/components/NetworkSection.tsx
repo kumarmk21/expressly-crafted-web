@@ -9,12 +9,12 @@ import zoneCentral from "@/assets/zone-central.jpg";
 import { MapPin, Building2, Package, Route, Activity, Truck, type LucideIcon } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
-const ZONES: { name: string; img: string; tag: string }[] = [
-  { name: "North", img: zoneNorth, tag: "Northern corridor" },
-  { name: "West", img: zoneWest, tag: "Western corridor" },
-  { name: "Central", img: zoneCentral, tag: "Central corridor" },
-  { name: "South", img: zoneSouth, tag: "Southern corridor" },
-  { name: "East", img: zoneEast, tag: "Eastern corridor" },
+const ZONES: { name: string; img: string }[] = [
+  { name: "North", img: zoneNorth },
+  { name: "West", img: zoneWest },
+  { name: "Central", img: zoneCentral },
+  { name: "South", img: zoneSouth },
+  { name: "East", img: zoneEast },
 ];
 
 const ZoneStrip = () => {
@@ -47,9 +47,6 @@ const ZoneStrip = () => {
             </div>
             <div className="bg-primary px-3 py-2">
               <span className="block font-display text-sm text-primary-foreground leading-none">{z.name}</span>
-              <span className="mt-1 block text-[10px] uppercase tracking-wider text-primary-foreground/80 leading-none">
-                {z.tag}
-              </span>
             </div>
           </motion.div>
         ))}
