@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import FraudAlertPopup from "@/components/FraudAlertPopup";
 import HomeShipmentTracker from "@/components/HomeShipmentTracker";
-import BirthdayBanner from "@/components/BirthdayBanner";
+import BirthdayPopup from "@/components/BirthdayPopup";
 
 const Index = () => {
   return (
@@ -26,7 +26,6 @@ const Index = () => {
       <main className="home-page">
         <HomeShipmentTracker />
         <HeroSection />
-        <BirthdayBanner />
         <ProofStrip />
         <CustodianSection />
         <AboutSection />
@@ -37,6 +36,7 @@ const Index = () => {
       </main>
       <Footer />
       <FraudAlertPopup />
+      <BirthdayPopup />
 
     </div>
   );
