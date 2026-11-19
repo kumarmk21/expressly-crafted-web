@@ -27,6 +27,7 @@ import {
   Newspaper,
   Loader2,
   Sparkles,
+  Megaphone,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -67,6 +68,50 @@ type EmpModule = {
 };
 
 const groupOrder = ["Operations", "Finance", "Tools", "MIS"];
+
+const DEFAULT_ANNOUNCEMENTS = ["Appointment Management Provision in the Customer Portal"];
+
+const AnnouncementMarquee = () => {
+  const [items, setItems] = useState<string[]>(DEFAULT_ANNOUNCEMENTS);
+
+  useEffect(() => {
+    supabase
+      .from("site_content")
+      .select("value")
+      .eq("key", "emp_portal_announcements")
+      .maybeSingle()
+      .then(({ data }) => {
+        const list = Array.isArray(data?.value)
+          ? (data.value as unknown[]).filter((v): v is string => typeof v === "string" && v.trim().length > 0)
+          : [];
+        if (list.length > 0) setItems(list);
+      });
+  }, []);
+
+  // Duplicate the list so the -50% marquee loop is seamless.
+  const loop = [...items, ...items];
+
+  return (
+    <div className="bg-primary text-primary-foreground overflow-hidden">
+      <div className="flex items-stretch">
+        <div className="flex shrink-0 items-center gap-2 bg-foreground px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white">
+          <Megaphone className="h-4 w-4 text-primary" aria-hidden="true" />
+          <span className="hidden sm:inline">New Initiatives</span>
+        </div>
+        <div className="relative flex-1 overflow-hidden">
+          <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap py-2.5 pl-10">
+            {loop.map((text, i) => (
+              <span key={i} className="inline-flex items-center gap-3 text-sm font-semibold">
+                <Sparkles className="h-4 w-4 shrink-0" aria-hidden="true" />
+                {text}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ModulesDashboard = ({ session, onLogout }: { session: EmpSession; onLogout: () => void }) => {
   const userName = session.name || session.userId;
@@ -117,6 +162,8 @@ const ModulesDashboard = ({ session, onLogout }: { session: EmpSession; onLogout
           </div>
         </div>
       </header>
+
+      <AnnouncementMarquee />
 
       {/* Hero strip with background */}
       <section
