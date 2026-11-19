@@ -12,10 +12,20 @@ const BirthdayPopup = () => {
   }, []);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        window.dispatchEvent(new Event("birthday-popup-closed"));
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  const close = () => {
+    setOpen(false);
+    window.dispatchEvent(new Event("birthday-popup-closed"));
+  };
 
   if (!open) return null;
 
@@ -25,7 +35,7 @@ const BirthdayPopup = () => {
       aria-modal="true"
       aria-label="Birthday wishes for our Managing Director"
       className="fixed inset-0 z-[110] flex items-center justify-center bg-foreground/70 p-4 backdrop-blur-sm"
-      onClick={() => setOpen(false)}
+      onClick={close}
     >
       <div
         className="relative w-full max-w-md overflow-hidden rounded-2xl bg-primary text-primary-foreground shadow-2xl"
@@ -37,7 +47,7 @@ const BirthdayPopup = () => {
         <button
           type="button"
           aria-label="Close birthday wishes"
-          onClick={() => setOpen(false)}
+          onClick={close}
           className="absolute right-3 top-3 z-10 rounded-full bg-white/15 p-2 text-primary-foreground transition-colors hover:bg-white hover:text-primary"
         >
           <X className="h-5 w-5" aria-hidden="true" />

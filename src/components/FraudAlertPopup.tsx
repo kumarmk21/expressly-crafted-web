@@ -6,8 +6,10 @@ const FraudAlertPopup = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setOpen(true), 600);
-    return () => clearTimeout(t);
+    // While the temporary birthday popup is active, wait for it to be closed first.
+    const show = () => setOpen(true);
+    window.addEventListener("birthday-popup-closed", show, { once: true });
+    return () => window.removeEventListener("birthday-popup-closed", show);
   }, []);
 
   useEffect(() => {
