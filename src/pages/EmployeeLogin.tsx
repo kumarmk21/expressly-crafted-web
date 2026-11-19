@@ -99,10 +99,10 @@ const AnnouncementMarquee = () => {
           <span className="hidden sm:inline">New Initiatives</span>
         </div>
         <div className="relative flex-1 overflow-hidden">
-          <div className="flex w-max animate-marquee items-center gap-10 whitespace-nowrap py-2.5 pl-10">
+          <div className="flex w-max animate-marquee-fast items-center gap-10 whitespace-nowrap py-3 pl-10">
             {loop.map((text, i) => (
-              <span key={i} className="inline-flex items-center gap-3 text-sm font-semibold">
-                <Sparkles className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span key={i} className="inline-flex items-center gap-3 text-base font-bold sm:text-lg">
+                <Sparkles className="h-5 w-5 shrink-0" aria-hidden="true" />
                 {text}
               </span>
             ))}
