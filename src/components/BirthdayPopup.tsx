@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Cake, PartyPopper, Sparkles, X } from "lucide-react";
-import jpnSingh from "@/assets/leadership/jpn-singh.jpg";
+import shaliniSingh from "@/assets/leadership/shalini-singh.jpg";
 
-// Temporary birthday splash for the Managing Director — remove after the celebration.
+// Temporary birthday splash for the Director — remove after the celebration.
 // Shows as a full-screen "loading" banner, then fades out and hands over to the fraud alert.
 
 const DURATION_MS = 6000;
@@ -44,7 +44,7 @@ const BirthdayPopup = () => {
         <motion.div
           role="dialog"
           aria-modal="true"
-          aria-label="Birthday wishes for our Managing Director"
+          aria-label="Birthday wishes for our Director"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -88,8 +88,8 @@ const BirthdayPopup = () => {
             >
               <div className="absolute -inset-3 rounded-full bg-white/20" />
               <img
-                src={jpnSingh}
-                alt="Mr. J P N Singh, Managing Director of Scorpion Group"
+                src={shaliniSingh}
+                alt="Ms. Shalini Singh, Director of Scorpion Express"
                 className="relative h-36 w-36 rounded-full border-4 border-white object-cover object-top shadow-2xl ring-4 ring-white/30 sm:h-44 sm:w-44"
               />
               <div className="absolute -bottom-1 -right-1 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg">
@@ -108,7 +108,7 @@ const BirthdayPopup = () => {
               </div>
 
               <h2 className="mt-4 text-4xl font-bold leading-tight drop-shadow-sm sm:text-5xl">
-                Happy Birthday, Sir!
+                Happy Birthday, Ma'am!
               </h2>
 
               <div className="mt-5 flex items-center justify-center gap-3" aria-hidden="true">
@@ -118,8 +118,8 @@ const BirthdayPopup = () => {
               </div>
 
               <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-primary-foreground/95 sm:text-base">
-                Wishing a very happy birthday to our Managing Director,{" "}
-                <strong className="font-semibold">Mr. J P N Singh</strong>. Your vision
+                Wishing a very happy birthday to our Director,{" "}
+                <strong className="font-semibold">Ms. Shalini Singh</strong>. Your vision
                 and leadership continue to inspire the entire Scorpion family every day.
                 May the year ahead bring you great health, happiness and success.
               </p>

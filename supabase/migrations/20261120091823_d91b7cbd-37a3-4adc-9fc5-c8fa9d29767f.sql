@@ -1,0 +1,3 @@
+INSERT INTO public.emp_portal_modules (name, description, url, icon, group_name, active, display_order) VALUES
+('Docket & Sticker Requisition', 'Raise docket and sticker requisitions', 'https://requisition.scorpiongroup.in/login', 'ClipboardList', 'Operations', true, 140),
+('Lane Rate Finder', 'Check lane-wise freight rates', 'https://laneratefinder.scorpiongroup.in/', 'Calculator', 'Tools', true, 150);
