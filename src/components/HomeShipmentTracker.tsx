@@ -9,7 +9,7 @@ const HomeShipmentTracker = () => {
     const id = lr.trim();
     if (!id) return;
     window.open(
-      `https://dtrack.scorpiongroup.in/?lr=${encodeURIComponent(id)}`,
+      `https://dtrack.scorpiongroup.in/?docket=${encodeURIComponent(id)}`,
       "_blank",
       "noopener,noreferrer",
     );

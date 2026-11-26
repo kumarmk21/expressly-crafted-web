@@ -61,7 +61,7 @@ const CustomerPortal = () => {
     e.preventDefault();
     const id = lr.trim();
     if (!id) return;
-    window.open(`https://dtrack.scorpiongroup.in/?lr=${encodeURIComponent(id)}`, "_blank", "noopener");
+    window.open(`https://dtrack.scorpiongroup.in/?docket=${encodeURIComponent(id)}`, "_blank", "noopener");
   };
 
   return (
