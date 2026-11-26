@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { BriefcaseBusiness, Landmark, X } from "lucide-react";
 import popupFraud from "@/assets/popup-fraud.png";
+import { Button } from "@/components/ui/button";
 
-const FraudAlertPopup = () => {
+const FraudAlertPopup = ({ onClose }: { onClose?: () => void }) => {
   const [open, setOpen] = useState(false);
+  const close = () => {
+    setOpen(false);
+    onClose?.();
+  };
 
   useEffect(() => {
     const timer = window.setTimeout(() => setOpen(true), 600);
@@ -11,10 +16,11 @@ const FraudAlertPopup = () => {
   }, []);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [open, onClose]);
 
   if (!open) return null;
 
@@ -24,17 +30,19 @@ const FraudAlertPopup = () => {
       aria-modal="true"
       aria-label="Fraud alert notice"
       className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/70 p-4 backdrop-blur-sm"
-      onClick={() => setOpen(false)}
+      onClick={close}
     >
       <div className="relative max-h-[90vh] w-full max-w-xl overflow-auto rounded-lg bg-background shadow-2xl" onClick={(e) => e.stopPropagation()}>
-        <button
+        <Button
           type="button"
+          variant="ghost"
+          size="icon"
           aria-label="Close fraud alert"
-          onClick={() => setOpen(false)}
+          onClick={close}
           className="absolute right-3 top-3 z-10 rounded-full bg-background/90 p-2 text-foreground shadow-lg transition-colors hover:bg-primary hover:text-primary-foreground"
         >
           <X className="h-5 w-5" aria-hidden="true" />
-        </button>
+        </Button>
 
         <img
           src={popupFraud}

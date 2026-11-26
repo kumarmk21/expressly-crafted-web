@@ -13,3 +13,4 @@
 - Careers and Contact use the shared semantic photo-overlay treatment to keep headings readable without obscuring desktop subjects; Contact retains its existing enquiry forms and branch map.
 - Admin submission sharing formats only the source's displayed fields and opens copy/email/WhatsApp drafts; never publish submission data or private resume paths as public links.
 - Technology cards separate fixed-aspect images from their text rather than overlaying descriptions, preserving image clarity and readable content on phones.
+- Homepage notices use a parent-controlled sequence and close callbacks so the privacy notice opens only after the fraud alert is dismissed, without overlapping dialogs or global events.

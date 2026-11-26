@@ -9,7 +9,7 @@ import ClientsSection from "@/components/ClientsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
-import FraudAlertPopup from "@/components/FraudAlertPopup";
+import HomeNotices from "@/components/HomeNotices";
 import HomeShipmentTracker from "@/components/HomeShipmentTracker";
 
 const Index = () => {
@@ -34,7 +34,7 @@ const Index = () => {
         <CTASection />
       </main>
       <Footer />
-      <FraudAlertPopup />
+      <HomeNotices />
 
     </div>
   );
