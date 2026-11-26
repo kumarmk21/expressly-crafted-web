@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Show only client logos without name captions and use the official Ram Bandhu logo for Empire.
+
 - [x] Keep franchise submissions in Admin and email Nishant; send all resume notifications to HR in English; live test submissions were saved and SMTP accepted both emails (signed-in Admin verification remains unavailable).
 
 - [x] Add restricted HR sign-in and complete vacancy editor; register the requested account and test permissions and updates

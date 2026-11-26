@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { Building2 } from "lucide-react";
+import ramBandhuLogo from "@/assets/clients/ram-bandhu-logo.png.asset.json";
 
 type Client = {
   id: string;
@@ -22,7 +23,12 @@ const ClientsSection = () => {
       .order("display_order")
       .order("name")
       .then(({ data }) => {
-        setClients((data as Client[]) ?? []);
+        setClients(((data as Client[]) ?? []).map((client) => ({
+          ...client,
+          logo_url: client.name.toLowerCase().includes("empire spices")
+            ? ramBandhuLogo.url
+            : client.logo_url,
+        })).filter((client) => Boolean(client.logo_url)));
         setLoading(false);
       });
   }, []);
@@ -76,12 +82,9 @@ const ClientsSection = () => {
                       src={c.logo_url}
                       alt={`${c.name} logo`}
                       loading="lazy"
-                      className="max-h-12 max-w-[80%] object-contain transition-transform duration-300 group-hover:scale-110"
+                      className="max-h-20 max-w-[80%] object-contain transition-transform duration-300 group-hover:scale-110"
                     />
                   )}
-                  <span className="font-display uppercase text-sm text-foreground/70 group-hover:text-primary transition-colors text-center leading-tight tracking-wide">
-                    {c.name}
-                  </span>
                 </div>
               ))}
             </div>

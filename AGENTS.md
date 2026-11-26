@@ -15,3 +15,4 @@
 - Admin submission sharing formats only the source's displayed fields and opens copy/email/WhatsApp drafts; never publish submission data or private resume paths as public links.
 - Technology cards separate fixed-aspect images from their text rather than overlaying descriptions, preserving image clarity and readable content on phones.
 - Homepage notices use a parent-controlled sequence and close callbacks so the privacy notice opens only after the fraud alert is dismissed, without overlapping dialogs or global events.
+- Client logo presentation uses a local asset-pointer override for a requested brand replacement while preserving the admin's underlying company record.
