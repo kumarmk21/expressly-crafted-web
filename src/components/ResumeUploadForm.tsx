@@ -134,10 +134,13 @@ const ResumeUploadForm = ({ defaultRole = "", jobOpeningId, lockRole = false, on
       ]);
       if (insertError) throw insertError;
 
-      // Fire-and-forget email notification (edge function looks up by resume_url)
-      supabase.functions.invoke("notify-job-application", {
+      // Check delivery separately: a mail failure must not lose the saved application.
+      const notification = await supabase.functions.invoke("notify-job-application", {
         body: { resume_url: path },
-      }).catch((err) => console.error("notify-job-application error", err));
+      }).catch(() => ({ data: null, error: new Error("Email unavailable") }));
+      if (notification.error || !notification.data?.emailed) {
+        toast.warning("Your application is saved. Email delivery is delayed; our HR team can view it in Admin.");
+      }
 
       toast.success("Application submitted. Our HR team will be in touch.");
       formElement.reset();

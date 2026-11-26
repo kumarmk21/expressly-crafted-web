@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Keep franchise submissions in Admin and email Nishant; send all resume notifications to HR in English; live test submissions were saved and SMTP accepted both emails (signed-in Admin verification remains unavailable).
+
 - [x] Add restricted HR sign-in and complete vacancy editor; register the requested account and test permissions and updates
 - [ ] Verify signed-in HR vacancy edits end-to-end: waiting for HR email confirmation
 

@@ -234,15 +234,15 @@ const FranchiseeForm = () => {
       return;
     }
     setSubmitting(true);
-    const { error } = await supabase.from("contact_submissions" as any).insert({
-      form_type: "franchisee",
-      ...parsed.data,
-    });
+    const { data, error } = await supabase.functions.invoke("submit-franchise-enquiry", {
+      body: parsed.data,
+    }).catch(() => ({ data: null, error: new Error("Submission unavailable") }));
     setSubmitting(false);
-    if (error) {
+    if (error || !data?.saved) {
       toast.error("Could not submit. Please try again.");
       return;
     }
+    if (!data.emailed) toast.warning("Your enquiry is saved. Email delivery is delayed; our team can view it in Admin.");
     toast.success("Thank you! Our franchise team will reach out.");
     setForm({
       first_name: "",

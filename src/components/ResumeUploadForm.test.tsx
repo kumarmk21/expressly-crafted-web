@@ -8,14 +8,14 @@ vi.mock("@/integrations/supabase/client", () => ({ supabase: {
   from: () => ({ insert: mocks.insert }),
   functions: { invoke: mocks.invoke },
 } }));
-vi.mock("sonner", () => ({ toast: { error: vi.fn(), success: vi.fn() } }));
+vi.mock("sonner", () => ({ toast: { error: vi.fn(), success: vi.fn(), warning: vi.fn() } }));
 
 describe("general Careers resume application", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.upload.mockResolvedValue({ error: null });
     mocks.insert.mockResolvedValue({ error: null });
-    mocks.invoke.mockResolvedValue({ error: null });
+    mocks.invoke.mockResolvedValue({ data: { emailed: true }, error: null });
   });
   it("accepts a resume without selecting an open job and records it for HR", async () => {
     render(<ResumeUploadForm />);
@@ -32,5 +32,6 @@ describe("general Careers resume application", () => {
     expect(record.resume_file_name).toBe("resume.pdf");
     expect(record).not.toHaveProperty("job_opening_id");
     expect(mocks.invoke).toHaveBeenCalledWith("notify-job-application", { body: { resume_url: record.resume_url } });
+    await waitFor(() => expect(screen.getByRole("status")).toBeInTheDocument());
   });
 });
