@@ -15,6 +15,14 @@ const HomeShipmentTracker = () => {
     );
   };
 
+  const raiseComplaint = () => {
+    const id = lr.trim();
+    const url = id
+      ? `https://cms.scorpiongroup.in/?docket=${encodeURIComponent(id)}`
+      : "https://cms.scorpiongroup.in/";
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section
       className="relative z-20 border-b border-border bg-card"
@@ -61,6 +69,9 @@ const HomeShipmentTracker = () => {
               </div>
               <Button type="submit" size="lg" className="pulse-cta btn-sheen h-12 rounded-sm px-6 font-black uppercase tracking-wider sm:min-w-36">
                 Track Now
+              </Button>
+              <Button type="button" size="lg" variant="outline" onClick={raiseComplaint} className="h-12 rounded-sm border-primary px-5 font-bold uppercase tracking-wider text-primary hover:bg-primary hover:text-primary-foreground">
+                Raise Complaint
               </Button>
             </form>
             <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
