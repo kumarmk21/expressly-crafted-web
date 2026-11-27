@@ -38,7 +38,7 @@ const PrivacyNoticePopup = ({ onClose }: { onClose: () => void }) => (
       <DialogHeader className="shrink-0 border-b border-border bg-primary/5 p-5 pr-12 text-left sm:p-6 sm:pr-12">
         <div className="mb-3 flex items-center gap-3 text-primary">
           <ShieldCheck className="h-7 w-7 shrink-0" aria-hidden="true" />
-          <DialogTitle className="text-2xl leading-tight tracking-normal">DPDP Act, 2023 — Privacy Notice</DialogTitle>
+          <DialogTitle className="text-2xl leading-tight tracking-normal">DPDP Act, 2023</DialogTitle>
         </div>
         <DialogDescription className="text-base font-semibold text-foreground">Scorpion Express Pvt. Ltd.</DialogDescription>
       </DialogHeader>
