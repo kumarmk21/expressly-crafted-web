@@ -16,7 +16,7 @@ describe("Homepage notice sequence", () => {
     else if (method === "escape") fireEvent.keyDown(window, { key: "Escape" });
     else fireEvent.click(fraud);
     expect(screen.queryByRole("dialog", { name: "Fraud alert notice" })).toBeNull();
-    expect(screen.getByRole("dialog", { name: "Privacy Notice" })).toBeTruthy();
+    expect(screen.getByRole("dialog", { name: "DPDP Act, 2023 — Privacy Notice" })).toBeTruthy();
     expect(screen.getAllByRole("dialog")).toHaveLength(1);
     fireEvent.click(screen.getByRole("button", { name: "Close notice" }));
     expect(screen.queryByRole("dialog")).toBeNull();
